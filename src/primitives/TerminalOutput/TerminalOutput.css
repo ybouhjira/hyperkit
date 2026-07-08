@@ -1,0 +1,51 @@
+.sk-terminal {
+  font-family: var(--sk-font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background: var(--sk-terminal-bg, #1a1b26);
+  color: var(--sk-terminal-fg, #a9b1d6);
+  border-radius: var(--sk-radius-md, 8px);
+  padding: 0.75rem 1rem;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.sk-terminal__line {
+  display: flex;
+  gap: 0.5rem;
+  padding: 2px 0;
+}
+
+.sk-terminal__line--system {
+  color: var(--sk-terminal-system, #565f89);
+}
+.sk-terminal__line--tool-call {
+  color: var(--sk-terminal-accent, #7aa2f7);
+}
+.sk-terminal__line--tool-result {
+  color: var(--sk-terminal-success, #9ece6a);
+}
+.sk-terminal__line--error {
+  color: var(--sk-terminal-error, #f7768e);
+}
+.sk-terminal__line--info {
+  color: var(--sk-terminal-fg, #a9b1d6);
+}
+
+.sk-terminal__prefix {
+  flex-shrink: 0;
+  width: 1ch;
+  text-align: center;
+  user-select: none;
+}
+
+.sk-terminal__time {
+  flex-shrink: 0;
+  color: var(--sk-terminal-system, #565f89);
+  font-size: 0.8125rem;
+}
+
+.sk-terminal__text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}

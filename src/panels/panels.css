@@ -1,0 +1,1191 @@
+/* =============================================================================
+ * Panel System Styles
+ *
+ * Migrated from panels.scss to plain CSS. Flat selectors, BEM naming.
+ *
+ * Theming:
+ *   --sk-panel-header-padding       (default 2px 8px)
+ *   --sk-panel-border-radius        (default 4px)
+ *   --sk-panel-resize-handle-size   (default 6px)
+ *   --sk-duration-fast / --sk-duration-normal / --sk-ease-default for transitions.
+ *
+ * Internal layering (not exposed as tokens — apps target selectors directly):
+ *   resize handle      z=10
+ *   floating panel     z=500
+ *   drawer backdrop    z=600
+ *   drawer panel       z=601
+ *   pip panel          z=700
+ *   drop zone          z=1000
+ *   drag ghost         z=2000
+ * ============================================================================= */
+
+/* =============================================================================
+ * Panel Container — CSS Grid layout
+ * ============================================================================= */
+
+.sk-panel-container {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  background: var(--sk-bg-canvas, var(--sk-bg-primary));
+  position: relative;
+  gap: 2px;
+  overflow: hidden;
+  /* No transition on grid-template — keeps resize handle dragging instant */
+  padding: 5px;
+  contain: layout style;
+}
+
+/* =============================================================================
+ * Chrome Levels
+ * ============================================================================= */
+
+/* Minimal: titles only, no header buttons, thin borders, no shadows.
+   Resize handles stay visible — minimal is about quieter chrome, not
+   removing core functionality. Use chrome="none" to hide handles too. */
+.sk-panel-container--chrome-minimal .sk-panel-header__button {
+  display: none;
+}
+
+.sk-panel-container--chrome-minimal .sk-panel-area {
+  box-shadow: none;
+  border: 1px solid var(--sk-border-subtle);
+}
+
+/* None: no headers, no handles, no borders, no padding, no gap */
+.sk-panel-container--chrome-none {
+  padding: 0;
+  gap: 0;
+}
+
+.sk-panel-container--chrome-none .sk-panel-header,
+.sk-panel-container--chrome-none .sk-resize-handle,
+.sk-panel-container--chrome-none .sk-collapsed-strip,
+.sk-panel-container--chrome-none .sk-panel-tab-bar {
+  display: none;
+}
+
+.sk-panel-container--chrome-none .sk-panel-area {
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+
+/* Auto-hide: chrome elements hidden by default, shown on hover */
+.sk-panel-container--chrome-auto-hide .sk-panel-header {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition:
+    opacity var(--sk-duration-normal) var(--sk-ease-default),
+    height var(--sk-duration-normal) var(--sk-ease-default);
+}
+
+.sk-panel-container--chrome-auto-hide .sk-resize-handle {
+  opacity: 0;
+  transition: opacity var(--sk-duration-normal) var(--sk-ease-default);
+}
+
+.sk-panel-container--chrome-auto-hide .sk-panel-area:hover .sk-panel-header {
+  opacity: 1;
+  height: auto;
+}
+
+.sk-panel-container--chrome-auto-hide .sk-panel-area:hover + .sk-resize-wrapper .sk-resize-handle,
+.sk-panel-container--chrome-auto-hide .sk-resize-wrapper:hover .sk-resize-handle {
+  opacity: 1;
+}
+
+/* When not idle, also show */
+.sk-panel-container--chrome-auto-hide:not(.sk-panel-container--idle) .sk-panel-header {
+  opacity: 1;
+  height: auto;
+}
+
+.sk-panel-container--chrome-auto-hide:not(.sk-panel-container--idle) .sk-resize-handle {
+  opacity: 1;
+}
+
+/* Edge-peek: side columns 4px wide, expand on hover */
+.sk-panel-container--chrome-edge-peek .sk-panel-area--left,
+.sk-panel-container--chrome-edge-peek .sk-panel-area--right {
+  max-width: 4px;
+  overflow: hidden;
+  transition: max-width 0.3s ease;
+  cursor: pointer;
+}
+
+.sk-panel-container--chrome-edge-peek .sk-panel-area--left:hover,
+.sk-panel-container--chrome-edge-peek .sk-panel-area--right:hover {
+  max-width: none;
+}
+
+.sk-panel-container--chrome-edge-peek .sk-resize-handle {
+  display: none;
+}
+
+/* Fade-on-idle: chrome fades after idle timeout */
+.sk-panel-container--chrome-fade-on-idle .sk-panel-header,
+.sk-panel-container--chrome-fade-on-idle .sk-panel-header__button,
+.sk-panel-container--chrome-fade-on-idle .sk-resize-handle {
+  transition: opacity 0.5s ease;
+}
+
+.sk-panel-container--chrome-fade-on-idle.sk-panel-container--idle .sk-panel-header {
+  opacity: 0.15;
+}
+
+.sk-panel-container--chrome-fade-on-idle.sk-panel-container--idle .sk-panel-header__button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sk-panel-container--chrome-fade-on-idle.sk-panel-container--idle .sk-resize-handle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* =============================================================================
+ * Panel Area
+ * ============================================================================= */
+
+.sk-panel-area {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  background: var(--sk-bg-secondary);
+  border-radius: 8px;
+  contain: layout style;
+  box-shadow:
+    0 1px 3px rgb(0, 0, 0, 0.08),
+    0 0 0 1px var(--sk-border-subtle);
+}
+
+.sk-panel-area--left {
+  grid-row: 1;
+  flex-direction: row;
+}
+
+.sk-panel-area--center {
+  grid-row: 1;
+  flex-direction: column;
+}
+
+.sk-panel-area--right {
+  grid-row: 1;
+  flex-direction: row;
+}
+
+.sk-panel-area--bottom {
+  grid-row: 3;
+  flex-direction: column;
+}
+
+.sk-panel-area--empty-drop {
+  background: color-mix(in srgb, var(--sk-accent, #3b82f6) 4%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--sk-accent, #3b82f6) 20%, transparent);
+  border-radius: 6px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
+/* =============================================================================
+ * Resize handle wrappers in grid
+ * ============================================================================= */
+
+.sk-resize-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.sk-resize-wrapper--left {
+  grid-row: 1;
+}
+
+.sk-resize-wrapper--right {
+  grid-row: 1;
+}
+
+.sk-resize-wrapper--bottom {
+  display: flex;
+  align-items: stretch;
+}
+
+/* =============================================================================
+ * Panel Group
+ * ============================================================================= */
+
+.sk-panel-group {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.sk-panel-group--vertical {
+  flex-direction: column;
+}
+
+.sk-panel-group--horizontal {
+  flex-direction: row;
+}
+
+/* =============================================================================
+ * Panel wrapper in group
+ * ============================================================================= */
+
+.sk-panel-wrapper {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  transition: opacity var(--sk-duration-fast) var(--sk-ease-default);
+  contain: layout style;
+}
+
+.sk-panel-wrapper--dragged {
+  visibility: hidden;
+}
+
+/* =============================================================================
+ * Panel
+ * ============================================================================= */
+
+.sk-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  transition: all var(--sk-duration-normal) var(--sk-ease-default);
+}
+
+.sk-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--sk-panel-header-padding);
+  background: transparent;
+  border-bottom: 1px solid var(--sk-border-subtle);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.sk-panel-header--draggable {
+  cursor: grab;
+}
+
+.sk-panel-header__icon {
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-panel-header__title {
+  flex: 1;
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+  color: var(--sk-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-panel-header__button {
+  padding: 2px;
+  min-width: 24px;
+  min-height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--sk-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: all var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-panel-header__button:hover {
+  background: var(--sk-bg-tertiary);
+}
+
+.sk-panel-header__button--collapse-rotated {
+  transform: rotate(180deg);
+}
+
+.sk-panel-content {
+  flex: 1;
+  overflow: auto;
+  background: transparent;
+}
+
+/* =============================================================================
+ * Collapsed icon strip (IntelliJ-style)
+ * ============================================================================= */
+
+.sk-collapsed-strip {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+/* Vertical strip: runs along a sidebar (left/right) — icons stacked vertically */
+.sk-collapsed-strip--vertical {
+  flex-direction: column;
+  width: 34px;
+  padding: 4px 0;
+  border-right: 1px solid var(--sk-border-subtle);
+}
+
+/* Horizontal strip: runs along bottom — icons in a row */
+.sk-collapsed-strip--horizontal {
+  flex-direction: row;
+  height: 34px;
+  padding: 0 4px;
+  border-top: 1px solid var(--sk-border-subtle);
+}
+
+.sk-collapsed-strip__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--sk-text-secondary);
+  font-family: inherit;
+  transition: all var(--sk-duration-fast) var(--sk-ease-default);
+  border-radius: 4px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.sk-collapsed-strip__button:hover {
+  background: var(--sk-bg-tertiary);
+  color: var(--sk-text-primary);
+}
+
+/* Vertical strip buttons: label rotated sideways */
+.sk-collapsed-strip--vertical .sk-collapsed-strip__button {
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 4px;
+}
+
+.sk-collapsed-strip--vertical .sk-collapsed-strip__label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: var(--sk-font-size-sm, 13px);
+  font-weight: 500;
+  white-space: nowrap;
+  max-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Horizontal strip buttons: label normal */
+.sk-collapsed-strip--horizontal .sk-collapsed-strip__button {
+  flex-direction: row;
+  height: 100%;
+  padding: 4px 10px;
+}
+
+.sk-collapsed-strip--horizontal .sk-collapsed-strip__label {
+  font-size: var(--sk-font-size-sm, 13px);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sk-collapsed-strip__icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* =============================================================================
+ * Resize Handle
+ * ============================================================================= */
+
+.sk-resize-handle {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 10;
+  background: transparent;
+  transition: background var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-resize-handle--horizontal {
+  width: var(--sk-panel-resize-handle-size);
+  height: 100%;
+  cursor: col-resize;
+}
+
+.sk-resize-handle--vertical {
+  width: 100%;
+  height: var(--sk-panel-resize-handle-size);
+  cursor: row-resize;
+}
+
+.sk-resize-handle--active,
+.sk-resize-handle:hover {
+  background: var(--sk-accent);
+}
+
+.sk-resize-handle__hitbox {
+  position: absolute;
+}
+
+.sk-resize-handle__hitbox--horizontal {
+  inset: 0 -4px;
+  cursor: col-resize;
+}
+
+.sk-resize-handle__hitbox--vertical {
+  inset: -4px 0;
+  cursor: row-resize;
+}
+
+/* =============================================================================
+ * Drop Zones
+ * ============================================================================= */
+
+.sk-drop-zone {
+  pointer-events: none;
+  z-index: 1000;
+  background: transparent;
+  border: none;
+  min-width: 0;
+  min-height: 0;
+}
+
+.sk-drop-zone--active,
+.sk-drop-zone--inactive {
+  background: transparent;
+  border: none;
+}
+
+.sk-drop-zone--hidden {
+  opacity: 0;
+}
+
+/* =============================================================================
+ * Drop Preview Ghost (animated target indicator)
+ * ============================================================================= */
+
+@keyframes sk-ghost-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.sk-drop-preview {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 999;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sk-drop-preview--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sk-drop-preview__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--sk-accent, #3b82f6);
+  opacity: 0.08;
+  border-radius: 6px;
+  animation: sk-ghost-pulse 2s ease-in-out infinite;
+}
+
+.sk-drop-preview__border {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.sk-drop-preview__border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  border: 2px dashed var(--sk-accent, #3b82f6);
+  opacity: 0.7;
+}
+
+.sk-drop-preview__border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 7px;
+  border: 2px solid var(--sk-accent, #3b82f6);
+  opacity: 0.15;
+}
+
+.sk-drop-preview__label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--sk-accent, #3b82f6);
+  font-size: var(--sk-font-size-sm, 13px);
+  font-weight: 500;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+/* =============================================================================
+ * Panel Tab Bar (center area with 2+ panels)
+ * ============================================================================= */
+
+.sk-panel-tab-bar {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid var(--sk-border-subtle);
+  height: 24px;
+  padding: 0 2px;
+  gap: 0;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.sk-panel-tab-bar__tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  height: 100%;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+  cursor: grab;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  transition:
+    color var(--sk-duration-fast) var(--sk-ease-default),
+    border-color var(--sk-duration-fast) var(--sk-ease-default);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.sk-panel-tab-bar__tab:hover {
+  color: var(--sk-text-primary);
+}
+
+.sk-panel-tab-bar__tab--active {
+  color: var(--sk-text-primary);
+  border-bottom-color: var(--sk-accent);
+}
+
+/* .sk-panel-tab-bar__tab--pinned: subtle visual distinction for pinned tabs (currently no styles) */
+
+.sk-panel-tab-bar__icon {
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-panel-tab-bar__pin-indicator {
+  font-size: 10px;
+  margin-right: 2px;
+  opacity: 0.6;
+}
+
+.sk-panel-tab-bar__pin-action {
+  font-size: 10px;
+  margin-left: 4px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.sk-panel-tab-bar__tab:hover .sk-panel-tab-bar__pin-action {
+  opacity: 0.6;
+}
+
+.sk-panel-tab-bar__pin-action:hover {
+  opacity: 1 !important;
+}
+
+/* =============================================================================
+ * Drag Ghost
+ * ============================================================================= */
+
+.sk-drag-ghost {
+  position: fixed;
+  border-radius: var(--sk-panel-border-radius);
+  box-shadow:
+    0 16px 48px rgb(0, 0, 0, 0.2),
+    0 4px 12px rgb(0, 0, 0, 0.1);
+  opacity: 0.92;
+  pointer-events: none;
+  z-index: 2000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sk-accent, #3b82f6);
+  transform: scale(1.01);
+  will-change: transform;
+  transition: opacity 0.15s ease;
+}
+
+.sk-drag-ghost__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--sk-panel-header-padding);
+  background: var(--sk-bg-secondary);
+  border-bottom: 1px solid var(--sk-border-subtle);
+  flex-shrink: 0;
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+  color: var(--sk-text-primary);
+}
+
+.sk-drag-ghost__icon {
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-drag-ghost__content {
+  flex: 1;
+  overflow: hidden;
+  background: var(--sk-bg-primary);
+}
+
+/* =============================================================================
+ * Maximized View
+ * ============================================================================= */
+
+.sk-maximized-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--sk-bg-primary);
+}
+
+.sk-maximized-view__tab-bar {
+  display: flex;
+  align-items: center;
+  background: var(--sk-bg-secondary);
+  border-bottom: 1px solid var(--sk-border-subtle);
+  height: 36px;
+  padding: 0 8px;
+  gap: 2px;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.sk-maximized-view__tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  height: 28px;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-radius: var(--sk-radius-sm, 4px);
+  transition:
+    color var(--sk-duration-fast) var(--sk-ease-default),
+    background-color var(--sk-duration-fast) var(--sk-ease-default);
+  white-space: nowrap;
+  user-select: none;
+  font-family: var(--sk-font-ui);
+}
+
+.sk-maximized-view__tab:hover {
+  color: var(--sk-text-primary);
+  background: var(--sk-bg-tertiary);
+}
+
+.sk-maximized-view__tab--active {
+  color: var(--sk-text-primary);
+  background: var(--sk-accent-subtle, rgb(99, 102, 241, 0.1));
+  font-weight: 500;
+}
+
+.sk-maximized-view__tab-icon {
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-maximized-view__tab-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--sk-text-muted);
+  margin-left: 4px;
+  cursor: pointer;
+  transition: all var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-maximized-view__tab-close:hover {
+  color: var(--sk-text-primary);
+  background: rgb(255, 255, 255, 0.1);
+}
+
+.sk-maximized-view__separator {
+  width: 1px;
+  height: 16px;
+  background: var(--sk-border-subtle);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+.sk-maximized-view__restore-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: var(--sk-radius-sm, 4px);
+  cursor: pointer;
+  color: var(--sk-text-secondary);
+  transition: all var(--sk-duration-fast) var(--sk-ease-default);
+  flex-shrink: 0;
+}
+
+.sk-maximized-view__restore-btn:hover {
+  background: var(--sk-bg-tertiary);
+  color: var(--sk-text-primary);
+}
+
+.sk-maximized-view__content {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* =============================================================================
+ * Add Panel Button
+ * ============================================================================= */
+
+.sk-panel-add-button-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 4px 0;
+  flex-shrink: 0;
+}
+
+.sk-panel-add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px dashed var(--sk-border-subtle);
+  border-radius: var(--sk-radius-sm, 4px);
+  cursor: pointer;
+  color: var(--sk-text-muted);
+  transition: all var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-panel-add-button:hover {
+  background: var(--sk-bg-tertiary);
+  border-color: var(--sk-border);
+  color: var(--sk-text-secondary);
+}
+
+.sk-panel-add-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;
+  min-width: 180px;
+  background: var(--sk-bg-secondary);
+  border: 1px solid var(--sk-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgb(0, 0, 0, 0.3);
+  z-index: 100;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.sk-panel-add-dropdown__header {
+  padding: 6px 10px;
+  font-size: var(--sk-font-size-xs, 12px);
+  color: var(--sk-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sk-panel-add-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--sk-text-secondary);
+  font-size: var(--sk-font-size-sm);
+  font-family: var(--sk-font-ui);
+  text-align: left;
+  transition: background-color var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-panel-add-dropdown__item:hover {
+  background: var(--sk-bg-tertiary);
+  color: var(--sk-text-primary);
+}
+
+.sk-panel-add-dropdown__icon {
+  font-size: var(--sk-font-size-base);
+  width: 20px;
+  text-align: center;
+}
+
+/* =============================================================================
+ * Floating Panels
+ * ============================================================================= */
+
+.sk-floating-panel {
+  position: absolute;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  background: var(--sk-bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--sk-border-subtle);
+  box-shadow:
+    0 8px 32px rgb(0, 0, 0, 0.2),
+    0 2px 8px rgb(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-floating-panel--dragging {
+  box-shadow:
+    0 16px 48px rgb(0, 0, 0, 0.3),
+    0 4px 12px rgb(0, 0, 0, 0.15);
+  cursor: grabbing;
+}
+
+.sk-floating-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: var(--sk-bg-tertiary);
+  border-bottom: 1px solid var(--sk-border-subtle);
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+  min-height: 28px;
+}
+
+.sk-floating-panel--dragging .sk-floating-panel__header {
+  cursor: grabbing;
+}
+
+.sk-floating-panel__icon {
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-floating-panel__title {
+  flex: 1;
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+  color: var(--sk-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-floating-panel__actions {
+  display: flex;
+  gap: 2px;
+}
+
+.sk-floating-panel__content {
+  flex: 1;
+  overflow: auto;
+}
+
+.sk-floating-panel__resize-grip {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  cursor: nwse-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sk-text-muted);
+}
+
+.sk-floating-panel__resize-grip:hover {
+  color: var(--sk-text-secondary);
+}
+
+/* =============================================================================
+ * Drawer Panels
+ * ============================================================================= */
+
+.sk-drawer-trigger {
+  position: absolute;
+  z-index: 50;
+  cursor: pointer;
+  transition: all var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-drawer-trigger--left {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.sk-drawer-trigger--left:hover {
+  width: 8px;
+}
+
+.sk-drawer-trigger--right {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.sk-drawer-trigger--right:hover {
+  width: 8px;
+}
+
+.sk-drawer-trigger--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.sk-drawer-trigger--bottom:hover {
+  height: 8px;
+}
+
+.sk-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 600;
+  background: rgb(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+}
+
+.sk-drawer-panel {
+  position: absolute;
+  z-index: 601;
+  display: flex;
+  flex-direction: column;
+  background: var(--sk-bg-secondary);
+  box-shadow: 0 8px 32px rgb(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.sk-drawer-panel--left {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+  border-right: 1px solid var(--sk-border-subtle);
+  animation: sk-drawer-slide-left 0.25s ease-out;
+}
+
+.sk-drawer-panel--right {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+  border-left: 1px solid var(--sk-border-subtle);
+  animation: sk-drawer-slide-right 0.25s ease-out;
+}
+
+.sk-drawer-panel--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 280px;
+  border-top: 1px solid var(--sk-border-subtle);
+  animation: sk-drawer-slide-bottom 0.25s ease-out;
+}
+
+.sk-drawer-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--sk-bg-tertiary);
+  border-bottom: 1px solid var(--sk-border-subtle);
+  flex-shrink: 0;
+}
+
+.sk-drawer-panel__icon {
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-drawer-panel__title {
+  flex: 1;
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+  color: var(--sk-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-drawer-panel__actions {
+  display: flex;
+  gap: 2px;
+}
+
+.sk-drawer-panel__content {
+  flex: 1;
+  overflow: auto;
+}
+
+@keyframes sk-drawer-slide-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sk-drawer-slide-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sk-drawer-slide-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* =============================================================================
+ * Picture-in-Picture Panels
+ * ============================================================================= */
+
+.sk-pip-panel {
+  position: absolute;
+  z-index: 700;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--sk-bg-secondary);
+  border: 1px solid var(--sk-border-subtle);
+  box-shadow:
+    0 4px 16px rgb(0, 0, 0, 0.2),
+    0 1px 4px rgb(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition:
+    box-shadow var(--sk-duration-fast) var(--sk-ease-default),
+    transform var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-pip-panel:hover {
+  box-shadow:
+    0 8px 24px rgb(0, 0, 0, 0.25),
+    0 2px 8px rgb(0, 0, 0, 0.15);
+  transform: scale(1.02);
+}
+
+.sk-pip-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: var(--sk-bg-tertiary);
+  border-bottom: 1px solid var(--sk-border-subtle);
+  min-height: 20px;
+}
+
+.sk-pip-panel__icon {
+  font-size: 10px;
+}
+
+.sk-pip-panel__title {
+  flex: 1;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--sk-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-pip-panel__corner-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--sk-text-muted);
+  padding: 0;
+}
+
+.sk-pip-panel__corner-btn:hover {
+  background: var(--sk-bg-primary);
+  color: var(--sk-text-secondary);
+}
+
+.sk-pip-panel__content-wrapper {
+  width: 200px;
+  height: calc(150px - 20px);
+  overflow: hidden;
+}
+
+.sk-pip-panel__content {
+  width: 400px;
+  height: 260px;
+  transform: scale(0.5);
+  transform-origin: top left;
+  pointer-events: none;
+  overflow: hidden;
+}

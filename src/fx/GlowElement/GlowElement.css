@@ -1,0 +1,32 @@
+.sk-glow-element {
+  --sk-glow-color: var(--sk-accent);
+  --sk-glow-intensity: 0.5;
+  --sk-glow-size: 20px;
+  --sk-glow-pulse-speed: 2s;
+
+  box-shadow: 0 0 var(--sk-glow-size)
+    color-mix(in srgb, var(--sk-glow-color) calc(var(--sk-glow-intensity) * 100%), transparent);
+  display: inline-block;
+}
+
+@keyframes sk-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 var(--sk-glow-size)
+      color-mix(in srgb, var(--sk-glow-color) calc(var(--sk-glow-intensity) * 100%), transparent);
+  }
+  50% {
+    box-shadow: 0 0 calc(var(--sk-glow-size) * 2)
+      color-mix(in srgb, var(--sk-glow-color) calc(var(--sk-glow-intensity) * 60%), transparent);
+  }
+}
+
+.sk-glow-element--pulse {
+  animation: sk-glow-pulse var(--sk-glow-pulse-speed) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-glow-element--pulse {
+    animation: none;
+  }
+}

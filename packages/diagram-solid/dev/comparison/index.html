@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagram Library Visual Comparison</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-page:        #0f0f17;
+      --bg-card:        #1a1b2e;
+      --bg-card-inner:  #12131f;
+      --border-subtle:  #2a2b3e;
+      --border-strong:  #3a3b5e;
+      --text-primary:   #e8e9f8;
+      --text-secondary: #8283a8;
+      --text-muted:     #4e4f72;
+      --accent-blue:    #5e7ef7;
+      --accent-purple:  #9b59f5;
+      --vs-bg:          #23243a;
+      --vs-border:      #3e3f62;
+      --radius-card:    16px;
+      --radius-iframe:  12px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      padding: 48px 32px 80px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .page-header .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      background: rgba(94, 126, 247, 0.1);
+      border: 1px solid rgba(94, 126, 247, 0.25);
+      border-radius: 100px;
+      padding: 4px 14px;
+      margin-bottom: 20px;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #e8e9f8 30%, #8283a8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Comparison rows ─────────────────────────────── */
+    .comparisons {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .comparison-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .card-index {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+
+    /* ── Grid ────────────────────────────────────────── */
+    .iframe-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .iframe-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .col-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0 2px;
+    }
+
+    .col-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .col-label-dot.ref  { background: #f97316; }
+    .col-label-dot.ours { background: #22d3ee; }
+
+    .iframe-wrap {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-iframe);
+      overflow: hidden;
+      background: var(--bg-card-inner);
+      position: relative;
+    }
+
+    .iframe-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+
+    /* ── VS badge ────────────────────────────────────── */
+    .vs-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      padding-top: 28px; /* align with iframe top (label height ~28px) */
+    }
+
+    .vs-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--vs-bg);
+      border: 1px solid var(--vs-border);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(26, 27, 46, 0.8);
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    .page-footer {
+      text-align: center;
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .page-footer span {
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Page Header ──────────────────────────────── -->
+  <header class="page-header">
+    <div class="eyebrow">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+        <circle cx="5" cy="5" r="5"/>
+      </svg>
+      Design Review
+    </div>
+    <h1>Diagram Library Visual Comparison</h1>
+    <p>Side-by-side rendering quality analysis: industry reference implementations vs. SolidKit Diagrams.</p>
+  </header>
+
+  <!-- ── Comparisons ──────────────────────────────── -->
+  <main class="comparisons">
+
+    <!-- Row 1 -->
+    <article class="comparison-card">
+      <div class="card-header">
+        <div class="card-index">1</div>
+        <span class="card-title">Business Process Flowchart</span>
+      </div>
+      <div class="card-body">
+        <div class="iframe-grid">
+          <!-- Left -->
+          <div class="iframe-col">
+            <div class="col-label">
+              <span class="col-label-dot ref"></span>
+              Reference (React Flow / GoJS / Excalidraw)
+            </div>
+            <div class="iframe-wrap">
+              <iframe
+                src="http://localhost:7890/reactflow.html"
+                title="React Flow — Business Process Flowchart"
+                allow="cross-origin-isolated"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- VS -->
+          <div class="vs-divider">
+            <div class="vs-badge">VS</div>
+          </div>
+
+          <!-- Right -->
+          <div class="iframe-col">
+            <div class="col-label">
+              <span class="col-label-dot ours"></span>
+              SolidKit Diagrams
+            </div>
+            <div class="iframe-wrap">
+              <iframe
+                src="http://localhost:4200/?story=0&hideChrome=true&theme=zed-dark"
+                title="SolidKit — Business Process Flowchart"
+                allow="cross-origin-isolated"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Row 2 -->
+    <article class="comparison-card">
+      <div class="card-header">
+        <div class="card-index">2</div>
+        <span class="card-title">Organization Chart</span>
+      </div>
+      <div class="card-body">
+        <div class="iframe-grid">
+          <!-- Left -->
+          <div class="iframe-col">
+            <div class="col-label">
+              <span class="col-label-dot ref"></span>
+              Reference (React Flow / GoJS / Excalidraw)
+            </div>
+            <div class="iframe-wrap">
+              <iframe
+                src="http://localhost:7890/gojs.html"
+                title="GoJS — Organization Chart"
+                allow="cross-origin-isolated"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- VS -->
+          <div class="vs-divider">
+            <div class="vs-badge">VS</div>
+          </div>
+
+          <!-- Right -->
+          <div class="iframe-col">
+            <div class="col-label">
+              <span class="col-label-dot ours"></span>
+              SolidKit Diagrams
+            </div>
+            <div class="iframe-wrap">
+              <iframe
+                src="http://localhost:4200/?story=3&hideChrome=true&theme=zed-dark"
+                title="SolidKit — Organization Chart"
+                allow="cross-origin-isolated"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Row 3 -->
+    <article class="comparison-card">
+      <div class="card-header">
+        <div class="card-index">3</div>
+        <span class="card-title">System Architecture</span>
+      </div>
+      <div class="card-body">
+        <div class="iframe-grid">
+          <!-- Left -->
+          <div class="iframe-col">
+            <div class="col-label">
+              <span class="col-label-dot ref"></span>
+              Reference (React Flow / GoJS / Excalidraw)
+            </div>
+            <div class="iframe-wrap">
+              <iframe
+                src="http://localhost:7890/excalidraw.html"
+                title="Excalidraw — System Architecture"
+                allow="cross-origin-isolated"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- VS -->
+          <div class="vs-divider">
+            <div class="vs-badge">VS</div>
+          </div>
+
+          <!-- Right -->
+          <div class="iframe-col">
+            <div class="col-label">
+              <span class="col-label-dot ours"></span>
+              SolidKit Diagrams
+            </div>
+            <div class="iframe-wrap">
+              <iframe
+                src="http://localhost:4200/?story=2&hideChrome=true&theme=zed-dark"
+                title="SolidKit — System Architecture"
+                allow="cross-origin-isolated"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────── -->
+  <footer class="page-footer">
+    Served from <span>localhost:7890</span> &nbsp;·&nbsp; SolidKit Explorer at <span>localhost:4200</span>
+  </footer>
+
+</body>
+</html>

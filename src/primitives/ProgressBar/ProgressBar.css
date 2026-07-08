@@ -1,0 +1,44 @@
+.sk-progress {
+  width: 100%;
+  background: var(--sk-bg-tertiary);
+  border-radius: var(--sk-radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.sk-progress--sm {
+  height: 2px;
+}
+
+.sk-progress--md {
+  height: var(--sk-space-xs);
+}
+
+.sk-progress--lg {
+  height: var(--sk-space-sm);
+}
+
+.sk-progress__fill {
+  height: 100%;
+  background: var(--sk-accent);
+  border-radius: var(--sk-radius-md);
+  transition: width var(--sk-duration-normal) var(--sk-ease-default);
+}
+
+.sk-progress__fill--indeterminate {
+  position: absolute;
+  width: 50%;
+  animation: sk-progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes sk-progress-indeterminate {
+  0% {
+    left: -50%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: -50%;
+  }
+}

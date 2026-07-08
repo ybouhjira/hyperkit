@@ -1,0 +1,20 @@
+.sk-morphing-blob {
+  display: inline-block;
+  position: relative;
+  line-height: 0;
+}
+
+.sk-morphing-blob__svg {
+  display: block;
+  overflow: visible;
+}
+
+.sk-morphing-blob__path {
+  transition: d var(--sk-duration-slow) var(--sk-ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-morphing-blob__path {
+    transition: none;
+  }
+}

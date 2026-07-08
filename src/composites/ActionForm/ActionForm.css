@@ -1,0 +1,140 @@
+.sk-action-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+}
+
+/* ── Field wrapper ──────────────────────────────────────────────────────────── */
+
+.sk-action-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-xs);
+}
+
+/* ── Label ──────────────────────────────────────────────────────────────────── */
+
+.sk-action-form__label {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+  color: var(--sk-text-secondary);
+}
+
+/* ── Required indicator ─────────────────────────────────────────────────────── */
+
+.sk-action-form__required {
+  color: var(--sk-error);
+  font-size: var(--sk-font-size-sm);
+  line-height: 1;
+}
+
+/* ── Shared input / select styles ───────────────────────────────────────────── */
+
+.sk-action-form__input,
+.sk-action-form__select {
+  width: 100%;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  background: var(--sk-bg-secondary);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  color: var(--sk-text-primary);
+  font-size: var(--sk-font-size-base);
+  font-family: var(--sk-font-ui);
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: var(--sk-accent);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: var(--sk-error);
+  }
+}
+
+.sk-action-form__select {
+  appearance: none;
+  /* SVG in background-image cannot reference CSS variables; %23888 is a muted gray fallback */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sk-space-sm) center;
+  padding-right: var(--sk-space-xl);
+  cursor: pointer;
+}
+
+/* ── Checkbox ───────────────────────────────────────────────────────────────── */
+
+.sk-action-form__checkbox {
+  width: var(--sk-space-md);
+  height: var(--sk-space-md);
+  accent-color: var(--sk-accent);
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* ── Field-level validation error ───────────────────────────────────────────── */
+
+.sk-action-form__field-error {
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-error);
+}
+
+/* ── Form-level error banner ─────────────────────────────────────────────────── */
+
+.sk-action-form__error {
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  background: color-mix(in srgb, var(--sk-error) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sk-error) 30%, transparent);
+  border-radius: var(--sk-radius-md);
+  color: var(--sk-error);
+  font-size: var(--sk-font-size-sm);
+}
+
+/* ── Submit button ───────────────────────────────────────────────────────────── */
+
+.sk-action-form__submit {
+  align-self: flex-start;
+  padding: var(--sk-space-xs) var(--sk-space-lg);
+  background: var(--sk-accent);
+  color: var(--sk-accent-fg, var(--sk-text-on-accent, #fff));
+  border: none;
+  border-radius: var(--sk-radius-md);
+  font-size: var(--sk-font-size-base);
+  font-family: var(--sk-font-ui);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover:not(:disabled) {
+    opacity: 0.88;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* ── Not-found state ─────────────────────────────────────────────────────────── */
+
+.sk-action-form--not-found .sk-action-form__error {
+  margin: 0;
+}

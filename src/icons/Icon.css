@@ -1,0 +1,45 @@
+.sk-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.sk-icon--xs {
+  width: var(--sk-icon-xs);
+  height: var(--sk-icon-xs);
+}
+
+.sk-icon--sm {
+  width: var(--sk-icon-sm);
+  height: var(--sk-icon-sm);
+}
+
+.sk-icon--md {
+  width: var(--sk-icon-md);
+  height: var(--sk-icon-md);
+}
+
+.sk-icon--lg {
+  width: var(--sk-icon-lg);
+  height: var(--sk-icon-lg);
+}
+
+.sk-icon--xl {
+  width: var(--sk-icon-xl);
+  height: var(--sk-icon-xl);
+}
+
+.sk-icon--loading {
+  animation: sk-icon-spin 1s linear infinite;
+}
+
+@keyframes sk-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

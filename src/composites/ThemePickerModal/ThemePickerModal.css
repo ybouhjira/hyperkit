@@ -1,0 +1,202 @@
+.sk-dialog__content.sk-theme-picker-modal {
+  max-width: 80rem;
+  width: 90vw;
+  max-height: 90vh;
+}
+
+.sk-theme-picker-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+}
+
+/* Header with current theme and tabs */
+.sk-theme-picker-modal__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-sm);
+}
+
+.sk-theme-picker-modal__current {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+  font-family: var(--sk-font-ui);
+
+  strong {
+    color: var(--sk-text-primary);
+    font-weight: 600;
+  }
+}
+
+.sk-theme-picker-modal__tabs {
+  display: flex;
+  gap: var(--sk-space-xs);
+  flex-wrap: wrap;
+}
+
+.sk-theme-picker-modal__tab {
+  padding: var(--sk-space-xs) var(--sk-space-md);
+  background: var(--sk-bg-secondary);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-theme-picker-tab-radius, 9999px);
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+  color: var(--sk-text-secondary);
+  cursor: pointer;
+  transition: all var(--sk-duration-fast) ease;
+  font-family: var(--sk-font-ui);
+  outline: none;
+
+  &:hover {
+    background: var(--sk-bg-tertiary);
+    border-color: var(--sk-border-subtle);
+  }
+
+  &:focus-visible {
+    border-color: var(--sk-accent);
+    box-shadow: 0 0 0 2px var(--sk-accent-muted);
+  }
+}
+
+.sk-theme-picker-modal__tab--active {
+  background: var(--sk-accent);
+  border-color: var(--sk-accent);
+  color: var(--sk-text-on-accent);
+
+  &:hover {
+    background: var(--sk-accent-hover);
+    border-color: var(--sk-accent-hover);
+  }
+}
+
+/* Footer */
+.sk-theme-picker-modal__footer {
+  padding: var(--sk-space-sm);
+  text-align: center;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-muted);
+  border-top: 1px solid var(--sk-border);
+  font-family: var(--sk-font-ui);
+}
+
+/* Theme Grid */
+.sk-theme-picker-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sk-space-md);
+  max-height: 50vh;
+  overflow-y: auto;
+  padding: var(--sk-space-xs);
+}
+
+@media (width <= 768px) {
+  .sk-theme-picker-modal__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Theme Card */
+.sk-theme-picker-modal__theme-card {
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--sk-duration-fast) ease;
+  position: relative;
+  outline: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sk-shadow-md);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--sk-accent);
+  }
+}
+
+.sk-theme-picker-modal__theme-card--selected {
+  & .sk-theme-card__ide {
+    box-shadow:
+      0 0 0 3px var(--sk-accent-muted),
+      var(--sk-shadow-lg);
+  }
+}
+
+.sk-theme-picker-modal__theme-card--focused {
+  & .sk-theme-card__ide {
+    box-shadow: 0 0 0 2px var(--sk-accent);
+  }
+}
+
+/* Mini IDE Preview */
+.sk-theme-card__ide {
+  border-radius: var(--sk-radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--sk-duration-fast) ease;
+}
+
+.sk-theme-card__titlebar {
+  height: var(--sk-theme-card-titlebar-h, 24px);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sk-space-sm);
+  gap: var(--sk-space-sm);
+}
+
+.sk-theme-card__dots {
+  display: flex;
+  gap: var(--sk-theme-card-dots-gap, 4px);
+
+  span {
+    width: var(--sk-theme-card-dot-size, 8px);
+    height: var(--sk-theme-card-dot-size, 8px);
+    border-radius: 50%;
+  }
+}
+
+.sk-theme-card__name {
+  font-size: var(--sk-theme-card-name-font-size, 10px);
+  font-weight: 500;
+  font-family: var(--sk-font-ui);
+  flex: 1;
+  text-align: right;
+}
+
+.sk-theme-card__body {
+  display: flex;
+  height: var(--sk-theme-card-body-h, 80px);
+}
+
+.sk-theme-card__sidebar {
+  width: var(--sk-theme-card-sidebar-w, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-theme-card-sidebar-gap, 6px);
+  padding: var(--sk-space-xs);
+  align-items: center;
+}
+
+.sk-theme-card__sidebar-icon {
+  width: var(--sk-theme-card-sidebar-icon-size, 12px);
+  height: var(--sk-theme-card-sidebar-icon-size, 12px);
+  border-radius: var(--sk-radius-sm);
+}
+
+.sk-theme-card__editor {
+  flex: 1;
+  padding: var(--sk-space-xs);
+  font-family: Monaco, Menlo, Consolas, monospace;
+  font-size: var(--sk-theme-card-editor-font-size, 9px);
+  line-height: 1.4;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.sk-theme-card__terminal {
+  padding: var(--sk-theme-card-terminal-padding-y, 6px) var(--sk-space-xs);
+  font-family: Monaco, Menlo, Consolas, monospace;
+  font-size: var(--sk-theme-card-terminal-font-size, 8px);
+  white-space: pre;
+  line-height: 1.3;
+}

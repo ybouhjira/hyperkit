@@ -1,0 +1,6702 @@
+# SolidKit Complete API Reference
+
+A comprehensive reference for building UIs with SolidKit's primitives, services, hooks, tokens, and theming system.
+
+---
+
+# Components
+
+## Display
+
+### Accordion
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `AccordionItemData[]` | Yes | - | - |
+| `type` | `'single' | 'multiple'` | No | - | - |
+| `defaultValue` | `string | string[]` | No | - | - |
+| `collapsible` | `boolean` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Accordion } from '@ybouhjira/solidkit';
+
+<Accordion>
+  Content
+</Accordion>
+```
+
+---
+
+### Badge
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `variant` | `'default' | 'success' | 'warning' | 'danger' | 'info'` | No | - | - |
+| `type` | `'label' | 'dot' | 'count'` | No | - | - |
+| `count` | `number` | No | - | - |
+| `maxCount` | `number` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Badge } from '@ybouhjira/solidkit';
+
+<Badge>
+  Content
+</Badge>
+```
+
+---
+
+### Card
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `variant` | `'default' | 'outlined' | 'elevated'` | No | - | - |
+| `padding` | `'none' | 'sm' | 'md' | 'lg'` | No | - | - |
+| `onClick` | `() => void` | No | - | - |
+| `hoverable` | `boolean` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `classNames` | `{
+    /** Class for root card element. */
+    root?: string;
+  }` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { Card } from '@ybouhjira/solidkit';
+
+<Card>
+  Content
+</Card>
+```
+
+---
+
+### CardHeader
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | Yes | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { CardHeader } from '@ybouhjira/solidkit';
+
+<CardHeader>
+  Content
+</CardHeader>
+```
+
+---
+
+### CardTitle
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | Yes | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { CardTitle } from '@ybouhjira/solidkit';
+
+<CardTitle>
+  Content
+</CardTitle>
+```
+
+---
+
+### CardDescription
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | Yes | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { CardDescription } from '@ybouhjira/solidkit';
+
+<CardDescription>
+  Content
+</CardDescription>
+```
+
+---
+
+### CardContent
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | Yes | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { CardContent } from '@ybouhjira/solidkit';
+
+<CardContent>
+  Content
+</CardContent>
+```
+
+---
+
+### CardFooter
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | Yes | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { CardFooter } from '@ybouhjira/solidkit';
+
+<CardFooter>
+  Content
+</CardFooter>
+```
+
+---
+
+### CodeBlock
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `code` | `string` | Yes | - | - |
+| `language` | `string` | No | - | - |
+| `label` | `string` | No | - | - |
+| `showLineNumbers` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { CodeBlock } from '@ybouhjira/solidkit';
+
+<CodeBlock>
+  Content
+</CodeBlock>
+```
+
+---
+
+### Collapsible
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `open` | `boolean` | No | - | - |
+| `defaultOpen` | `boolean` | No | - | - |
+| `onOpenChange` | `(open: boolean) => void` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `trigger` | `JSX.Element` | Yes | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `classNames` | `{
+    /** Class for the trigger button. */
+    trigger?: string;
+    /** Class for the chevron icon. */
+    chevron?: string;
+    /** Class for the content container. */
+    content?: string;
+    /** Class for the inner content wrapper. */
+    inner?: string;
+  }` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { Collapsible } from '@ybouhjira/solidkit';
+
+<Collapsible>
+  Content
+</Collapsible>
+```
+
+---
+
+### ColorDot
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `color` | `string` | Yes | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ColorDot } from '@ybouhjira/solidkit';
+
+<ColorDot>
+  Content
+</ColorDot>
+```
+
+---
+
+### Dialog
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `open` | `boolean` | Yes | - | - |
+| `onOpenChange` | `(open: boolean) => void` | Yes | - | - |
+| `title` | `string` | Yes | - | - |
+| `description` | `string` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Dialog } from '@ybouhjira/solidkit';
+
+<Dialog>
+  Content
+</Dialog>
+```
+
+---
+
+### Dropdown
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `DropdownItem[]` | Yes | - | - |
+| `trigger` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Dropdown } from '@ybouhjira/solidkit';
+
+<Dropdown>
+  Content
+</Dropdown>
+```
+
+---
+
+### ImagePreview
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `images` | `ImagePreviewItem[]` | Yes | - | - |
+| `onRemove` | `(id: string) => void` | No | - | - |
+| `maxVisible` | `number` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ImagePreview } from '@ybouhjira/solidkit';
+
+<ImagePreview>
+  Content
+</ImagePreview>
+```
+
+---
+
+### Markdown
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `content` | `string` | Yes | - | - |
+| `streaming` | `boolean` | No | - | - |
+| `components` | `Partial<MarkdownComponents>` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `justify` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Markdown } from '@ybouhjira/solidkit';
+
+<Markdown>
+  Content
+</Markdown>
+```
+
+---
+
+### MetricCard
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | Yes | - | - |
+| `value` | `string | number` | Yes | - | - |
+| `variant` | `'default' | 'success' | 'warning' | 'danger' | 'info' | 'accent'` | No | - | - |
+| `icon` | `JSX.Element` | No | - | - |
+| `trend` | `string` | No | - | - |
+| `trendDirection` | `'up' | 'down' | 'neutral'` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `onClick` | `() => void` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+
+#### Example
+
+```tsx
+import { MetricCard } from '@ybouhjira/solidkit';
+
+<MetricCard>
+  Content
+</MetricCard>
+```
+
+---
+
+### ProjectCard
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `name` | `string` | Yes | - | - |
+| `icon` | `string` | No | - | - |
+| `color` | `string` | No | - | - |
+| `subtitle` | `string` | No | - | - |
+| `description` | `string` | No | - | - |
+| `pinned` | `boolean` | No | - | - |
+| `onTogglePin` | `() => void` | No | - | - |
+| `onClick` | `() => void` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ProjectCard } from '@ybouhjira/solidkit';
+
+<ProjectCard>
+  Content
+</ProjectCard>
+```
+
+---
+
+### Separator
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `orientation` | `'horizontal' | 'vertical'` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { Separator } from '@ybouhjira/solidkit';
+
+<Separator>
+  Content
+</Separator>
+```
+
+---
+
+### Skeleton
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `variant` | `'rect' | 'circle' | 'text'` | No | - | - |
+| `width` | `string | number` | No | - | - |
+| `height` | `string | number` | No | - | - |
+| `size` | `number` | No | - | - |
+| `lines` | `number` | No | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Skeleton } from '@ybouhjira/solidkit';
+
+<Skeleton>
+  Content
+</Skeleton>
+```
+
+---
+
+### StatusDot
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `status` | `'default' | 'success' | 'warning' | 'danger' | 'info'` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `pulse` | `boolean` | No | - | - |
+| `label` | `string` | No | - | - |
+| `aria-label` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { StatusDot } from '@ybouhjira/solidkit';
+
+<StatusDot>
+  Content
+</StatusDot>
+```
+
+---
+
+### StreamingText
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `chunks` | `Accessor<string[]>` | Yes | - | - |
+| `format` | `'markdown' | 'plain'` | No | - | - |
+| `autoScroll` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { StreamingText } from '@ybouhjira/solidkit';
+
+<StreamingText>
+  Content
+</StreamingText>
+```
+
+---
+
+### SuggestionChips
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `chips` | `SuggestionChip[]` | Yes | - | - |
+| `onSelect` | `(chip: SuggestionChip) => void` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { SuggestionChips } from '@ybouhjira/solidkit';
+
+<SuggestionChips>
+  Content
+</SuggestionChips>
+```
+
+---
+
+### Table
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `columns` | `TableColumn<T>[]` | Yes | - | - |
+| `data` | `T[]` | Yes | - | - |
+| `onRowClick` | `(item: T) => void` | No | - | - |
+| `selectedKey` | `string | null` | No | - | - |
+| `getRowKey` | `(item: T) => string` | Yes | - | - |
+| `sortColumn` | `string` | No | - | - |
+| `sortDirection` | `'asc' | 'desc'` | No | - | - |
+| `onSort` | `(column: string, direction: 'asc' | 'desc') => void` | No | - | - |
+| `emptyState` | `JSX.Element | string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Table } from '@ybouhjira/solidkit';
+
+<Table>
+  Content
+</Table>
+```
+
+---
+
+### Tabs
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `TabItem[]` | Yes | - | - |
+| `value` | `string` | No | - | - |
+| `onChange` | `(value: string) => void` | No | - | - |
+| `orientation` | `'horizontal' | 'vertical'` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Tabs } from '@ybouhjira/solidkit';
+
+<Tabs>
+  Content
+</Tabs>
+```
+
+---
+
+### TerminalOutput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `lines` | `TerminalLine[]` | Yes | - | - |
+| `maxLines` | `number` | No | - | - |
+| `showTimestamps` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { TerminalOutput } from '@ybouhjira/solidkit';
+
+<TerminalOutput>
+  Content
+</TerminalOutput>
+```
+
+---
+
+### Timeline
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `steps` | `TimelineStep[]` | Yes | - | - |
+| `orientation` | `'vertical' | 'horizontal'` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { Timeline } from '@ybouhjira/solidkit';
+
+<Timeline>
+  Content
+</Timeline>
+```
+
+---
+
+### Tooltip
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `content` | `string | JSX.Element` | Yes | - | - |
+| `placement` | `'top' | 'bottom' | 'left' | 'right'` | No | - | - |
+| `delay` | `number` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Tooltip } from '@ybouhjira/solidkit';
+
+<Tooltip>
+  Content
+</Tooltip>
+```
+
+---
+
+### Sparkline
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `data` | `number[]` | Yes | - | - |
+| `width` | `number` | No | - | - |
+| `height` | `number` | No | - | - |
+| `color` | `string` | No | - | - |
+| `strokeWidth` | `number` | No | - | - |
+| `filled` | `boolean` | No | - | - |
+| `animate` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `import('solid-js').JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { Sparkline } from '@ybouhjira/solidkit';
+
+<Sparkline>
+  Content
+</Sparkline>
+```
+
+---
+
+### WaterfallChart
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `WaterfallItem[]` | Yes | - | - |
+| `height` | `number` | No | - | - |
+| `labelWidth` | `number` | No | - | - |
+| `tickCount` | `number` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `import('solid-js').JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { WaterfallChart } from '@ybouhjira/solidkit';
+
+<WaterfallChart>
+  Content
+</WaterfallChart>
+```
+
+---
+
+### SignalGrid
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `cells` | `SignalGridCell[]` | Yes | - | - |
+| `columns` | `number` | No | - | - |
+| `colorScale` | `(value: number) => string` | No | - | - |
+| `cellSize` | `number` | No | - | - |
+| `gap` | `number` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `import('solid-js').JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { SignalGrid } from '@ybouhjira/solidkit';
+
+<SignalGrid>
+  Content
+</SignalGrid>
+```
+
+---
+
+### Popover
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `trigger` | `JSX.Element` | Yes | - | - |
+| `content` | `JSX.Element` | Yes | - | - |
+| `placement` | `'top' | 'bottom' | 'left' | 'right'` | No | - | - |
+| `open` | `boolean` | No | - | - |
+| `onOpenChange` | `(open: boolean) => void` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { Popover } from '@ybouhjira/solidkit';
+
+<Popover>
+  Content
+</Popover>
+```
+
+---
+
+## Input
+
+### AudioInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `File | File[] | null` | No | - | - |
+| `onChange` | `(files: File | File[] | null) => void` | Yes | - | - |
+| `mode` | `'single' | 'list'` | No | - | - |
+| `accept` | `string` | No | - | - |
+| `maxSize` | `number` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `onError` | `(error: {
+    type: 'validation' | 'format' | 'size' | 'corrupt';
+    message: string;
+    file?: File;
+  }) => void` | No | - | - |
+| `error` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { AudioInput } from '@ybouhjira/solidkit';
+
+<AudioInput>
+  Content
+</AudioInput>
+```
+
+---
+
+### Button
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `variant` | `'primary' | 'secondary' | 'ghost' | 'danger' | 'outline' | 'link'` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `loading` | `boolean` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `fullWidth` | `boolean` | No | - | - |
+| `rounded` | `boolean` | No | - | - |
+| `as` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `classNames` | `{
+    /** Class for root button element. */
+    root?: string;
+    /** Class for loading spinner element. */
+    spinner?: string;
+  }` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `onClick` | `(e: MouseEvent) => void` | No | - | - |
+| `type` | `'button' | 'submit' | 'reset'` | No | - | - |
+
+#### Example
+
+```tsx
+import { Button } from '@ybouhjira/solidkit';
+
+<Button>
+  Content
+</Button>
+```
+
+---
+
+### ColorInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `string` | No | - | - |
+| `defaultValue` | `string` | No | - | - |
+| `onChange` | `(color: string) => void` | No | - | - |
+| `format` | `'hex' | 'rgb' | 'hsl'` | No | - | - |
+| `showAlpha` | `boolean` | No | - | - |
+| `presets` | `string[]` | No | - | - |
+| `label` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `size` | `'sm' | 'md'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { ColorInput } from '@ybouhjira/solidkit';
+
+<ColorInput>
+  Content
+</ColorInput>
+```
+
+---
+
+### DateInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `string` | No | - | - |
+| `defaultValue` | `string` | No | - | - |
+| `onChange` | `(value: string) => void` | No | - | - |
+| `min` | `string` | No | - | - |
+| `max` | `string` | No | - | - |
+| `label` | `string` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `required` | `boolean` | No | - | - |
+| `includeTime` | `boolean` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { DateInput } from '@ybouhjira/solidkit';
+
+<DateInput>
+  Content
+</DateInput>
+```
+
+---
+
+### DropZone
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `onDrop` | `(files: File[]) => void` | Yes | - | - |
+| `accept` | `string` | No | - | - |
+| `multiple` | `boolean` | No | - | - |
+| `maxSize` | `number` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+| `idleText` | `string` | No | - | - |
+| `activeText` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { DropZone } from '@ybouhjira/solidkit';
+
+<DropZone>
+  Content
+</DropZone>
+```
+
+---
+
+### FileInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `File | File[] | null` | No | - | - |
+| `onChange` | `(files: File | File[] | null) => void` | Yes | - | - |
+| `mode` | `'single' | 'list'` | No | - | - |
+| `accept` | `string` | No | - | - |
+| `maxSize` | `number` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { FileInput } from '@ybouhjira/solidkit';
+
+<FileInput>
+  Content
+</FileInput>
+```
+
+---
+
+### ImageInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `File | File[] | null` | No | - | - |
+| `onChange` | `(files: File | File[] | null) => void` | Yes | - | - |
+| `mode` | `'single' | 'multiple'` | No | - | - |
+| `accept` | `string` | No | - | - |
+| `maxSize` | `number` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `previewSize` | `number` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `onError` | `(error: {
+    type: 'validation' | 'format' | 'size' | 'corrupt';
+    message: string;
+    file?: File;
+  }) => void` | No | - | - |
+| `error` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ImageInput } from '@ybouhjira/solidkit';
+
+<ImageInput>
+  Content
+</ImageInput>
+```
+
+---
+
+### Input
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `type` | `'text' | 'email' | 'password' | 'search' | 'url'` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `value` | `string` | No | - | - |
+| `onInput` | `(value: string) => void` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `error` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `id` | `string` | No | - | - |
+| `name` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Input } from '@ybouhjira/solidkit';
+
+<Input>
+  Content
+</Input>
+```
+
+---
+
+### Textarea
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `placeholder` | `string` | No | - | - |
+| `value` | `string` | No | - | - |
+| `onInput` | `(value: string) => void` | No | - | - |
+| `autoResize` | `boolean` | No | - | - |
+| `minRows` | `number` | No | - | - |
+| `maxRows` | `number` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `error` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `id` | `string` | No | - | - |
+| `name` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Textarea } from '@ybouhjira/solidkit';
+
+<Textarea>
+  Content
+</Textarea>
+```
+
+---
+
+### Kbd
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | No | - | - |
+| `keys` | `string[]` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Kbd } from '@ybouhjira/solidkit';
+
+<Kbd>
+  Content
+</Kbd>
+```
+
+---
+
+### NumberInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `number` | No | - | - |
+| `defaultValue` | `number` | No | - | - |
+| `onChange` | `(value: number) => void` | No | - | - |
+| `min` | `number` | No | - | - |
+| `max` | `number` | No | - | - |
+| `step` | `number` | No | - | - |
+| `precision` | `number` | No | - | - |
+| `label` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { NumberInput } from '@ybouhjira/solidkit';
+
+<NumberInput>
+  Content
+</NumberInput>
+```
+
+---
+
+### RangeSlider
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `[number, number]` | No | - | - |
+| `defaultValue` | `[number, number]` | No | - | - |
+| `onChange` | `(value: [number, number]) => void` | No | - | - |
+| `min` | `number` | No | - | - |
+| `max` | `number` | No | - | - |
+| `step` | `number` | No | - | - |
+| `minGap` | `number` | No | - | - |
+| `label` | `string` | No | - | - |
+| `showValues` | `boolean` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { RangeSlider } from '@ybouhjira/solidkit';
+
+<RangeSlider>
+  Content
+</RangeSlider>
+```
+
+---
+
+### SearchInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `string` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `shortcut` | `string` | No | - | - |
+| `onSearch` | `(value: string) => void` | No | - | - |
+| `onChange` | `(value: string) => void` | No | - | - |
+| `onClear` | `() => void` | No | - | - |
+| `class` | `string` | No | - | - |
+| `autofocus` | `boolean` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { SearchInput } from '@ybouhjira/solidkit';
+
+<SearchInput>
+  Content
+</SearchInput>
+```
+
+---
+
+### Select
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `options` | `SelectOption[]` | Yes | - | - |
+| `value` | `string` | No | - | - |
+| `onChange` | `(value: string) => void` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Select } from '@ybouhjira/solidkit';
+
+<Select>
+  Content
+</Select>
+```
+
+---
+
+### Slider
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `number` | No | - | - |
+| `defaultValue` | `number` | No | - | - |
+| `onChange` | `(value: number) => void` | No | - | - |
+| `min` | `number` | No | - | - |
+| `max` | `number` | No | - | - |
+| `step` | `number` | No | - | - |
+| `label` | `string` | No | - | - |
+| `showValue` | `boolean` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Slider } from '@ybouhjira/solidkit';
+
+<Slider>
+  Content
+</Slider>
+```
+
+---
+
+### Switch
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `checked` | `boolean` | No | - | - |
+| `defaultChecked` | `boolean` | No | - | - |
+| `onChange` | `(checked: boolean) => void` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `label` | `string` | No | - | - |
+| `description` | `string` | No | - | - |
+| `size` | `'sm' | 'md'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Switch } from '@ybouhjira/solidkit';
+
+<Switch>
+  Content
+</Switch>
+```
+
+---
+
+### TagInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `string[]` | No | - | - |
+| `defaultValue` | `string[]` | No | - | - |
+| `onChange` | `(tags: string[]) => void` | No | - | - |
+| `suggestions` | `string[]` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `maxTags` | `number` | No | - | - |
+| `allowDuplicates` | `boolean` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `label` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { TagInput } from '@ybouhjira/solidkit';
+
+<TagInput>
+  Content
+</TagInput>
+```
+
+---
+
+### VideoInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `File | File[] | null` | No | - | - |
+| `onChange` | `(files: File | File[] | null) => void` | Yes | - | - |
+| `mode` | `'single' | 'list'` | No | - | - |
+| `accept` | `string` | No | - | - |
+| `maxSize` | `number` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `onError` | `(error: {
+    type: 'validation' | 'format' | 'size' | 'corrupt';
+    message: string;
+    file?: File;
+  }) => void` | No | - | - |
+| `error` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { VideoInput } from '@ybouhjira/solidkit';
+
+<VideoInput>
+  Content
+</VideoInput>
+```
+
+---
+
+### FilterChip
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | Yes | - | - |
+| `selected` | `boolean` | No | - | - |
+| `onToggle` | `(selected: boolean) => void` | No | - | - |
+| `color` | `string` | No | - | - |
+| `icon` | `JSX.Element` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `size` | `'sm' | 'md'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { FilterChip } from '@ybouhjira/solidkit';
+
+<FilterChip>
+  Content
+</FilterChip>
+```
+
+---
+
+### SegmentedBar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `segments` | `SegmentedBarSegment[]` | Yes | - | - |
+| `height` | `number` | No | - | - |
+| `borderRadius` | `string` | No | - | - |
+| `animated` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `import('solid-js').JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { SegmentedBar } from '@ybouhjira/solidkit';
+
+<SegmentedBar>
+  Content
+</SegmentedBar>
+```
+
+---
+
+### Checkbox
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `checked` | `boolean` | No | - | - |
+| `defaultChecked` | `boolean` | No | - | - |
+| `onChange` | `(checked: boolean) => void` | No | - | - |
+| `label` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `indeterminate` | `boolean` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `import('solid-js').JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { Checkbox } from '@ybouhjira/solidkit';
+
+<Checkbox>
+  Content
+</Checkbox>
+```
+
+---
+
+### RecordButton
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `recording` | `boolean` | No | - | - |
+| `onToggle` | `(recording: boolean) => void` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `import('solid-js').JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { RecordButton } from '@ybouhjira/solidkit';
+
+<RecordButton>
+  Content
+</RecordButton>
+```
+
+---
+
+## Layout
+
+### Box
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `p` | `SpaceToken` | No | - | - |
+| `px` | `SpaceToken` | No | - | - |
+| `py` | `SpaceToken` | No | - | - |
+| `pt` | `SpaceToken` | No | - | - |
+| `pr` | `SpaceToken` | No | - | - |
+| `pb` | `SpaceToken` | No | - | - |
+| `pl` | `SpaceToken` | No | - | - |
+| `m` | `SpaceToken` | No | - | - |
+| `mx` | `SpaceToken` | No | - | - |
+| `my` | `SpaceToken` | No | - | - |
+| `mt` | `SpaceToken` | No | - | - |
+| `mr` | `SpaceToken` | No | - | - |
+| `mb` | `SpaceToken` | No | - | - |
+| `ml` | `SpaceToken` | No | - | - |
+| `w` | `string | number` | No | - | - |
+| `h` | `string | number` | No | - | - |
+| `minW` | `string | number` | No | - | - |
+| `minH` | `string | number` | No | - | - |
+| `maxW` | `string | number` | No | - | - |
+| `maxH` | `string | number` | No | - | - |
+| `bg` | `BgToken` | No | - | - |
+| `color` | `TextColorToken` | No | - | - |
+| `borderRadius` | `RadiusToken` | No | - | - |
+| `shadow` | `ShadowToken` | No | - | - |
+| `border` | `boolean` | No | - | - |
+| `borderColor` | `'default' | 'subtle' | 'accent'` | No | - | - |
+| `borderBottom` | `boolean` | No | - | - |
+| `borderTop` | `boolean` | No | - | - |
+| `borderLeft` | `boolean` | No | - | - |
+| `borderRight` | `boolean` | No | - | - |
+| `position` | `'relative' | 'absolute' | 'fixed' | 'sticky'` | No | - | - |
+| `top` | `string | number` | No | - | - |
+| `right` | `string | number` | No | - | - |
+| `bottom` | `string | number` | No | - | - |
+| `left` | `string | number` | No | - | - |
+| `inset` | `string | number` | No | - | - |
+| `zIndex` | `ZToken | number` | No | - | - |
+| `overflow` | `'hidden' | 'auto' | 'scroll' | 'visible'` | No | - | - |
+| `display` | `'block' | 'flex' | 'grid' | 'inline' | 'inline-flex' | 'inline-block' | 'none'` | No | - | - |
+| `hoverBg` | `BgToken` | No | - | - |
+| `hoverColor` | `TextColorToken` | No | - | - |
+| `cursor` | `'pointer' | 'default' | 'grab' | 'not-allowed'` | No | - | - |
+| `transition` | `boolean` | No | - | - |
+| `opacity` | `number` | No | - | - |
+| `backdropFilter` | `string` | No | - | - |
+| `filter` | `string` | No | - | - |
+| `transform` | `string` | No | - | - |
+| `pointerEvents` | `'none' | 'auto'` | No | - | - |
+| `animation` | `string` | No | - | - |
+| `background` | `string` | No | - | - |
+| `borderWidth` | `string` | No | - | - |
+| `borderStyle` | `'solid' | 'dashed' | 'dotted' | 'none'` | No | - | - |
+| `flex` | `string | number` | No | - | - |
+| `alignSelf` | `'start' | 'center' | 'end' | 'stretch'` | No | - | - |
+| `as` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+| `onClick` | `JSX.EventHandlerUnion<HTMLElement, MouseEvent>` | No | - | - |
+| `onMouseDown` | `JSX.EventHandlerUnion<HTMLElement, MouseEvent>` | No | - | - |
+| `onDragOver` | `JSX.EventHandlerUnion<HTMLElement, DragEvent>` | No | - | - |
+| `onDragLeave` | `JSX.EventHandlerUnion<HTMLElement, DragEvent>` | No | - | - |
+| `onDrop` | `JSX.EventHandlerUnion<HTMLElement, DragEvent>` | No | - | - |
+| `ref` | `HTMLElement | ((el: HTMLElement) => void)` | No | - | - |
+
+#### Example
+
+```tsx
+import { Box } from '@ybouhjira/solidkit';
+
+<Box>
+  Content
+</Box>
+```
+
+---
+
+### Container
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `maxW` | `'sm' | 'md' | 'lg' | 'xl' | '2xl' | string` | No | - | - |
+| `px` | `SpaceToken` | No | - | - |
+| `py` | `SpaceToken` | No | - | - |
+| `center` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+
+#### Example
+
+```tsx
+import { Container } from '@ybouhjira/solidkit';
+
+<Container>
+  Content
+</Container>
+```
+
+---
+
+### DocumentPage
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `size` | `'a4' | 'letter'` | No | - | - |
+| `orientation` | `'portrait' | 'landscape'` | No | - | - |
+| `padding` | `string` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `header` | `JSX.Element` | No | - | - |
+| `footer` | `JSX.Element` | No | - | - |
+| `pageNumber` | `number` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { DocumentPage } from '@ybouhjira/solidkit';
+
+<DocumentPage>
+  Content
+</DocumentPage>
+```
+
+---
+
+### Flex
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `direction` | `'row' | 'column' | 'row-reverse' | 'column-reverse'` | No | - | - |
+| `align` | `'start' | 'center' | 'end' | 'stretch' | 'baseline'` | No | - | - |
+| `justify` | `'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'` | No | - | - |
+| `gap` | `SpaceToken` | No | - | - |
+| `wrap` | `'nowrap' | 'wrap' | 'wrap-reverse'` | No | - | - |
+| `inline` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Flex } from '@ybouhjira/solidkit';
+
+<Flex>
+  Content
+</Flex>
+```
+
+---
+
+### Grid
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `columns` | `number | string` | No | - | - |
+| `rows` | `number | string` | No | - | - |
+| `gap` | `SpaceToken` | No | - | - |
+| `rowGap` | `SpaceToken` | No | - | - |
+| `columnGap` | `SpaceToken` | No | - | - |
+| `autoFlow` | `'row' | 'column' | 'dense'` | No | - | - |
+| `placeItems` | `'start' | 'center' | 'end' | 'stretch'` | No | - | - |
+| `areas` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Grid } from '@ybouhjira/solidkit';
+
+<Grid>
+  Content
+</Grid>
+```
+
+---
+
+### MasonryGrid
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `columns` | `number | { sm?: number; md?: number; lg?: number; xl?: number }` | No | - | - |
+| `gap` | `SpaceToken` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+
+#### Example
+
+```tsx
+import { MasonryGrid } from '@ybouhjira/solidkit';
+
+<MasonryGrid>
+  Content
+</MasonryGrid>
+```
+
+---
+
+### MediaGrid
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `MediaGridItem[]` | Yes | - | - |
+| `selectedId` | `string | null` | No | - | - |
+| `onAdd` | `(files: File[]) => void` | No | - | - |
+| `onSelect` | `(id: string) => void` | No | - | - |
+| `onDelete` | `(id: string) => void` | No | - | - |
+| `onReplace` | `(id: string, file: File) => void` | No | - | - |
+| `accept` | `string` | No | - | - |
+| `maxSize` | `number` | No | - | - |
+| `columnMinWidth` | `number` | No | - | - |
+| `showLabels` | `boolean` | No | - | - |
+| `addLabel` | `string` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { MediaGrid } from '@ybouhjira/solidkit';
+
+<MediaGrid>
+  Content
+</MediaGrid>
+```
+
+---
+
+### ScrollArea
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | Yes | - | - |
+| `maxHeight` | `string | number` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ScrollArea } from '@ybouhjira/solidkit';
+
+<ScrollArea>
+  Content
+</ScrollArea>
+```
+
+---
+
+### Section
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `bg` | `'default' | 'muted' | 'accent' | 'gradient'` | No | - | - |
+| `py` | `'sm' | 'md' | 'lg' | 'xl'` | No | - | - |
+| `maxWidth` | `string` | No | - | - |
+| `fullBleed` | `boolean` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `as` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Section } from '@ybouhjira/solidkit';
+
+<Section>
+  Content
+</Section>
+```
+
+---
+
+### Stack
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `direction` | `'vertical' | 'horizontal'` | No | - | - |
+
+#### Example
+
+```tsx
+import { Stack } from '@ybouhjira/solidkit';
+
+<Stack>
+  Content
+</Stack>
+```
+
+---
+
+### Text
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `size` | `FontSizeToken` | No | - | - |
+| `weight` | `FontWeightToken | number` | No | - | - |
+| `color` | `TextColorToken` | No | - | - |
+| `align` | `'left' | 'center' | 'right'` | No | - | - |
+| `truncate` | `boolean` | No | - | - |
+| `lineClamp` | `number` | No | - | - |
+| `gradient` | `string` | No | - | - |
+| `letterSpacing` | `string` | No | - | - |
+| `lineHeight` | `string | number` | No | - | - |
+| `maxW` | `string | number` | No | - | - |
+| `whiteSpace` | `'normal' | 'nowrap' | 'pre' | 'pre-wrap'` | No | - | - |
+| `as` | `'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label' | 'div'` | No | - | - |
+| `mb` | `SpaceToken` | No | - | - |
+| `mt` | `SpaceToken` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+| `onClick` | `JSX.EventHandlerUnion<HTMLElement, MouseEvent>` | No | - | - |
+| `title` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Text } from '@ybouhjira/solidkit';
+
+<Text>
+  Content
+</Text>
+```
+
+---
+
+## Feedback
+
+### EmptyState
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `icon` | `string` | No | - | - |
+| `title` | `string` | Yes | - | - |
+| `description` | `string` | No | - | - |
+| `action` | `JSX.Element` | No | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { EmptyState } from '@ybouhjira/solidkit';
+
+<EmptyState>
+  Content
+</EmptyState>
+```
+
+---
+
+### ErrorBanner
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `message` | `string` | Yes | - | - |
+| `onDismiss` | `() => void` | No | - | - |
+| `variant` | `ErrorBannerVariant` | No | - | - |
+| `class` | `string` | No | - | - |
+| `autoDismissMs` | `number` | No | - | - |
+| `action` | `ErrorBannerAction` | No | - | - |
+
+#### Example
+
+```tsx
+import { ErrorBanner } from '@ybouhjira/solidkit';
+
+<ErrorBanner>
+  Content
+</ErrorBanner>
+```
+
+---
+
+### ProgressBar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `number` | No | - | - |
+| `indeterminate` | `boolean` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `color` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+| `aria-label` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ProgressBar } from '@ybouhjira/solidkit';
+
+<ProgressBar>
+  Content
+</ProgressBar>
+```
+
+---
+
+### ProgressRing
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `number` | No | - | - |
+| `size` | `'sm' | 'md' | 'lg' | number` | No | - | - |
+| `strokeWidth` | `number` | No | - | - |
+| `color` | `string` | No | - | - |
+| `trackColor` | `string` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `aria-label` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ProgressRing } from '@ybouhjira/solidkit';
+
+<ProgressRing>
+  Content
+</ProgressRing>
+```
+
+---
+
+### Spinner
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `size` | `SpinnerSize` | No | - | - |
+| `color` | `SpinnerColor` | No | - | - |
+| `label` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { Spinner } from '@ybouhjira/solidkit';
+
+<Spinner>
+  Content
+</Spinner>
+```
+
+---
+
+### StreamingIndicator
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `visible` | `boolean` | Yes | - | - |
+| `message` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { StreamingIndicator } from '@ybouhjira/solidkit';
+
+<StreamingIndicator>
+  Content
+</StreamingIndicator>
+```
+
+---
+
+## Data & Content
+
+### ActionForm
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `target` | `string` | Yes | - | - |
+| `action` | `string` | Yes | - | - |
+| `onSubmit` | `(result: DispatchResult) => void` | No | - | - |
+| `onError` | `(error: string) => void` | No | - | - |
+| `submitLabel` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { ActionForm } from '@ybouhjira/solidkit';
+
+<ActionForm>
+  Content
+</ActionForm>
+```
+
+---
+
+### DashboardGrid
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `minItemWidth` | `string` | No | - | - |
+| `gap` | `'sm' | 'md' | 'lg' | 'xl'` | No | - | - |
+| `maxColumns` | `number` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { DashboardGrid } from '@ybouhjira/solidkit';
+
+<DashboardGrid>
+  Content
+</DashboardGrid>
+```
+
+---
+
+### DirectoryPicker
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `FileItem[]` | Yes | - | - |
+| `currentPath` | `string` | Yes | - | - |
+| `onNavigate` | `(path: string) => void` | No | - | - |
+| `onBack` | `() => void` | No | - | - |
+| `onSelect` | `(path: string) => void` | No | - | - |
+| `loading` | `boolean` | No | - | - |
+| `title` | `string` | No | - | - |
+| `description` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { DirectoryPicker } from '@ybouhjira/solidkit';
+
+<DirectoryPicker>
+  Content
+</DirectoryPicker>
+```
+
+---
+
+### FileExplorer
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `FileItem[]` | Yes | - | - |
+| `currentPath` | `string` | Yes | - | - |
+| `onNavigate` | `(path: string) => void` | No | - | - |
+| `onSelect` | `(item: FileItem) => void` | No | - | - |
+| `onBack` | `() => void` | No | - | - |
+| `loading` | `boolean` | No | - | - |
+| `viewMode` | `ViewMode` | No | - | - |
+| `class` | `string` | No | - | - |
+| `showToolbar` | `boolean` | No | - | - |
+| `onRefresh` | `() => void` | No | - | - |
+| `onCreateFolder` | `(name: string) => void` | No | - | - |
+| `expandedPaths` | `Set<string>` | No | - | - |
+| `onToggleExpand` | `(path: string) => void` | No | - | - |
+| `loadingPaths` | `Set<string>` | No | - | - |
+| `childrenCache` | `Map<string, FileItem[]>` | No | - | - |
+| `selectedPaths` | `Set<string>` | No | - | - |
+| `onSelectionChange` | `(selectedPaths: Set<string>) => void` | No | - | - |
+| `sortField` | `SortField` | No | - | - |
+| `sortDirection` | `SortDirection` | No | - | - |
+| `onSortChange` | `(field: SortField, direction: SortDirection) => void` | No | - | - |
+| `showStatusBar` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { FileExplorer } from '@ybouhjira/solidkit';
+
+<FileExplorer>
+  Content
+</FileExplorer>
+```
+
+---
+
+### IssueBoard
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `issues` | `readonly Issue[]` | Yes | - | - |
+| `repos` | `readonly string[]` | Yes | - | - |
+| `groupBy` | `'repo' | 'label' | 'priority' | 'milestone' | 'none'` | No | - | - |
+| `view` | `'list' | 'board' | 'table'` | No | - | - |
+| `filters` | `IssueFilters` | No | - | - |
+| `onFiltersChange` | `(filters: IssueFilters) => void` | No | - | - |
+| `onIssueClick` | `(issue: Issue) => void` | No | - | - |
+| `onStartWork` | `(issue: Issue) => void` | No | - | - |
+
+#### Example
+
+```tsx
+import { IssueBoard } from '@ybouhjira/solidkit';
+
+<IssueBoard>
+  Content
+</IssueBoard>
+```
+
+---
+
+### KanbanBoard
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `columns` | `KanbanColumn[]` | Yes | - | - |
+| `selectedCardId` | `string | null` | No | - | - |
+| `onCardClick` | `(card: KanbanCard, columnId: string) => void` | No | - | - |
+| `emptyState` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { KanbanBoard } from '@ybouhjira/solidkit';
+
+<KanbanBoard>
+  Content
+</KanbanBoard>
+```
+
+---
+
+### MediaTrimmer
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `src` | `string` | Yes | - | - |
+| `onTrimChange` | `(start: number, end: number) => void` | Yes | - | - |
+| `thumbnailCount` | `number` | No | - | - |
+| `minDuration` | `number` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { MediaTrimmer } from '@ybouhjira/solidkit';
+
+<MediaTrimmer>
+  Content
+</MediaTrimmer>
+```
+
+---
+
+### ProjectDashboard
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `projectName` | `string` | Yes | - | - |
+| `milestones` | `readonly MilestoneData[]` | Yes | - | - |
+| `issues` | `readonly IssueData[]` | Yes | - | - |
+| `onRefresh` | `() => void` | No | - | - |
+| `onIssueClick` | `(issue: IssueData) => void` | No | - | - |
+| `onMilestoneClick` | `(milestone: MilestoneData) => void` | No | - | - |
+| `filter` | `'open' | 'closed' | 'all'` | No | - | - |
+| `onFilterChange` | `(filter: 'open' | 'closed' | 'all') => void` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ProjectDashboard } from '@ybouhjira/solidkit';
+
+<ProjectDashboard>
+  Content
+</ProjectDashboard>
+```
+
+---
+
+### RepoCard
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `repo` | `RepoInfo` | Yes | - | - |
+| `onOpen` | `() => void` | No | - | - |
+| `onTerminal` | `() => void` | No | - | - |
+| `onIssues` | `() => void` | No | - | - |
+| `onStartWork` | `() => void` | No | - | - |
+
+#### Example
+
+```tsx
+import { RepoCard } from '@ybouhjira/solidkit';
+
+<RepoCard>
+  Content
+</RepoCard>
+```
+
+---
+
+### StatBar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `StatBarItem[]` | Yes | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+| `direction` | `'horizontal' | 'vertical'` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `unstyled` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { StatBar } from '@ybouhjira/solidkit';
+
+<StatBar>
+  Content
+</StatBar>
+```
+
+---
+
+## Navigation
+
+### Breadcrumb
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `BreadcrumbItem[]` | Yes | - | - |
+| `separator` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Breadcrumb } from '@ybouhjira/solidkit';
+
+<Breadcrumb>
+  Content
+</Breadcrumb>
+```
+
+---
+
+### MenuBar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `menus` | `MenuDefinition[]` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { MenuBar } from '@ybouhjira/solidkit';
+
+<MenuBar>
+  Content
+</MenuBar>
+```
+
+---
+
+### MobileNav
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `sessions` | `MobileNavSession[]` | Yes | - | - |
+| `activeSessionId` | `string` | No | - | - |
+| `onSessionSelect` | `(id: string) => void` | No | - | - |
+| `hideAbove` | `Breakpoint` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { MobileNav } from '@ybouhjira/solidkit';
+
+<MobileNav>
+  Content
+</MobileNav>
+```
+
+---
+
+### MobilePanelView
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `tabs` | `MobilePanelTab[]` | Yes | - | - |
+| `activeId` | `string` | No | - | - |
+| `defaultId` | `string` | No | - | - |
+| `onTabChange` | `(id: string) => void` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { MobilePanelView } from '@ybouhjira/solidkit';
+
+<MobilePanelView>
+  Content
+</MobilePanelView>
+```
+
+---
+
+### ModeSwitcher
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ModeSwitcher } from '@ybouhjira/solidkit';
+
+<ModeSwitcher>
+  Content
+</ModeSwitcher>
+```
+
+---
+
+### Sidebar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `open` | `boolean` | No | - | - |
+| `onToggle` | `() => void` | No | - | - |
+| `width` | `string` | No | - | - |
+| `header` | `JSX.Element` | No | - | - |
+| `footer` | `JSX.Element` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Sidebar } from '@ybouhjira/solidkit';
+
+<Sidebar>
+  Content
+</Sidebar>
+```
+
+---
+
+### StatusBar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `StatusBarItem[]` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { StatusBar } from '@ybouhjira/solidkit';
+
+<StatusBar>
+  Content
+</StatusBar>
+```
+
+---
+
+### TabBar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `tabs` | `TabBarTab[]` | Yes | - | - |
+| `activeId` | `string` | No | - | - |
+| `onSelect` | `(id: string) => void` | No | - | - |
+| `onClose` | `(id: string) => void` | No | - | - |
+| `onAdd` | `() => void` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { TabBar } from '@ybouhjira/solidkit';
+
+<TabBar>
+  Content
+</TabBar>
+```
+
+---
+
+## Chat & AI
+
+### ChatWindow
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `messages` | `Message[]` | Yes | - | - |
+| `connectionState` | `ConnectionState` | Yes | - | - |
+| `streamingMessageId` | `string` | No | - | - |
+| `models` | `ModelOption[]` | No | - | - |
+| `selectedModel` | `string` | No | - | - |
+| `onSend` | `(message: string) => void` | No | - | - |
+| `onInterrupt` | `() => void` | No | - | - |
+| `onModelChange` | `(modelId: string) => void` | No | - | - |
+| `onCopyMessage` | `(message: Message) => void` | No | - | - |
+| `title` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ChatWindow } from '@ybouhjira/solidkit';
+
+<ChatWindow>
+  Content
+</ChatWindow>
+```
+
+---
+
+### CostTracker
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `cost` | `number` | Yes | - | - |
+| `inputTokens` | `number` | Yes | - | - |
+| `outputTokens` | `number` | Yes | - | - |
+| `compact` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { CostTracker } from '@ybouhjira/solidkit';
+
+<CostTracker>
+  Content
+</CostTracker>
+```
+
+---
+
+### LLMChatBox
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `controller` | `LLMUIControllerReturn` | Yes | - | - |
+| `title` | `string` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { LLMChatBox } from '@ybouhjira/solidkit';
+
+<LLMChatBox>
+  Content
+</LLMChatBox>
+```
+
+---
+
+### MessageBubble
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `role` | `MessageRole` | Yes | - | - |
+| `content` | `string` | Yes | - | - |
+| `timestamp` | `Date` | No | - | - |
+| `isStreaming` | `boolean` | No | - | - |
+| `onCopy` | `() => void` | No | - | - |
+| `class` | `string` | No | - | - |
+| `variant` | `'default' | 'borderless'` | No | - | - |
+| `avatarText` | `string` | No | - | - |
+| `displayName` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { MessageBubble } from '@ybouhjira/solidkit';
+
+<MessageBubble>
+  Content
+</MessageBubble>
+```
+
+---
+
+### MessageList
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `messages` | `Message[]` | Yes | - | - |
+| `streamingMessageId` | `string` | No | - | - |
+| `onCopyMessage` | `(message: Message) => void` | No | - | - |
+| `autoScroll` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { MessageList } from '@ybouhjira/solidkit';
+
+<MessageList>
+  Content
+</MessageList>
+```
+
+---
+
+### ModelSelector
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `models` | `ModelOption[]` | Yes | - | - |
+| `value` | `string` | No | - | - |
+| `onChange` | `(modelId: string) => void` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ModelSelector } from '@ybouhjira/solidkit';
+
+<ModelSelector>
+  Content
+</ModelSelector>
+```
+
+---
+
+### PromptQueue
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `QueuedPrompt[]` | Yes | - | - |
+| `onRemove` | `(id: string) => void` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { PromptQueue } from '@ybouhjira/solidkit';
+
+<PromptQueue>
+  Content
+</PromptQueue>
+```
+
+---
+
+### SessionIndicator
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `status` | `SessionStatus` | Yes | - | - |
+| `name` | `string` | Yes | - | - |
+| `model` | `string` | No | - | - |
+| `unreadCount` | `number` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { SessionIndicator } from '@ybouhjira/solidkit';
+
+<SessionIndicator>
+  Content
+</SessionIndicator>
+```
+
+---
+
+### SessionManager
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `sessions` | `readonly SessionInfo[]` | Yes | - | - |
+| `onViewChat` | `(sessionId: string) => void` | No | - | - |
+| `onPause` | `(sessionId: string) => void` | No | - | - |
+| `onResume` | `(sessionId: string) => void` | No | - | - |
+| `onStop` | `(sessionId: string) => void` | No | - | - |
+| `groupBy` | `'project' | 'status' | 'model'` | No | - | - |
+
+#### Example
+
+```tsx
+import { SessionManager } from '@ybouhjira/solidkit';
+
+<SessionManager>
+  Content
+</SessionManager>
+```
+
+---
+
+### SessionSearch
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `sessions` | `SessionData[]` | Yes | - | - |
+| `onSelect` | `(result: SessionSearchResult) => void` | Yes | - | - |
+| `open` | `boolean` | Yes | - | - |
+| `onOpenChange` | `(open: boolean) => void` | Yes | - | - |
+| `placeholder` | `string` | No | - | - |
+| `emptyMessage` | `string` | No | - | - |
+| `debounceMs` | `number` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { SessionSearch } from '@ybouhjira/solidkit';
+
+<SessionSearch>
+  Content
+</SessionSearch>
+```
+
+---
+
+### SessionTabs
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `tabs` | `SessionTab[]` | Yes | - | - |
+| `activeTabId` | `string` | No | - | - |
+| `onTabSelect` | `(id: string) => void` | No | - | - |
+| `onTabClose` | `(id: string) => void` | No | - | - |
+| `onNewTab` | `() => void` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { SessionTabs } from '@ybouhjira/solidkit';
+
+<SessionTabs>
+  Content
+</SessionTabs>
+```
+
+---
+
+### SubagentTracker
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `agents` | `SubagentInfo[]` | Yes | - | - |
+| `defaultExpanded` | `boolean` | No | - | - |
+| `onCancel` | `(agentId: string) => void` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { SubagentTracker } from '@ybouhjira/solidkit';
+
+<SubagentTracker>
+  Content
+</SubagentTracker>
+```
+
+---
+
+### ToolApproval
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `tool` | `string` | Yes | - | - |
+| `input` | `Record<string, unknown>` | Yes | - | - |
+| `onApprove` | `(alwaysAllow: boolean) => void` | Yes | - | - |
+| `onDeny` | `() => void` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ToolApproval } from '@ybouhjira/solidkit';
+
+<ToolApproval>
+  Content
+</ToolApproval>
+```
+
+---
+
+### ToolExecution
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `toolName` | `string` | Yes | - | - |
+| `status` | `ToolStatus` | Yes | - | - |
+| `input` | `string` | No | - | - |
+| `output` | `string` | No | - | - |
+| `duration` | `number` | No | - | - |
+| `defaultOpen` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ToolExecution } from '@ybouhjira/solidkit';
+
+<ToolExecution>
+  Content
+</ToolExecution>
+```
+
+---
+
+## UI Utilities
+
+### CommandPalette
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `open` | `boolean` | Yes | - | - |
+| `onOpenChange` | `(open: boolean) => void` | Yes | - | - |
+| `actions` | `CommandAction[]` | Yes | - | - |
+| `autoDiscover` | `boolean` | No | - | - |
+| `extraCommands` | `CommandAction[]` | No | - | - |
+| `placeholder` | `string` | No | - | - |
+| `emptyMessage` | `string` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { CommandPalette } from '@ybouhjira/solidkit';
+
+<CommandPalette>
+  Content
+</CommandPalette>
+```
+
+---
+
+### ConfirmDialog
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `open` | `boolean` | Yes | - | - |
+| `onClose` | `() => void` | Yes | - | - |
+| `onConfirm` | `() => void` | Yes | - | - |
+| `title` | `string` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+| `confirmLabel` | `string` | No | - | - |
+| `cancelLabel` | `string` | No | - | - |
+| `variant` | `'default' | 'danger'` | No | - | - |
+| `loading` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ConfirmDialog } from '@ybouhjira/solidkit';
+
+<ConfirmDialog>
+  Content
+</ConfirmDialog>
+```
+
+---
+
+### ConnectionStatus
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `state` | `ConnectionState` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ConnectionStatus } from '@ybouhjira/solidkit';
+
+<ConnectionStatus>
+  Content
+</ConnectionStatus>
+```
+
+---
+
+### SplitButton
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | Yes | - | - |
+| `icon` | `string` | No | - | - |
+| `onClick` | `() => void` | Yes | - | - |
+| `options` | `SplitButtonOption[]` | Yes | - | - |
+| `variant` | `'default' | 'primary' | 'danger'` | No | - | - |
+| `size` | `'sm' | 'md'` | No | - | - |
+| `disabled` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `open` | `boolean` | No | - | - |
+| `onOpenChange` | `(open: boolean) => void` | No | - | - |
+
+#### Example
+
+```tsx
+import { SplitButton } from '@ybouhjira/solidkit';
+
+<SplitButton>
+  Content
+</SplitButton>
+```
+
+---
+
+### ThemeBuilder
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `initialTheme` | `Partial<ThemeConfig>` | No | - | - |
+| `onThemeChange` | `(theme: ThemeConfig) => void` | No | - | - |
+| `onExport` | `(code: string) => void` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { ThemeBuilder } from '@ybouhjira/solidkit';
+
+<ThemeBuilder>
+  Content
+</ThemeBuilder>
+```
+
+---
+
+### ThemePickerModal
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `open` | `boolean` | Yes | - | - |
+| `onOpenChange` | `(open: boolean) => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { ThemePickerModal } from '@ybouhjira/solidkit';
+
+<ThemePickerModal>
+  Content
+</ThemePickerModal>
+```
+
+---
+
+## Other
+
+### ExamDocument
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `exam` | `Exam` | Yes | - | - |
+| `showAnswers` | `boolean` | No | - | - |
+| `template` | `'classic' | 'modern' | 'formal'` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { ExamDocument } from '@ybouhjira/solidkit';
+
+<ExamDocument>
+  Content
+</ExamDocument>
+```
+
+---
+
+### ExerciseRenderer
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `exercise` | `Exercise` | Yes | - | - |
+| `showAnswers` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { ExerciseRenderer } from '@ybouhjira/solidkit';
+
+<ExerciseRenderer>
+  Content
+</ExerciseRenderer>
+```
+
+---
+
+### FillBlankExercise
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `exercise` | `Exercise` | Yes | - | - |
+| `showAnswers` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { FillBlankExercise } from '@ybouhjira/solidkit';
+
+<FillBlankExercise>
+  Content
+</FillBlankExercise>
+```
+
+---
+
+### MatchingExercise
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `exercise` | `Exercise` | Yes | - | - |
+| `showAnswers` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { MatchingExercise } from '@ybouhjira/solidkit';
+
+<MatchingExercise>
+  Content
+</MatchingExercise>
+```
+
+---
+
+### MCQExercise
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `exercise` | `Exercise` | Yes | - | - |
+| `showAnswers` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { MCQExercise } from '@ybouhjira/solidkit';
+
+<MCQExercise>
+  Content
+</MCQExercise>
+```
+
+---
+
+### FreeTextExercise
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `exercise` | `Exercise` | Yes | - | - |
+| `showAnswers` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { FreeTextExercise } from '@ybouhjira/solidkit';
+
+<FreeTextExercise>
+  Content
+</FreeTextExercise>
+```
+
+---
+
+### TrueFalseExercise
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `exercise` | `Exercise` | Yes | - | - |
+| `showAnswers` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { TrueFalseExercise } from '@ybouhjira/solidkit';
+
+<TrueFalseExercise>
+  Content
+</TrueFalseExercise>
+```
+
+---
+
+### FileIcon
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `item` | `FileIconItem` | Yes | - | - |
+| `size` | `'sm' | 'md' | 'lg'` | No | - | - |
+
+#### Example
+
+```tsx
+import { FileIcon } from '@ybouhjira/solidkit';
+
+<FileIcon>
+  Content
+</FileIcon>
+```
+
+---
+
+### FileExplorerToolbar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `currentPath` | `string` | Yes | - | - |
+| `canGoUp` | `boolean` | Yes | - | - |
+| `viewMode` | `ViewMode` | Yes | - | - |
+| `isNarrow` | `boolean` | No | - | - |
+| `onNavigateUp` | `() => void` | Yes | - | - |
+| `onNavigateToPath` | `(path: string) => void` | No | - | - |
+| `onViewModeChange` | `(mode: ViewMode) => void` | Yes | - | - |
+| `onRefresh` | `() => void` | No | - | - |
+| `onCreateFolder` | `(name: string) => void` | No | - | - |
+| `searchQuery` | `string` | No | - | - |
+| `onSearchChange` | `(query: string) => void` | No | - | - |
+
+#### Example
+
+```tsx
+import { FileExplorerToolbar } from '@ybouhjira/solidkit';
+
+<FileExplorerToolbar>
+  Content
+</FileExplorerToolbar>
+```
+
+---
+
+### ViewModeSwitcher
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `currentMode` | `ViewMode` | Yes | - | - |
+| `onModeChange` | `(mode: ViewMode) => void` | Yes | - | - |
+| `isNarrow` | `boolean` | No | - | - |
+
+#### Example
+
+```tsx
+import { ViewModeSwitcher } from '@ybouhjira/solidkit';
+
+<ViewModeSwitcher>
+  Content
+</ViewModeSwitcher>
+```
+
+---
+
+### PathBreadcrumb
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `path` | `string` | Yes | - | - |
+| `onNavigate` | `(path: string) => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { PathBreadcrumb } from '@ybouhjira/solidkit';
+
+<PathBreadcrumb>
+  Content
+</PathBreadcrumb>
+```
+
+---
+
+### TreeView
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `FileItem[]` | Yes | - | - |
+| `onItemClick` | `(item: FileItem, e: MouseEvent) => void` | Yes | - | - |
+| `selectedPaths` | `Set<string>` | Yes | - | - |
+| `onToggleExpand` | `(path: string) => void` | Yes | - | - |
+| `expandedPaths` | `Set<string>` | Yes | - | - |
+| `loadingPaths` | `Set<string>` | No | - | - |
+| `childrenCache` | `Map<string, FileItem[]>` | No | - | - |
+| `depth` | `number` | No | - | - |
+| `focusedPath` | `string | null` | No | - | - |
+
+#### Example
+
+```tsx
+import { TreeView } from '@ybouhjira/solidkit';
+
+<TreeView>
+  Content
+</TreeView>
+```
+
+---
+
+### TreeNode
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `item` | `FileItem` | Yes | - | - |
+| `depth` | `number` | Yes | - | - |
+| `isExpanded` | `boolean` | Yes | - | - |
+| `isLoading` | `boolean` | Yes | - | - |
+| `isSelected` | `boolean` | Yes | - | - |
+| `isFocused` | `boolean` | No | - | - |
+| `onToggleExpand` | `(path: string) => void` | Yes | - | - |
+| `onItemClick` | `(item: FileItem, e: MouseEvent) => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { TreeNode } from '@ybouhjira/solidkit';
+
+<TreeNode>
+  Content
+</TreeNode>
+```
+
+---
+
+### TourProvider
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `JSX.Element` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { TourProvider } from '@ybouhjira/solidkit';
+
+<TourProvider>
+  Content
+</TourProvider>
+```
+
+---
+
+### SlashCommandMenu
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `show` | `boolean` | Yes | - | - |
+| `commands` | `SlashCommand[]` | Yes | - | - |
+| `selectedIndex` | `number` | Yes | - | - |
+| `onSelect` | `(command: SlashCommand) => void` | Yes | - | - |
+| `onHover` | `(index: number) => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { SlashCommandMenu } from '@ybouhjira/solidkit';
+
+<SlashCommandMenu>
+  Content
+</SlashCommandMenu>
+```
+
+---
+
+### MentionMenu
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `show` | `boolean` | Yes | - | - |
+| `mentions` | `MentionItem[]` | Yes | - | - |
+| `selectedIndex` | `number` | Yes | - | - |
+| `onSelect` | `(mention: MentionItem) => void` | Yes | - | - |
+| `onHover` | `(index: number) => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { MentionMenu } from '@ybouhjira/solidkit';
+
+<MentionMenu>
+  Content
+</MentionMenu>
+```
+
+---
+
+### AttachmentBar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `attachments` | `FileAttachment[]` | Yes | - | - |
+| `onRemove` | `(id: string) => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { AttachmentBar } from '@ybouhjira/solidkit';
+
+<AttachmentBar>
+  Content
+</AttachmentBar>
+```
+
+---
+
+### MarkdownToolbar
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `disabled` | `boolean` | No | - | - |
+| `onBold` | `() => void` | Yes | - | - |
+| `onItalic` | `() => void` | Yes | - | - |
+| `onCode` | `() => void` | Yes | - | - |
+| `onLink` | `() => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { MarkdownToolbar } from '@ybouhjira/solidkit';
+
+<MarkdownToolbar>
+  Content
+</MarkdownToolbar>
+```
+
+---
+
+### VoiceInput
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `disabled` | `boolean` | No | - | - |
+| `isRecording` | `boolean` | Yes | - | - |
+| `onToggle` | `() => void` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { VoiceInput } from '@ybouhjira/solidkit';
+
+<VoiceInput>
+  Content
+</VoiceInput>
+```
+
+---
+
+### ToolApprovalQueue
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `queue` | `ToolApprovalItem[]` | Yes | - | - |
+| `onApprove` | `(id: string, alwaysAllow: boolean) => void` | Yes | - | - |
+| `onDeny` | `(id: string) => void` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ToolApprovalQueue } from '@ybouhjira/solidkit';
+
+<ToolApprovalQueue>
+  Content
+</ToolApprovalQueue>
+```
+
+---
+
+## Theme & Icons
+
+### ThemePicker
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `onThemeChange` | `(theme: ThemeConfig) => void` | No | - | - |
+
+#### Example
+
+```tsx
+import { ThemePicker } from '@ybouhjira/solidkit';
+
+<ThemePicker>
+  Content
+</ThemePicker>
+```
+
+---
+
+### FontSelect
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | `string` | No | - | - |
+| `onChange` | `(font: string) => void` | No | - | - |
+
+#### Example
+
+```tsx
+import { FontSelect } from '@ybouhjira/solidkit';
+
+<FontSelect>
+  Content
+</FontSelect>
+```
+
+---
+
+### Icon
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `name` | `string` | Yes | - | - |
+| `size` | `IconSize` | No | - | - |
+| `class` | `string` | No | - | - |
+| `color` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { Icon } from '@ybouhjira/solidkit';
+
+<Icon>
+  Content
+</Icon>
+```
+
+---
+
+## Animation
+
+### Transition
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `preset` | `TransitionPreset` | No | - | - |
+| `duration` | `number` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+
+#### Example
+
+```tsx
+import { Transition } from '@ybouhjira/solidkit';
+
+<Transition>
+  Content
+</Transition>
+```
+
+---
+
+### ScrollReveal
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `animation` | `'fade-up' | 'fade-in' | 'scale-in' | 'slide-left' | 'slide-right'` | No | - | - |
+| `delay` | `number` | No | - | - |
+| `duration` | `number` | No | - | - |
+| `threshold` | `number` | No | - | - |
+| `once` | `boolean` | No | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+| `children` | `JSX.Element` | No | - | - |
+
+#### Example
+
+```tsx
+import { ScrollReveal } from '@ybouhjira/solidkit';
+
+<ScrollReveal>
+  Content
+</ScrollReveal>
+```
+
+---
+
+### AnimateOnScroll
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `animation` | `'fadeIn' | 'fadeUp' | 'fadeDown' | 'slideLeft' | 'slideRight' | 'scale'` | No | - | - |
+| `threshold` | `number` | No | - | - |
+| `delay` | `number` | No | - | - |
+| `duration` | `number` | No | - | - |
+| `once` | `boolean` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { AnimateOnScroll } from '@ybouhjira/solidkit';
+
+<AnimateOnScroll>
+  Content
+</AnimateOnScroll>
+```
+
+---
+
+## Panel System
+
+### PanelGroup
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `panels` | `{ config: PanelConfig; state: PanelState }[]` | Yes | - | - |
+| `direction` | `PanelDirection` | Yes | - | - |
+| `onResize` | `(panelId: string, delta: number) => void` | Yes | - | - |
+| `onCollapse` | `(panelId: string) => void` | Yes | - | - |
+| `onExpand` | `(panelId: string) => void` | Yes | - | - |
+| `onClose` | `(panelId: string) => void` | Yes | - | - |
+| `onMaximize` | `(panelId: string) => void` | No | - | - |
+| `onPip` | `(panelId: string) => void` | No | - | - |
+| `onDragStart` | `(panelId: string, event?: PointerEvent) => void` | No | - | - |
+| `draggedPanelId` | `string | null` | No | - | - |
+| `tabMode` | `boolean` | No | - | - |
+| `activeTabId` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { PanelGroup } from '@ybouhjira/solidkit';
+
+<PanelGroup>
+  Content
+</PanelGroup>
+```
+
+---
+
+### PanelDropZone
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `position` | `PanelPosition` | Yes | - | - |
+| `active` | `boolean` | Yes | - | - |
+| `visible` | `boolean` | Yes | - | - |
+| `onRegister` | `(position: PanelPosition, el: HTMLElement) => void` | Yes | - | - |
+| `onUnregister` | `(position: PanelPosition) => void` | Yes | - | - |
+| `style` | `JSX.CSSProperties` | No | - | - |
+
+#### Example
+
+```tsx
+import { PanelDropZone } from '@ybouhjira/solidkit';
+
+<PanelDropZone>
+  Content
+</PanelDropZone>
+```
+
+---
+
+## Layouts
+
+### ChatLayout
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `sidebarOpen` | `boolean` | No | - | - |
+| `onSidebarToggle` | `() => void` | No | - | - |
+| `sidebarContent` | `JSX.Element` | No | - | - |
+| `tabs` | `SessionTab[]` | No | - | - |
+| `activeTabId` | `string` | No | - | - |
+| `onTabSelect` | `(id: string) => void` | No | - | - |
+| `onTabClose` | `(id: string) => void` | No | - | - |
+| `onNewTab` | `() => void` | No | - | - |
+| `children` | `JSX.Element` | Yes | - | - |
+| `class` | `string` | No | - | - |
+
+#### Example
+
+```tsx
+import { ChatLayout } from '@ybouhjira/solidkit';
+
+<ChatLayout>
+  Content
+</ChatLayout>
+```
+
+---
+
+## Report
+
+### Report
+
+Component
+
+#### Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `schema` | `ReportSchema` | Yes | - | - |
+| `class` | `string` | No | - | - |
+| `embedded` | `boolean` | No | - | - |
+| `onSubmit` | `(responses: Record<string, unknown>) => void` | No | - | - |
+
+#### Example
+
+```tsx
+import { Report } from '@ybouhjira/solidkit';
+
+<Report>
+  Content
+</Report>
+```
+
+---
+
+# Services, Hooks & Utilities
+
+## Effect Services
+
+### WebSocketService
+
+**Kind:** Effect Service
+
+#### Methods
+
+| Method | Type | Description |
+|--------|------|-------------|
+| `connect` | `(url: string) => Effect.Effect<void, WebSocketConnectionError>` | - |
+| `disconnect` | `Effect.Effect<void, WebSocketError>` | - |
+| `send` | `(message: WsMessage) => Effect.Effect<void, WebSocketError>` | - |
+| `messages` | `Stream.Stream<WsMessage, WebSocketError>` | - |
+| `isConnected` | `Effect.Effect<boolean>` | - |
+
+```ts
+import { WebSocketService } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SessionService
+
+**Kind:** Effect Service
+
+#### Methods
+
+| Method | Type | Description |
+|--------|------|-------------|
+| `create` | `(params: CreateSessionParams) => Effect.Effect<Session, SessionCreationError>` | - |
+| `get` | `(id: string) => Effect.Effect<Session, SessionNotFoundError>` | - |
+| `list` | `Effect.Effect<ReadonlyArray<Session>>` | - |
+| `remove` | `(id: string) => Effect.Effect<void, SessionNotFoundError>` | - |
+| `setActive` | `(id: string) => Effect.Effect<void, SessionNotFoundError>` | - |
+| `getActive` | `Effect.Effect<Session | null>` | - |
+
+```ts
+import { SessionService } from '@ybouhjira/solidkit';
+```
+
+---
+
+### FileSystemService
+
+**Kind:** Effect Service
+
+#### Methods
+
+| Method | Type | Description |
+|--------|------|-------------|
+| `listDirectory` | `(
+    path: string
+  ) => Effect.Effect<ReadonlyArray<FileEntry>, FileSystemError | DirectoryNotFoundError>` | - |
+| `getParentDirectory` | `(path: string) => Effect.Effect<string>` | - |
+| `isDirectory` | `(path: string) => Effect.Effect<boolean, FileSystemError>` | - |
+
+```ts
+import { FileSystemService } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ClipboardService
+
+**Kind:** Effect Service
+
+#### Methods
+
+| Method | Type | Description |
+|--------|------|-------------|
+| `copy` | `(text: string) => Effect.Effect<void, ClipboardError>` | - |
+| `paste` | `Effect.Effect<string, ClipboardError>` | - |
+
+```ts
+import { ClipboardService } from '@ybouhjira/solidkit';
+```
+
+---
+
+### LoggingService
+
+**Kind:** service
+
+```ts
+import { LoggingService } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Logging
+
+### makeLoggingLayer
+
+**Kind:** factory
+
+```ts
+import { makeLoggingLayer } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SimpleTransport
+
+**Kind:** constant
+
+```ts
+import { SimpleTransport } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ScopedTransport
+
+**Kind:** constant
+
+```ts
+import { ScopedTransport } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ConsoleTransport
+
+**Kind:** constant
+
+```ts
+import { ConsoleTransport } from '@ybouhjira/solidkit';
+```
+
+---
+
+### HttpTransport
+
+**Kind:** constant
+
+```ts
+import { HttpTransport } from '@ybouhjira/solidkit';
+```
+
+---
+
+### BeaconTransport
+
+**Kind:** constant
+
+```ts
+import { BeaconTransport } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SentryTransport
+
+**Kind:** constant
+
+```ts
+import { SentryTransport } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Hooks
+
+### useTheme
+
+**Kind:** hook
+
+```ts
+() => UseThemeReturn
+```
+
+```ts
+import { useTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useDesktop
+
+**Kind:** hook
+
+```ts
+() => UseDesktopReturn
+```
+
+```ts
+import { useDesktop } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useAnimation
+
+**Kind:** hook
+
+```ts
+() => UseAnimationReturn
+```
+
+```ts
+import { useAnimation } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createEffectResource
+
+**Kind:** hook
+
+```ts
+<A, E>(effectFn: () => Effect.Effect<A, E>, options?: EffectResourceOptions<A, E>) => EffectResourceResult<A, E>
+```
+
+```ts
+import { createEffectResource } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createEffectStream
+
+**Kind:** hook
+
+```ts
+<A, E>(stream: Stream.Stream<A, E>, options?: EffectStreamOptions<A, E>) => EffectStreamResult<A, E>
+```
+
+```ts
+import { createEffectStream } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useBreakpoint
+
+**Kind:** hook
+
+```ts
+() => any
+```
+
+```ts
+import { useBreakpoint } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useMode
+
+**Kind:** hook
+
+```ts
+(initialMode?: Mode) => UseModeReturn
+```
+
+```ts
+import { useMode } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useHaptic
+
+**Kind:** hook
+
+```ts
+(options?: HapticOptions) => HapticReturn
+```
+
+```ts
+import { useHaptic } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createHaptic
+
+**Kind:** hook
+
+```ts
+import { createHaptic } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useNotificationSound
+
+**Kind:** hook
+
+```ts
+(options?: NotificationSoundOptions) => NotificationSoundReturn
+```
+
+```ts
+import { useNotificationSound } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createNotificationSound
+
+**Kind:** hook
+
+```ts
+import { createNotificationSound } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createEventBus
+
+**Kind:** hook
+
+```ts
+import { createEventBus } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useEventBus
+
+**Kind:** hook
+
+```ts
+<Events extends Record<string, unknown>>(bus: EventBus<Events>) => { emit: <K extends keyof Events & string>(event: K, payload: Events[K]) => void; on: <K extends keyof Events & string>(event: K, handler: EventHandler<...>) => void; }
+```
+
+```ts
+import { useEventBus } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useLogger
+
+**Kind:** hook
+
+```ts
+(stream: Stream.Stream<LogEntry>, options?: UseLoggerOptions) => UseLoggerResult
+```
+
+```ts
+import { useLogger } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useVideoPreview
+
+**Kind:** hook
+
+```ts
+(src: Accessor<string>) => UseVideoPreviewReturn
+```
+
+```ts
+import { useVideoPreview } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createLLMUIController
+
+**Kind:** hook
+
+```ts
+(options: LLMUIControllerOptions) => LLMUIControllerReturn
+```
+
+```ts
+import { createLLMUIController } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useKeyboard
+
+**Kind:** hook
+
+```ts
+() => KeyboardContextValue
+```
+
+```ts
+import { useKeyboard } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useShortcut
+
+**Kind:** hook
+
+```ts
+(config: ShortcutConfig) => void
+```
+
+```ts
+import { useShortcut } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useShortcuts
+
+**Kind:** hook
+
+```ts
+import { useShortcuts } from '@ybouhjira/solidkit';
+```
+
+---
+
+### usePanelLayout
+
+**Kind:** hook
+
+```ts
+(configs: PanelConfig[], storageKey?: string, initialOverrides?: Partial<PanelLayoutState>) => { layout: Accessor<PanelLayoutState>; ... 5 more ...; getPipPanels: () => { ...; }[]; }
+```
+
+```ts
+import { usePanelLayout } from '@ybouhjira/solidkit';
+```
+
+---
+
+### usePanelDrag
+
+**Kind:** hook
+
+```ts
+(onMove: (panelId: string, toPosition: PanelPosition) => void) => { dragState: Accessor<PanelDragState>; startDrag: (panelId: string, event: PointerEvent) => void; dropZones: Accessor<...>; registerDropZone: (position: PanelPosition, element: HTMLElement) => void; unregisterDropZone: (position: PanelPosition) => voi...
+```
+
+```ts
+import { usePanelDrag } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useNavigation
+
+**Kind:** hook
+
+```ts
+() => NavigationContextValue
+```
+
+```ts
+import { useNavigation } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useNavigable
+
+**Kind:** hook
+
+```ts
+(contentRef: () => ContentRef, options?: { onOpenMenu?: (ref: ContentRef, position: { x: number; y: number; }) => void; defaultTarget?: NavigationTarget; }) => NavigableResult
+```
+
+```ts
+import { useNavigable } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useDevTools
+
+**Kind:** hook
+
+```ts
+() => NavigableDevToolsHandle
+```
+
+```ts
+import { useDevTools } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useKnuthPlass
+
+**Kind:** hook
+
+```ts
+(containerRef: () => HTMLElement, content?: () => string) => void
+```
+
+```ts
+import { useKnuthPlass } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Providers
+
+### ToastProvider
+
+**Kind:** provider
+
+```ts
+import { ToastProvider } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ThemeProvider
+
+**Kind:** provider
+
+```ts
+import { ThemeProvider } from '@ybouhjira/solidkit';
+```
+
+---
+
+### AnimationProvider
+
+**Kind:** provider
+
+```ts
+import { AnimationProvider } from '@ybouhjira/solidkit';
+```
+
+---
+
+### KeyboardProvider
+
+**Kind:** provider
+
+```ts
+import { KeyboardProvider } from '@ybouhjira/solidkit';
+```
+
+---
+
+### KeyboardScope
+
+**Kind:** provider
+
+```ts
+import { KeyboardScope } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ShortcutsHelp
+
+**Kind:** provider
+
+```ts
+import { ShortcutsHelp } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Animation Utilities
+
+### enterAnimation
+
+**Kind:** utility
+
+```ts
+(preset: TransitionPreset, durationMs?: number) => JSX.CSSProperties
+```
+
+```ts
+import { enterAnimation } from '@ybouhjira/solidkit';
+```
+
+---
+
+### animationClass
+
+**Kind:** utility
+
+```ts
+(preset: TransitionPreset) => string
+```
+
+```ts
+import { animationClass } from '@ybouhjira/solidkit';
+```
+
+---
+
+### fadeIn
+
+**Kind:** utility
+
+```ts
+{ from: { opacity: number; }; to: { opacity: number; }; }
+```
+
+```ts
+import { fadeIn } from '@ybouhjira/solidkit';
+```
+
+---
+
+### slideUp
+
+**Kind:** utility
+
+```ts
+{ from: { opacity: number; transform: string; }; to: { opacity: number; transform: string; }; }
+```
+
+```ts
+import { slideUp } from '@ybouhjira/solidkit';
+```
+
+---
+
+### slideDown
+
+**Kind:** utility
+
+```ts
+{ from: { opacity: number; transform: string; }; to: { opacity: number; transform: string; }; }
+```
+
+```ts
+import { slideDown } from '@ybouhjira/solidkit';
+```
+
+---
+
+### slideLeft
+
+**Kind:** utility
+
+```ts
+{ from: { opacity: number; transform: string; }; to: { opacity: number; transform: string; }; }
+```
+
+```ts
+import { slideLeft } from '@ybouhjira/solidkit';
+```
+
+---
+
+### slideRight
+
+**Kind:** utility
+
+```ts
+{ from: { opacity: number; transform: string; }; to: { opacity: number; transform: string; }; }
+```
+
+```ts
+import { slideRight } from '@ybouhjira/solidkit';
+```
+
+---
+
+### scaleIn
+
+**Kind:** utility
+
+```ts
+{ from: { opacity: number; transform: string; }; to: { opacity: number; transform: string; }; }
+```
+
+```ts
+import { scaleIn } from '@ybouhjira/solidkit';
+```
+
+---
+
+### scaleFade
+
+**Kind:** utility
+
+```ts
+{ from: { opacity: number; transform: string; }; to: { opacity: number; transform: string; }; }
+```
+
+```ts
+import { scaleFade } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Theme Constants
+
+### themePresets
+
+**Kind:** constant
+
+```ts
+import { themePresets } from '@ybouhjira/solidkit';
+```
+
+---
+
+### modeDefinitions
+
+**Kind:** constant
+
+```ts
+import { modeDefinitions } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Token Helpers
+
+### mapSpace
+
+**Kind:** utility
+
+```ts
+import { mapSpace } from '@ybouhjira/solidkit';
+```
+
+---
+
+### mapBg
+
+**Kind:** utility
+
+```ts
+import { mapBg } from '@ybouhjira/solidkit';
+```
+
+---
+
+### mapTextColor
+
+**Kind:** utility
+
+```ts
+import { mapTextColor } from '@ybouhjira/solidkit';
+```
+
+---
+
+### mapRadius
+
+**Kind:** utility
+
+```ts
+import { mapRadius } from '@ybouhjira/solidkit';
+```
+
+---
+
+### mapShadow
+
+**Kind:** utility
+
+```ts
+import { mapShadow } from '@ybouhjira/solidkit';
+```
+
+---
+
+### mapZ
+
+**Kind:** utility
+
+```ts
+import { mapZ } from '@ybouhjira/solidkit';
+```
+
+---
+
+### mapFontSize
+
+**Kind:** utility
+
+```ts
+import { mapFontSize } from '@ybouhjira/solidkit';
+```
+
+---
+
+### mapFontWeight
+
+**Kind:** utility
+
+```ts
+import { mapFontWeight } from '@ybouhjira/solidkit';
+```
+
+---
+
+### resolveSize
+
+**Kind:** utility
+
+```ts
+import { resolveSize } from '@ybouhjira/solidkit';
+```
+
+---
+
+### formatShortcut
+
+**Kind:** utility
+
+```ts
+(config: Pick<ShortcutConfig, "key" | "mod" | "ctrl" | "meta" | "shift" | "alt">) => string
+```
+
+```ts
+import { formatShortcut } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Utilities
+
+### createSettingsStore
+
+**Kind:** hook
+
+```ts
+(key?: string) => { loadSettings: () => SettingsConfig; saveSettings: (settings: SettingsConfig) => void; defaultSettings: SettingsConfig; }
+```
+
+```ts
+import { createSettingsStore } from '@ybouhjira/solidkit';
+```
+
+---
+
+### architectureReviewSchema
+
+**Kind:** constant
+
+```ts
+import { architectureReviewSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### validateProps
+
+**Kind:** utility
+
+```ts
+(componentName: string, props: object, schema: PropSchema) => void
+```
+
+```ts
+import { validateProps } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Server Utilities
+
+### createNavigableRouter
+
+**Kind:** factory
+
+```ts
+import { createNavigableRouter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### generateMCPTools
+
+**Kind:** factory
+
+```ts
+import { generateMCPTools } from '@ybouhjira/solidkit';
+```
+
+---
+
+### routeMCPToolCall
+
+**Kind:** factory
+
+```ts
+import { routeMCPToolCall } from '@ybouhjira/solidkit';
+```
+
+---
+
+### buildToolName
+
+**Kind:** factory
+
+```ts
+import { buildToolName } from '@ybouhjira/solidkit';
+```
+
+---
+
+## Other
+
+### BadgeEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { BadgeEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### BoxEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { BoxEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ButtonEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { ButtonEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### CardEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { CardEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### Center
+
+**Kind:** utility
+
+```ts
+Component<FlexProps>
+```
+
+```ts
+import { Center } from '@ybouhjira/solidkit';
+```
+
+---
+
+### type FileInputProps
+
+**Kind:** utility
+
+```ts
+import { type FileInputProps } from '@ybouhjira/solidkit';
+```
+
+---
+
+### FlexEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { FlexEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### GridEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { GridEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### InputEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { InputEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### MarkdownRenderer
+
+**Kind:** utility
+
+```ts
+Component<MarkdownProps>
+```
+
+```ts
+import { MarkdownRenderer } from '@ybouhjira/solidkit';
+```
+
+---
+
+### MarkdownComponentsContext
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { MarkdownComponentsContext } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useMarkdownComponents
+
+**Kind:** hook
+
+```ts
+() => MarkdownComponents
+```
+
+```ts
+import { useMarkdownComponents } from '@ybouhjira/solidkit';
+```
+
+---
+
+### parse
+
+**Kind:** utility
+
+```ts
+(markdown: string) => MarkdownAST
+```
+
+```ts
+import { parse } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ProgressBarEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { ProgressBarEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SelectEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { SelectEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### StackEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { StackEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SwitchEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { SwitchEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### TextEditorSchema
+
+**Kind:** utility
+
+```ts
+any
+```
+
+```ts
+import { TextEditorSchema } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createActionForm
+
+**Kind:** hook
+
+```ts
+(target: string, action: string) => Component<Omit<ActionFormProps, "target" | "action">>
+```
+
+```ts
+import { createActionForm } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useNavigableActions
+
+**Kind:** hook
+
+```ts
+() => [() => NavigableCommandAction[], () => void]
+```
+
+```ts
+import { useNavigableActions } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SKContextMenu
+
+**Kind:** utility
+
+```ts
+Component<ContextMenuProps>
+```
+
+```ts
+import { SKContextMenu } from '@ybouhjira/solidkit';
+```
+
+---
+
+### DashboardContainer
+
+**Kind:** utility
+
+```ts
+Component<DashboardContainerProps>
+```
+
+```ts
+import { DashboardContainer } from '@ybouhjira/solidkit';
+```
+
+---
+
+### DashboardCard
+
+**Kind:** utility
+
+```ts
+Component<DashboardCardInternalProps>
+```
+
+```ts
+import { DashboardCard } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useDashboardLayout
+
+**Kind:** hook
+
+```ts
+(initialConfigs: DashboardCardConfig[], columns: Accessor<number>, storageKey?: string, onLayoutChange?: (layout: CardLayout[]) => void) => { layout: CardLayout[]; actions: DashboardLayoutActions; }
+```
+
+```ts
+import { useDashboardLayout } from '@ybouhjira/solidkit';
+```
+
+---
+
+### autoPlace
+
+**Kind:** utility
+
+```ts
+(configs: DashboardCardConfig[], columns: number) => CardLayout[]
+```
+
+```ts
+import { autoPlace } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getFileType
+
+**Kind:** utility
+
+```ts
+import { getFileType } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ListView
+
+**Kind:** utility
+
+```ts
+import { ListView } from '@ybouhjira/solidkit';
+```
+
+---
+
+### IconsView
+
+**Kind:** utility
+
+```ts
+import { IconsView } from '@ybouhjira/solidkit';
+```
+
+---
+
+### GalleryView
+
+**Kind:** utility
+
+```ts
+import { GalleryView } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useTour
+
+**Kind:** hook
+
+```ts
+() => TourContextValue
+```
+
+```ts
+import { useTour } from '@ybouhjira/solidkit';
+```
+
+---
+
+### MessageInput
+
+**Kind:** utility
+
+```ts
+Component<MessageInputProps>
+```
+
+```ts
+import { MessageInput } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createVoiceRecognition
+
+**Kind:** hook
+
+```ts
+(onTranscript: (text: string) => void) => { init: () => void; start: () => void; stop: () => void; }
+```
+
+```ts
+import { createVoiceRecognition } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SettingsPanel
+
+**Kind:** utility
+
+```ts
+Component<SettingsPanelProps>
+```
+
+```ts
+import { SettingsPanel } from '@ybouhjira/solidkit';
+```
+
+---
+
+### AppearancePanel
+
+**Kind:** utility
+
+```ts
+Component<AppearancePanelProps>
+```
+
+```ts
+import { AppearancePanel } from '@ybouhjira/solidkit';
+```
+
+---
+
+### AnimationPanel
+
+**Kind:** utility
+
+```ts
+Component<AnimationPanelProps>
+```
+
+```ts
+import { AnimationPanel } from '@ybouhjira/solidkit';
+```
+
+---
+
+### LayoutPanel
+
+**Kind:** utility
+
+```ts
+Component<LayoutPanelProps>
+```
+
+```ts
+import { LayoutPanel } from '@ybouhjira/solidkit';
+```
+
+---
+
+### type ThemePickerModalProps
+
+**Kind:** utility
+
+```ts
+import { type ThemePickerModalProps } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useToast
+
+**Kind:** hook
+
+```ts
+() => ToastContextValue
+```
+
+```ts
+import { useToast } from '@ybouhjira/solidkit';
+```
+
+---
+
+### galleryHubDarkTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { galleryHubDarkTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### reportDarkTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { reportDarkTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### defaultLightTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { defaultLightTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### highContrastTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { highContrastTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### warmDarkTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { warmDarkTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### oceanTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { oceanTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### roseTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { roseTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### devtoolsTheme
+
+**Kind:** utility
+
+```ts
+ThemeConfig
+```
+
+```ts
+import { devtoolsTheme } from '@ybouhjira/solidkit';
+```
+
+---
+
+### DesktopProvider
+
+**Kind:** provider
+
+```ts
+import { DesktopProvider } from '@ybouhjira/solidkit';
+```
+
+---
+
+### WebAdapter
+
+**Kind:** factory
+
+```ts
+import { WebAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ElectronAdapter
+
+**Kind:** factory
+
+```ts
+import { ElectronAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### DesktopCapability
+
+**Kind:** utility
+
+```ts
+import { DesktopCapability } from '@ybouhjira/solidkit';
+```
+
+---
+
+### AnimationContext
+
+**Kind:** utility
+
+```ts
+import { AnimationContext } from '@ybouhjira/solidkit';
+```
+
+---
+
+### Motion
+
+**Kind:** utility
+
+```ts
+Component<MotionProps>
+```
+
+```ts
+import { Motion } from '@ybouhjira/solidkit';
+```
+
+---
+
+### Presence
+
+**Kind:** utility
+
+```ts
+Component<PresenceProps>
+```
+
+```ts
+import { Presence } from '@ybouhjira/solidkit';
+```
+
+---
+
+### resolveEasing
+
+**Kind:** utility
+
+```ts
+import { resolveEasing } from '@ybouhjira/solidkit';
+```
+
+---
+
+### easingMap
+
+**Kind:** utility
+
+```ts
+import { easingMap } from '@ybouhjira/solidkit';
+```
+
+---
+
+### TiltCard
+
+**Kind:** utility
+
+```ts
+import { TiltCard } from '@ybouhjira/solidkit';
+```
+
+---
+
+### GlassCard
+
+**Kind:** utility
+
+```ts
+import { GlassCard } from '@ybouhjira/solidkit';
+```
+
+---
+
+### GlowElement
+
+**Kind:** utility
+
+```ts
+import { GlowElement } from '@ybouhjira/solidkit';
+```
+
+---
+
+### HolographicCard
+
+**Kind:** utility
+
+```ts
+import { HolographicCard } from '@ybouhjira/solidkit';
+```
+
+---
+
+### GradientBorder
+
+**Kind:** utility
+
+```ts
+import { GradientBorder } from '@ybouhjira/solidkit';
+```
+
+---
+
+### CursorSpotlight
+
+**Kind:** utility
+
+```ts
+import { CursorSpotlight } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ParticleField
+
+**Kind:** utility
+
+```ts
+import { ParticleField } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ShaderBackground
+
+**Kind:** utility
+
+```ts
+import { ShaderBackground } from '@ybouhjira/solidkit';
+```
+
+---
+
+### MorphingBlob
+
+**Kind:** utility
+
+```ts
+import { MorphingBlob } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SpringCounter
+
+**Kind:** utility
+
+```ts
+import { SpringCounter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ScoreRing
+
+**Kind:** utility
+
+```ts
+import { ScoreRing } from '@ybouhjira/solidkit';
+```
+
+---
+
+### TypewriterText
+
+**Kind:** utility
+
+```ts
+import { TypewriterText } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SkeletonShimmer
+
+**Kind:** utility
+
+```ts
+import { SkeletonShimmer } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useSpring
+
+**Kind:** hook
+
+```ts
+(initialValue?: number, config?: SpringConfig) => UseSpringReturn
+```
+
+```ts
+import { useSpring } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useMotionValue
+
+**Kind:** hook
+
+```ts
+(initial?: number, defaultOptions?: MotionValueOptions) => UseMotionValueReturn
+```
+
+```ts
+import { useMotionValue } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useGesture
+
+**Kind:** hook
+
+```ts
+(options?: UseGestureOptions) => UseGestureReturn
+```
+
+```ts
+import { useGesture } from '@ybouhjira/solidkit';
+```
+
+---
+
+### useScrollProgress
+
+**Kind:** hook
+
+```ts
+(options?: UseScrollProgressOptions) => UseScrollProgressReturn
+```
+
+```ts
+import { useScrollProgress } from '@ybouhjira/solidkit';
+```
+
+---
+
+### PanelContainer
+
+**Kind:** utility
+
+```ts
+Component<PanelContainerProps>
+```
+
+```ts
+import { PanelContainer } from '@ybouhjira/solidkit';
+```
+
+---
+
+### PanelResizeHandle
+
+**Kind:** utility
+
+```ts
+Component<PanelResizeHandleProps>
+```
+
+```ts
+import { PanelResizeHandle } from '@ybouhjira/solidkit';
+```
+
+---
+
+### registerContentType
+
+**Kind:** utility
+
+```ts
+(def: ContentTypeDefinition) => void
+```
+
+```ts
+import { registerContentType } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getContentType
+
+**Kind:** utility
+
+```ts
+(type: string) => ContentTypeDefinition
+```
+
+```ts
+import { getContentType } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getDefaultPanel
+
+**Kind:** utility
+
+```ts
+(contentType: string) => string
+```
+
+```ts
+import { getDefaultPanel } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getPanelsForContentType
+
+**Kind:** utility
+
+```ts
+(contentType: string) => string[]
+```
+
+```ts
+import { getPanelsForContentType } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getAllContentTypes
+
+**Kind:** utility
+
+```ts
+() => ContentTypeDefinition[]
+```
+
+```ts
+import { getAllContentTypes } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearContentTypes
+
+**Kind:** utility
+
+```ts
+() => void
+```
+
+```ts
+import { clearContentTypes } from '@ybouhjira/solidkit';
+```
+
+---
+
+### NavigationProvider
+
+**Kind:** provider
+
+```ts
+import { NavigationProvider } from '@ybouhjira/solidkit';
+```
+
+---
+
+### NavigationMenu
+
+**Kind:** utility
+
+```ts
+Component<NavigationMenuProps>
+```
+
+```ts
+import { NavigationMenu } from '@ybouhjira/solidkit';
+```
+
+---
+
+### PanelContentSlot
+
+**Kind:** utility
+
+```ts
+Component<PanelContentSlotProps>
+```
+
+```ts
+import { PanelContentSlot } from '@ybouhjira/solidkit';
+```
+
+---
+
+### registerNavigable
+
+**Kind:** utility
+
+```ts
+(def: NavigableDefinition) => void
+```
+
+```ts
+import { registerNavigable } from '@ybouhjira/solidkit';
+```
+
+---
+
+### unregisterNavigable
+
+**Kind:** utility
+
+```ts
+(id: string) => void
+```
+
+```ts
+import { unregisterNavigable } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getNavigable
+
+**Kind:** utility
+
+```ts
+(id: string) => NavigableDefinition
+```
+
+```ts
+import { getNavigable } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getAllNavigables
+
+**Kind:** utility
+
+```ts
+() => NavigableDefinition[]
+```
+
+```ts
+import { getAllNavigables } from '@ybouhjira/solidkit';
+```
+
+---
+
+### inspectNavigables
+
+**Kind:** utility
+
+```ts
+() => NavigableInfo[]
+```
+
+```ts
+import { inspectNavigables } from '@ybouhjira/solidkit';
+```
+
+---
+
+### dispatchAction
+
+**Kind:** utility
+
+```ts
+(target: string, action: string, params?: unknown) => Promise<DispatchResult>
+```
+
+```ts
+import { dispatchAction } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearNavigables
+
+**Kind:** utility
+
+```ts
+() => void
+```
+
+```ts
+import { clearNavigables } from '@ybouhjira/solidkit';
+```
+
+---
+
+### // #279 ActionMiddleware addActionMiddleware
+
+**Kind:** utility
+
+```ts
+import { // #279 ActionMiddleware addActionMiddleware } from '@ybouhjira/solidkit';
+```
+
+---
+
+### removeActionMiddleware
+
+**Kind:** utility
+
+```ts
+import { removeActionMiddleware } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearActionMiddlewares
+
+**Kind:** utility
+
+```ts
+import { clearActionMiddlewares } from '@ybouhjira/solidkit';
+```
+
+---
+
+### // #280 ActionEventStream onActionDispatched
+
+**Kind:** utility
+
+```ts
+import { // #280 ActionEventStream onActionDispatched } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getActionHistory
+
+**Kind:** utility
+
+```ts
+import { getActionHistory } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearActionHistory
+
+**Kind:** utility
+
+```ts
+import { clearActionHistory } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearActionEventListeners
+
+**Kind:** utility
+
+```ts
+import { clearActionEventListeners } from '@ybouhjira/solidkit';
+```
+
+---
+
+### // #281 Reactive State Subscriptions onStateChange
+
+**Kind:** utility
+
+```ts
+import { // #281 Reactive State Subscriptions onStateChange } from '@ybouhjira/solidkit';
+```
+
+---
+
+### onAnyStateChange
+
+**Kind:** utility
+
+```ts
+import { onAnyStateChange } from '@ybouhjira/solidkit';
+```
+
+---
+
+### notifyStateChange
+
+**Kind:** utility
+
+```ts
+(target: string) => void
+```
+
+```ts
+import { notifyStateChange } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearStateListeners
+
+**Kind:** utility
+
+```ts
+import { clearStateListeners } from '@ybouhjira/solidkit';
+```
+
+---
+
+### // #282 Global State Snapshot captureGlobalState
+
+**Kind:** utility
+
+```ts
+import { // #282 Global State Snapshot captureGlobalState } from '@ybouhjira/solidkit';
+```
+
+---
+
+### restoreGlobalState
+
+**Kind:** utility
+
+```ts
+(snapshot: AppStateSnapshot) => void
+```
+
+```ts
+import { restoreGlobalState } from '@ybouhjira/solidkit';
+```
+
+---
+
+### diffState
+
+**Kind:** utility
+
+```ts
+import { diffState } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createNavigable
+
+**Kind:** factory
+
+```ts
+(options: CreateNavigableOptions) => NavigableHandle
+```
+
+```ts
+import { createNavigable } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createPermissionMiddleware
+
+**Kind:** factory
+
+```ts
+(options: PermissionMiddlewareOptions) => PermissionMiddlewareHandle
+```
+
+```ts
+import { createPermissionMiddleware } from '@ybouhjira/solidkit';
+```
+
+---
+
+### setActionPermission
+
+**Kind:** utility
+
+```ts
+import { setActionPermission } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearActionPermissions
+
+**Kind:** utility
+
+```ts
+import { clearActionPermissions } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createUndoRedoMiddleware
+
+**Kind:** factory
+
+```ts
+(options?: UndoRedoOptions) => UndoRedoHandle
+```
+
+```ts
+import { createUndoRedoMiddleware } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createLoggingMiddleware
+
+**Kind:** factory
+
+```ts
+(options?: LoggingMiddlewareOptions) => ActionMiddleware
+```
+
+```ts
+import { createLoggingMiddleware } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createAnalyticsMiddleware
+
+**Kind:** factory
+
+```ts
+(options?: AnalyticsMiddlewareOptions) => AnalyticsMiddlewareHandle
+```
+
+```ts
+import { createAnalyticsMiddleware } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createRateLimitMiddleware
+
+**Kind:** factory
+
+```ts
+(options: RateLimitMiddlewareOptions) => ActionMiddleware
+```
+
+```ts
+import { createRateLimitMiddleware } from '@ybouhjira/solidkit';
+```
+
+---
+
+### connectTransport
+
+**Kind:** factory
+
+```ts
+(adapter: NavigableTransportAdapter, options?: TransportOptions) => () => void
+```
+
+```ts
+import { connectTransport } from '@ybouhjira/solidkit';
+```
+
+---
+
+### WebSocketTransportAdapter
+
+**Kind:** factory
+
+```ts
+import { WebSocketTransportAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### MessagePortTransportAdapter
+
+**Kind:** factory
+
+```ts
+import { MessagePortTransportAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### TauriIPCAdapter
+
+**Kind:** factory
+
+```ts
+import { TauriIPCAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### LocalStorageAdapter
+
+**Kind:** factory
+
+```ts
+import { LocalStorageAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### MemoryStorageAdapter
+
+**Kind:** factory
+
+```ts
+import { MemoryStorageAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### enableStatePersistence
+
+**Kind:** factory
+
+```ts
+(options: PersistenceOptions) => () => void
+```
+
+```ts
+import { enableStatePersistence } from '@ybouhjira/solidkit';
+```
+
+---
+
+### serializeGlobalState
+
+**Kind:** utility
+
+```ts
+import { serializeGlobalState } from '@ybouhjira/solidkit';
+```
+
+---
+
+### hydrateGlobalState
+
+**Kind:** utility
+
+```ts
+import { hydrateGlobalState } from '@ybouhjira/solidkit';
+```
+
+---
+
+### BroadcastChannelAdapter
+
+**Kind:** factory
+
+```ts
+import { BroadcastChannelAdapter } from '@ybouhjira/solidkit';
+```
+
+---
+
+### checkNavigableHealth
+
+**Kind:** utility
+
+```ts
+(options?: HealthCheckOptions) => NavigableHealth[]
+```
+
+```ts
+import { checkNavigableHealth } from '@ybouhjira/solidkit';
+```
+
+---
+
+### dispatchTransaction
+
+**Kind:** factory
+
+```ts
+(steps: TransactionStep[]) => Promise<TransactionResult>
+```
+
+```ts
+import { dispatchTransaction } from '@ybouhjira/solidkit';
+```
+
+---
+
+### registerCompositeAction
+
+**Kind:** factory
+
+```ts
+(def: CompositeActionDef) => () => void
+```
+
+```ts
+import { registerCompositeAction } from '@ybouhjira/solidkit';
+```
+
+---
+
+### getCompositeActions
+
+**Kind:** utility
+
+```ts
+import { getCompositeActions } from '@ybouhjira/solidkit';
+```
+
+---
+
+### clearCompositeActions
+
+**Kind:** utility
+
+```ts
+import { clearCompositeActions } from '@ybouhjira/solidkit';
+```
+
+---
+
+### TestNavigableRegistry
+
+**Kind:** utility
+
+```ts
+import { TestNavigableRegistry } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createTestRegistry
+
+**Kind:** hook
+
+```ts
+import { createTestRegistry } from '@ybouhjira/solidkit';
+```
+
+---
+
+### startActionRecording
+
+**Kind:** factory
+
+```ts
+() => RecordingHandle
+```
+
+```ts
+import { startActionRecording } from '@ybouhjira/solidkit';
+```
+
+---
+
+### replaySession
+
+**Kind:** factory
+
+```ts
+(input: string | ActionRecording, options?: ReplayOptions) => ReplayHandle
+```
+
+```ts
+import { replaySession } from '@ybouhjira/solidkit';
+```
+
+---
+
+### createNavigableDevTools
+
+**Kind:** factory
+
+```ts
+import { createNavigableDevTools } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ViewSwitcher
+
+**Kind:** utility
+
+```ts
+Component<ViewSwitcherProps>
+```
+
+```ts
+import { ViewSwitcher } from '@ybouhjira/solidkit';
+```
+
+---
+
+### OnboardingLayout
+
+**Kind:** utility
+
+```ts
+Component<DirectoryPickerProps>
+```
+
+```ts
+import { OnboardingLayout } from '@ybouhjira/solidkit';
+```
+
+---
+
+### WebSocketError
+
+**Kind:** utility
+
+```ts
+import { WebSocketError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### WebSocketConnectionError
+
+**Kind:** utility
+
+```ts
+import { WebSocketConnectionError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SessionNotFoundError
+
+**Kind:** utility
+
+```ts
+import { SessionNotFoundError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SessionCreationError
+
+**Kind:** utility
+
+```ts
+import { SessionCreationError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### FileSystemError
+
+**Kind:** utility
+
+```ts
+import { FileSystemError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### DirectoryNotFoundError
+
+**Kind:** utility
+
+```ts
+import { DirectoryNotFoundError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ClipboardError
+
+**Kind:** utility
+
+```ts
+import { ClipboardError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ApiError
+
+**Kind:** utility
+
+```ts
+import { ApiError } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ReportShell
+
+**Kind:** utility
+
+```ts
+import { ReportShell } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ReportNav
+
+**Kind:** utility
+
+```ts
+import { ReportNav } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ReportHero
+
+**Kind:** utility
+
+```ts
+import { ReportHero } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ReportSection
+
+**Kind:** utility
+
+```ts
+import { ReportSection } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ReportScoreCard
+
+**Kind:** utility
+
+```ts
+import { ReportScoreCard } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SummaryGrid
+
+**Kind:** utility
+
+```ts
+import { SummaryGrid } from '@ybouhjira/solidkit';
+```
+
+---
+
+### FlowDiagram
+
+**Kind:** utility
+
+```ts
+import { FlowDiagram } from '@ybouhjira/solidkit';
+```
+
+---
+
+### LayerStack
+
+**Kind:** utility
+
+```ts
+import { LayerStack } from '@ybouhjira/solidkit';
+```
+
+---
+
+### GapAnalysis
+
+**Kind:** utility
+
+```ts
+import { GapAnalysis } from '@ybouhjira/solidkit';
+```
+
+---
+
+### GapCard
+
+**Kind:** utility
+
+```ts
+import { GapCard } from '@ybouhjira/solidkit';
+```
+
+---
+
+### PackageTree
+
+**Kind:** utility
+
+```ts
+import { PackageTree } from '@ybouhjira/solidkit';
+```
+
+---
+
+### PresetGrid
+
+**Kind:** utility
+
+```ts
+import { PresetGrid } from '@ybouhjira/solidkit';
+```
+
+---
+
+### SourceList
+
+**Kind:** utility
+
+```ts
+import { SourceList } from '@ybouhjira/solidkit';
+```
+
+---
+
+### ReportFooter
+
+**Kind:** utility
+
+```ts
+import { ReportFooter } from '@ybouhjira/solidkit';
+```
+
+---
+

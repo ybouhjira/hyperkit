@@ -1,0 +1,36 @@
+/**
+ * Global styles. The classic template bundles Infima, a CSS framework
+ * designed for content-centric websites.
+ */
+
+/* Brand palette — indigo, tuned separately for light and dark. */
+:root {
+  --ifm-color-primary: #4f46e5;
+  --ifm-color-primary-dark: #3c32e2;
+  --ifm-color-primary-darker: #3228e0;
+  --ifm-color-primary-darkest: #211bbd;
+  --ifm-color-primary-light: #625ae8;
+  --ifm-color-primary-lighter: #6c64e9;
+  --ifm-color-primary-lightest: #8983ee;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #818cf8;
+  --ifm-color-primary-dark: #616ff6;
+  --ifm-color-primary-darker: #5160f5;
+  --ifm-color-primary-darkest: #2135f2;
+  --ifm-color-primary-light: #a1a9fa;
+  --ifm-color-primary-lighter: #b1b8fb;
+  --ifm-color-primary-lightest: #e1e3fd;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Component preview thumbnails inside docs pages. */
+.markdown img[src*='/img/components/'] {
+  width: 320px;
+  max-width: 100%;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+}

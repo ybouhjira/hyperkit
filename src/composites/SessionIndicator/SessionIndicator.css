@@ -1,0 +1,21 @@
+.sk-session-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  min-width: 0;
+}
+
+.sk-session-indicator__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--sk-font-size-base);
+  color: var(--sk-text-primary);
+  font-weight: 500;
+}
+
+.sk-session-indicator__model {
+  flex-shrink: 0;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-muted);
+}

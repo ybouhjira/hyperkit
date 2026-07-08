@@ -1,0 +1,109 @@
+.sk-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--sk-badge-radius, 9999px);
+  font-size: var(--sk-badge-font-size, var(--sk-font-size-sm));
+  font-weight: var(--sk-badge-font-weight, 500);
+}
+
+/* Label type */
+.sk-badge--label {
+  padding: var(--sk-space-px) var(--sk-space-sm);
+}
+
+/* Count type */
+.sk-badge--count {
+  min-width: var(--sk-icon-lg);
+  height: var(--sk-icon-lg);
+  padding: 0 var(--sk-space-xs);
+  justify-content: center;
+}
+
+/* Dot type */
+.sk-badge--dot {
+  display: inline-block;
+  width: var(--sk-space-sm);
+  height: var(--sk-space-sm);
+  border-radius: var(--sk-badge-radius, 9999px);
+}
+
+/* Dot variant colors */
+.sk-badge--dot.sk-badge--default {
+  background: var(--sk-text-muted);
+}
+
+.sk-badge--dot.sk-badge--success {
+  background: var(--sk-success);
+}
+
+.sk-badge--dot.sk-badge--warning {
+  background: var(--sk-warning);
+}
+
+.sk-badge--dot.sk-badge--danger {
+  background: var(--sk-error);
+}
+
+.sk-badge--dot.sk-badge--info {
+  background: var(--sk-info);
+}
+
+/* Variants */
+.sk-badge--default {
+  background: var(--sk-bg-tertiary);
+  color: var(--sk-text-secondary);
+}
+
+.sk-badge--success {
+  background: color-mix(in srgb, var(--sk-success) 20%, transparent);
+  color: var(--sk-success);
+}
+
+.sk-badge--warning {
+  background: color-mix(in srgb, var(--sk-warning) 20%, transparent);
+  color: var(--sk-warning);
+}
+
+.sk-badge--danger {
+  background: color-mix(in srgb, var(--sk-error) 20%, transparent);
+  color: var(--sk-error);
+}
+
+.sk-badge--info {
+  background: color-mix(in srgb, var(--sk-info) 20%, transparent);
+  color: var(--sk-info);
+}
+
+/* Outline variant: transparent bg, 1px border */
+.sk-badge--outline {
+  background: transparent;
+  border: 1px solid var(--sk-border);
+  color: var(--sk-text-primary);
+}
+
+/* Soft variant: tinted accent bg */
+.sk-badge--soft {
+  background: color-mix(in srgb, var(--sk-accent) 12%, transparent);
+  color: var(--sk-accent);
+}
+
+/* Size variants (apply to label/count badges) */
+.sk-badge--size-xs {
+  font-size: var(--sk-font-size-xs);
+  padding: var(--sk-space-2xs) var(--sk-space-xs);
+}
+
+.sk-badge--size-sm {
+  font-size: var(--sk-font-size-xs);
+  padding: var(--sk-space-2xs) var(--sk-space-sm);
+}
+
+.sk-badge--size-md {
+  font-size: var(--sk-font-size-sm);
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+}
+
+.sk-badge--size-lg {
+  font-size: var(--sk-font-size-base);
+  padding: var(--sk-space-xs) var(--sk-space-md);
+}

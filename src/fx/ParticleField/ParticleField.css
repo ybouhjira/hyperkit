@@ -1,0 +1,12 @@
+.sk-particle-field {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.sk-particle-field__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

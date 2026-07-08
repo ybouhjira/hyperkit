@@ -1,0 +1,29 @@
+.sk-scroll-area {
+  overflow: hidden auto;
+
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    width: var(--sk-space-sm);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--sk-border);
+    border: 2px solid transparent;
+    border-radius: var(--sk-scroll-thumb-radius, 5px);
+    background-clip: padding-box;
+
+    &:hover {
+      background: var(--sk-text-muted);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+  }
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--sk-border) transparent;
+}

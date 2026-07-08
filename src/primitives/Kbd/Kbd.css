@@ -1,0 +1,27 @@
+.sk-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--sk-space-lg);
+  padding: var(--sk-space-px) var(--sk-space-xs);
+  background: var(--sk-bg-tertiary);
+  border: 1px solid var(--sk-border-subtle);
+  border-radius: var(--sk-radius-sm);
+  font-size: var(--sk-font-size-xs);
+  font-family: var(--sk-font-mono);
+  color: var(--sk-text-secondary);
+  line-height: 1;
+  box-shadow: 0 1px 0 var(--sk-border-subtle);
+}
+
+.sk-kbd-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+}
+
+.sk-kbd-separator {
+  color: var(--sk-text-muted);
+  font-size: var(--sk-font-size-xs);
+  line-height: 1;
+}

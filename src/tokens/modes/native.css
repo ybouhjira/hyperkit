@@ -1,0 +1,727 @@
+@layer sk-mode-native {
+  /* ═══════════════════════════════════════════════════════════════
+   * NATIVE MODE — Platform-native feel
+   * macOS vibrancy / Windows 11 Fluent / GNOME Adwaita aesthetic
+   * Applied via: [data-sk-mode="native"]
+   * Platform tweaks via: [data-sk-platform="macos|windows|linux"]
+   * ═══════════════════════════════════════════════════════════════ */
+
+  /* ─── Global Native Treatment ─────────────────────────────────── */
+
+  [data-sk-mode='native'] {
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Native apps default to system cursor everywhere */
+    cursor: default;
+  }
+
+  /* Native apps never use pointer on interactive elements by default */
+  [data-sk-mode='native'] button,
+  [data-sk-mode='native'] .sk-btn,
+  [data-sk-mode='native'] .sk-select__trigger,
+  [data-sk-mode='native'] .sk-dropdown__trigger,
+  [data-sk-mode='native'] .sk-tabs__trigger,
+  [data-sk-mode='native'] .sk-tab-bar-tab,
+  [data-sk-mode='native'] .sk-accordion__trigger,
+  [data-sk-mode='native'] .sk-switch {
+    cursor: default;
+  }
+
+  /* ─── Button ───────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-btn {
+    --sk-btn-radius: var(--sk-native-radius, 6px);
+    --sk-btn-font-weight: 400;
+    --sk-btn-line-height: 1.2;
+    font-size: var(--sk-font-size-sm);
+    transition:
+      background-color var(--sk-duration-instant) ease,
+      box-shadow var(--sk-duration-instant) ease;
+  }
+
+  /* Compact size overrides */
+  [data-sk-mode='native'] .sk-btn--sm {
+    --sk-btn-sm-padding-y: 2px;
+    --sk-btn-sm-padding-x: var(--sk-space-sm);
+    --sk-btn-sm-font-size: var(--sk-font-size-sm);
+    height: 22px;
+  }
+
+  [data-sk-mode='native'] .sk-btn--md {
+    --sk-btn-md-padding-y: var(--sk-space-xs);
+    --sk-btn-md-padding-x: var(--sk-space-sm);
+    --sk-btn-md-font-size: var(--sk-font-size-sm);
+    height: 28px;
+  }
+
+  [data-sk-mode='native'] .sk-btn--lg {
+    --sk-btn-lg-padding-y: var(--sk-space-sm);
+    --sk-btn-lg-padding-x: var(--sk-space-md);
+    --sk-btn-lg-font-size: var(--sk-font-size-base);
+    height: 32px;
+  }
+
+  /* Primary — accent, no exaggerated glow */
+  [data-sk-mode='native'] .sk-btn--primary:hover {
+    filter: brightness(1.06);
+  }
+
+  [data-sk-mode='native'] .sk-btn--primary:active {
+    filter: brightness(0.93);
+    transform: none;
+  }
+
+  /* Secondary — subtle surface highlight, no shadows */
+  [data-sk-mode='native'] .sk-btn--secondary {
+    --sk-btn-secondary-bg: var(--sk-bg-tertiary);
+    border: 1px solid var(--sk-border);
+  }
+
+  [data-sk-mode='native'] .sk-btn--secondary:hover {
+    --sk-btn-secondary-hover-bg: color-mix(
+      in srgb,
+      var(--sk-bg-tertiary) 80%,
+      var(--sk-text-primary) 10%
+    );
+  }
+
+  /* Ghost — minimal, system-highlight on hover */
+  [data-sk-mode='native'] .sk-btn--ghost:hover {
+    --sk-btn-ghost-hover-bg: color-mix(in srgb, var(--sk-text-primary) 8%, transparent);
+  }
+
+  /* macOS: slightly more rounded, subtle inset shadow on active */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-btn,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-btn {
+    --sk-native-radius: 6px;
+  }
+
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-btn--primary:active,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-btn--primary:active {
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.2);
+  }
+
+  /* Windows: slightly less rounded */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-btn {
+    --sk-native-radius: 4px;
+  }
+
+  /* Linux/GNOME: more rounded, Adwaita style */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-btn {
+    --sk-native-radius: 8px;
+  }
+
+  /* ─── Focus Ring — Platform-Specific ─────────────────────────── */
+
+  /* macOS: blue glow ring */
+  [data-sk-mode='native'][data-sk-platform='macos'] :focus-visible,
+  [data-sk-mode='native']:not([data-sk-platform]) :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--sk-accent) 40%, transparent);
+  }
+
+  /* Windows 11: 2px solid accent, sharp */
+  [data-sk-mode='native'][data-sk-platform='windows'] :focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: 1px;
+    box-shadow: none;
+  }
+
+  /* Linux/GNOME: dotted system outline */
+  [data-sk-mode='native'][data-sk-platform='linux'] :focus-visible {
+    outline: 2px dotted var(--sk-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  /* ─── Input ────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-input {
+    border-radius: var(--sk-native-radius, 6px);
+    padding: var(--sk-space-2xs) var(--sk-space-xs);
+    font-size: var(--sk-font-size-sm);
+    height: 22px;
+    transition:
+      border-color var(--sk-duration-instant) ease,
+      box-shadow var(--sk-duration-instant) ease;
+  }
+
+  /* macOS: light inner shadow on focus */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-input:focus,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-input:focus {
+    border-color: var(--sk-accent);
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--sk-accent) 30%, transparent),
+      inset 0 1px 2px rgb(0 0 0 / 0.06);
+  }
+
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-input:focus-visible,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-input:focus-visible {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--sk-accent) 30%, transparent),
+      inset 0 1px 2px rgb(0 0 0 / 0.06);
+  }
+
+  /* Windows 11: accent bottom border on focus */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-input:focus {
+    border-color: var(--sk-border);
+    border-bottom-color: var(--sk-accent);
+    box-shadow: none;
+    border-radius: var(--sk-native-radius, 4px) var(--sk-native-radius, 4px) 0 0;
+  }
+
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-input:focus-visible {
+    box-shadow: none;
+  }
+
+  /* Linux: standard focus outline, no glow */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-input:focus {
+    border-color: var(--sk-accent);
+    box-shadow: 0 0 0 1px var(--sk-accent);
+  }
+
+  /* ─── Card ─────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-card {
+    border-radius: var(--sk-native-radius, 6px);
+    transition: none;
+  }
+
+  [data-sk-mode='native'] .sk-card--elevated {
+    --sk-card-shadow-elevated: 0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.08);
+  }
+
+  /* macOS: subtle shadow, vibrancy-tinted background */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-card--elevated,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-card--elevated {
+    --sk-card-shadow-elevated: 0 2px 8px rgb(0 0 0 / 0.14), 0 0 1px rgb(0 0 0 / 0.08);
+  }
+
+  /* Windows 11: Fluent shadow */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-card--elevated {
+    --sk-card-shadow-elevated: 0 1px 4px rgb(0 0 0 / 0.14), 0 0 1px rgb(0 0 0 / 0.06);
+  }
+
+  /* Hover states — no lift, just subtle bg shift */
+  [data-sk-mode='native'] .sk-card--hoverable:hover,
+  [data-sk-mode='native'] .sk-card--clickable:hover {
+    filter: none;
+    transform: none;
+  }
+
+  /* ─── Sidebar ───────────────────────────────────────────────────── */
+
+  /* macOS vibrancy-style sidebar (default + explicit macos) */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-sidebar,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-sidebar {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: color-mix(in srgb, var(--sk-bg-secondary) 72%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--sk-border) 60%, transparent);
+  }
+
+  /* Windows 11 Mica: solid, slightly elevated */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-sidebar {
+    background: var(--sk-bg-secondary);
+    border-right: 1px solid var(--sk-border);
+    backdrop-filter: none;
+  }
+
+  /* Linux/GTK: solid, strong border */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-sidebar {
+    background: var(--sk-bg-secondary);
+    border-right: 1px solid var(--sk-border);
+    backdrop-filter: none;
+  }
+
+  [data-sk-mode='native'] .sk-sidebar__header {
+    padding: var(--sk-space-xs) var(--sk-space-sm);
+  }
+
+  [data-sk-mode='native'] .sk-sidebar__footer {
+    padding: var(--sk-space-xs) var(--sk-space-sm);
+  }
+
+  /* ─── Toolbar / MenuBar ─────────────────────────────────────────── */
+
+  /* macOS: transparent with blur, ultra-compact */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-menu-bar,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-menu-bar {
+    --sk-menubar-h: 24px;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background: color-mix(in srgb, var(--sk-bg-primary) 80%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--sk-border) 50%, transparent);
+  }
+
+  /* Windows 11: solid, subtle border */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-menu-bar {
+    --sk-menubar-h: 30px;
+    background: var(--sk-bg-primary);
+    border-bottom: 1px solid var(--sk-border-subtle);
+    backdrop-filter: none;
+  }
+
+  /* Linux: standard solid */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-menu-bar {
+    --sk-menubar-h: 28px;
+    background: var(--sk-bg-primary);
+    border-bottom: 1px solid var(--sk-border);
+    backdrop-filter: none;
+  }
+
+  [data-sk-mode='native'] .sk-menu-bar__trigger {
+    padding: 0 var(--sk-space-xs);
+    font-size: var(--sk-font-size-sm);
+  }
+
+  [data-sk-mode='native'] .sk-menu-bar__item {
+    height: 24px;
+    font-size: var(--sk-font-size-sm);
+  }
+
+  /* ─── StatusBar ─────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-status-bar {
+    --sk-statusbar-h: 20px;
+    font-size: var(--sk-font-size-xs);
+    letter-spacing: 0.01em;
+  }
+
+  /* macOS: translucent status bar */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-status-bar,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-status-bar {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: color-mix(in srgb, var(--sk-accent) 88%, transparent);
+  }
+
+  /* Windows / Linux: solid */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-status-bar,
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-status-bar {
+    --sk-statusbar-h: 22px;
+    backdrop-filter: none;
+  }
+
+  /* ─── TabBar ────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-tab-bar {
+    --sk-tabbar-h: 32px;
+    font-size: var(--sk-font-size-sm);
+  }
+
+  /* macOS: compact tab bar with subtle separator */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-tab-bar,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-tab-bar {
+    --sk-tabbar-h: 28px;
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+    background: color-mix(in srgb, var(--sk-bg-primary) 85%, transparent);
+  }
+
+  [data-sk-mode='native'] .sk-tab-bar-tab {
+    padding: 0 var(--sk-space-sm);
+    font-size: var(--sk-font-size-sm);
+    transition: none;
+  }
+
+  [data-sk-mode='native'] .sk-tab-bar-tab:hover {
+    background: color-mix(in srgb, var(--sk-text-primary) 6%, transparent);
+  }
+
+  /* ─── Tabs (Primitive) ──────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-tabs__list {
+    gap: 0;
+  }
+
+  [data-sk-mode='native'] .sk-tabs__trigger {
+    font-size: var(--sk-font-size-sm);
+    padding: var(--sk-space-xs) var(--sk-space-sm);
+    border-radius: 0;
+    transition: none;
+  }
+
+  [data-sk-mode='native'] .sk-tabs__trigger:hover {
+    background: color-mix(in srgb, var(--sk-text-primary) 6%, transparent);
+    color: var(--sk-text-primary);
+  }
+
+  /* macOS: underline style (matches standard macOS tab bars) */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-tabs__trigger[data-selected],
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-tabs__trigger[data-selected] {
+    color: var(--sk-accent);
+    border-bottom-color: var(--sk-accent);
+    background: color-mix(in srgb, var(--sk-accent) 8%, transparent);
+  }
+
+  /* Windows: underline only */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-tabs__trigger[data-selected] {
+    color: var(--sk-accent);
+    border-bottom-color: var(--sk-accent);
+    background: transparent;
+  }
+
+  /* Linux: filled pill */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-tabs__trigger {
+    border-radius: var(--sk-radius-sm);
+    border-bottom: none;
+  }
+
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-tabs__trigger[data-selected] {
+    background: color-mix(in srgb, var(--sk-accent) 15%, transparent);
+    color: var(--sk-accent);
+    border-bottom: none;
+  }
+
+  /* ─── Dialog ────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-dialog__content {
+    border-radius: var(--sk-native-dialog-radius, 12px);
+    box-shadow:
+      0 8px 30px rgb(0 0 0 / 0.25),
+      0 2px 6px rgb(0 0 0 / 0.12);
+    border: 1px solid var(--sk-border);
+    transition: none;
+  }
+
+  [data-sk-mode='native'] .sk-dialog__overlay {
+    background: rgb(0 0 0 / 0.35);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* macOS: rounded 12px, backdrop blur */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-dialog__content,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-dialog__content {
+    --sk-native-dialog-radius: 12px;
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    background: color-mix(in srgb, var(--sk-bg-secondary) 90%, transparent);
+  }
+
+  /* Windows 11: Fluent style, 8px radius */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-dialog__content {
+    --sk-native-dialog-radius: 8px;
+    backdrop-filter: none;
+    background: var(--sk-bg-secondary);
+    box-shadow:
+      0 8px 24px rgb(0 0 0 / 0.2),
+      0 0 1px rgb(0 0 0 / 0.1);
+  }
+
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-dialog__overlay {
+    backdrop-filter: none;
+    background: rgb(0 0 0 / 0.45);
+  }
+
+  /* Linux/GNOME: clean GTK-style, 10px radius */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-dialog__content {
+    --sk-native-dialog-radius: 10px;
+    backdrop-filter: none;
+    background: var(--sk-bg-secondary);
+    box-shadow:
+      0 4px 20px rgb(0 0 0 / 0.22),
+      0 1px 4px rgb(0 0 0 / 0.1);
+  }
+
+  /* ─── Select ────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-select__trigger {
+    border-radius: var(--sk-native-radius, 6px);
+    padding: var(--sk-space-2xs) var(--sk-space-sm);
+    font-size: var(--sk-font-size-sm);
+    height: 22px;
+    transition: border-color var(--sk-duration-instant) ease;
+  }
+
+  [data-sk-mode='native'] .sk-select__trigger:hover {
+    border-color: color-mix(in srgb, var(--sk-border) 70%, var(--sk-text-primary) 30%);
+  }
+
+  [data-sk-mode='native'] .sk-select__content {
+    border-radius: var(--sk-native-radius, 6px);
+    font-size: var(--sk-font-size-sm);
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 0.15),
+      0 0 1px rgb(0 0 0 / 0.08);
+  }
+
+  /* macOS: native sheet shadow */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-select__content,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-select__content {
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: color-mix(in srgb, var(--sk-bg-secondary) 85%, transparent);
+  }
+
+  /* ─── Switch ────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-switch__label {
+    font-size: var(--sk-font-size-sm);
+  }
+
+  /* macOS: oblong green active, iOS-like */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-switch__control[data-checked],
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-switch__control[data-checked] {
+    background-color: #34c759; /* macOS system green */
+  }
+
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-switch__thumb,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-switch__thumb {
+    box-shadow:
+      0 1px 3px rgb(0 0 0 / 0.25),
+      0 0 1px rgb(0 0 0 / 0.1);
+  }
+
+  /* Windows: accent color active */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-switch__control[data-checked] {
+    background-color: var(--sk-accent);
+  }
+
+  /* Linux/GNOME: also accent, more compact track */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-switch__control[data-checked] {
+    background-color: var(--sk-accent);
+  }
+
+  /* ─── Accordion ─────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-accordion__trigger {
+    padding: var(--sk-space-xs) var(--sk-space-sm);
+    font-size: var(--sk-font-size-sm);
+    transition: none;
+  }
+
+  [data-sk-mode='native'] .sk-accordion__trigger:hover {
+    background: color-mix(in srgb, var(--sk-text-primary) 6%, transparent);
+  }
+
+  [data-sk-mode='native'] .sk-accordion__content {
+    font-size: var(--sk-font-size-sm);
+  }
+
+  /* ─── Dropdown ──────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-dropdown__content {
+    border-radius: var(--sk-native-radius, 6px);
+    font-size: var(--sk-font-size-sm);
+    padding: var(--sk-space-2xs);
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 0.15),
+      0 0 1px rgb(0 0 0 / 0.08);
+    animation: none;
+  }
+
+  [data-sk-mode='native'] .sk-dropdown__item {
+    padding: var(--sk-space-2xs) var(--sk-space-sm);
+    font-size: var(--sk-font-size-sm);
+    border-radius: calc(var(--sk-native-radius, 6px) - 2px);
+    transition: none;
+  }
+
+  [data-sk-mode='native'] .sk-dropdown__item[data-highlighted] {
+    background: color-mix(in srgb, var(--sk-accent) 15%, transparent);
+    color: var(--sk-text-primary);
+  }
+
+  /* macOS: translucent dropdown */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-dropdown__content,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-dropdown__content {
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: color-mix(in srgb, var(--sk-bg-secondary) 82%, transparent);
+    border-color: color-mix(in srgb, var(--sk-border) 70%, transparent);
+  }
+
+  /* ─── Popover ───────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-popover__content {
+    border-radius: var(--sk-native-radius, 6px);
+    font-size: var(--sk-font-size-sm);
+    box-shadow:
+      0 4px 14px rgb(0 0 0 / 0.15),
+      0 0 1px rgb(0 0 0 / 0.08);
+    animation: none;
+  }
+
+  /* macOS: translucent popover */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-popover__content,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-popover__content {
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: color-mix(in srgb, var(--sk-bg-elevated, var(--sk-bg-secondary)) 85%, transparent);
+    border-color: color-mix(in srgb, var(--sk-border) 60%, transparent);
+  }
+
+  /* ─── Tooltip ───────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-tooltip__content {
+    font-size: var(--sk-font-size-xs);
+    padding: var(--sk-space-2xs) var(--sk-space-xs);
+    border-radius: var(--sk-native-radius, 6px);
+    animation: none;
+    letter-spacing: 0.01em;
+  }
+
+  /* macOS: dark rounded pill — high contrast tooltip */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-tooltip__content,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-tooltip__content {
+    background: color-mix(in srgb, #000 85%, transparent);
+    color: rgba(255 255 255 / 0.92);
+    border: none;
+    box-shadow: none;
+    border-radius: 9999px;
+    padding: 3px var(--sk-space-sm);
+  }
+
+  /* Windows: system tooltip style — near-white bg, dark text, no pill */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-tooltip__content {
+    background: var(--sk-bg-elevated, var(--sk-bg-secondary));
+    color: var(--sk-text-primary);
+    border: 1px solid var(--sk-border);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+  }
+
+  /* Linux/GNOME: GTK tooltip — slightly opaque dark */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-tooltip__content {
+    background: color-mix(in srgb, #1a1a1a 90%, transparent);
+    color: rgba(255 255 255 / 0.9);
+    border: 1px solid rgba(255 255 255 / 0.1);
+    border-radius: var(--sk-radius-sm);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+  }
+
+  /* ─── Badge ─────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-badge {
+    --sk-badge-font-size: var(--sk-font-size-xs);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  [data-sk-mode='native'] .sk-badge--label {
+    padding: 1px var(--sk-space-xs);
+  }
+
+  /* ─── Separator ─────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-separator--horizontal {
+    --sk-separator-margin: var(--sk-space-xs) 0;
+    --sk-separator-color: color-mix(in srgb, var(--sk-border) 60%, transparent);
+  }
+
+  [data-sk-mode='native'] .sk-separator--vertical {
+    --sk-separator-margin: 0 var(--sk-space-xs);
+    --sk-separator-color: color-mix(in srgb, var(--sk-border) 60%, transparent);
+  }
+
+  /* ─── Progress ──────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-progress {
+    border-radius: 9999px;
+  }
+
+  [data-sk-mode='native'] .sk-progress--md {
+    height: 3px;
+  }
+
+  [data-sk-mode='native'] .sk-progress--lg {
+    height: var(--sk-space-xs);
+  }
+
+  [data-sk-mode='native'] .sk-progress__fill {
+    border-radius: 9999px;
+    transition: width var(--sk-duration-fast) var(--sk-ease-default);
+  }
+
+  /* ─── CommandPalette ────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-cmd-palette {
+    border-radius: var(--sk-native-dialog-radius, 12px);
+    font-size: var(--sk-font-size-sm);
+    animation: none;
+  }
+
+  [data-sk-mode='native'] .sk-cmd-palette__input {
+    font-size: var(--sk-font-size-sm);
+  }
+
+  /* macOS Spotlight feel */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-cmd-palette,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-cmd-palette {
+    --sk-native-dialog-radius: 12px;
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    background: color-mix(in srgb, var(--sk-bg-primary) 80%, transparent);
+    box-shadow:
+      0 20px 60px rgb(0 0 0 / 0.35),
+      0 0 1px rgb(0 0 0 / 0.1);
+  }
+
+  /* Windows: Fluent acrylic */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-cmd-palette {
+    --sk-native-dialog-radius: 8px;
+    backdrop-filter: none;
+    background: var(--sk-bg-primary);
+    box-shadow:
+      0 8px 24px rgb(0 0 0 / 0.22),
+      0 0 1px rgb(0 0 0 / 0.1);
+  }
+
+  /* ─── Toast ─────────────────────────────────────────────────────── */
+
+  [data-sk-mode='native'] .sk-toast {
+    border-radius: var(--sk-native-radius, 6px);
+    font-size: var(--sk-font-size-sm);
+    animation: none;
+  }
+
+  /* macOS: notification center style — translucent */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-toast,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-toast {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: color-mix(in srgb, var(--sk-bg-secondary) 80%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sk-border) 60%, transparent);
+    box-shadow:
+      0 4px 20px rgb(0 0 0 / 0.2),
+      0 0 1px rgb(0 0 0 / 0.08);
+  }
+
+  /* ─── ScrollArea — Per-platform Scrollbars ──────────────────────── */
+
+  /* macOS: overlay 6px, auto-hide on idle, appears on hover/scroll */
+  [data-sk-mode='native'][data-sk-platform='macos'] .sk-scroll-area,
+  [data-sk-mode='native']:not([data-sk-platform]) .sk-scroll-area {
+    --sk-scroll-width: 6px;
+    --sk-scroll-thumb: transparent;
+    --sk-scroll-thumb-hover: color-mix(in srgb, var(--sk-text-muted) 40%, transparent);
+  }
+
+  /* Windows: always visible 10px, system style */
+  [data-sk-mode='native'][data-sk-platform='windows'] .sk-scroll-area {
+    --sk-scroll-width: 10px;
+    --sk-scroll-thumb: color-mix(in srgb, var(--sk-text-muted) 50%, transparent);
+    --sk-scroll-thumb-hover: color-mix(in srgb, var(--sk-text-muted) 70%, transparent);
+    --sk-scroll-track: var(--sk-bg-tertiary);
+    --sk-scroll-thumb-radius: 0px;
+  }
+
+  /* Linux: overlay 8px, GTK-like */
+  [data-sk-mode='native'][data-sk-platform='linux'] .sk-scroll-area {
+    --sk-scroll-width: 8px;
+    --sk-scroll-thumb: color-mix(in srgb, var(--sk-border) 80%, transparent);
+  }
+
+  /* ─── Motion — Snap to real native speeds ─────────────────────── */
+
+  [data-sk-mode='native'] * {
+    /* Native UIs are instantaneous — override all animations to fast */
+    transition-duration: var(--sk-duration-instant) !important;
+    animation-duration: var(--sk-duration-instant) !important;
+  }
+}

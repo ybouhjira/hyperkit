@@ -1,0 +1,33 @@
+---
+title: MobileNav
+description: Bottom navigation bar for mobile.
+slug: /components/navigation/MobileNav
+---
+
+# MobileNav
+
+Bottom navigation bar for mobile.
+
+![MobileNav preview](/img/components/MobileNav.webp)
+
+```tsx
+import { MobileNav } from '@ybouhjira/hyperkit';
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `sessions` * | `MobileNavSession[]` | — | — |
+| `activeSessionId` | `string` | — | — |
+| `onSessionSelect` | `(id: string) => void` | — | — |
+| `hideAbove` | `Breakpoint` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-bg-primary`, `--sk-border`, `--sk-duration-fast`, `--sk-duration-normal`, `--sk-duration-pulse`, `--sk-ease-default`, `--sk-ease-in-out`, `--sk-error`, `--sk-font-sm`, `--sk-space-md`, `--sk-space-sm`, `--sk-success`, `--sk-text-muted`, `--sk-text-primary`, `--sk-z-sticky`

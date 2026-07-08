@@ -1,0 +1,47 @@
+.sk-spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border: var(--sk-spinner-border-width, 2px) solid var(--sk-spinner-track-color, var(--sk-border));
+  border-top-color: var(--sk-spinner-color, var(--sk-accent));
+  animation: sk-spin var(--sk-duration-normal, 0.6s) linear infinite;
+  flex-shrink: 0;
+}
+
+.sk-spinner--sm {
+  width: 16px;
+  height: 16px;
+}
+.sk-spinner--md {
+  width: 24px;
+  height: 24px;
+}
+.sk-spinner--lg {
+  width: 36px;
+  height: 36px;
+}
+
+/* Color variants using border-top-color */
+.sk-spinner--primary {
+  border-top-color: var(--sk-accent);
+}
+.sk-spinner--secondary {
+  border-top-color: var(--sk-text-secondary);
+}
+.sk-spinner--muted {
+  border-top-color: var(--sk-text-muted);
+}
+.sk-spinner--on-accent {
+  border-top-color: var(--sk-text-on-accent);
+}
+
+.sk-spinner__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

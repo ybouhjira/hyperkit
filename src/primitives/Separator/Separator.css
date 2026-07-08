@@ -1,0 +1,20 @@
+.sk-separator {
+  border: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.sk-separator--horizontal {
+  height: var(--sk-separator-size, 1px);
+  width: 100%;
+  background-color: var(--sk-separator-color, var(--sk-border));
+  margin: var(--sk-separator-margin, var(--sk-space-md) 0);
+}
+
+.sk-separator--vertical {
+  width: var(--sk-separator-size, 1px);
+  height: 100%;
+  align-self: stretch;
+  background-color: var(--sk-separator-color, var(--sk-border));
+  margin: var(--sk-separator-margin, 0 var(--sk-space-md));
+}

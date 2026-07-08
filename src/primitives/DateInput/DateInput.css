@@ -1,0 +1,177 @@
+.sk-date-input {
+  --sk-date-input-bg: var(--sk-bg-secondary, #f9fafb);
+  --sk-date-input-border: var(--sk-border, #e5e7eb);
+  --sk-date-input-radius: var(--sk-radius-md, 8px);
+  --sk-date-input-focus: var(--sk-accent, #3b82f6);
+  --sk-date-input-text: var(--sk-text-primary, #111827);
+  --sk-date-input-placeholder: var(--sk-text-tertiary, #9ca3af);
+  --sk-date-input-disabled-bg: var(--sk-bg-tertiary, #f3f4f6);
+  --sk-date-input-disabled-text: var(--sk-text-disabled, #d1d5db);
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sk-date-input-label {
+  font-size: var(--sk-font-size-sm, 14px);
+  font-weight: 500;
+  color: var(--sk-date-input-text);
+  display: block;
+}
+
+.sk-date-input-required {
+  color: var(--sk-error, #ef4444);
+  margin-left: 2px;
+}
+
+.sk-date-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sk-date-input-control {
+  width: 100%;
+  padding: 8px 40px 8px 12px;
+  background: var(--sk-date-input-bg);
+  border: 1px solid var(--sk-date-input-border);
+  border-radius: var(--sk-date-input-radius);
+  color: var(--sk-date-input-text);
+  font-size: var(--sk-font-size-md, 15px);
+  font-family: inherit;
+  line-height: 1.5;
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.sk-date-input-control::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.sk-date-input-control::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+.sk-date-input-control::placeholder {
+  color: var(--sk-date-input-placeholder);
+}
+
+.sk-date-input-control:hover:not(:disabled) {
+  border-color: var(--sk-date-input-focus);
+}
+
+.sk-date-input-control:focus {
+  border-color: var(--sk-date-input-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sk-focus-color, var(--sk-accent)) 10%, transparent);
+}
+
+.sk-date-input-control:disabled {
+  background: var(--sk-date-input-disabled-bg);
+  color: var(--sk-date-input-disabled-text);
+  cursor: not-allowed;
+  border-color: var(--sk-date-input-border);
+}
+
+.sk-date-input-icon {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  color: var(--sk-date-input-placeholder);
+  transition: color 0.2s ease;
+}
+
+.sk-date-input-control:focus ~ .sk-date-input-icon {
+  color: var(--sk-date-input-focus);
+}
+
+.sk-date-input-clear {
+  position: absolute;
+  right: 36px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--sk-date-input-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.sk-date-input-wrapper:hover .sk-date-input-clear {
+  opacity: 1;
+}
+
+.sk-date-input-clear:hover {
+  background: color-mix(in srgb, var(--sk-text-primary) 5%, transparent);
+  color: var(--sk-date-input-text);
+}
+
+.sk-date-input-clear:active {
+  transform: scale(0.95);
+}
+
+.sk-date-input-display {
+  font-size: var(--sk-font-size-sm, 14px);
+  color: var(--sk-text-secondary, #6b7280);
+  padding: 0 4px;
+}
+
+/* Size variants */
+.sk-date-input.sm .sk-date-input-control {
+  height: 32px;
+  padding: 6px 40px 6px 10px;
+  font-size: var(--sk-font-size-sm, 14px);
+}
+
+.sk-date-input.sm .sk-date-input-icon {
+  width: 14px;
+  height: 14px;
+  right: 10px;
+}
+
+.sk-date-input.sm .sk-date-input-clear {
+  right: 32px;
+}
+
+.sk-date-input.md .sk-date-input-control {
+  height: 40px;
+  padding: 8px 40px 8px 12px;
+  font-size: var(--sk-font-size-md, 15px);
+}
+
+.sk-date-input.lg .sk-date-input-control {
+  height: 48px;
+  padding: 10px 44px 10px 14px;
+  font-size: var(--sk-font-size-lg, 16px);
+}
+
+.sk-date-input.lg .sk-date-input-icon {
+  width: 18px;
+  height: 18px;
+  right: 14px;
+}
+
+.sk-date-input.lg .sk-date-input-clear {
+  right: 40px;
+}
+
+/* Disabled state */
+.sk-date-input.disabled .sk-date-input-label {
+  color: var(--sk-date-input-disabled-text);
+}
+
+.sk-date-input.disabled .sk-date-input-icon {
+  color: var(--sk-date-input-disabled-text);
+}
+
+.sk-date-input.disabled .sk-date-input-display {
+  color: var(--sk-date-input-disabled-text);
+}

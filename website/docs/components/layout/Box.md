@@ -1,0 +1,107 @@
+---
+title: Box
+description: Base polymorphic container with spacing and color tokens.
+slug: /components/layout/Box
+---
+
+# Box
+
+Base polymorphic container with spacing and color tokens.
+
+![Box preview](/img/components/Box.webp)
+
+```tsx
+import { Box } from '@ybouhjira/hyperkit';
+```
+
+## Examples
+
+### Default
+
+```tsx
+<Box p="lg" bg="secondary" borderRadius="md">This is a Box component</Box>
+```
+
+### With Border
+
+```tsx
+<Box p="lg" bg="primary" border borderColor="accent" borderRadius="md">Box with accent border</Box>
+```
+
+### With Shadow
+
+```tsx
+<Box p="xl" bg="elevated" shadow="lg" borderRadius="lg">Box with shadow</Box>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `p` | `SpaceToken` | — | Padding on all sides. |
+| `px` | `SpaceToken` | — | Horizontal padding (left and right). |
+| `py` | `SpaceToken` | — | Vertical padding (top and bottom). |
+| `pt` | `SpaceToken` | — | Padding top. |
+| `pr` | `SpaceToken` | — | Padding right. |
+| `pb` | `SpaceToken` | — | Padding bottom. |
+| `pl` | `SpaceToken` | — | Padding left. |
+| `m` | `SpaceToken` | — | Margin on all sides. |
+| `mx` | `SpaceToken` | — | Horizontal margin (left and right). |
+| `my` | `SpaceToken` | — | Vertical margin (top and bottom). |
+| `mt` | `SpaceToken` | — | Margin top. |
+| `mr` | `SpaceToken` | — | Margin right. |
+| `mb` | `SpaceToken` | — | Margin bottom. |
+| `ml` | `SpaceToken` | — | Margin left. |
+| `w` | `string \| number` | — | Width. Accepts CSS value or number (converts to px). |
+| `h` | `string \| number` | — | Height. Accepts CSS value or number (converts to px). |
+| `minW` | `string \| number` | — | Minimum width. Accepts CSS value or number (converts to px). |
+| `minH` | `string \| number` | — | Minimum height. Accepts CSS value or number (converts to px). |
+| `maxW` | `string \| number` | — | Maximum width. Accepts CSS value or number (converts to px). |
+| `maxH` | `string \| number` | — | Maximum height. Accepts CSS value or number (converts to px). |
+| `bg` | `BgToken` | — | Background color token. Maps to theme CSS variables. |
+| `color` | `TextColorToken` | — | Text color token. Maps to theme CSS variables. |
+| `borderRadius` | `RadiusToken` | — | Border radius token. Maps to theme CSS variables. |
+| `shadow` | `ShadowToken` | — | Box shadow token. Maps to theme CSS variables. |
+| `border` | `boolean` | `false` | Enable border on all sides. |
+| `borderColor` | `'default' \| 'subtle' \| 'accent'` | `'default'` | Border color variant. |
+| `borderBottom` | `boolean` | `false` | Enable bottom border only. |
+| `borderTop` | `boolean` | `false` | Enable top border only. |
+| `borderLeft` | `boolean` | `false` | Enable left border only. |
+| `borderRight` | `boolean` | `false` | Enable right border only. |
+| `position` | `'relative' \| 'absolute' \| 'fixed' \| 'sticky'` | — | CSS position property. |
+| `top` | `string \| number` | — | Top offset. Accepts CSS value or number (converts to px). |
+| `right` | `string \| number` | — | Right offset. Accepts CSS value or number (converts to px). |
+| `bottom` | `string \| number` | — | Bottom offset. Accepts CSS value or number (converts to px). |
+| `left` | `string \| number` | — | Left offset. Accepts CSS value or number (converts to px). |
+| `inset` | `string \| number` | — | Inset shorthand for top/right/bottom/left. Accepts CSS value or number (converts to px). |
+| `zIndex` | `ZToken \| number` | — | Z-index. Accepts ZToken or raw number. |
+| `overflow` | `'hidden' \| 'auto' \| 'scroll' \| 'visible'` | — | Overflow behavior. |
+| `display` | `'block' \| 'flex' \| 'grid' \| 'inline' \| 'inline-flex' \| 'inline-block' \| 'none'` | — | Display type. |
+| `hoverBg` | `BgToken` | — | Background color token on hover. Applied via JavaScript. |
+| `hoverColor` | `TextColorToken` | — | Text color token on hover. Applied via JavaScript. |
+| `cursor` | `'pointer' \| 'default' \| 'grab' \| 'not-allowed'` | — | Cursor style. |
+| `transition` | `boolean` | `false` | Enable transition animation on all properties. |
+| `opacity` | `number` | — | Opacity value (0-1). |
+| `backdropFilter` | `string` | — | CSS backdrop-filter property. |
+| `filter` | `string` | — | CSS filter property. |
+| `transform` | `string` | — | CSS transform property. |
+| `pointerEvents` | `'none' \| 'auto'` | — | Pointer events behavior. |
+| `animation` | `string` | — | CSS animation property. |
+| `background` | `string` | — | Raw CSS background property. Overrides bg token. |
+| `borderWidth` | `string` | — | CSS border-width property. |
+| `borderStyle` | `'solid' \| 'dashed' \| 'dotted' \| 'none'` | — | CSS border-style property. |
+| `flex` | `string \| number` | — | CSS flex property for flex children. |
+| `alignSelf` | `'start' \| 'center' \| 'end' \| 'stretch'` | — | Align-self for flex children. |
+| `as` | `string` | `'div'` | HTML element to render as. |
+| `class` | `string` | — | Additional CSS classes. |
+| `style` | `JSX.CSSProperties` | — | Inline styles. Merged with computed styles. |
+| `children` | `JSX.Element` | — | Content to render inside the box. |
+| `onClick` | `JSX.EventHandlerUnion<HTMLElement, MouseEvent>` | — | Click event handler. |
+| `onMouseDown` | `JSX.EventHandlerUnion<HTMLElement, MouseEvent>` | — | Mouse down event handler. |
+| `onDragOver` | `JSX.EventHandlerUnion<HTMLElement, DragEvent>` | — | Drag over event handler. |
+| `onDragLeave` | `JSX.EventHandlerUnion<HTMLElement, DragEvent>` | — | Drag leave event handler. |
+| `onDrop` | `JSX.EventHandlerUnion<HTMLElement, DragEvent>` | — | Drop event handler. |
+| `onSubmit` | `JSX.EventHandlerUnion<HTMLFormElement, SubmitEvent>` | — | Form submit handler. Only meaningful when `as="form"`. |
+| `onReset` | `JSX.EventHandlerUnion<HTMLFormElement, Event>` | — | Form reset handler. Only meaningful when `as="form"`. |
+| `onChange` | `JSX.EventHandlerUnion<HTMLElement, Event>` | — | Change event handler. Typed loosely to support form inputs bubbling. |
+| `ref` | `HTMLElement \| ((el: HTMLElement) => void)` | — | Element ref callback or ref object. |

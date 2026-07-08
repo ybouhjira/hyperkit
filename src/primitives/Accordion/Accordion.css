@@ -1,0 +1,109 @@
+.sk-accordion {
+  --sk-accordion-border: var(--sk-border);
+  --sk-accordion-bg: transparent;
+  --sk-accordion-trigger-padding: var(--sk-space-md);
+  --sk-accordion-content-padding: var(--sk-space-md);
+  --sk-accordion-trigger-hover-bg: var(--sk-bg-secondary);
+
+  width: 100%;
+  background: var(--sk-accordion-bg);
+}
+
+.sk-accordion__item {
+  border-bottom: 1px solid var(--sk-accordion-border);
+}
+
+.sk-accordion__item:first-child {
+  border-top: 1px solid var(--sk-accordion-border);
+}
+
+.sk-accordion__header {
+  margin: 0;
+}
+
+.sk-accordion__trigger {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--sk-accordion-trigger-padding);
+  font-size: var(--sk-font-size-base);
+  font-weight: 500;
+  color: var(--sk-text-primary);
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.sk-accordion__trigger:hover {
+  background: var(--sk-accordion-trigger-hover-bg);
+}
+
+.sk-accordion__trigger:focus-visible {
+  outline: 2px solid var(--sk-accent);
+  outline-offset: -2px;
+}
+
+.sk-accordion__trigger[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sk-accordion__trigger[data-disabled]:hover {
+  background: transparent;
+}
+
+.sk-accordion__trigger-text {
+  flex: 1;
+  text-align: left;
+}
+
+.sk-accordion__chevron {
+  flex-shrink: 0;
+  margin-left: var(--sk-space-sm);
+  color: var(--sk-text-muted);
+  transition: transform 0.2s ease;
+}
+
+.sk-accordion__trigger[data-expanded] .sk-accordion__chevron {
+  transform: rotate(180deg);
+}
+
+.sk-accordion__content {
+  overflow: hidden;
+  color: var(--sk-text-primary);
+}
+
+.sk-accordion__content[data-closed] {
+  animation: sk-accordion-collapse 0.2s ease-out;
+}
+
+.sk-accordion__content[data-expanded] {
+  animation: sk-accordion-expand 0.2s ease-out;
+}
+
+.sk-accordion__content-inner {
+  padding: var(--sk-accordion-content-padding);
+  padding-top: 0;
+}
+
+@keyframes sk-accordion-expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--kb-accordion-content-height);
+  }
+}
+
+@keyframes sk-accordion-collapse {
+  from {
+    height: var(--kb-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

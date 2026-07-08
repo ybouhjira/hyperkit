@@ -1,0 +1,108 @@
+.sk-vsp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-sm);
+}
+
+.sk-vsp__tabs {
+  flex-shrink: 0;
+}
+
+.sk-vsp__tab-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+}
+
+.sk-vsp__tab-icon {
+  width: var(--sk-icon-sm);
+  height: var(--sk-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sk-vsp__error {
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  border-radius: var(--sk-radius-sm);
+  background: var(--sk-error-muted, rgb(224, 56, 56, 0.12));
+  color: var(--sk-error, #e03838);
+  font-size: var(--sk-font-size-sm);
+}
+
+.sk-vsp__grid {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.sk-vsp__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-2xs);
+  width: 200px;
+  padding: var(--sk-space-sm);
+  text-align: left;
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  background: var(--sk-bg-secondary);
+  color: var(--sk-text-primary);
+  cursor: pointer;
+  position: relative;
+  transition:
+    border-color var(--sk-duration-fast) var(--sk-ease-default),
+    background var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-vsp__item:hover {
+  border-color: var(--sk-accent);
+  background: var(--sk-bg-tertiary);
+}
+
+.sk-vsp__item:focus-visible {
+  outline: 2px solid var(--sk-accent);
+  outline-offset: 1px;
+}
+
+.sk-vsp__item-title {
+  font-size: var(--sk-font-size-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sk-vsp__item-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+}
+
+.sk-vsp__item-remove {
+  position: absolute;
+  top: var(--sk-space-2xs);
+  right: var(--sk-space-2xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--sk-radius-sm);
+  color: var(--sk-text-muted);
+  cursor: pointer;
+}
+
+.sk-vsp__item-remove:hover {
+  color: var(--sk-error, #e03838);
+  background: var(--sk-bg-primary);
+}
+
+.sk-vsp__url {
+  width: 100%;
+}
+
+.sk-vsp__file {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-primary);
+}

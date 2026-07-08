@@ -1,0 +1,36 @@
+---
+title: Tooltip
+description: Hover tooltip built on @kobalte/core.
+slug: /components/display/Tooltip
+---
+
+# Tooltip
+
+Hover tooltip built on @kobalte/core.
+
+![Tooltip preview](/img/components/Tooltip.webp)
+
+```tsx
+import { Tooltip } from '@ybouhjira/hyperkit';
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `content` * | `string \| JSX.Element` | — | Tooltip content to display. |
+| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Tooltip placement relative to the trigger. |
+| `delay` | `number` | `300` | Delay before showing tooltip in milliseconds. |
+| `children` * | `JSX.Element` | — | Element that triggers the tooltip. |
+| `class` | `string` | — | Additional CSS classes. |
+| `unstyled` | `boolean` | `false` | Remove all default styling classes. |
+| `open` | `boolean` | — | Control open state externally. |
+| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-bg-primary`, `--sk-border`, `--sk-duration-instant`, `--sk-font-size-sm`, `--sk-radius-md`, `--sk-shadow-md`, `--sk-space-sm`, `--sk-space-xs`, `--sk-text-primary`, `--sk-z-tooltip`

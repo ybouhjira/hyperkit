@@ -1,0 +1,327 @@
+/*
+ * BugReporter — self-contained visual identity.
+ * Uses hardcoded colors so it always looks like an external tool overlay,
+ * regardless of the host app's theme.
+ */
+
+/* ─── Floating Action Button ─────────────────────────────────────────────── */
+
+.sk-bug-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99990;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  box-shadow:
+    0 4px 20px rgb(124, 58, 237, 0.4),
+    0 2px 8px rgb(0, 0, 0, 0.2);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+  letter-spacing: 0.01em;
+}
+
+.sk-bug-fab:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 6px 28px rgb(124, 58, 237, 0.5),
+    0 4px 12px rgb(0, 0, 0, 0.25);
+}
+
+.sk-bug-fab:active {
+  transform: scale(0.96);
+}
+
+.sk-bug-fab__icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.sk-bug-fab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ─── Overlay ────────────────────────────────────────────────────────────── */
+
+.sk-bug-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  animation: sk-bug-fade-in 150ms ease;
+}
+
+@keyframes sk-bug-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─── Modal ──────────────────────────────────────────────────────────────── */
+
+.sk-bug-modal {
+  width: min(480px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: #1e1b2e;
+  border: 1px solid #352f50;
+  border-radius: 16px;
+  box-shadow:
+    0 24px 64px rgb(0, 0, 0, 0.5),
+    0 0 0 1px rgb(124, 58, 237, 0.15);
+  animation: sk-bug-slide-up 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e2dff0;
+}
+
+@keyframes sk-bug-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+
+.sk-bug-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #352f50;
+}
+
+.sk-bug-header__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f5f3ff;
+  letter-spacing: -0.01em;
+}
+
+.sk-bug-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #8b83a8;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.sk-bug-close:hover {
+  background: #2d2845;
+  color: #f5f3ff;
+}
+
+/* ─── Screenshot ─────────────────────────────────────────────────────────── */
+
+.sk-bug-screenshot {
+  padding: 16px 20px 0;
+}
+
+.sk-bug-screenshot__img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #352f50;
+  object-fit: contain;
+  max-height: 180px;
+}
+
+.sk-bug-screenshot__label {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #8b83a8;
+}
+
+/* ─── Form ───────────────────────────────────────────────────────────────── */
+
+.sk-bug-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 20px 20px;
+}
+
+.sk-bug-input,
+.sk-bug-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: #151221;
+  color: #e2dff0;
+  border: 1px solid #352f50;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+  box-sizing: border-box;
+}
+
+.sk-bug-input:focus,
+.sk-bug-textarea:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgb(124, 58, 237, 0.2);
+}
+
+.sk-bug-input::placeholder,
+.sk-bug-textarea::placeholder {
+  color: #6b6488;
+}
+
+.sk-bug-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ─── Severity ───────────────────────────────────────────────────────────── */
+
+.sk-bug-severity__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #8b83a8;
+  font-weight: 500;
+}
+
+.sk-bug-severity__options {
+  display: flex;
+  gap: 8px;
+}
+
+.sk-bug-severity__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  background: #151221;
+  color: #8b83a8;
+  border: 1px solid #352f50;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.sk-bug-severity__btn:hover {
+  border-color: var(--sk-sev-color);
+  color: #e2dff0;
+}
+
+.sk-bug-severity__btn--active {
+  border-color: var(--sk-sev-color);
+  background: color-mix(in srgb, var(--sk-sev-color) 15%, #151221);
+  color: #f5f3ff;
+  font-weight: 600;
+}
+
+/* ─── Submit ─────────────────────────────────────────────────────────────── */
+
+.sk-bug-submit {
+  width: 100%;
+  padding: 12px 16px;
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+  letter-spacing: 0.01em;
+}
+
+.sk-bug-submit:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.sk-bug-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sk-bug-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Success ────────────────────────────────────────────────────────────── */
+
+.sk-bug-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 48px;
+}
+
+.sk-bug-success__icon {
+  font-size: 48px;
+  animation: sk-bug-bounce 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes sk-bug-bounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.sk-bug-success__text {
+  font-size: 16px;
+  color: #f5f3ff;
+  font-weight: 600;
+}

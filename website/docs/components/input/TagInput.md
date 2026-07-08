@@ -1,0 +1,70 @@
+---
+title: TagInput
+description: Multi-value tag/token input.
+slug: /components/input/TagInput
+---
+
+# TagInput
+
+Multi-value tag/token input.
+
+![TagInput preview](/img/components/TagInput.webp)
+
+```tsx
+import { TagInput } from '@ybouhjira/hyperkit';
+```
+
+## Examples
+
+### Default
+
+```tsx
+<TagInput placeholder="Add tag..." />
+```
+
+### With Default Tags
+
+```tsx
+<TagInput
+  defaultValue={[ 'react', 'solidjs', 'typescript' ]}
+  placeholder="Add more tags..."
+/>
+```
+
+### With Suggestions
+
+```tsx
+<TagInput
+  suggestions={[
+      'react',      'vue',
+      'angular',    'solidjs',
+      'svelte',     'typescript',
+      'javascript', 'css',
+      'html'
+    ]}
+  placeholder="Type to see suggestions..."
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `string[]` | — | Controlled tags array |
+| `defaultValue` | `string[]` | — | Default tags (uncontrolled) |
+| `onChange` | `(tags: string[]) => void` | — | Callback when tags change |
+| `suggestions` | `string[]` | — | Autocomplete suggestions |
+| `placeholder` | `string` | — | Input placeholder text |
+| `maxTags` | `number` | — | Maximum number of tags allowed |
+| `allowDuplicates` | `boolean` | — | Allow duplicate tags |
+| `disabled` | `boolean` | — | Disable all interaction |
+| `label` | `string` | — | Label text |
+| `class` | `string` | — | Additional CSS classes |
+| `style` | `JSX.CSSProperties` | — | Custom styles |
+| `unstyled` | `boolean` | — | Remove sk-* styling classes |
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-focus-color`, `--sk-font-size-sm`, `--sk-radius-md`, `--sk-radius-sm`, `--sk-space-sm`, `--sk-space-xs`, `--sk-tag-input-bg`, `--sk-tag-input-border`, `--sk-tag-input-radius`, `--sk-tag-input-tag-bg`, `--sk-tag-input-tag-color`, `--sk-text-muted`, `--sk-text-primary`

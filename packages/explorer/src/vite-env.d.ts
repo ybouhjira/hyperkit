@@ -1,0 +1,13 @@
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_APP_TITLE: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+  glob<T = unknown>(
+    pattern: string | string[],
+    options?: { eager?: boolean }
+  ): Record<string, T>
+}

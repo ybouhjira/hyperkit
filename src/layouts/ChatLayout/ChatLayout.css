@@ -1,0 +1,17 @@
+.sk-chat-layout {
+  display: flex;
+  height: 100vh;
+  background: var(--sk-bg-primary);
+}
+
+.sk-chat-layout__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.sk-chat-layout__content {
+  flex: 1;
+  min-height: 0;
+}

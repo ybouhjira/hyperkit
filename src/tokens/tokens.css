@@ -1,0 +1,95 @@
+/* SolidKit Foundation Design Tokens */
+
+:root {
+  /* ===== Derived semantic tokens =====
+     Theme-reactive via color-mix over the runtime --sk-* vars, so one
+     definition serves every theme. Promoted from hyperbuild's app-level
+     tokens.css during the 2026-06-10 single-theming-mechanism cleanup. */
+  --sk-radius-full: 9999px;
+  --sk-border-strong: color-mix(in srgb, var(--sk-border) 55%, var(--sk-text-primary));
+  --sk-success-muted: color-mix(in srgb, var(--sk-success) 15%, transparent);
+  --sk-warning-muted: color-mix(in srgb, var(--sk-warning) 15%, transparent);
+  --sk-error-muted: color-mix(in srgb, var(--sk-error) 15%, transparent);
+  --sk-info-muted: color-mix(in srgb, var(--sk-info) 15%, transparent);
+
+  /* ===== Component Heights ===== */
+  --sk-height-xs: 24px;
+  --sk-height-sm: 28px;
+  --sk-height-md: 32px;
+  --sk-height-lg: 40px;
+  --sk-height-xl: 48px;
+
+  /* ===== Transition Durations ===== */
+  --sk-duration-instant: 50ms;
+  --sk-duration-fast: 150ms;
+  --sk-duration-normal: 200ms;
+  --sk-duration-slow: 300ms;
+  --sk-duration-slower: 500ms;
+
+  /* ===== Easing Functions ===== */
+  --sk-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --sk-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --sk-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --sk-ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
+  --sk-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ===== Animation Durations ===== */
+  --sk-duration-spin: 1s;
+  --sk-duration-pulse: 2s;
+  --sk-duration-bounce: 1s;
+
+  /* ===== Line Heights ===== */
+  --sk-leading-none: 1;
+  --sk-leading-tight: 1.25;
+  --sk-leading-snug: 1.375;
+  --sk-leading-normal: 1.5;
+  --sk-leading-relaxed: 1.75;
+  --sk-leading-loose: 2;
+
+  /* ===== Border Widths ===== */
+  --sk-border-width: 1px;
+  --sk-border-width-2: 2px;
+  --sk-border-width-4: 4px;
+
+  /* ===== Icon Sizes (for future icon system) ===== */
+  --sk-icon-xs: 12px;
+  --sk-icon-sm: 14px;
+  --sk-icon-md: 16px;
+  --sk-icon-lg: 20px;
+  --sk-icon-xl: 24px;
+
+  /* ===== Panel System ===== */
+  --sk-panel-header-padding: 2px 8px;
+  --sk-panel-border-radius: 4px;
+  --sk-panel-resize-handle-size: 6px;
+}
+
+/* ===== Keyframe Animations ===== */
+@keyframes sk-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sk-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sk-duration-instant: 0ms;
+    --sk-duration-fast: 0ms;
+    --sk-duration-normal: 0ms;
+    --sk-duration-slow: 0ms;
+    --sk-duration-slower: 0ms;
+    --sk-duration-spin: 0ms;
+    --sk-duration-pulse: 0ms;
+    --sk-duration-bounce: 0ms;
+  }
+}

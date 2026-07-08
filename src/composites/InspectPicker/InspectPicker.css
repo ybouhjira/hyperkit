@@ -1,0 +1,132 @@
+/* InspectPicker — devtools-style element picker.
+   The root is a full-viewport, click-through anchor; interactive children
+   (hint pill, capture panel) re-enable pointer events. Highlight + chip are
+   pure overlays and never intercept the cursor. */
+
+.sk-inspect-picker {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--sk-z-overlay, 1000);
+}
+
+/* Hovered-element highlight: saturated accent outline + faint accent tint. */
+.sk-inspect-picker__highlight {
+  position: fixed;
+  pointer-events: none;
+  background: var(--sk-accent-muted);
+  outline: 2px solid var(--sk-accent);
+  outline-offset: 1px;
+  border-radius: var(--sk-radius-sm);
+}
+
+/* Tag/size chip following the cursor while the picker is armed. */
+.sk-inspect-picker__chip {
+  position: fixed;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+  padding: var(--sk-space-2xs) var(--sk-space-sm);
+  background: var(--sk-bg-elevated);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  font-family: var(--sk-font-mono, monospace);
+  font-size: var(--sk-font-size-sm);
+  box-shadow: var(--sk-shadow-md);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.sk-inspect-picker__chip-tag {
+  color: var(--sk-accent);
+}
+
+.sk-inspect-picker__chip-size {
+  color: var(--sk-text-muted);
+}
+
+/* Armed-state hint pill, top-center. */
+.sk-inspect-picker__hint {
+  position: fixed;
+  top: var(--sk-space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-xs) var(--sk-space-md);
+  background: var(--sk-bg-elevated);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  box-shadow: var(--sk-shadow-md);
+  pointer-events: auto;
+
+  /* Keeps its centering transform through the enter animation. */
+  animation: sk-inspect-picker-enter-hint var(--sk-duration-fast) var(--sk-ease-out);
+}
+
+/* Captured-element panel, anchored near the element by the component. */
+.sk-inspect-picker__panel {
+  position: fixed;
+  max-width: 360px;
+  pointer-events: auto;
+  outline: none;
+  transform-origin: top center;
+  animation: sk-inspect-picker-enter var(--sk-duration-normal) var(--sk-ease-out);
+}
+
+.sk-inspect-picker__panel--above {
+  transform-origin: bottom center;
+}
+
+.sk-inspect-picker__selector {
+  font-family: var(--sk-font-mono, monospace);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 320px;
+}
+
+.sk-inspect-picker__snippet {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.sk-inspect-picker__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sk-space-xs);
+}
+
+@keyframes sk-inspect-picker-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sk-inspect-picker-enter-hint {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-inspect-picker__panel,
+  .sk-inspect-picker__hint {
+    animation: none;
+  }
+}

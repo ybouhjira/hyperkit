@@ -1,0 +1,33 @@
+---
+title: DevToolbar
+description: Development toolbar overlay.
+slug: /components/utilities/DevToolbar
+---
+
+# DevToolbar
+
+Development toolbar overlay.
+
+```tsx
+import { DevToolbar } from '@ybouhjira/hyperkit';
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `product` | `string` | — | — |
+| `version` | `string` | — | — |
+| `bugStorage` | `BugReportStorage` | — | — |
+| `onInspect` | `() => void` | — | — |
+| `onBugReport` | `() => void` | — | — |
+| `onThemeToggle` | `() => void` | — | — |
+| `themeName` | `string` | — | — |
+| `showToggle` | `boolean` | — | Hide the built-in FAB toggle button. Useful when the host app provides its own toggle. |
+| `onOpenChange` | `(open: boolean) => void` | — | Called whenever the panel open state changes. |
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-card-accent`

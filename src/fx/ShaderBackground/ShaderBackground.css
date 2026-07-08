@@ -1,0 +1,60 @@
+.sk-shader-bg {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+
+.sk-shader-bg__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sk-shader-bg__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CSS fallback when WebGL is not available */
+.sk-shader-bg--css-fallback .sk-shader-bg__canvas {
+  display: none;
+}
+
+.sk-shader-bg--css-fallback {
+  background: linear-gradient(
+    135deg,
+    var(--sk-accent) 0%,
+    var(--sk-info) 50%,
+    var(--sk-accent) 100%
+  );
+  background-size: 200% 200%;
+  animation: sk-shader-bg-gradient var(--sk-shader-bg-speed, 6s) ease infinite;
+}
+
+@keyframes sk-shader-bg-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-shader-bg--css-fallback {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}

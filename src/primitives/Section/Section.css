@@ -1,0 +1,63 @@
+/* Section Component Styles */
+
+:root {
+  /* Vertical padding tokens */
+  --sk-section-py-sm: var(--sk-space-lg); /* 32px */
+  --sk-section-py-md: var(--sk-space-xl); /* 48px */
+  --sk-section-py-lg: 64px;
+  --sk-section-py-xl: 96px;
+
+  /* Container constraints */
+  --sk-section-max-width: 1200px;
+  --sk-section-px: var(--sk-space-md); /* 16px horizontal padding */
+}
+
+/* Base section styles */
+.sk-section {
+  width: 100%;
+  position: relative;
+}
+
+/* Inner container (centered, max-width constrained) */
+.sk-section__inner {
+  max-width: var(--sk-section-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--sk-section-px);
+  padding-right: var(--sk-section-px);
+}
+
+/* Vertical padding variants */
+.sk-section--py-sm {
+  padding-top: var(--sk-section-py-sm);
+  padding-bottom: var(--sk-section-py-sm);
+}
+
+.sk-section--py-md {
+  padding-top: var(--sk-section-py-md);
+  padding-bottom: var(--sk-section-py-md);
+}
+
+.sk-section--py-lg {
+  padding-top: var(--sk-section-py-lg);
+  padding-bottom: var(--sk-section-py-lg);
+}
+
+.sk-section--py-xl {
+  padding-top: var(--sk-section-py-xl);
+  padding-bottom: var(--sk-section-py-xl);
+}
+
+/* Background variants */
+.sk-section--muted {
+  background-color: var(--sk-bg-secondary);
+}
+
+.sk-section--accent {
+  background-color: var(--sk-accent);
+  color: white;
+}
+
+.sk-section--gradient {
+  background: linear-gradient(to bottom, var(--sk-bg-secondary), var(--sk-bg-tertiary));
+}

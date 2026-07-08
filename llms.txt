@@ -1,0 +1,452 @@
+# SolidKit
+
+> Modern SolidJS component library with accessible primitives, semantic layout system, Effect services, and theme-driven design tokens. Built on Kobalte headless components.
+
+## Components
+
+### Display
+- **Accordion**: Component. Props: `{ items: AccordionItemData[], type?: 'single' | 'multiple', defaultValue?: string | string[], collapsible?: boolean, disabled?: boolean, +3 more }`
+- **Badge**: Component. Props: `{ variant?: 'default' | 'success' | 'warning' | 'danger' | 'info', type?: 'label' | 'dot' | 'count', count?: number, maxCount?: number, children?: JSX.Element, +3 more }`
+- **Card**: Component. Props: `{ variant?: 'default' | 'outlined' | 'elevated', padding?: 'none' | 'sm' | 'md' | 'lg', onClick?: () => void, hoverable?: boolean, children: JSX.Element, +4 more }`
+- **CardHeader**: Component. Props: `{ children: JSX.Element, unstyled?: boolean, class?: string, style?: JSX.CSSProperties }`
+- **CardTitle**: Component. Props: `{ children: JSX.Element, unstyled?: boolean, class?: string, style?: JSX.CSSProperties }`
+- **CardDescription**: Component. Props: `{ children: JSX.Element, unstyled?: boolean, class?: string, style?: JSX.CSSProperties }`
+- **CardContent**: Component. Props: `{ children: JSX.Element, unstyled?: boolean, class?: string, style?: JSX.CSSProperties }`
+- **CardFooter**: Component. Props: `{ children: JSX.Element, unstyled?: boolean, class?: string, style?: JSX.CSSProperties }`
+- **CodeBlock**: Component. Props: `{ code: string, language?: string, label?: string, showLineNumbers?: boolean, class?: string, +1 more }`
+- **Collapsible**: Component. Props: `{ open?: boolean, defaultOpen?: boolean, onOpenChange?: (open: boolean) => void, disabled?: boolean, trigger: JSX.Element, +5 more }`
+- **ColorDot**: Component. Props: `{ color: string, size?: 'sm' | 'md' | 'lg', class?: string }`
+- **Dialog**: Component. Props: `{ open: boolean, onOpenChange: (open: boolean) => void, title: string, description?: string, children: JSX.Element, +2 more }`
+- **Dropdown**: Component. Props: `{ items: DropdownItem[], trigger: JSX.Element, class?: string, unstyled?: boolean }`
+- **ImagePreview**: Component. Props: `{ images: ImagePreviewItem[], onRemove?: (id: string) => void, maxVisible?: number, class?: string }`
+- **Markdown**: Component. Props: `{ content: string, streaming?: boolean, components?: Partial<MarkdownComponents>, class?: string, style?: JSX.CSSProperties, +1 more }`
+- **MetricCard**: Component. Props: `{ label: string, value: string | number, variant?: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'accent', icon?: JSX.Element, trend?: string, +7 more }`
+- **ProjectCard**: Component. Props: `{ name: string, icon?: string, color?: string, subtitle?: string, description?: string, +4 more }`
+- **Separator**: Component. Props: `{ orientation?: 'horizontal' | 'vertical', unstyled?: boolean, class?: string, style?: JSX.CSSProperties }`
+- **Skeleton**: Component. Props: `{ variant?: 'rect' | 'circle' | 'text', width?: string | number, height?: string | number, size?: number, lines?: number, +2 more }`
+- **StatusDot**: Component. Props: `{ status?: 'default' | 'success' | 'warning' | 'danger' | 'info', size?: 'sm' | 'md' | 'lg', pulse?: boolean, label?: string, aria-label?: string, +3 more }`
+- **StreamingText**: Component. Props: `{ chunks: Accessor<string[]>, format?: 'markdown' | 'plain', autoScroll?: boolean, class?: string }`
+- **SuggestionChips**: Component. Props: `{ chips: SuggestionChip[], onSelect: (chip: SuggestionChip) => void, class?: string }`
+- **Table**: Component. Props: `{ columns: TableColumn<T>[], data: T[], onRowClick?: (item: T) => void, selectedKey?: string | null, getRowKey: (item: T) => string, +4 more }`
+- **Tabs**: Component. Props: `{ items: TabItem[], value?: string, onChange?: (value: string) => void, orientation?: 'horizontal' | 'vertical', class?: string }`
+- **TerminalOutput**: Component. Props: `{ lines: TerminalLine[], maxLines?: number, showTimestamps?: boolean, class?: string }`
+- **Timeline**: Component. Props: `{ steps: TimelineStep[], orientation?: 'vertical' | 'horizontal', size?: 'sm' | 'md' | 'lg', class?: string, style?: JSX.CSSProperties }`
+- **Tooltip**: Component. Props: `{ content: string | JSX.Element, placement?: 'top' | 'bottom' | 'left' | 'right', delay?: number, children: JSX.Element, class?: string, +1 more }`
+- **Sparkline**: Component. Props: `{ data: number[], width?: number, height?: number, color?: string, strokeWidth?: number, +4 more }`
+- **WaterfallChart**: Component. Props: `{ items: WaterfallItem[], height?: number, labelWidth?: number, tickCount?: number, class?: string, +1 more }`
+- **SignalGrid**: Component. Props: `{ cells: SignalGridCell[], columns?: number, colorScale?: (value: number) => string, cellSize?: number, gap?: number, +2 more }`
+- **Popover**: Component. Props: `{ trigger: JSX.Element, content: JSX.Element, placement?: 'top' | 'bottom' | 'left' | 'right', open?: boolean, onOpenChange?: (open: boolean) => void, +2 more }`
+
+### Input
+- **AudioInput**: Component. Props: `{ value?: File | File[] | null, onChange: (files: File | File[] | null) => void, mode?: 'single' | 'list', accept?: string, maxSize?: number, +6 more }`
+- **Button**: Component. Props: `{ variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline' | 'link', size?: 'sm' | 'md' | 'lg', loading?: boolean, disabled?: boolean, fullWidth?: boolean, +9 more }`
+- **ColorInput**: Component. Props: `{ value?: string, defaultValue?: string, onChange?: (color: string) => void, format?: 'hex' | 'rgb' | 'hsl', showAlpha?: boolean, +6 more }`
+- **DateInput**: Component. Props: `{ value?: string, defaultValue?: string, onChange?: (value: string) => void, min?: string, max?: string, +9 more }`
+- **DropZone**: Component. Props: `{ onDrop: (files: File[]) => void, accept?: string, multiple?: boolean, maxSize?: number, disabled?: boolean, +5 more }`
+- **FileInput**: Component. Props: `{ value?: File | File[] | null, onChange: (files: File | File[] | null) => void, mode?: 'single' | 'list', accept?: string, maxSize?: number, +4 more }`
+- **ImageInput**: Component. Props: `{ value?: File | File[] | null, onChange: (files: File | File[] | null) => void, mode?: 'single' | 'multiple', accept?: string, maxSize?: number, +7 more }`
+- **Input**: Component. Props: `{ type?: 'text' | 'email' | 'password' | 'search' | 'url', placeholder?: string, value?: string, onInput?: (value: string) => void, disabled?: boolean, +5 more }`
+- **Textarea**: Component. Props: `{ placeholder?: string, value?: string, onInput?: (value: string) => void, autoResize?: boolean, minRows?: number, +7 more }`
+- **Kbd**: Component. Props: `{ children?: JSX.Element, keys?: string[], class?: string }`
+- **NumberInput**: Component. Props: `{ value?: number, defaultValue?: number, onChange?: (value: number) => void, min?: number, max?: number, +8 more }`
+- **RangeSlider**: Component. Props: `{ value?: [number, number], defaultValue?: [number, number], onChange?: (value: [number, number]) => void, min?: number, max?: number, +6 more }`
+- **SearchInput**: Component. Props: `{ value?: string, placeholder?: string, shortcut?: string, onSearch?: (value: string) => void, onChange?: (value: string) => void, +5 more }`
+- **Select**: Component. Props: `{ options: SelectOption[], value?: string, onChange?: (value: string) => void, placeholder?: string, disabled?: boolean, +2 more }`
+- **Slider**: Component. Props: `{ value?: number, defaultValue?: number, onChange?: (value: number) => void, min?: number, max?: number, +6 more }`
+- **Switch**: Component. Props: `{ checked?: boolean, defaultChecked?: boolean, onChange?: (checked: boolean) => void, disabled?: boolean, label?: string, +4 more }`
+- **TagInput**: Component. Props: `{ value?: string[], defaultValue?: string[], onChange?: (tags: string[]) => void, suggestions?: string[], placeholder?: string, +7 more }`
+- **VideoInput**: Component. Props: `{ value?: File | File[] | null, onChange: (files: File | File[] | null) => void, mode?: 'single' | 'list', accept?: string, maxSize?: number, +5 more }`
+- **FilterChip**: Component. Props: `{ label: string, selected?: boolean, onToggle?: (selected: boolean) => void, color?: string, icon?: JSX.Element, +4 more }`
+- **SegmentedBar**: Component. Props: `{ segments: SegmentedBarSegment[], height?: number, borderRadius?: string, animated?: boolean, class?: string, +1 more }`
+- **Checkbox**: Component. Props: `{ checked?: boolean, defaultChecked?: boolean, onChange?: (checked: boolean) => void, label?: string, disabled?: boolean, +4 more }`
+- **RecordButton**: Component. Props: `{ recording?: boolean, onToggle?: (recording: boolean) => void, disabled?: boolean, size?: 'sm' | 'md' | 'lg', class?: string, +1 more }`
+
+### Layout
+- **Box**: Component. Props: `{ p?: SpaceToken, px?: SpaceToken, py?: SpaceToken, pt?: SpaceToken, pr?: SpaceToken, +59 more }`
+- **Container**: Component. Props: `{ maxW?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | string, px?: SpaceToken, py?: SpaceToken, center?: boolean, class?: string, +2 more }`
+- **DocumentPage**: Component. Props: `{ size?: 'a4' | 'letter', orientation?: 'portrait' | 'landscape', padding?: string, children: JSX.Element, header?: JSX.Element, +3 more }`
+- **Flex**: Component. Props: `{ direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse', align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline', justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly', gap?: SpaceToken, wrap?: 'nowrap' | 'wrap' | 'wrap-reverse', +1 more }`
+- **Grid**: Component. Props: `{ columns?: number | string, rows?: number | string, gap?: SpaceToken, rowGap?: SpaceToken, columnGap?: SpaceToken, +3 more }`
+- **MasonryGrid**: Component. Props: `{ columns?: number | { sm?: number; md?: number; lg?: number; xl?: number }, gap?: SpaceToken, class?: string, style?: JSX.CSSProperties, children?: JSX.Element }`
+- **MediaGrid**: Component. Props: `{ items: MediaGridItem[], selectedId?: string | null, onAdd?: (files: File[]) => void, onSelect?: (id: string) => void, onDelete?: (id: string) => void, +9 more }`
+- **ScrollArea**: Component. Props: `{ children: JSX.Element, maxHeight?: string | number, class?: string }`
+- **Section**: Component. Props: `{ bg?: 'default' | 'muted' | 'accent' | 'gradient', py?: 'sm' | 'md' | 'lg' | 'xl', maxWidth?: string, fullBleed?: boolean, children: JSX.Element, +3 more }`
+- **Stack**: Component. Props: `{ direction?: 'vertical' | 'horizontal' }`
+- **Text**: Component. Props: `{ size?: FontSizeToken, weight?: FontWeightToken | number, color?: TextColorToken, align?: 'left' | 'center' | 'right', truncate?: boolean, +14 more }`
+
+### Feedback
+- **EmptyState**: Component. Props: `{ icon?: string, title: string, description?: string, action?: JSX.Element, class?: string, +1 more }`
+- **ErrorBanner**: Component. Props: `{ message: string, onDismiss?: () => void, variant?: ErrorBannerVariant, class?: string, autoDismissMs?: number, +1 more }`
+- **ProgressBar**: Component. Props: `{ value?: number, indeterminate?: boolean, size?: 'sm' | 'md' | 'lg', color?: string, class?: string, +2 more }`
+- **ProgressRing**: Component. Props: `{ value?: number, size?: 'sm' | 'md' | 'lg' | number, strokeWidth?: number, color?: string, trackColor?: string, +4 more }`
+- **Spinner**: Component. Props: `{ size?: SpinnerSize, color?: SpinnerColor, label?: string, class?: string, unstyled?: boolean }`
+- **StreamingIndicator**: Component. Props: `{ visible: boolean, message?: string, class?: string }`
+
+### Data & Content
+- **ActionForm**: Component. Props: `{ target: string, action: string, onSubmit?: (result: DispatchResult) => void, onError?: (error: string) => void, submitLabel?: string, +2 more }`
+- **DashboardGrid**: Component. Props: `{ minItemWidth?: string, gap?: 'sm' | 'md' | 'lg' | 'xl', maxColumns?: number, children: JSX.Element, class?: string, +2 more }`
+- **DirectoryPicker**: Component. Props: `{ items: FileItem[], currentPath: string, onNavigate?: (path: string) => void, onBack?: () => void, onSelect?: (path: string) => void, +4 more }`
+- **FileExplorer**: Component. Props: `{ items: FileItem[], currentPath: string, onNavigate?: (path: string) => void, onSelect?: (item: FileItem) => void, onBack?: () => void, mode?: ExplorerMode, selection?: Set<string>, onSelectionChange?: (sel: Set<string>) => void, onConfirm?: (items: FileItem[]) => void, previewPane?: boolean, showHidden?: boolean, loadChildren?: (path: string) => Promise<FileItem[]>, +16 more }`
+- **FilePicker**: Component. Drop-in file-selection dialog. Props: `{ open: boolean, onClose: () => void, onPick: (items: FileItem[]) => void, items: FileItem[], defaultPath?: string, filter?: (item: FileItem) => boolean, multiple?: boolean, onNavigate?: (path: string) => void, loading?: boolean, title?: string, class?: string, style?: JSX.CSSProperties }`
+- **FileSavePicker**: Component. Drop-in save dialog with filename input + overwrite confirm. Props: `{ open: boolean, onClose: () => void, onSave: (directory: string, fileName: string) => void, items: FileItem[], defaultPath?: string, defaultFileName?: string, onNavigate?: (path: string) => void, loading?: boolean, title?: string, class?: string, style?: JSX.CSSProperties }`
+- **FilePreview**: Component. Auto-detecting preview pane. Props: `{ item: FileItem, class?: string, style?: JSX.CSSProperties }` — detects image/video/audio/text/PDF/unknown from extension.
+- **FileContextMenu**: Component. Right-click context menu. Props: `{ open: boolean, x: number, y: number, item: FileItem, onClose: () => void, onOpen?: (i) => void, onRename?: (i) => void, onDelete?: (i) => void, onCopyPath?: (i) => void, onShowInfo?: (i) => void, extraActions?: FileContextMenuAction[], onAction?: (id, item) => void }`
+- **IssueBoard**: Component. Props: `{ issues: readonly Issue[], repos: readonly string[], groupBy?: 'repo' | 'label' | 'priority' | 'milestone' | 'none', view?: 'list' | 'board' | 'table', filters?: IssueFilters, +3 more }`
+- **KanbanBoard**: Component. Props: `{ columns: KanbanColumn[], selectedCardId?: string | null, onCardClick?: (card: KanbanCard, columnId: string) => void, emptyState?: string, class?: string }`
+- **MediaTrimmer**: Component. Props: `{ src: string, onTrimChange: (start: number, end: number) => void, thumbnailCount?: number, minDuration?: number, class?: string, +1 more }`
+- **ProjectDashboard**: Component. Props: `{ projectName: string, milestones: readonly MilestoneData[], issues: readonly IssueData[], onRefresh?: () => void, onIssueClick?: (issue: IssueData) => void, +5 more }`
+- **RepoCard**: Component. Props: `{ repo: RepoInfo, onOpen?: () => void, onTerminal?: () => void, onIssues?: () => void, onStartWork?: () => void }`
+- **StatBar**: Component. Props: `{ items: StatBarItem[], size?: 'sm' | 'md' | 'lg', direction?: 'horizontal' | 'vertical', class?: string, style?: JSX.CSSProperties, +1 more }`
+
+### Navigation
+- **Breadcrumb**: Component. Props: `{ items: BreadcrumbItem[], separator?: string, class?: string }`
+- **MenuBar**: Component. Props: `{ menus: MenuDefinition[], class?: string }`
+- **MobileNav**: Component. Props: `{ sessions: MobileNavSession[], activeSessionId?: string, onSessionSelect?: (id: string) => void, hideAbove?: Breakpoint, class?: string }`
+- **MobilePanelView**: Component. Props: `{ tabs: MobilePanelTab[], activeId?: string, defaultId?: string, onTabChange?: (id: string) => void, class?: string }`
+- **ModeSwitcher**: Component. Props: `{ class?: string }`
+- **Sidebar**: Component. Props: `{ open?: boolean, onToggle?: () => void, width?: string, header?: JSX.Element, footer?: JSX.Element, +2 more }`
+- **StatusBar**: Component. Props: `{ items: StatusBarItem[], class?: string }`
+- **TabBar**: Component. Props: `{ tabs: TabBarTab[], activeId?: string, onSelect?: (id: string) => void, onClose?: (id: string) => void, onAdd?: () => void, +1 more }`
+
+### Chat & AI
+- **ChatWindow**: Component. Props: `{ messages: Message[], connectionState: ConnectionState, streamingMessageId?: string, models?: ModelOption[], selectedModel?: string, +6 more }`
+- **CostTracker**: Component. Props: `{ cost: number, inputTokens: number, outputTokens: number, compact?: boolean, class?: string }`
+- **LLMChatBox**: Component. Props: `{ controller: LLMUIControllerReturn, title?: string, placeholder?: string, class?: string }`
+- **MessageBubble**: Component. Props: `{ role: MessageRole, content: string, timestamp?: Date, isStreaming?: boolean, onCopy?: () => void, +4 more }`
+- **MessageList**: Component. Props: `{ messages: Message[], streamingMessageId?: string, onCopyMessage?: (message: Message) => void, autoScroll?: boolean, class?: string }`
+- **ModelSelector**: Component. Props: `{ models: ModelOption[], value?: string, onChange?: (modelId: string) => void, disabled?: boolean, class?: string }`
+- **PromptQueue**: Component. Props: `{ items: QueuedPrompt[], onRemove?: (id: string) => void, class?: string }`
+- **SessionIndicator**: Component. Props: `{ status: SessionStatus, name: string, model?: string, unreadCount?: number, class?: string }`
+- **SessionManager**: Component. Props: `{ sessions: readonly SessionInfo[], onViewChat?: (sessionId: string) => void, onPause?: (sessionId: string) => void, onResume?: (sessionId: string) => void, onStop?: (sessionId: string) => void, +1 more }`
+- **SessionSearch**: Component. Props: `{ sessions: SessionData[], onSelect: (result: SessionSearchResult) => void, open: boolean, onOpenChange: (open: boolean) => void, placeholder?: string, +3 more }`
+- **SessionTabs**: Component. Props: `{ tabs: SessionTab[], activeTabId?: string, onTabSelect?: (id: string) => void, onTabClose?: (id: string) => void, onNewTab?: () => void, +1 more }`
+- **SubagentTracker**: Component. Props: `{ agents: SubagentInfo[], defaultExpanded?: boolean, onCancel?: (agentId: string) => void, class?: string }`
+- **ToolApproval**: Component. Props: `{ tool: string, input: Record<string, unknown>, onApprove: (alwaysAllow: boolean) => void, onDeny: () => void, class?: string }`
+- **ToolExecution**: Component. Props: `{ toolName: string, status: ToolStatus, input?: string, output?: string, duration?: number, +2 more }`
+
+### UI Utilities
+- **CommandPalette**: Component. Props: `{ open: boolean, onOpenChange: (open: boolean) => void, actions: CommandAction[], autoDiscover?: boolean, extraCommands?: CommandAction[], +3 more }`
+- **ConfirmDialog**: Component. Props: `{ open: boolean, onClose: () => void, onConfirm: () => void, title?: string, children?: JSX.Element, +5 more }`
+- **ConnectionStatus**: Component. Props: `{ state: ConnectionState, class?: string }`
+- **SplitButton**: Component. Props: `{ label: string, icon?: string, onClick: () => void, options: SplitButtonOption[], variant?: 'default' | 'primary' | 'danger', +5 more }`
+- **ThemeBuilder**: Component. Props: `{ initialTheme?: Partial<ThemeConfig>, onThemeChange?: (theme: ThemeConfig) => void, onExport?: (code: string) => void, class?: string, style?: JSX.CSSProperties }`
+- **ThemePickerModal**: Component. Props: `{ open: boolean, onOpenChange: (open: boolean) => void }`
+
+### Other
+- **ExamDocument**: Component. Props: `{ exam: Exam, showAnswers?: boolean, template?: 'classic' | 'modern' | 'formal', style?: JSX.CSSProperties }`
+- **ExerciseRenderer**: Component. Props: `{ exercise: Exercise, showAnswers?: boolean }`
+- **FillBlankExercise**: Component. Props: `{ exercise: Exercise, showAnswers?: boolean }`
+- **MatchingExercise**: Component. Props: `{ exercise: Exercise, showAnswers?: boolean }`
+- **MCQExercise**: Component. Props: `{ exercise: Exercise, showAnswers?: boolean }`
+- **FreeTextExercise**: Component. Props: `{ exercise: Exercise, showAnswers?: boolean }`
+- **TrueFalseExercise**: Component. Props: `{ exercise: Exercise, showAnswers?: boolean }`
+- **FileIcon**: Component. Props: `{ item: FileIconItem, size?: 'sm' | 'md' | 'lg' }`
+- **FileExplorerToolbar**: Component. Props: `{ currentPath: string, canGoUp: boolean, viewMode: ViewMode, isNarrow?: boolean, onNavigateUp: () => void, +6 more }`
+- **ViewModeSwitcher**: Component. Props: `{ currentMode: ViewMode, onModeChange: (mode: ViewMode) => void, isNarrow?: boolean }`
+- **PathBreadcrumb**: Component. Props: `{ path: string, onNavigate: (path: string) => void }`
+- **TreeView**: Component. Props: `{ items: FileItem[], onItemClick: (item: FileItem, e: MouseEvent) => void, selectedPaths: Set<string>, onToggleExpand: (path: string) => void, expandedPaths: Set<string>, +4 more }`
+- **TreeNode**: Component. Props: `{ item: FileItem, depth: number, isExpanded: boolean, isLoading: boolean, isSelected: boolean, +3 more }`
+- **TourProvider**: Component. Props: `{ children: JSX.Element }`
+- **SlashCommandMenu**: Component. Props: `{ show: boolean, commands: SlashCommand[], selectedIndex: number, onSelect: (command: SlashCommand) => void, onHover: (index: number) => void }`
+- **MentionMenu**: Component. Props: `{ show: boolean, mentions: MentionItem[], selectedIndex: number, onSelect: (mention: MentionItem) => void, onHover: (index: number) => void }`
+- **AttachmentBar**: Component. Props: `{ attachments: FileAttachment[], onRemove: (id: string) => void }`
+- **MarkdownToolbar**: Component. Props: `{ disabled?: boolean, onBold: () => void, onItalic: () => void, onCode: () => void, onLink: () => void }`
+- **VoiceInput**: Component. Props: `{ disabled?: boolean, isRecording: boolean, onToggle: () => void }`
+- **ToolApprovalQueue**: Component. Props: `{ queue: ToolApprovalItem[], onApprove: (id: string, alwaysAllow: boolean) => void, onDeny: (id: string) => void, class?: string }`
+
+### Theme & Icons
+- **ThemePicker**: Component. Props: `{ onThemeChange?: (theme: ThemeConfig) => void }`
+- **FontSelect**: Component. Props: `{ value?: string, onChange?: (font: string) => void }`
+- **Icon**: Component. Props: `{ name: string, size?: IconSize, class?: string, color?: string }`
+
+### Animation
+- **Transition**: Component. Props: `{ preset?: TransitionPreset, duration?: number, children: JSX.Element }`
+- **ScrollReveal**: Component. Props: `{ animation?: 'fade-up' | 'fade-in' | 'scale-in' | 'slide-left' | 'slide-right', delay?: number, duration?: number, threshold?: number, once?: boolean, +3 more }`
+- **AnimateOnScroll**: Component. Props: `{ animation?: 'fadeIn' | 'fadeUp' | 'fadeDown' | 'slideLeft' | 'slideRight' | 'scale', threshold?: number, delay?: number, duration?: number, once?: boolean, +3 more }`
+
+### Panel System
+- **PanelGroup**: Component. Props: `{ panels: { config: PanelConfig; state: PanelState }[], direction: PanelDirection, onResize: (panelId: string, delta: number) => void, onCollapse: (panelId: string) => void, onExpand: (panelId: string) => void, +7 more }`
+- **PanelDropZone**: Component. Props: `{ position: PanelPosition, active: boolean, visible: boolean, onRegister: (position: PanelPosition, el: HTMLElement) => void, onUnregister: (position: PanelPosition) => void, +1 more }`
+
+### Layouts
+- **ChatLayout**: Component. Props: `{ sidebarOpen?: boolean, onSidebarToggle?: () => void, sidebarContent?: JSX.Element, tabs?: SessionTab[], activeTabId?: string, +5 more }`
+
+### Report
+- **Report**: Component. Props: `{ schema: ReportSchema, class?: string, embedded?: boolean, onSubmit?: (responses: Record<string, unknown>) => void }`
+
+## Services & Hooks
+
+### Effect Services
+- **WebSocketService** (Effect Service): Methods: connect, disconnect, send, messages, isConnected
+- **SessionService** (Effect Service): Methods: create, get, list, remove, setActive, getActive
+- **FileSystemService** (Effect Service): Methods: listDirectory, getParentDirectory, isDirectory
+- **ClipboardService** (Effect Service): Methods: copy, paste
+- **LoggingService** (Effect Service): Methods: 
+
+### Logging
+- **makeLoggingLayer** (factory): factory
+- **SimpleTransport** (constant): constant
+- **ScopedTransport** (constant): constant
+- **ConsoleTransport** (constant): constant
+- **HttpTransport** (constant): constant
+- **BeaconTransport** (constant): constant
+- **SentryTransport** (constant): constant
+
+### Hooks
+- **useTheme** (hook): `() => UseThemeReturn`
+- **useDesktop** (hook): `() => UseDesktopReturn`
+- **useAnimation** (hook): `() => UseAnimationReturn`
+- **createEffectResource** (hook): `<A, E>(effectFn: () => Effect.Effect<A, E>, options?: EffectResourceOptions<A, E...`
+- **createEffectStream** (hook): `<A, E>(stream: Stream.Stream<A, E>, options?: EffectStreamOptions<A, E>) => Effe...`
+- **useBreakpoint** (hook): `() => any`
+- **useMode** (hook): `(initialMode?: Mode) => UseModeReturn`
+- **useHaptic** (hook): `(options?: HapticOptions) => HapticReturn`
+- **createHaptic** (hook): hook
+- **useNotificationSound** (hook): `(options?: NotificationSoundOptions) => NotificationSoundReturn`
+- **createNotificationSound** (hook): hook
+- **createEventBus** (hook): hook
+- **useEventBus** (hook): `<Events extends Record<string, unknown>>(bus: EventBus<Events>) => { emit: <K ex...`
+- **useLogger** (hook): `(stream: Stream.Stream<LogEntry>, options?: UseLoggerOptions) => UseLoggerResult`
+- **useVideoPreview** (hook): `(src: Accessor<string>) => UseVideoPreviewReturn`
+- **createLLMUIController** (hook): `(options: LLMUIControllerOptions) => LLMUIControllerReturn`
+- **useKeyboard** (hook): `() => KeyboardContextValue`
+- **useShortcut** (hook): `(config: ShortcutConfig) => void`
+- **useShortcuts** (hook): hook
+- **usePanelLayout** (hook): `(configs: PanelConfig[], storageKey?: string, initialOverrides?: Partial<PanelLa...`
+- **usePanelDrag** (hook): `(onMove: (panelId: string, toPosition: PanelPosition) => void) => { dragState: A...`
+- **useNavigation** (hook): `() => NavigationContextValue`
+- **useNavigable** (hook): `(contentRef: () => ContentRef, options?: { onOpenMenu?: (ref: ContentRef, positi...`
+- **useDevTools** (hook): `() => NavigableDevToolsHandle`
+- **useKnuthPlass** (hook): `(containerRef: () => HTMLElement, content?: () => string) => void`
+
+### Providers
+- **ToastProvider** (provider): provider
+- **ThemeProvider** (provider): provider
+- **AnimationProvider** (provider): provider
+- **KeyboardProvider** (provider): provider
+- **KeyboardScope** (provider): provider
+- **ShortcutsHelp** (provider): provider
+
+### Animation Utilities
+- **enterAnimation** (utility): `(preset: TransitionPreset, durationMs?: number) => JSX.CSSProperties`
+- **animationClass** (utility): `(preset: TransitionPreset) => string`
+- **fadeIn** (utility): `{ from: { opacity: number; }; to: { opacity: number; }; }`
+- **slideUp** (utility): `{ from: { opacity: number; transform: string; }; to: { opacity: number; transfor...`
+- **slideDown** (utility): `{ from: { opacity: number; transform: string; }; to: { opacity: number; transfor...`
+- **slideLeft** (utility): `{ from: { opacity: number; transform: string; }; to: { opacity: number; transfor...`
+- **slideRight** (utility): `{ from: { opacity: number; transform: string; }; to: { opacity: number; transfor...`
+- **scaleIn** (utility): `{ from: { opacity: number; transform: string; }; to: { opacity: number; transfor...`
+- **scaleFade** (utility): `{ from: { opacity: number; transform: string; }; to: { opacity: number; transfor...`
+
+### Theme Constants
+- **themePresets** (constant): constant
+- **modeDefinitions** (constant): constant
+
+### Token Helpers
+- **mapSpace** (utility): utility
+- **mapBg** (utility): utility
+- **mapTextColor** (utility): utility
+- **mapRadius** (utility): utility
+- **mapShadow** (utility): utility
+- **mapZ** (utility): utility
+- **mapFontSize** (utility): utility
+- **mapFontWeight** (utility): utility
+- **resolveSize** (utility): utility
+- **formatShortcut** (utility): `(config: Pick<ShortcutConfig, "key" | "mod" | "ctrl" | "meta" | "shift" | "alt">...`
+
+### Utilities
+- **createSettingsStore** (hook): `(key?: string) => { loadSettings: () => SettingsConfig; saveSettings: (settings:...`
+- **architectureReviewSchema** (constant): constant
+- **validateProps** (utility): `(componentName: string, props: object, schema: PropSchema) => void`
+
+### Server Utilities
+- **createNavigableRouter** (factory): factory
+- **generateMCPTools** (factory): factory
+- **routeMCPToolCall** (factory): factory
+- **buildToolName** (factory): factory
+
+### Other
+- **BadgeEditorSchema** (utility): utility
+- **BoxEditorSchema** (utility): utility
+- **ButtonEditorSchema** (utility): utility
+- **CardEditorSchema** (utility): utility
+- **Center** (utility): utility
+- **type FileInputProps** (utility): utility
+- **FlexEditorSchema** (utility): utility
+- **GridEditorSchema** (utility): utility
+- **InputEditorSchema** (utility): utility
+- **MarkdownRenderer** (utility): utility
+- **MarkdownComponentsContext** (utility): utility
+- **useMarkdownComponents** (hook): hook
+- **parse** (utility): utility
+- **ProgressBarEditorSchema** (utility): utility
+- **SelectEditorSchema** (utility): utility
+- **StackEditorSchema** (utility): utility
+- **SwitchEditorSchema** (utility): utility
+- **TextEditorSchema** (utility): utility
+- **createActionForm** (hook): hook
+- **useNavigableActions** (hook): hook
+- **SKContextMenu** (utility): utility
+- **DashboardContainer** (utility): utility
+- **DashboardCard** (utility): utility
+- **useDashboardLayout** (hook): hook
+- **autoPlace** (utility): utility
+- **getFileType** (utility): utility
+- **ListView** (utility): utility
+- **IconsView** (utility): utility
+- **GalleryView** (utility): utility
+- **useTour** (hook): hook
+- **MessageInput** (utility): utility
+- **createVoiceRecognition** (hook): hook
+- **SettingsPanel** (utility): utility
+- **AppearancePanel** (utility): utility
+- **AnimationPanel** (utility): utility
+- **LayoutPanel** (utility): utility
+- **type ThemePickerModalProps** (utility): utility
+- **useToast** (hook): hook
+- **galleryHubDarkTheme** (utility): utility
+- **reportDarkTheme** (utility): utility
+- **defaultLightTheme** (utility): utility
+- **highContrastTheme** (utility): utility
+- **warmDarkTheme** (utility): utility
+- **oceanTheme** (utility): utility
+- **roseTheme** (utility): utility
+- **devtoolsTheme** (utility): utility
+- **DesktopProvider** (provider): provider
+- **WebAdapter** (factory): factory
+- **ElectronAdapter** (factory): factory
+- **DesktopCapability** (utility): utility
+- **AnimationContext** (utility): utility
+- **Motion** (utility): utility
+- **Presence** (utility): utility
+- **resolveEasing** (utility): utility
+- **easingMap** (utility): utility
+- **TiltCard** (utility): utility
+- **GlassCard** (utility): utility
+- **GlowElement** (utility): utility
+- **HolographicCard** (utility): utility
+- **GradientBorder** (utility): utility
+- **CursorSpotlight** (utility): utility
+- **ParticleField** (utility): utility
+- **ShaderBackground** (utility): utility
+- **MorphingBlob** (utility): utility
+- **SpringCounter** (utility): utility
+- **ScoreRing** (utility): utility
+- **TypewriterText** (utility): utility
+- **SkeletonShimmer** (utility): utility
+- **useSpring** (hook): hook
+- **useMotionValue** (hook): hook
+- **useGesture** (hook): hook
+- **useScrollProgress** (hook): hook
+- **PanelContainer** (utility): utility
+- **PanelResizeHandle** (utility): utility
+- **registerContentType** (utility): utility
+- **getContentType** (utility): utility
+- **getDefaultPanel** (utility): utility
+- **getPanelsForContentType** (utility): utility
+- **getAllContentTypes** (utility): utility
+- **clearContentTypes** (utility): utility
+- **NavigationProvider** (provider): provider
+- **NavigationMenu** (utility): utility
+- **PanelContentSlot** (utility): utility
+- **registerNavigable** (utility): utility
+- **unregisterNavigable** (utility): utility
+- **getNavigable** (utility): utility
+- **getAllNavigables** (utility): utility
+- **inspectNavigables** (utility): utility
+- **dispatchAction** (utility): utility
+- **clearNavigables** (utility): utility
+- **// #279 ActionMiddleware addActionMiddleware** (utility): utility
+- **removeActionMiddleware** (utility): utility
+- **clearActionMiddlewares** (utility): utility
+- **// #280 ActionEventStream onActionDispatched** (utility): utility
+- **getActionHistory** (utility): utility
+- **clearActionHistory** (utility): utility
+- **clearActionEventListeners** (utility): utility
+- **// #281 Reactive State Subscriptions onStateChange** (utility): utility
+- **onAnyStateChange** (utility): utility
+- **notifyStateChange** (utility): utility
+- **clearStateListeners** (utility): utility
+- **// #282 Global State Snapshot captureGlobalState** (utility): utility
+- **restoreGlobalState** (utility): utility
+- **diffState** (utility): utility
+- **createNavigable** (factory): factory
+- **createPermissionMiddleware** (factory): factory
+- **setActionPermission** (utility): utility
+- **clearActionPermissions** (utility): utility
+- **createUndoRedoMiddleware** (factory): factory
+- **createLoggingMiddleware** (factory): factory
+- **createAnalyticsMiddleware** (factory): factory
+- **createRateLimitMiddleware** (factory): factory
+- **connectTransport** (factory): factory
+- **WebSocketTransportAdapter** (factory): factory
+- **MessagePortTransportAdapter** (factory): factory
+- **TauriIPCAdapter** (factory): factory
+- **LocalStorageAdapter** (factory): factory
+- **MemoryStorageAdapter** (factory): factory
+- **enableStatePersistence** (factory): factory
+- **serializeGlobalState** (utility): utility
+- **hydrateGlobalState** (utility): utility
+- **BroadcastChannelAdapter** (factory): factory
+- **checkNavigableHealth** (utility): utility
+- **dispatchTransaction** (factory): factory
+- **registerCompositeAction** (factory): factory
+- **getCompositeActions** (utility): utility
+- **clearCompositeActions** (utility): utility
+- **TestNavigableRegistry** (utility): utility
+- **createTestRegistry** (hook): hook
+- **startActionRecording** (factory): factory
+- **replaySession** (factory): factory
+- **createNavigableDevTools** (factory): factory
+- **ViewSwitcher** (utility): utility
+- **OnboardingLayout** (utility): utility
+- **WebSocketError** (utility): utility
+- **WebSocketConnectionError** (utility): utility
+- **SessionNotFoundError** (utility): utility
+- **SessionCreationError** (utility): utility
+- **FileSystemError** (utility): utility
+- **DirectoryNotFoundError** (utility): utility
+- **ClipboardError** (utility): utility
+- **ApiError** (utility): utility
+- **ReportShell** (utility): utility
+- **ReportNav** (utility): utility
+- **ReportHero** (utility): utility
+- **ReportSection** (utility): utility
+- **ReportScoreCard** (utility): utility
+- **SummaryGrid** (utility): utility
+- **FlowDiagram** (utility): utility
+- **LayerStack** (utility): utility
+- **GapAnalysis** (utility): utility
+- **GapCard** (utility): utility
+- **PackageTree** (utility): utility
+- **PresetGrid** (utility): utility
+- **SourceList** (utility): utility
+- **ReportFooter** (utility): utility
+
+## Design Tokens
+
+### SpaceToken
+'0' | 'px' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
+
+### FontSizeToken
+'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl'
+
+### FontWeightToken
+'regular' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black'
+
+### BgToken
+'primary' | 'secondary' | 'tertiary' | 'elevated' | 'accent' | 'transparent'
+
+### TextColorToken
+'primary' | 'secondary' | 'muted' | 'on-accent'
+
+### RadiusToken
+'sm' | 'md' | 'lg' | 'xl' | 'full'
+
+### ShadowToken
+'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'inner'
+
+## Links
+- [Full API Reference](./llms-full.txt)
+- [Theme Guide](./docs/ai/theme.md)
+- [Composition Patterns](./docs/ai/patterns.md)

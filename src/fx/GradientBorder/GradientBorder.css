@@ -1,0 +1,56 @@
+.sk-gradient-border {
+  --sk-gb-width: 2px;
+  --sk-gb-radius: var(--sk-radius-md);
+  --sk-gb-colors: var(--sk-accent), var(--sk-success), var(--sk-info);
+  --sk-gb-speed: 3s;
+
+  position: relative;
+  border-radius: calc(var(--sk-gb-radius) + var(--sk-gb-width));
+  padding: var(--sk-gb-width);
+  display: inline-block;
+  background: conic-gradient(from 0deg, var(--sk-gb-colors));
+}
+
+.sk-gradient-border__inner {
+  background: var(--sk-bg-primary);
+  border-radius: var(--sk-gb-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes sk-gb-rotate {
+  from {
+    background: conic-gradient(from 0deg, var(--sk-gb-colors));
+  }
+  to {
+    background: conic-gradient(from 360deg, var(--sk-gb-colors));
+  }
+}
+
+/* CSS Houdini @property for smooth rotation if available */
+@property --sk-gb-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes sk-gb-rotate-angle {
+  from {
+    --sk-gb-angle: 0deg;
+  }
+  to {
+    --sk-gb-angle: 360deg;
+  }
+}
+
+.sk-gradient-border--animated {
+  background: conic-gradient(from var(--sk-gb-angle, 0deg), var(--sk-gb-colors));
+  animation: sk-gb-rotate-angle var(--sk-gb-speed) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-gradient-border--animated {
+    animation: none;
+    background: conic-gradient(from 0deg, var(--sk-gb-colors));
+  }
+}

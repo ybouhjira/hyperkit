@@ -1,0 +1,8 @@
+{
+  "label": "Navigation",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "components/navigation/index"
+  }
+}

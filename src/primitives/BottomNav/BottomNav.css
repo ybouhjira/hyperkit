@@ -1,0 +1,109 @@
+.sk-bottom-nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  background: var(--sk-bg-secondary);
+  border-top: 1px solid var(--sk-border);
+}
+
+/* Bottom variant — fixed to viewport bottom */
+.sk-bottom-nav--bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  z-index: var(--sk-z-sticky, 100);
+}
+
+/* Top variant — regular block flow */
+.sk-bottom-nav--top {
+  position: relative;
+  border-top: none;
+  border-bottom: 1px solid var(--sk-border);
+  height: 48px;
+}
+
+.sk-bottom-nav__item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sk-space-2xs);
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  background: transparent;
+  border: none;
+  border-top: 2px solid transparent;
+  color: var(--sk-text-secondary);
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    color var(--sk-duration-fast) var(--sk-ease-default),
+    border-color var(--sk-duration-fast) var(--sk-ease-default),
+    background var(--sk-duration-fast) var(--sk-ease-default);
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: -2px;
+  }
+}
+
+.sk-bottom-nav--top .sk-bottom-nav__item {
+  border-top: none;
+  border-bottom: 2px solid transparent;
+}
+
+.sk-bottom-nav__item--active {
+  color: var(--sk-accent);
+  border-top-color: var(--sk-accent);
+}
+
+.sk-bottom-nav--top .sk-bottom-nav__item--active {
+  border-bottom-color: var(--sk-accent);
+}
+
+.sk-bottom-nav__item--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sk-bottom-nav__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--sk-icon-lg, 20px);
+  line-height: 1;
+}
+
+.sk-bottom-nav__badge {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  min-width: var(--sk-space-md);
+  height: var(--sk-space-md);
+  padding: 0 var(--sk-space-2xs);
+  border-radius: 9999px;
+  background: var(--sk-error);
+  color: var(--sk-text-on-accent, #fff);
+  font-size: var(--sk-font-size-xs);
+  font-weight: var(--sk-font-weight-semibold, 600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.sk-bottom-nav__label {
+  font-size: var(--sk-font-size-xs);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}

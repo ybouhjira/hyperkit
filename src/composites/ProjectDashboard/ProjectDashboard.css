@@ -1,0 +1,14 @@
+/* ProjectDashboard CSS Variables */
+/* All variables use --sk-project-dashboard-* prefix and fall back to --sk-* theme tokens */
+/* Component now uses SolidKit primitives - these variables remain for customization */
+
+:root {
+  /* Progress Bar Colors (used for dynamic color calculation) */
+  --sk-project-dashboard-progress-high: #22c55e;
+  --sk-project-dashboard-progress-medium: #eab308;
+  --sk-project-dashboard-progress-low: #ef4444;
+
+  /* State Icons */
+  --sk-project-dashboard-state-open: #22c55e;
+  --sk-project-dashboard-state-closed: #a855f7;
+}

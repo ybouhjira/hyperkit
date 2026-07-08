@@ -1,0 +1,579 @@
+@layer sk-mode-ink {
+  /* ═══════════════════════════════════════════════════════════════
+   * INK MODE — Ultra-clean, typography-driven, minimal
+   * Linear / Notion / Vercel aesthetic
+   *
+   * Personality:
+   *   - No backdrop-filter, no blur, no glow — pure flat surfaces
+   *   - No shadows on panels/cards — 1px borders only
+   *   - Fast transitions (--sk-duration-fast)
+   *   - No hover lift — subtle background shifts only
+   *   - Press = opacity reduction (0.8)
+   *   - Typography drives hierarchy (weight + size, not color)
+   *   - Generous spacing — content breathes
+   *   - Single accent color for all interactive elements
+   *   - Hidden complexity: secondary controls fade in on hover
+   * ═══════════════════════════════════════════════════════════════ */
+
+  /* === Global Typography Treatment === */
+  [data-sk-mode='ink'] {
+    letter-spacing: -0.01em;
+  }
+
+  /* Focus rings: thin 1px solid accent, no glow, no spread */
+  [data-sk-mode='ink'] :focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  /* ─────────────────────────────────────────
+   * BUTTON
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-btn {
+    border-radius: var(--sk-radius-sm);
+    box-shadow: none;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition:
+      background-color var(--sk-duration-fast) ease-out,
+      border-color var(--sk-duration-fast) ease-out,
+      color var(--sk-duration-fast) ease-out,
+      opacity var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-btn:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn:active {
+    opacity: 0.8;
+    transform: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--primary {
+    background: var(--sk-accent);
+    color: var(--sk-text-on-accent);
+    border: 1px solid var(--sk-accent);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--primary:hover {
+    background: var(--sk-accent-hover);
+    border-color: var(--sk-accent-hover);
+  }
+
+  [data-sk-mode='ink'] .sk-btn--primary:active {
+    filter: none;
+    opacity: 0.8;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--secondary {
+    background: transparent;
+    border: 1px solid var(--sk-border);
+    color: var(--sk-text-primary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--secondary:hover {
+    background: var(--sk-bg-tertiary);
+    border-color: var(--sk-border);
+  }
+
+  [data-sk-mode='ink'] .sk-btn--ghost {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--sk-text-secondary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--ghost:hover {
+    background: var(--sk-bg-tertiary);
+    border-color: transparent;
+    color: var(--sk-text-primary);
+  }
+
+  [data-sk-mode='ink'] .sk-btn--outline {
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--outline:hover {
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--danger {
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-btn--danger:hover {
+    filter: none;
+    opacity: 0.88;
+  }
+
+  /* ─────────────────────────────────────────
+   * INPUT & TEXTAREA
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-input {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: transparent;
+    box-shadow: none;
+    transition: border-color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-input:focus {
+    border-color: var(--sk-accent);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-input:focus-visible {
+    box-shadow: none;
+    outline: none;
+    border-color: var(--sk-accent);
+  }
+
+  [data-sk-mode='ink'] .sk-textarea {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: transparent;
+    box-shadow: none;
+    transition: border-color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-textarea:focus {
+    border-color: var(--sk-accent);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-textarea:focus-visible {
+    box-shadow: none;
+    outline: none;
+    border-color: var(--sk-accent);
+  }
+
+  /* ─────────────────────────────────────────
+   * SELECT
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-select__trigger {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: transparent;
+    box-shadow: none;
+    transition: border-color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-select__trigger:focus {
+    border-color: var(--sk-accent);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-select__trigger:focus-visible {
+    box-shadow: none;
+    outline: 1px solid var(--sk-accent);
+    outline-offset: 2px;
+  }
+
+  [data-sk-mode='ink'] .sk-select__content {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-secondary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-select__item[data-highlighted] {
+    background: var(--sk-bg-tertiary);
+    color: var(--sk-text-primary);
+  }
+
+  /* ─────────────────────────────────────────
+   * DROPDOWN
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-dropdown__content {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-secondary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-dropdown__item {
+    border-radius: var(--sk-radius-sm);
+    transition: background-color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-dropdown__item[data-highlighted] {
+    background: var(--sk-bg-tertiary);
+  }
+
+  /* ─────────────────────────────────────────
+   * TOOLTIP
+   * Solid dark bg, no shadow, minimal radius
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-tooltip__content {
+    border-radius: var(--sk-radius-sm);
+    background: var(--sk-bg-primary);
+    border: 1px solid var(--sk-border);
+    box-shadow: none;
+    font-weight: 500;
+  }
+
+  /* ─────────────────────────────────────────
+   * POPOVER
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-popover__content {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-secondary);
+    box-shadow: none;
+  }
+
+  /* ─────────────────────────────────────────
+   * DIALOG
+   * Clean overlay, no blur, 1px border, no shadow
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-dialog__content {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-primary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-dialog__title {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  [data-sk-mode='ink'] .sk-dialog__close:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    box-shadow: none;
+  }
+
+  /* ─────────────────────────────────────────
+   * TABS
+   * Underline indicator only — no background pill
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-tabs__trigger {
+    border-radius: 0;
+    border-bottom: 1px solid transparent;
+    color: var(--sk-text-muted);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition:
+      color var(--sk-duration-fast) ease-out,
+      border-color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-tabs__trigger:hover {
+    color: var(--sk-text-primary);
+    background: transparent;
+  }
+
+  [data-sk-mode='ink'] .sk-tabs__trigger[data-selected] {
+    color: var(--sk-text-primary);
+    border-bottom-color: var(--sk-accent);
+    font-weight: 600;
+  }
+
+  [data-sk-mode='ink'] .sk-tabs__trigger:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  /* ─────────────────────────────────────────
+   * ACCORDION
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-accordion__trigger {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition:
+      color var(--sk-duration-fast) ease-out,
+      background-color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-accordion__trigger:hover {
+    background: var(--sk-bg-tertiary);
+  }
+
+  [data-sk-mode='ink'] .sk-accordion__trigger:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: -1px;
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-accordion__chevron {
+    transition: transform var(--sk-duration-fast) ease-out;
+  }
+
+  /* ─────────────────────────────────────────
+   * SWITCH
+   * Small, minimal track — no box-shadow on thumb
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-switch__thumb {
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-switch__control {
+    transition: background-color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-switch__control:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  /* ─────────────────────────────────────────
+   * BADGE
+   * Minimal pill, low contrast
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-badge {
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  [data-sk-mode='ink'] .sk-badge--default {
+    background: color-mix(in srgb, var(--sk-text-muted) 10%, transparent);
+    color: var(--sk-text-secondary);
+  }
+
+  /* ─────────────────────────────────────────
+   * SEPARATOR
+   * Almost invisible divider
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-separator--horizontal {
+    background-color: var(--sk-border-subtle, var(--sk-border));
+    opacity: 0.6;
+  }
+
+  [data-sk-mode='ink'] .sk-separator--vertical {
+    background-color: var(--sk-border-subtle, var(--sk-border));
+    opacity: 0.6;
+  }
+
+  /* ─────────────────────────────────────────
+   * KBD
+   * Minimal key display, no bottom shadow
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-kbd {
+    background: transparent;
+    border: 1px solid var(--sk-border-subtle);
+    border-radius: var(--sk-radius-sm);
+    box-shadow: none;
+    color: var(--sk-text-muted);
+    font-weight: 500;
+  }
+
+  /* ─────────────────────────────────────────
+   * SKELETON
+   * Subtle shimmer, no strong highlight
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-skeleton::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--sk-text-primary) 3%, transparent),
+      transparent
+    );
+  }
+
+  /* ─────────────────────────────────────────
+   * SCROLL AREA
+   * Hidden by default, appears on scroll
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-scroll-area {
+    --sk-scroll-width: 4px;
+    --sk-scroll-thumb: transparent;
+    --sk-scroll-thumb-hover: var(--sk-text-muted);
+  }
+
+  /* ─────────────────────────────────────────
+   * PROGRESS BAR
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-progress {
+    border-radius: var(--sk-radius-sm);
+    background: color-mix(in srgb, var(--sk-text-primary) 8%, transparent);
+  }
+
+  [data-sk-mode='ink'] .sk-progress__fill {
+    border-radius: var(--sk-radius-sm);
+    transition: width var(--sk-duration-normal) ease-out;
+  }
+
+  /* ─────────────────────────────────────────
+   * PROGRESS RING
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-progress-ring__track {
+    stroke: color-mix(in srgb, var(--sk-text-primary) 8%, transparent);
+  }
+
+  [data-sk-mode='ink'] .sk-progress-ring__fill {
+    transition: stroke-dashoffset var(--sk-duration-normal) ease-out;
+  }
+
+  /* ─────────────────────────────────────────
+   * SIDEBAR
+   * Solid background, 1px border-right, no shadow
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-sidebar {
+    background: var(--sk-bg-primary);
+    border-right: 1px solid var(--sk-border);
+    box-shadow: none;
+    transition: width var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-sidebar__header {
+    border-bottom: 1px solid var(--sk-border);
+    padding: var(--sk-space-md) var(--sk-space-md);
+  }
+
+  [data-sk-mode='ink'] .sk-sidebar__footer {
+    border-top: 1px solid var(--sk-border);
+  }
+
+  [data-sk-mode='ink'] .sk-sidebar__toggle {
+    background: var(--sk-bg-primary);
+    border: 1px solid var(--sk-border);
+    box-shadow: none;
+    transition:
+      background-color var(--sk-duration-fast) ease-out,
+      color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-sidebar__toggle:hover {
+    background: var(--sk-bg-secondary);
+  }
+
+  [data-sk-mode='ink'] .sk-sidebar__toggle:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    box-shadow: none;
+  }
+
+  /* ─────────────────────────────────────────
+   * STATUS BAR
+   * Solid bg, 1px top border, no shadow
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-status-bar {
+    background: var(--sk-bg-primary);
+    border-top: 1px solid var(--sk-border);
+    color: var(--sk-text-secondary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-status-bar__item--clickable:hover {
+    background: var(--sk-bg-tertiary);
+    color: var(--sk-text-primary);
+  }
+
+  [data-sk-mode='ink'] .sk-status-bar__item--clickable:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: -1px;
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-status-bar__tooltip {
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-primary);
+    box-shadow: none;
+  }
+
+  /* ─────────────────────────────────────────
+   * MENU BAR
+   * Solid bg, 1px bottom border, no shadow
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-menu-bar {
+    background: var(--sk-bg-primary);
+    border-bottom: 1px solid var(--sk-border);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-menu-bar__trigger:hover,
+  [data-sk-mode='ink'] .sk-menu-bar__trigger[data-expanded] {
+    background: var(--sk-bg-tertiary);
+  }
+
+  [data-sk-mode='ink'] .sk-menu-bar__trigger:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: -1px;
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-menu-bar__content {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-primary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-menu-bar__item[data-highlighted] {
+    background: var(--sk-bg-tertiary);
+  }
+
+  [data-sk-mode='ink'] .sk-menu-bar__separator {
+    background: var(--sk-border-subtle);
+    opacity: 0.6;
+  }
+
+  /* ─────────────────────────────────────────
+   * TOAST
+   * Clean, bordered, no shadow
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-toast {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-primary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-toast__close {
+    transition:
+      background-color var(--sk-duration-fast) ease-out,
+      color var(--sk-duration-fast) ease-out;
+  }
+
+  [data-sk-mode='ink'] .sk-toast__close:hover {
+    background: var(--sk-bg-tertiary);
+  }
+
+  /* ─────────────────────────────────────────
+   * COMMAND PALETTE
+   * Clean, bordered, no backdrop blur
+   * ───────────────────────────────────────── */
+  [data-sk-mode='ink'] .sk-cmd-palette {
+    border-radius: var(--sk-radius-sm);
+    border: 1px solid var(--sk-border);
+    background: var(--sk-bg-primary);
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-cmd-palette__overlay {
+    background: color-mix(in srgb, var(--sk-bg-primary) 40%, transparent);
+    backdrop-filter: none;
+  }
+
+  [data-sk-mode='ink'] .sk-cmd-palette__input-row {
+    border-bottom: 1px solid var(--sk-border);
+  }
+
+  [data-sk-mode='ink'] .sk-cmd-palette__item:hover {
+    background: var(--sk-bg-tertiary);
+  }
+
+  [data-sk-mode='ink'] .sk-cmd-palette__item--selected {
+    background: var(--sk-bg-secondary);
+  }
+
+  [data-sk-mode='ink'] .sk-cmd-palette__item:focus-visible {
+    outline: 1px solid var(--sk-accent);
+    outline-offset: -1px;
+    box-shadow: none;
+  }
+
+  [data-sk-mode='ink'] .sk-cmd-palette__item-shortcut {
+    background: transparent;
+    border: 1px solid var(--sk-border-subtle);
+    border-radius: var(--sk-radius-sm);
+    box-shadow: none;
+  }
+}

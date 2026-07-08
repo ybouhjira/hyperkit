@@ -1,0 +1,17 @@
+.sk-sparkline {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.sk-sparkline--animate .sk-sparkline__line--animate {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: sk-sparkline-draw var(--sk-duration-slow, 600ms) ease forwards;
+}
+
+@keyframes sk-sparkline-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

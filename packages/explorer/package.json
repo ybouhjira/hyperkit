@@ -1,0 +1,41 @@
+{
+  "name": "@ybouhjira/explorer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@ybouhjira/hyperkit": "workspace:*",
+    "@ybouhjira/diagram-core": "workspace:*",
+    "@ybouhjira/diagram-svg": "workspace:*",
+    "@ybouhjira/diagram-solid": "workspace:*",
+    "@ybouhjira/hyperkit-devtools": "workspace:*",
+    "@ybouhjira/hyperkit-test": "workspace:*",
+    "@ybouhjira/hyperkit-timeline": "workspace:*"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.8.0",
+    "effect": "^3.0.0"
+  },
+  "devDependencies": {
+    "@motionone/dom": "^10.18.0",
+    "@solid-primitives/props": "^3.2.4",
+    "@solid-primitives/refs": "^1.1.4",
+    "@solid-primitives/transition-group": "^1.1.2",
+    "@solidjs/testing-library": "^0.8.10",
+    "solid-motionone": "^1.0.4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "jsdom": "^28.1.0",
+    "solid-js": "^1.9.11",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-solid": "^2.11.10",
+    "vitest": "^4.0.18"
+  },
+  "license": "MIT"
+}

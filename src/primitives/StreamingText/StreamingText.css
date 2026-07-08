@@ -1,0 +1,13 @@
+.sk-streaming-text {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.sk-streaming-text__plain {
+  font-family: var(--sk-font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  margin: 0;
+  padding: 1rem;
+}

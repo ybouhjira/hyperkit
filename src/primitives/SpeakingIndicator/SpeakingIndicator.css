@@ -1,0 +1,160 @@
+/* =============================================================================
+   SpeakingIndicator — "audio output is active" affordance.
+   Tokens only. Respects prefers-reduced-motion via token zeroing.
+   ============================================================================= */
+
+.sk-speaking {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+  padding: var(--sk-space-2xs) var(--sk-space-sm);
+  border-radius: 9999px;
+  background: var(--sk-accent-muted, color-mix(in srgb, var(--sk-accent) 14%, transparent));
+  color: var(--sk-accent);
+  font-size: var(--sk-font-size-xs);
+  line-height: 1;
+  animation: sk-speaking-enter var(--sk-duration-normal) var(--sk-ease-out, ease-out);
+  transform-origin: left center;
+}
+
+@keyframes sk-speaking-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Size presets ─────────────────────────────────────────────────────────── */
+.sk-speaking--sm .sk-speaking__bars {
+  height: 12px;
+}
+.sk-speaking--md .sk-speaking__bars {
+  height: 16px;
+}
+.sk-speaking--lg .sk-speaking__bars {
+  height: 24px;
+}
+
+.sk-speaking--sm .sk-speaking__dot {
+  width: 6px;
+  height: 6px;
+}
+.sk-speaking--md .sk-speaking__dot {
+  width: 8px;
+  height: 8px;
+}
+.sk-speaking--lg .sk-speaking__dot {
+  width: 12px;
+  height: 12px;
+}
+
+.sk-speaking--sm .sk-speaking__wave {
+  width: 32px;
+  height: 12px;
+}
+.sk-speaking--md .sk-speaking__wave {
+  width: 48px;
+  height: 16px;
+}
+.sk-speaking--lg .sk-speaking__wave {
+  width: 64px;
+  height: 24px;
+}
+
+/* ── Bars variant ─────────────────────────────────────────────────────────── */
+.sk-speaking__bars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.sk-speaking__bar {
+  display: inline-block;
+  width: 3px;
+  height: 100%;
+  background: currentColor;
+  border-radius: 9999px;
+  transform-origin: center;
+  animation: sk-speaking-bar 800ms var(--sk-ease-in-out, ease-in-out) infinite;
+}
+
+@keyframes sk-speaking-bar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* ── Dot variant ──────────────────────────────────────────────────────────── */
+.sk-speaking__dot {
+  display: inline-block;
+  border-radius: 9999px;
+  background: currentColor;
+  box-shadow: 0 0 0 0 currentColor;
+  animation: sk-speaking-pulse var(--sk-duration-pulse, 2s) var(--sk-ease-out, ease-out) infinite;
+}
+
+@keyframes sk-speaking-pulse {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 1;
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgb(0, 0, 0, 0);
+    opacity: 0.6;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(0, 0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* ── Wave variant ─────────────────────────────────────────────────────────── */
+.sk-speaking__wave {
+  overflow: visible;
+}
+
+.sk-speaking__wave path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 10;
+  animation: sk-speaking-wave 1.2s linear infinite;
+}
+
+@keyframes sk-speaking-wave {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+/* ── Label ────────────────────────────────────────────────────────────────── */
+.sk-speaking__label {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 18ch;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sk-speaking,
+  .sk-speaking__bar,
+  .sk-speaking__dot,
+  .sk-speaking__wave path {
+    animation: none;
+  }
+}

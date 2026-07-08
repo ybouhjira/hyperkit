@@ -1,0 +1,42 @@
+{
+  "name": "@ybouhjira/hyperkit-test",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-describing test framework for HyperKit apps \u2014 navigable registry as the test introspection source of truth",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./hook": {
+      "types": "./dist/hook.d.ts",
+      "import": "./dist/hook.js"
+    },
+    "./playwright": {
+      "types": "./dist/fixture.d.ts",
+      "import": "./dist/fixture.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "playwright test --config=playwright.config.ts",
+    "test:headed": "playwright test --config=playwright.config.ts --headed",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@ybouhjira/hyperkit": "workspace:*"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@ybouhjira/hyperkit": "workspace:*",
+    "typescript": "^5.9.3"
+  },
+  "license": "MIT"
+}

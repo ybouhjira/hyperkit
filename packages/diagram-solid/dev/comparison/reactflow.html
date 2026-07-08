@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>React Flow Style — Visual Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: #1a1b26;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    .page-title {
+      color: #c0c8e8;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.7;
+      user-select: none;
+    }
+
+    .card {
+      background: #f8f9fa;
+      border-radius: 16px;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.06),
+        0 4px 6px -1px rgba(0, 0, 0, 0.08),
+        0 20px 60px -10px rgba(0, 0, 0, 0.35),
+        0 60px 120px -20px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      position: relative;
+      width: 900px;
+      height: 580px;
+    }
+
+    .card-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #e8ecf0;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .traffic-lights {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .traffic-light {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .tl-red    { background: #ff5f57; box-shadow: 0 0 0 0.5px rgba(255,95,87,0.6); }
+    .tl-yellow { background: #febc2e; box-shadow: 0 0 0 0.5px rgba(254,188,46,0.6); }
+    .tl-green  { background: #28c840; box-shadow: 0 0 0 0.5px rgba(40,200,64,0.6); }
+
+    .header-title {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #8896a5;
+      margin-left: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .controls {
+      margin-left: auto;
+      display: flex;
+      gap: 6px;
+    }
+
+    .control-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #f0f2f5;
+      border: 1px solid #e2e6ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .control-btn svg {
+      width: 13px;
+      height: 13px;
+      color: #6b7a8d;
+    }
+
+    .canvas-area {
+      position: absolute;
+      top: 48px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+
+    .minimap {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 120px;
+      height: 76px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #e2e6ea;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 20;
+      overflow: hidden;
+    }
+
+    .zoom-controls {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 20;
+    }
+
+    .zoom-btn {
+      width: 28px;
+      height: 28px;
+      background: white;
+      border: 1px solid #e2e6ea;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      font-size: 16px;
+      color: #6b7a8d;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .legend {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid #e2e6ea;
+      border-radius: 8px;
+      padding: 10px 14px;
+      z-index: 20;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .legend-title {
+      font-size: 10px;
+      font-weight: 600;
+      color: #8896a5;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 7px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 5px;
+      font-size: 11px;
+      color: #5a6779;
+      font-weight: 500;
+    }
+
+    .legend-item:last-child { margin-bottom: 0; }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">React Flow Style</p>
+
+  <div class="card">
+    <!-- Window chrome -->
+    <div class="card-header">
+      <div class="traffic-lights">
+        <div class="traffic-light tl-red"></div>
+        <div class="traffic-light tl-yellow"></div>
+        <div class="traffic-light tl-green"></div>
+      </div>
+      <span class="header-title">Business Process Flow</span>
+      <div class="controls">
+        <div class="control-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/>
+          </svg>
+        </div>
+        <div class="control-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main canvas -->
+    <div class="canvas-area">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 852 532"
+        xmlns="http://www.w3.org/2000/svg"
+        style="display:block;"
+      >
+        <defs>
+          <!-- Dot grid pattern -->
+          <pattern id="dotgrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+            <circle cx="0.5" cy="0.5" r="0.85" fill="#c8d0db" opacity="0.55"/>
+          </pattern>
+
+          <!-- Drop shadows -->
+          <filter id="node-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#94a3b8" flood-opacity="0.18"/>
+          </filter>
+          <filter id="node-shadow-hover" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#6366f1" flood-opacity="0.22"/>
+          </filter>
+
+          <!-- Arrowhead markers -->
+          <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L8,3 z" fill="#93c5fd"/>
+          </marker>
+          <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L8,3 z" fill="#6ee7b7"/>
+          </marker>
+          <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L8,3 z" fill="#fdba74"/>
+          </marker>
+          <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L8,3 z" fill="#c4b5fd"/>
+          </marker>
+          <marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L8,3 z" fill="#5eead4"/>
+          </marker>
+          <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L8,3 z" fill="#fca5a5"/>
+          </marker>
+          <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L8,3 z" fill="#cbd5e1"/>
+          </marker>
+
+          <!-- Edge animation -->
+          <style>
+            @keyframes dash-flow {
+              from { stroke-dashoffset: 24; }
+              to   { stroke-dashoffset: 0; }
+            }
+            .animated-edge {
+              animation: dash-flow 0.9s linear infinite;
+            }
+            @keyframes pulse-glow {
+              0%, 100% { opacity: 0.7; }
+              50%       { opacity: 1; }
+            }
+            .pulse-node {
+              animation: pulse-glow 2.4s ease-in-out infinite;
+            }
+          </style>
+
+          <!-- Node gradient fills -->
+          <linearGradient id="grad-white" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#f8fafc"/>
+          </linearGradient>
+          <linearGradient id="grad-green-bg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#f0fdf4"/>
+            <stop offset="100%" stop-color="#dcfce7"/>
+          </linearGradient>
+          <linearGradient id="grad-red-bg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#fff5f5"/>
+            <stop offset="100%" stop-color="#fee2e2"/>
+          </linearGradient>
+
+          <!-- Selected glow -->
+          <filter id="selected-glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-color="#6366f1" flood-opacity="0.35" result="color"/>
+            <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+            <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="852" height="532" fill="#f8f9fa"/>
+        <rect width="852" height="532" fill="url(#dotgrid)"/>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- EDGES — drawn before nodes so nodes sit on top -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- Start → Receive Order (animated, green) -->
+        <path
+          d="M 132,88 C 132,130 210,130 210,172"
+          fill="none"
+          stroke="#6ee7b7"
+          stroke-width="2"
+          stroke-dasharray="6,4"
+          marker-end="url(#arrow-green)"
+          class="animated-edge"
+          opacity="0.9"
+        />
+
+        <!-- Receive Order → Validate Order -->
+        <path
+          d="M 296,216 C 360,216 360,264 424,264"
+          fill="none"
+          stroke="#93c5fd"
+          stroke-width="2"
+          marker-end="url(#arrow-blue)"
+          opacity="0.85"
+        />
+
+        <!-- Validate Order → Check Inventory (Yes branch) -->
+        <path
+          d="M 510,240 C 510,196 610,196 610,172"
+          fill="none"
+          stroke="#fdba74"
+          stroke-width="2"
+          stroke-dasharray="6,4"
+          marker-end="url(#arrow-orange)"
+          class="animated-edge"
+          opacity="0.85"
+        />
+
+        <!-- Validate Order → Process Payment (No/reject branch — dashed gray) -->
+        <path
+          d="M 510,288 C 510,336 424,336 424,380"
+          fill="none"
+          stroke="#cbd5e1"
+          stroke-width="1.5"
+          stroke-dasharray="4,4"
+          marker-end="url(#arrow-gray)"
+          opacity="0.7"
+        />
+
+        <!-- Check Inventory → Process Payment -->
+        <path
+          d="M 696,172 C 750,172 750,240 750,264 C 750,288 730,300 696,332"
+          fill="none"
+          stroke="#c4b5fd"
+          stroke-width="2"
+          marker-end="url(#arrow-purple)"
+          opacity="0.85"
+        />
+
+        <!-- Process Payment → Ship Order -->
+        <path
+          d="M 610,376 C 540,376 524,376 524,376"
+          fill="none"
+          stroke="#5eead4"
+          stroke-width="2"
+          marker-end="url(#arrow-teal)"
+          opacity="0.85"
+        />
+
+        <!-- Ship Order → End -->
+        <path
+          d="M 438,420 C 360,420 310,420 310,420 C 270,420 256,388 256,356"
+          fill="none"
+          stroke="#fca5a5"
+          stroke-width="2"
+          stroke-dasharray="6,4"
+          marker-end="url(#arrow-red)"
+          class="animated-edge"
+          opacity="0.85"
+        />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- EDGE LABELS -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- Yes label on Validate→Inventory -->
+        <g transform="translate(558, 188)">
+          <rect x="-14" y="-10" width="28" height="18" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+          <text x="0" y="3" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="#22c55e">Yes</text>
+        </g>
+
+        <!-- No label on Validate→Payment -->
+        <g transform="translate(460, 330)">
+          <rect x="-12" y="-10" width="24" height="18" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+          <text x="0" y="3" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="#ef4444">No</text>
+        </g>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- NODES -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- ── START NODE (pill, green) ── -->
+        <!-- Position: cx=132, cy=68, w=140, h=40 -->
+        <g filter="url(#node-shadow)" class="pulse-node">
+          <rect x="62" y="48" width="140" height="40" rx="20" fill="url(#grad-green-bg)" stroke="#86efac" stroke-width="1.5"/>
+        </g>
+        <!-- Left accent bar -->
+        <rect x="62" y="55" width="4" height="26" rx="2" fill="#22c55e"/>
+        <!-- Icon circle -->
+        <circle cx="84" cy="68" r="10" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+        <circle cx="84" cy="68" r="4" fill="#22c55e"/>
+        <!-- Label -->
+        <text x="132" y="64" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#15803d">Start</text>
+        <text x="132" y="79" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="400" fill="#4ade80">Trigger event</text>
+        <!-- Connection handle bottom -->
+        <circle cx="132" cy="88" r="4" fill="white" stroke="#86efac" stroke-width="1.5"/>
+
+        <!-- ── RECEIVE ORDER NODE (rect, blue) ── -->
+        <!-- cx=210, cy=216, w=172, h=88 -->
+        <g filter="url(#node-shadow)">
+          <rect x="124" y="172" width="172" height="88" rx="10" fill="url(#grad-white)" stroke="#e2e8f0" stroke-width="1.5"/>
+        </g>
+        <!-- Left blue accent border -->
+        <rect x="124" y="182" width="4" height="68" rx="2" fill="#3b82f6"/>
+        <!-- Icon area -->
+        <rect x="136" y="190" width="28" height="28" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+        <text x="150" y="209" text-anchor="middle" font-family="system-ui" font-size="14" fill="#3b82f6">📥</text>
+        <!-- Title -->
+        <text x="180" y="201" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Receive Order</text>
+        <!-- Sub-line -->
+        <text x="180" y="216" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#64748b">Incoming from customer</text>
+        <!-- Divider -->
+        <line x1="136" y1="226" x2="288" y2="226" stroke="#f1f5f9" stroke-width="1"/>
+        <!-- Meta tag -->
+        <rect x="136" y="232" width="60" height="16" rx="4" fill="#eff6ff"/>
+        <text x="166" y="244" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="500" fill="#3b82f6">automated</text>
+        <!-- Handles -->
+        <circle cx="210" cy="172" r="4" fill="white" stroke="#bfdbfe" stroke-width="1.5"/>
+        <circle cx="296" cy="216" r="4" fill="white" stroke="#bfdbfe" stroke-width="1.5"/>
+
+        <!-- ── VALIDATE ORDER NODE (diamond, orange) ── -->
+        <!-- cx=510, cy=264 -->
+        <!-- Diamond: rotated rect, size ~86x86 -->
+        <g filter="url(#node-shadow)">
+          <rect x="448" y="218" width="124" height="92" rx="10" fill="url(#grad-white)" stroke="#e2e8f0" stroke-width="1.5"/>
+        </g>
+        <!-- Left orange accent -->
+        <rect x="448" y="228" width="4" height="72" rx="2" fill="#f97316"/>
+        <!-- Icon -->
+        <rect x="460" y="232" width="28" height="28" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+        <text x="474" y="251" text-anchor="middle" font-family="system-ui" font-size="14" fill="#f97316">✓</text>
+        <!-- Title -->
+        <text x="504" y="243" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Validate Order</text>
+        <!-- Sub-line -->
+        <text x="504" y="258" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#64748b">Rules &amp; constraints check</text>
+        <!-- Divider -->
+        <line x1="460" y1="268" x2="564" y2="268" stroke="#f1f5f9" stroke-width="1"/>
+        <!-- Status badge -->
+        <rect x="460" y="274" width="52" height="16" rx="4" fill="#fff7ed"/>
+        <text x="486" y="286" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="500" fill="#ea580c">decision</text>
+        <!-- Handles -->
+        <circle cx="510" cy="218" r="4" fill="white" stroke="#fed7aa" stroke-width="1.5"/>
+        <circle cx="448" cy="264" r="4" fill="white" stroke="#fed7aa" stroke-width="1.5"/>
+        <circle cx="572" cy="264" r="4" fill="white" stroke="#fed7aa" stroke-width="1.5"/>
+        <circle cx="510" cy="310" r="4" fill="white" stroke="#fed7aa" stroke-width="1.5"/>
+
+        <!-- ── CHECK INVENTORY NODE (rect, blue-darker) ── -->
+        <!-- cx=648, cy=132, w=172, h=80 -->
+        <g filter="url(#node-shadow)">
+          <rect x="610" y="92" width="172" height="80" rx="10" fill="url(#grad-white)" stroke="#e2e8f0" stroke-width="1.5"/>
+        </g>
+        <!-- Left indigo accent -->
+        <rect x="610" y="102" width="4" height="60" rx="2" fill="#6366f1"/>
+        <!-- Icon -->
+        <rect x="622" y="106" width="28" height="28" rx="6" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1"/>
+        <text x="636" y="125" text-anchor="middle" font-family="system-ui" font-size="14" fill="#6366f1">📦</text>
+        <!-- Title -->
+        <text x="666" y="117" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Check Inventory</text>
+        <!-- Sub-line -->
+        <text x="666" y="132" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#64748b">Stock availability</text>
+        <!-- Divider -->
+        <line x1="622" y1="142" x2="774" y2="142" stroke="#f1f5f9" stroke-width="1"/>
+        <!-- Progress bar — shows 73% -->
+        <rect x="622" y="149" width="140" height="7" rx="3.5" fill="#f1f5f9"/>
+        <rect x="622" y="149" width="102" height="7" rx="3.5" fill="#818cf8"/>
+        <text x="766" y="157" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="8" fill="#6366f1" font-weight="600">73%</text>
+        <!-- Handles -->
+        <circle cx="696" cy="92" r="4" fill="white" stroke="#c7d2fe" stroke-width="1.5"/>
+
+        <!-- ── PROCESS PAYMENT NODE (rect, purple) ── -->
+        <!-- cx=510, cy=420 — placed lower for reject path, but also connects from inventory -->
+        <!-- repositioned to cx=648, cy=356 -->
+        <g filter="url(#node-shadow)">
+          <rect x="574" y="316" width="172" height="80" rx="10" fill="url(#grad-white)" stroke="#e2e8f0" stroke-width="1.5"/>
+        </g>
+        <!-- Left purple accent -->
+        <rect x="574" y="326" width="4" height="60" rx="2" fill="#a855f7"/>
+        <!-- Icon -->
+        <rect x="586" y="330" width="28" height="28" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
+        <text x="600" y="349" text-anchor="middle" font-family="system-ui" font-size="14" fill="#a855f7">💳</text>
+        <!-- Title -->
+        <text x="630" y="341" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Process Payment</text>
+        <!-- Sub-line -->
+        <text x="630" y="356" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#64748b">Stripe / PayPal gateway</text>
+        <!-- Divider -->
+        <line x1="586" y1="366" x2="738" y2="366" stroke="#f1f5f9" stroke-width="1"/>
+        <!-- Badge -->
+        <rect x="586" y="372" width="46" height="16" rx="4" fill="#faf5ff"/>
+        <text x="609" y="384" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="500" fill="#a855f7">secure</text>
+        <!-- Handle input left -->
+        <circle cx="574" cy="356" r="4" fill="white" stroke="#e9d5ff" stroke-width="1.5"/>
+        <!-- Handle output bottom-left -->
+        <circle cx="610" cy="396" r="4" fill="white" stroke="#e9d5ff" stroke-width="1.5"/>
+
+        <!-- ── SHIP ORDER NODE (rect, teal) ── -->
+        <!-- cx=481, cy=420, w=172, h=80 -->
+        <!-- Output from Process Payment going left: cx=438, cy=420 -->
+        <g filter="url(#node-shadow)">
+          <rect x="352" y="380" width="172" height="80" rx="10" fill="url(#grad-white)" stroke="#e2e8f0" stroke-width="1.5"/>
+        </g>
+        <!-- Left teal accent -->
+        <rect x="352" y="390" width="4" height="60" rx="2" fill="#14b8a6"/>
+        <!-- Icon -->
+        <rect x="364" y="394" width="28" height="28" rx="6" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/>
+        <text x="378" y="413" text-anchor="middle" font-family="system-ui" font-size="14" fill="#14b8a6">🚚</text>
+        <!-- Title -->
+        <text x="408" y="405" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Ship Order</text>
+        <!-- Sub-line -->
+        <text x="408" y="420" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#64748b">Logistics dispatch</text>
+        <!-- Divider -->
+        <line x1="364" y1="430" x2="516" y2="430" stroke="#f1f5f9" stroke-width="1"/>
+        <!-- Badge -->
+        <rect x="364" y="436" width="56" height="16" rx="4" fill="#f0fdfa"/>
+        <text x="392" y="448" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="500" fill="#14b8a6">in transit</text>
+        <!-- Handle input right -->
+        <circle cx="524" cy="420" r="4" fill="white" stroke="#99f6e4" stroke-width="1.5"/>
+        <!-- Handle output left -->
+        <circle cx="352" cy="420" r="4" fill="white" stroke="#99f6e4" stroke-width="1.5"/>
+
+        <!-- ── END NODE (pill, red) ── -->
+        <!-- cx=210, cy=336, w=140, h=40 -->
+        <g filter="url(#node-shadow)">
+          <rect x="140" y="316" width="140" height="40" rx="20" fill="url(#grad-red-bg)" stroke="#fca5a5" stroke-width="1.5"/>
+        </g>
+        <!-- Left red accent -->
+        <rect x="140" y="323" width="4" height="26" rx="2" fill="#ef4444"/>
+        <!-- Icon circle -->
+        <circle cx="162" cy="336" r="10" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+        <!-- X icon -->
+        <line x1="157" y1="331" x2="167" y2="341" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="167" y1="331" x2="157" y2="341" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Label -->
+        <text x="218" y="332" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="600" fill="#991b1b">End</text>
+        <text x="218" y="347" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="400" fill="#f87171">Process complete</text>
+        <!-- Handle top -->
+        <circle cx="210" cy="316" r="4" fill="white" stroke="#fca5a5" stroke-width="1.5"/>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- SELECTED NODE HIGHLIGHT (Validate Order has "selected" look) -->
+        <!-- A subtle blue ring around it -->
+        <rect x="444" y="214" width="132" height="100" rx="13" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.35"/>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- NODE COUNT BADGE (bottom left corner of card) -->
+        <g transform="translate(16, 502)">
+          <rect width="120" height="20" rx="5" fill="rgba(255,255,255,0.82)" stroke="#e2e8f0" stroke-width="1"/>
+          <text x="8" y="14" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="500" fill="#64748b">7 nodes · 6 edges · zoom 1.0×</text>
+        </g>
+      </svg>
+
+      <!-- Zoom controls -->
+      <div class="zoom-controls">
+        <div class="zoom-btn">+</div>
+        <div class="zoom-btn" style="font-size:18px;padding-bottom:2px;">−</div>
+        <div class="zoom-btn" style="font-size:10px;font-weight:700;">⊡</div>
+      </div>
+
+      <!-- Minimap -->
+      <div class="minimap">
+        <svg width="120" height="76" viewBox="0 0 852 532" xmlns="http://www.w3.org/2000/svg">
+          <rect width="852" height="532" fill="#f1f5f9"/>
+          <!-- Minimap viewport indicator -->
+          <rect x="10" y="10" width="832" height="512" rx="4" fill="none" stroke="#94a3b8" stroke-width="8" opacity="0.4"/>
+          <!-- Tiny node blobs -->
+          <rect x="90" y="58" width="76" height="24" rx="6" fill="#86efac" opacity="0.7"/>
+          <rect x="148" y="178" width="100" height="52" rx="5" fill="#93c5fd" opacity="0.7"/>
+          <rect x="468" y="222" width="88" height="56" rx="5" fill="#fdba74" opacity="0.7"/>
+          <rect x="626" y="98" width="100" height="50" rx="5" fill="#c7d2fe" opacity="0.7"/>
+          <rect x="588" y="320" width="100" height="52" rx="5" fill="#e9d5ff" opacity="0.7"/>
+          <rect x="366" y="382" width="100" height="50" rx="5" fill="#99f6e4" opacity="0.7"/>
+          <rect x="154" y="320" width="80" height="26" rx="7" fill="#fca5a5" opacity="0.7"/>
+          <!-- Edge lines (tiny) -->
+          <line x1="132" y1="82" x2="196" y2="178" stroke="#94a3b8" stroke-width="4" opacity="0.4"/>
+          <line x1="248" y1="204" x2="468" y2="250" stroke="#94a3b8" stroke-width="4" opacity="0.4"/>
+          <line x1="556" y1="242" x2="626" y2="152" stroke="#94a3b8" stroke-width="4" opacity="0.4"/>
+          <line x1="716" y1="182" x2="650" y2="320" stroke="#94a3b8" stroke-width="4" opacity="0.4"/>
+          <line x1="590" y1="372" x2="466" y2="390" stroke="#94a3b8" stroke-width="4" opacity="0.4"/>
+          <line x1="366" y1="404" x2="234" y2="336" stroke="#94a3b8" stroke-width="4" opacity="0.4"/>
+        </svg>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend">
+        <div class="legend-title">Node Types</div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#22c55e;border-radius:50%;"></div>
+          Start / End
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#3b82f6;"></div>
+          Process
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f97316;"></div>
+          Decision
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#a855f7;"></div>
+          External
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

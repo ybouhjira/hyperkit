@@ -1,0 +1,83 @@
+.sk-record-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--sk-border);
+  background: var(--sk-bg-secondary);
+  cursor: pointer;
+  transition:
+    background-color var(--sk-duration-fast),
+    border-color var(--sk-duration-fast),
+    transform var(--sk-duration-fast);
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: 2px;
+  }
+
+  &:hover:not(.sk-record-btn--disabled) {
+    background: var(--sk-bg-tertiary);
+    transform: scale(1.05);
+  }
+
+  &:active:not(.sk-record-btn--disabled) {
+    transform: scale(0.95);
+  }
+}
+
+/* Sizes */
+.sk-record-btn--sm {
+  width: 28px;
+  height: 28px;
+}
+
+.sk-record-btn--md {
+  width: 36px;
+  height: 36px;
+}
+
+.sk-record-btn--lg {
+  width: 44px;
+  height: 44px;
+}
+
+/* Recording state */
+.sk-record-btn--recording {
+  border-color: var(--sk-error);
+  background: color-mix(in srgb, var(--sk-error) 10%, var(--sk-bg-secondary));
+}
+
+/* Disabled state */
+.sk-record-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dot indicator */
+.sk-record-btn__dot {
+  border-radius: 50%;
+  background: var(--sk-text-muted);
+  transition: background-color var(--sk-duration-fast);
+  flex-shrink: 0;
+}
+
+.sk-record-btn--recording .sk-record-btn__dot {
+  background: var(--sk-error);
+}
+
+.sk-record-btn__dot--pulse {
+  animation: sk-record-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes sk-record-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}

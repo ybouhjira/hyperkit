@@ -1,0 +1,857 @@
+/* SolidKit Views - Slot System Styles */
+
+/* ==================== Design Tokens ==================== */
+:root {
+  /* Base colors */
+  --sk-view-bg: #ffffff;
+  --sk-view-border: #e1e4e8;
+  --sk-view-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --sk-view-radius: 8px;
+  --sk-view-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Text colors */
+  --sk-view-text: #24292f;
+  --sk-view-text-secondary: #57606a;
+  --sk-view-text-muted: #8b949e;
+
+  /* Status colors */
+  --sk-view-status-open: #1a7f37;
+  --sk-view-status-closed: #8250df;
+  --sk-view-status-in-progress: #bf8700;
+
+  /* Accents */
+  --sk-view-accent: #0969da;
+  --sk-view-tag-bg: #ddf4ff;
+  --sk-view-tag-color: #0969da;
+  --sk-view-badge-bg: #1a7f37;
+  --sk-view-badge-color: #ffffff;
+
+  /* Sizing */
+  --sk-view-gap: 12px;
+  --sk-view-padding: 16px;
+}
+
+/* Dark mode overrides */
+.sk-view-dark {
+  --sk-view-bg: #0d1117;
+  --sk-view-border: #30363d;
+  --sk-view-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --sk-view-text: #e6edf3;
+  --sk-view-text-secondary: #8b949e;
+  --sk-view-text-muted: #6e7681;
+  --sk-view-tag-bg: #1a2a42;
+  --sk-view-tag-color: #58a6ff;
+}
+
+/* ==================== Common Base Styles ==================== */
+[class*='sk-view-'] {
+  font-family: var(--sk-view-font);
+  color: var(--sk-view-text);
+  line-height: 1.5;
+}
+
+/* ==================== Field States ==================== */
+.sk-field--hidden {
+  display: none;
+}
+
+.sk-field--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.sk-field--readonly {
+  pointer-events: none;
+}
+
+/* ==================== Skeleton Loading ==================== */
+.sk-view-skeleton .sk-skeleton-slot {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: sk-shimmer 1.5s infinite;
+  border-radius: 4px;
+  min-height: 16px;
+}
+
+.sk-view-dark .sk-view-skeleton .sk-skeleton-slot {
+  background: linear-gradient(90deg, #161b22 25%, #21262d 50%, #161b22 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes sk-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ==================== 1. Detail View (Full Page) ==================== */
+.sk-view-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sk-view-padding);
+}
+
+.sk-view-detail .sk-slot-hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--sk-view-radius);
+  overflow: hidden;
+}
+
+.sk-view-detail .sk-slot-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sk-view-detail .sk-slot-hero-heading {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  margin-top: 8px;
+}
+
+.sk-view-detail .sk-slot-section-heading {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 16px 0 0;
+}
+
+.sk-view-detail .sk-slot-status-badge {
+  align-self: flex-start;
+}
+
+.sk-view-detail .sk-slot-status-badge .status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--sk-view-badge-bg);
+  color: var(--sk-view-badge-color);
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sk-view-detail .sk-slot-avatar-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sk-view-detail .sk-slot-avatar-card img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sk-view-detail .sk-slot-avatar-card span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sk-view-detail .sk-slot-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sk-view-detail .sk-slot-tag-list .tag {
+  padding: 3px 8px;
+  background: var(--sk-view-tag-bg);
+  color: var(--sk-view-tag-color);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.sk-view-detail .sk-slot-stat-block {
+  font-size: 14px;
+  color: var(--sk-view-text-secondary);
+}
+
+.sk-view-detail .sk-slot-stat-block strong {
+  font-weight: 600;
+  color: var(--sk-view-text);
+}
+
+.sk-view-detail .sk-slot-star-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  color: var(--sk-view-status-open);
+}
+
+.sk-view-detail .sk-slot-star-display span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sk-view-text);
+}
+
+.sk-view-detail .sk-slot-date-display {
+  font-size: 13px;
+  color: var(--sk-view-text-muted);
+}
+
+.sk-view-detail .sk-slot-breadcrumb {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 12px;
+  color: var(--sk-view-text-muted);
+}
+
+.sk-view-detail .sk-slot-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sk-view-gap);
+}
+
+.sk-view-detail .sk-slot-rich-text {
+  line-height: 1.6;
+  color: var(--sk-view-text-secondary);
+}
+
+/* ==================== 2. Card View (Vertical) ==================== */
+.sk-view-card {
+  width: 300px;
+  background: var(--sk-view-bg);
+  border: 1px solid var(--sk-view-border);
+  border-radius: var(--sk-view-radius);
+  box-shadow: var(--sk-view-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--sk-view-padding);
+  gap: 8px;
+  position: relative;
+}
+
+.sk-view-card .sk-slot-card-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+  margin: calc(-1 * var(--sk-view-padding));
+  margin-bottom: 0;
+}
+
+.sk-view-card .sk-slot-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sk-view-card .sk-slot-card-badge {
+  align-self: flex-start;
+}
+
+.sk-view-card .sk-slot-card-badge .status-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--sk-view-badge-bg);
+  color: var(--sk-view-badge-color);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* When badge follows a cover image, overlay it */
+.sk-view-card .sk-slot-card-cover + .sk-slot-card-badge {
+  position: absolute;
+  top: calc(var(--sk-view-padding) + 8px);
+  right: calc(var(--sk-view-padding) + 8px);
+}
+
+.sk-view-card .sk-slot-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sk-view-card .sk-slot-card-subtitle {
+  font-size: 13px;
+  color: var(--sk-view-text-muted);
+  margin: 0;
+}
+
+.sk-view-card .sk-slot-card-excerpt {
+  font-size: 13px;
+  color: var(--sk-view-text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sk-view-card .sk-slot-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sk-view-card .sk-slot-card-tags .tag {
+  padding: 3px 8px;
+  background: var(--sk-view-tag-bg);
+  color: var(--sk-view-tag-color);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.sk-view-card .sk-slot-card-avatar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sk-view-card .sk-slot-card-avatar img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sk-view-card .sk-slot-card-avatar span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sk-view-card .sk-slot-card-metric {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sk-view-accent);
+}
+
+.sk-view-card .sk-slot-card-time {
+  font-size: 12px;
+  color: var(--sk-view-text-muted);
+}
+
+/* ==================== 3. Row View (Horizontal) ==================== */
+.sk-view-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-view-gap);
+  padding: var(--sk-view-gap);
+  border-bottom: 1px solid var(--sk-view-border);
+  background: var(--sk-view-bg);
+}
+
+.sk-view-row .sk-slot-row-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sk-view-row .sk-slot-row-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sk-view-row .sk-slot-row-id {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 12px;
+  color: var(--sk-view-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sk-view-row .sk-slot-row-primary {
+  flex: 1 1 0;
+  min-width: 150px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-view-row .sk-slot-row-secondary {
+  color: var(--sk-view-text-muted);
+  font-size: 13px;
+}
+
+.sk-view-row .sk-slot-row-badge {
+  flex-shrink: 0;
+}
+
+.sk-view-row .sk-slot-row-badge .status-pill {
+  display: inline-block;
+  padding: 3px 8px;
+  background: var(--sk-view-badge-bg);
+  color: var(--sk-view-badge-color);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sk-view-row .sk-slot-row-tag-first {
+  flex-shrink: 0;
+}
+
+.sk-view-row .sk-slot-row-tag-first .tag {
+  display: inline-block;
+  padding: 3px 8px;
+  background: var(--sk-view-tag-bg);
+  color: var(--sk-view-tag-color);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sk-view-row .sk-slot-row-avatar {
+  flex-shrink: 0;
+}
+
+.sk-view-row .sk-slot-row-avatar img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.sk-view-row .sk-slot-row-metric {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sk-view-accent);
+  flex-shrink: 0;
+}
+
+.sk-view-row .sk-slot-row-time {
+  font-size: 12px;
+  color: var(--sk-view-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ==================== 4. Table View (Cell Styles) ==================== */
+.sk-view-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sk-view-table td,
+.sk-view-table th {
+  padding: var(--sk-view-gap);
+  border-bottom: 1px solid var(--sk-view-border);
+}
+
+.sk-view-table .sk-slot-cell-text {
+  color: var(--sk-view-text);
+}
+
+.sk-view-table .sk-slot-cell-badge {
+  text-align: center;
+}
+
+.sk-view-table .sk-slot-cell-badge > * {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--sk-view-badge-bg);
+  color: var(--sk-view-badge-color);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sk-view-table .sk-slot-cell-number {
+  text-align: right;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.sk-view-table .sk-slot-cell-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.sk-view-table .sk-slot-cell-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sk-view-table .sk-slot-cell-date {
+  color: var(--sk-view-text-muted);
+  font-size: 13px;
+}
+
+/* ==================== 5. Board View (Kanban Card) ==================== */
+.sk-view-board {
+  background: var(--sk-view-bg);
+  border: 1px solid var(--sk-view-border);
+  border-radius: var(--sk-view-radius);
+  padding: var(--sk-view-gap);
+  box-shadow: var(--sk-view-shadow);
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sk-view-board .sk-slot-card-title {
+  font-weight: 600;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-view-board .sk-slot-card-subtitle {
+  font-size: 12px;
+  color: var(--sk-view-text-muted);
+}
+
+.sk-view-board .sk-slot-card-tag-dots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.sk-view-board .sk-slot-card-tag-dots > * {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sk-view-accent);
+}
+
+.sk-view-board .sk-slot-card-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.sk-view-board .sk-slot-card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sk-view-board .sk-slot-card-time {
+  font-size: 11px;
+  color: var(--sk-view-text-muted);
+  margin-top: auto;
+}
+
+/* ==================== 6. Timeline View (Bar) ==================== */
+.sk-view-timeline {
+  position: relative;
+  height: 32px;
+  background: var(--sk-view-status-open);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 4px 0;
+}
+
+.sk-view-timeline .sk-slot-event-label {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sk-view-timeline[data-status='open'] {
+  background: var(--sk-view-status-open);
+}
+
+.sk-view-timeline[data-status='closed'] {
+  background: var(--sk-view-status-closed);
+}
+
+.sk-view-timeline[data-status='in-progress'] {
+  background: var(--sk-view-status-in-progress);
+}
+
+/* ==================== 7. Pin View (Map Marker) ==================== */
+.sk-view-pin {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sk-view-pin .sk-slot-pin-label {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sk-view-pin:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: var(--sk-view-text);
+  color: var(--sk-view-bg);
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+
+/* ==================== 8. Compact Card View (Minimal) ==================== */
+.sk-view-compact-card {
+  width: 180px;
+  background: var(--sk-view-bg);
+  border: 1px solid var(--sk-view-border);
+  border-radius: var(--sk-view-radius);
+  padding: var(--sk-view-gap);
+  box-shadow: var(--sk-view-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sk-view-compact-card .sk-slot-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-view-compact-card .sk-slot-badge {
+  padding: 3px 8px;
+  background: var(--sk-view-badge-bg);
+  color: var(--sk-view-badge-color);
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.sk-view-compact-card .sk-slot-card-metric {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--sk-view-accent);
+}
+
+/* ==================== Selection styles (intent="pick") ==================== */
+.sk-selectable {
+  cursor: pointer;
+  transition: outline 0.15s ease, background-color 0.15s ease;
+  position: relative;
+}
+.sk-selectable:hover {
+  outline: 2px solid var(--sk-selection-hover, rgba(59, 130, 246, 0.3));
+  outline-offset: 2px;
+}
+.sk-selectable--selected {
+  outline: 2px solid var(--sk-selection-active, #3b82f6);
+  outline-offset: 2px;
+  background-color: var(--sk-selection-bg, rgba(59, 130, 246, 0.05));
+}
+.sk-selectable--selected::before {
+  content: '✓';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 12px;
+  background: var(--sk-selection-active, #3b82f6);
+  color: white;
+  z-index: 10;
+}
+
+/* Dark mode selection */
+.sk-view-dark .sk-selectable:hover {
+  outline-color: var(--sk-selection-hover, rgba(96, 165, 250, 0.3));
+}
+.sk-view-dark .sk-selectable--selected {
+  outline-color: var(--sk-selection-active, #60a5fa);
+  background-color: var(--sk-selection-bg, rgba(96, 165, 250, 0.1));
+}
+.sk-view-dark .sk-selectable--selected::before {
+  background: var(--sk-selection-active, #60a5fa);
+}
+
+/* ==================== Skeleton Loading States ==================== */
+.sk-skeleton {
+  background: var(--sk-skeleton-bg, #e0e0e0);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.sk-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--sk-skeleton-shine, rgba(255,255,255,0.4)), transparent);
+  animation: sk-skeleton-shimmer 1.5s infinite;
+}
+@keyframes sk-skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Skeleton shapes */
+.sk-skeleton--text-long { width: 80%; height: 1em; }
+.sk-skeleton--text-medium { width: 60%; height: 1em; }
+.sk-skeleton--text-short { width: 30%; height: 1em; }
+.sk-skeleton--pill { width: 60px; height: 22px; border-radius: 11px; }
+.sk-skeleton--circle { width: 40px; height: 40px; border-radius: 50%; }
+.sk-skeleton--block { width: 100%; height: 180px; }
+.sk-skeleton--square { width: 48px; height: 48px; }
+.sk-skeleton--bar { width: 100%; height: 8px; border-radius: 4px; }
+.sk-skeleton--dot { width: 12px; height: 12px; border-radius: 50%; }
+.sk-skeleton--icon { width: 20px; height: 20px; }
+
+/* Dark mode skeleton */
+.sk-view-dark .sk-skeleton {
+  background: var(--sk-skeleton-bg, #333);
+}
+.sk-view-dark .sk-skeleton::after {
+  background: linear-gradient(90deg, transparent, var(--sk-skeleton-shine, rgba(255,255,255,0.1)), transparent);
+}
+
+/* ==================== FLIP Transition Styles ==================== */
+/* FLIP transition styles */
+[data-field] {
+  will-change: transform, opacity;
+}
+.sk-flip-animating [data-field] {
+  transform-origin: top left;
+}
+.sk-flip-entering {
+  animation: sk-flip-fade-in 200ms ease both;
+}
+.sk-flip-leaving {
+  animation: sk-flip-fade-out 150ms ease both;
+}
+@keyframes sk-flip-fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes sk-flip-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+/* ==================== Drag and Drop ==================== */
+/* Drag and drop */
+.sk-draggable {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.sk-draggable:active {
+  cursor: grabbing;
+}
+.sk-draggable--dragging {
+  opacity: 0.5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+.sk-drop-zone {
+  transition: background-color 0.15s ease, outline 0.15s ease;
+  min-height: 40px;
+}
+.sk-drop-zone--active {
+  outline: 2px dashed var(--sk-drop-zone-border, #94a3b8);
+  outline-offset: -2px;
+}
+.sk-drop-zone--over {
+  outline-color: var(--sk-drop-zone-active, #3b82f6);
+  background-color: var(--sk-drop-zone-bg, rgba(59, 130, 246, 0.05));
+}
+
+/* Drag handle */
+.sk-drag-handle {
+  cursor: grab;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+}
+.sk-drag-handle:hover {
+  opacity: 1;
+}
+.sk-drag-handle::before {
+  content: '⋮⋮';
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 2px;
+  color: var(--sk-drag-handle-color, #64748b);
+}
+
+/* Dark mode drag */
+.sk-view-dark .sk-draggable--dragging {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.sk-view-dark .sk-drop-zone--active {
+  outline-color: var(--sk-drop-zone-border, #475569);
+}
+.sk-view-dark .sk-drop-zone--over {
+  outline-color: var(--sk-drop-zone-active, #60a5fa);
+  background-color: var(--sk-drop-zone-bg, rgba(96, 165, 250, 0.1));
+}
+.sk-view-dark .sk-drag-handle::before {
+  color: var(--sk-drag-handle-color, #94a3b8);
+}
+/* ==================== Inline Editing ==================== */
+.sk-editable {
+  cursor: text;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+.sk-editable:hover {
+  background-color: var(--sk-edit-hover-bg, rgba(59, 130, 246, 0.05));
+}
+.sk-editable--editing {
+  background-color: var(--sk-edit-bg, #fff);
+  box-shadow: 0 0 0 2px var(--sk-edit-ring, #3b82f6);
+  padding: 4px 8px;
+}
+.sk-editable--dirty {
+  border-left: 3px solid var(--sk-edit-dirty, #f59e0b);
+}
+.sk-editable--error {
+  box-shadow: 0 0 0 2px var(--sk-edit-error, #ef4444);
+}
+.sk-editable--error::after {
+  content: attr(data-error);
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-size: 12px;
+  color: var(--sk-edit-error, #ef4444);
+}
+
+/* Dark mode editing */
+.sk-view-dark .sk-editable:hover {
+  background-color: var(--sk-edit-hover-bg, rgba(96, 165, 250, 0.1));
+}
+.sk-view-dark .sk-editable--editing {
+  background-color: var(--sk-edit-bg, #1e293b);
+  box-shadow: 0 0 0 2px var(--sk-edit-ring, #60a5fa);
+}
+.sk-view-dark .sk-editable--dirty {
+  border-left-color: var(--sk-edit-dirty, #fbbf24);
+}
+.sk-view-dark .sk-editable--error {
+  box-shadow: 0 0 0 2px var(--sk-edit-error, #f87171);
+}

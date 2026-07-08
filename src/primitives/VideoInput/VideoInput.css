@@ -1,0 +1,200 @@
+.sk-video-input {
+  --sk-video-input-preview-width: 200px;
+  --sk-video-input-preview-height: 150px;
+  --sk-video-input-border: var(--sk-border);
+  --sk-video-input-bg: var(--sk-bg-secondary);
+  --sk-video-input-radius: var(--sk-radius-md);
+
+  width: 100%;
+}
+
+.sk-video-input__hidden-input {
+  display: none;
+}
+
+.sk-video-input__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-xl);
+  border: 2px dashed var(--sk-video-input-border);
+  border-radius: var(--sk-video-input-radius);
+  background: var(--sk-video-input-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 200px;
+}
+
+.sk-video-input__dropzone:hover:not(.sk-video-input--disabled .sk-video-input__dropzone) {
+  border-color: var(--sk-color-primary);
+  background: var(--sk-color-primary-bg);
+}
+
+.sk-video-input__dropzone--dragging {
+  border-color: var(--sk-color-primary);
+  background: var(--sk-color-primary-bg);
+  transform: scale(1.02);
+}
+
+.sk-video-input__upload-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--sk-text-secondary);
+}
+
+.sk-video-input__placeholder {
+  margin: 0;
+  font-size: var(--sk-font-size-base);
+  font-weight: 500;
+  color: var(--sk-color-text);
+}
+
+.sk-video-input__hint {
+  margin: 0;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+}
+
+.sk-video-input--disabled .sk-video-input__dropzone {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sk-video-input__previews {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+}
+
+.sk-video-input__previews--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--sk-video-input-preview-width), 1fr));
+  gap: var(--sk-space-md);
+}
+
+.sk-video-input__preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-xs);
+}
+
+.sk-video-input__thumbnail-wrapper {
+  position: relative;
+  width: 100%;
+  height: var(--sk-video-input-preview-height);
+  border-radius: var(--sk-video-input-radius);
+  overflow: hidden;
+  background: var(--sk-bg-tertiary);
+}
+
+.sk-video-input__thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sk-video-input__play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 0.6);
+  border-radius: 50%;
+  color: white;
+  pointer-events: none;
+}
+
+.sk-video-input__play-icon svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 3px; /* Visual centering for triangle */
+}
+
+.sk-video-input__duration {
+  position: absolute;
+  bottom: var(--sk-space-xs);
+  right: var(--sk-space-xs);
+  padding: 2px 6px;
+  background: rgb(0 0 0 / 0.8);
+  color: white;
+  font-size: var(--sk-font-size-xs);
+  font-weight: 500;
+  border-radius: var(--sk-radius-sm);
+  pointer-events: none;
+}
+
+.sk-video-input__remove {
+  position: absolute;
+  top: var(--sk-space-xs);
+  right: var(--sk-space-xs);
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  background: rgb(0 0 0 / 0.6);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sk-video-input__remove:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--sk-error) 90%, transparent);
+}
+
+.sk-video-input__remove:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sk-video-input__remove svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sk-video-input__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sk-video-input__filename {
+  margin: 0;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sk-video-input__size {
+  margin: 0;
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-text-secondary);
+}
+
+.sk-video-input__error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  background: var(--sk-color-danger-bg, #fef2f2);
+  color: var(--sk-color-danger, #dc2626);
+  border-radius: var(--sk-radius-sm, 4px);
+  font-size: 0.875rem;
+}
+
+.sk-video-input__error-icon {
+  flex-shrink: 0;
+}

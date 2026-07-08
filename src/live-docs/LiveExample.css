@@ -1,0 +1,31 @@
+.sk-live-block {
+  display: flex;
+  flex-direction: column;
+  /* The block carries a scoped hyperlabsTheme (applyThemeToElement) so the
+     preview is isolated from host-app token overrides — anchor the inherited
+     text styling to the scoped vars. */
+  color: var(--sk-text-primary);
+  font-family: var(--sk-font-ui, inherit);
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-live {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--sk-space-md);
+  min-height: 96px;
+  padding: var(--sk-space-xl);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  background: var(--sk-bg-secondary);
+  /* Subtle dotted grid so the example surface reads as a canvas. */
+  background-image: radial-gradient(var(--sk-border-subtle, var(--sk-border)) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.sk-live__empty {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-muted);
+}

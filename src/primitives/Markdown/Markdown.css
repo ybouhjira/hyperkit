@@ -1,0 +1,225 @@
+/* Base container */
+.sk-markdown {
+  line-height: 1.6;
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prose typography defaults */
+.sk-prose {
+  color: var(--sk-text-primary, inherit);
+  /* Typography optimizations */
+  text-wrap: pretty;
+  hyphens: auto;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  font-optical-sizing: auto;
+  text-rendering: optimizelegibility;
+  hanging-punctuation: first last;
+  overflow-wrap: break-word;
+}
+
+.sk-prose p {
+  margin: 0 0 1em;
+}
+
+.sk-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.sk-markdown-heading {
+  margin: 1.5em 0 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sk-prose h1,
+.sk-prose h2,
+.sk-prose h3,
+.sk-prose h4,
+.sk-prose h5,
+.sk-prose h6 {
+  text-wrap: balance;
+}
+
+.sk-prose h1 {
+  font-size: 2em;
+}
+.sk-prose h2 {
+  font-size: 1.5em;
+}
+.sk-prose h3 {
+  font-size: 1.25em;
+}
+.sk-prose h4 {
+  font-size: 1em;
+}
+.sk-prose h5 {
+  font-size: 0.875em;
+}
+.sk-prose h6 {
+  font-size: 0.85em;
+}
+
+/* Code */
+.sk-markdown-code-block {
+  background: var(--sk-bg-elevated, #f6f8fa);
+  border-radius: var(--sk-radius-md, 6px);
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em 0;
+  font-size: 0.875em;
+}
+
+.sk-markdown-code-block code {
+  background: none;
+  padding: 0;
+  font-family: var(--sk-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+}
+
+.sk-markdown-inline-code {
+  background: var(--sk-bg-elevated, #f0f0f0);
+  border-radius: var(--sk-radius-sm, 3px);
+  padding: 0.2em 0.4em;
+  font-size: 0.875em;
+  font-family: var(--sk-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+}
+
+/* Raw HTML — rendered as visible text (safe by default, never innerHTML).
+   See renderer.tsx htmlInline/htmlBlock. Styled like code so the literal
+   markup reads as inspectable source, not as prose. */
+.sk-markdown__html-inline {
+  font-family: var(--sk-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+  font-size: 0.875em;
+  color: var(--sk-text-muted, #6a737d);
+  overflow-wrap: break-word;
+}
+
+.sk-markdown__html-block {
+  display: block;
+  background: var(--sk-bg-elevated, #f6f8fa);
+  border-radius: var(--sk-radius-md, 6px);
+  padding: 1em;
+  margin: 1em 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  font-size: 0.875em;
+  font-family: var(--sk-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+  color: var(--sk-text-muted, #6a737d);
+}
+
+/* Links */
+.sk-markdown-link {
+  color: var(--sk-accent, #6366f1);
+  text-decoration: none;
+}
+
+.sk-markdown-link:hover {
+  text-decoration: underline;
+}
+
+/* Images */
+.sk-markdown-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--sk-radius-md, 6px);
+}
+
+/* Lists */
+.sk-markdown-list {
+  padding-left: 2em;
+  margin: 0.5em 0;
+}
+
+.sk-markdown-list-item {
+  margin: 0.25em 0;
+}
+
+.sk-markdown-task-item {
+  list-style: none;
+  margin-left: -1.5em;
+}
+
+.sk-markdown-checkbox {
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
+/* Tables */
+.sk-markdown-table-wrapper {
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.sk-markdown-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.sk-markdown-table th,
+.sk-markdown-table td {
+  border: 1px solid var(--sk-border, #d0d7de);
+  padding: 0.5em 1em;
+}
+
+.sk-markdown-table th {
+  background: var(--sk-bg-elevated, #f6f8fa);
+  font-weight: 600;
+}
+
+/* Blockquote */
+.sk-markdown-blockquote {
+  border-left: 4px solid var(--sk-accent, #6366f1);
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  color: var(--sk-text-secondary, #636c76);
+}
+
+.sk-markdown-blockquote > p:first-child {
+  margin-top: 0;
+}
+
+.sk-markdown-blockquote > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Thematic break */
+.sk-markdown-thematic-break {
+  border: none;
+  border-top: 2px solid var(--sk-border, #d0d7de);
+  margin: 2em 0;
+}
+
+/* Streaming cursor */
+.sk-markdown__cursor {
+  display: inline-block;
+  color: var(--sk-accent, #6366f1);
+  animation: sk-blink 1s step-end infinite;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
+@keyframes sk-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Strong / Emphasis / Strikethrough */
+.sk-prose strong {
+  font-weight: 700;
+}
+.sk-prose em {
+  font-style: italic;
+}
+.sk-prose del {
+  text-decoration: line-through;
+  opacity: 0.7;
+}

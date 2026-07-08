@@ -1,0 +1,30 @@
+.sk-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--sk-dashboard-grid-min-width, 320px), 1fr));
+  gap: var(--sk-dashboard-grid-gap, var(--sk-space-md));
+  width: 100%;
+}
+
+/* When maxColumns is set, use that as the column limit */
+.sk-dashboard-grid--capped {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      min(
+        var(--sk-dashboard-grid-min-width, 320px),
+        calc(
+          100% / var(--sk-dashboard-grid-max-columns, 1) -
+            var(--sk-dashboard-grid-gap, var(--sk-space-md))
+        )
+      ),
+      1fr
+    )
+  );
+}
+
+/* Ensure items don't overflow on small screens */
+@media (width <= 640px) {
+  .sk-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,101 @@
+.sk-image-preview {
+  display: flex;
+  gap: var(--sk-space-sm);
+  overflow-x: auto;
+  padding: var(--sk-space-xs);
+
+  /* Horizontal scroll with visible scrollbar */
+  &::-webkit-scrollbar {
+    height: var(--sk-space-sm);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--sk-bg-tertiary);
+    border-radius: var(--sk-space-xs);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--sk-border-muted);
+    border-radius: var(--sk-space-xs);
+
+    &:hover {
+      background: var(--sk-border-default);
+    }
+  }
+}
+
+.sk-image-preview__item {
+  position: relative;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--sk-space-sm);
+  overflow: hidden;
+  background: var(--sk-bg-tertiary);
+  border: var(--sk-border-width) solid var(--sk-border-muted);
+  transition: border-color var(--sk-duration-fast) var(--sk-ease-default);
+
+  &:hover {
+    border-color: var(--sk-border-default);
+
+    .sk-image-preview__remove {
+      opacity: 1;
+    }
+  }
+}
+
+.sk-image-preview__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sk-image-preview__remove {
+  position: absolute;
+  top: var(--sk-space-xs);
+  right: var(--sk-space-xs);
+  width: var(--sk-icon-lg);
+  height: var(--sk-icon-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sk-bg-primary);
+  border: var(--sk-border-width) solid var(--sk-border-default);
+  border-radius: 9999px;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity var(--sk-duration-fast) var(--sk-ease-default),
+    background var(--sk-duration-fast) var(--sk-ease-default),
+    border-color var(--sk-duration-fast) var(--sk-ease-default);
+  padding: 0;
+
+  &:hover {
+    background: var(--sk-bg-secondary);
+    border-color: var(--sk-border-strong);
+  }
+
+  &:active {
+    background: var(--sk-bg-tertiary);
+  }
+
+  &:focus-visible {
+    opacity: 1;
+    outline: 2px solid var(--sk-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.sk-image-preview__remove-icon {
+  width: var(--sk-icon-sm);
+  height: var(--sk-icon-sm);
+  color: var(--sk-text-secondary);
+}
+
+/* Touch device support - always show remove button */
+@media (hover: none) and (pointer: coarse) {
+  .sk-image-preview__remove {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,25 @@
+.sk-devtools-overlay {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  border: 2px solid var(--sk-accent);
+  background: color-mix(in srgb, var(--sk-accent) 10%, transparent);
+  transition: all var(--sk-motion-fast) var(--sk-ease-standard);
+}
+
+.sk-devtools-overlay__tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 4px;
+  padding: 2px 8px;
+  background: var(--sk-bg-elevated);
+  color: var(--sk-text-primary);
+  font-size: var(--sk-font-size-xs);
+  font-family: var(--sk-font-mono);
+  border-radius: var(--sk-radius-sm);
+  border: 1px solid var(--sk-border);
+  white-space: nowrap;
+  line-height: 1.5;
+  box-shadow: var(--sk-shadow-md);
+}

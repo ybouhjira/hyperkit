@@ -1,0 +1,6 @@
+export * from './types'
+export * from './pluginStore'
+export { defaultSidebarPlugin } from './default-sidebar'
+export { commandPalettePlugin } from './command-palette'
+export { smartSidebarPlugin } from './smart-sidebar'
+export { commandCenterPlugin } from './command-center'

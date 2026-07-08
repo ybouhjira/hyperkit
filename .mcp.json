@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "hyperkit-docs": {
+      "command": "node",
+      "args": ["mcp-server.js"],
+      "env": {}
+    }
+  }
+}

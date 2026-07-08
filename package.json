@@ -1,0 +1,208 @@
+{
+  "name": "@ybouhjira/hyperkit",
+  "version": "3.4.1",
+  "description": "A scalable SolidJS component library with token-based theming and CSS variable customization",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "hyperkit": "./cli/dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "solid": "./src/index.ts",
+      "import": "./dist/index.js"
+    },
+    "./dist/index.css": "./dist/index.css",
+    "./docs-manifest.json": "./docs-manifest.json",
+    "./live-docs": {
+      "types": "./src/live-docs/index.ts",
+      "solid": "./src/live-docs/index.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "cli/dist",
+    "COMPONENTS.json",
+    "docs-manifest.json"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && npm run cli:build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "thumbnails": "tsx scripts/generate-thumbnails.ts",
+    "validate:stories": "storybook build --quiet && node --input-type=commonjs -e \"const fs = require('fs'); const idx = JSON.parse(fs.readFileSync('./storybook-static/index.json','utf8')); const count = Object.keys(idx.entries || idx.stories || {}).length; if(count === 0) { console.error('ERROR: No stories found in build'); process.exit(1); } console.log('\u2713 Storybook validated: ' + count + ' stories');\" ; rm -rf storybook-static",
+    "prepare": "husky",
+    "publint": "publint --strict",
+    "attw": "attw --pack . --entrypoints . --ignore-rules cjs-resolves-to-esm internal-resolution-error no-resolution",
+    "size": "size-limit",
+    "size:check": "size-limit",
+    "knip": "knip",
+    "lint:css": "stylelint 'src/**/*.css'",
+    "audit:css-vars": "tsx scripts/audit-css-vars.ts",
+    "tree-shake:test": "tsx scripts/tree-shake-test.ts",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish",
+    "test:visual": "playwright test --config=playwright.visual.config.ts",
+    "quality": "npm run format:check && npm run lint && npm run lint:css && npm run audit:css-vars && npm run test && npm run build && npm run publint && npm run attw && npm run size:check && npm run knip",
+    "quality:full": "npm run quality && npm run validate:stories && npm run validate:docs",
+    "docs:ai": "tsx scripts/generate-ai-docs.ts",
+    "docgen": "tsx scripts/docgen/docgen.ts",
+    "docs:check": "tsx scripts/docgen/docgen.ts --check",
+    "smoke:ssg": "node scripts/smoke-ssg.mjs",
+    "cli:build": "esbuild cli/index.ts --bundle --platform=node --outdir=cli/dist --format=esm --packages=external",
+    "cli:dev": "tsx cli/index.ts",
+    "docs:dev": "cd website && npm run start",
+    "docs:build": "cd website && npm run build",
+    "docs:generate-api": "typedoc",
+    "validate:docs": "npm run docs:build && echo '\u2713 Docusaurus docs validated'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybouhjira/hyperkit.git"
+  },
+  "keywords": [
+    "solidjs",
+    "solid-js",
+    "ui",
+    "components",
+    "design-system",
+    "typescript",
+    "css-variables",
+    "theming"
+  ],
+  "author": "Youssef Bouhjira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ybouhjira/hyperkit/issues"
+  },
+  "homepage": "https://github.com/ybouhjira/hyperkit#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "private": false,
+  "workspaces": [
+    "packages/*"
+  ],
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{ts,tsx,mjs}": [
+      "bash scripts/ban-zod-any.sh"
+    ],
+    "src/**/*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "340 kB",
+      "ignore": [
+        "@ybouhjira/hyperkit-devtools"
+      ]
+    },
+    {
+      "path": "dist/index.css",
+      "limit": "36 kB"
+    }
+  ],
+  "peerDependencies": {
+    "@kobalte/core": "^0.13.0",
+    "effect": "^3.0.0",
+    "hypher": ">=0.2.0",
+    "solid-js": "^1.8.0"
+  },
+  "peerDependenciesMeta": {
+    "hypher": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
+    "@eslint/js": "^9.39.3",
+    "@kobalte/core": "^0.13.11",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@playwright/test": "^1.58.2",
+    "@size-limit/preset-small-lib": "^12.0.0",
+    "@solidjs/testing-library": "^0.8.10",
+    "@storybook/addon-a11y": "^10.2.10",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@types/node": "^22.0.0",
+    "@types/pngjs": "^6.0.5",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "@vitest/coverage-v8": "^4.0.18",
+    "@ybouhjira/hyperkit-devtools": "workspace:*",
+    "chromatic": "^15.2.0",
+    "effect": "^3.19.16",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-solid": "^0.14.5",
+    "globals": "^17.3.0",
+    "husky": "^9.1.7",
+    "jsdom": "^28.0.0",
+    "knip": "^5.85.0",
+    "lint-staged": "^16.2.7",
+    "lucide-static": "^1.7.0",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.8.1",
+    "publint": "^0.3.17",
+    "sharp": "^0.34.5",
+    "size-limit": "^12.0.0",
+    "solid-js": "^1.9.11",
+    "storybook": "^10.2.7",
+    "storybook-solidjs": "^1.0.0-beta.6",
+    "storybook-solidjs-vite": "^10.0.9",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "tsx": "^4.21.0",
+    "typedoc": "^0.28.17",
+    "typedoc-plugin-markdown": "^4.10.0",
+    "rollup": "^4.57.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-solid": "^2.11.10",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "commander": "^14.0.3",
+    "highlight.js": "^11.11.1",
+    "@motionone/dom": "^10.18.0",
+    "solid-motionone": "^1.0.4"
+  },
+  "packageManager": "pnpm@10.30.2"
+}

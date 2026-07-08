@@ -1,0 +1,40 @@
+.sk-tilt-card {
+  --sk-tilt-perspective: 1000px;
+  --sk-tilt-x: 0deg;
+  --sk-tilt-y: 0deg;
+  --sk-tilt-scale: 1;
+  --sk-tilt-speed: 400ms;
+
+  display: inline-block;
+  perspective: var(--sk-tilt-perspective);
+  position: relative;
+}
+
+.sk-tilt-card__inner {
+  background: var(--sk-bg-elevated, var(--sk-bg-secondary));
+  border-radius: var(--sk-radius-md);
+  padding: var(--sk-space-md);
+  transform: rotateX(var(--sk-tilt-x)) rotateY(var(--sk-tilt-y)) scale(var(--sk-tilt-scale));
+  transition:
+    transform var(--sk-tilt-speed) var(--sk-ease-out),
+    box-shadow var(--sk-tilt-speed) var(--sk-ease-out);
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-tilt-card__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--sk-radius-md);
+  pointer-events: none;
+  z-index: 1;
+  transition: background var(--sk-duration-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-tilt-card__inner {
+    transition: none;
+  }
+}

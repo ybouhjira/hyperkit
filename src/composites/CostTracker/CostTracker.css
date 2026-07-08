@@ -1,0 +1,117 @@
+/* CostTracker */
+.sk-cost-tracker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition:
+    background var(--sk-duration-fast) var(--sk-ease-default),
+    opacity var(--sk-duration-fast) var(--sk-ease-default);
+
+  &:hover {
+    background: var(--sk-bg-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: -1px;
+  }
+}
+
+/* Cost display */
+.sk-cost-tracker__cost {
+  font-weight: 600;
+  color: var(--sk-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tokens container */
+.sk-cost-tracker__tokens {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+}
+
+/* Token group (arrow + count) */
+.sk-cost-tracker__token-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-px);
+}
+
+/* Arrow icons */
+.sk-cost-tracker__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--sk-font-size-xs);
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.sk-cost-tracker__arrow--up {
+  color: var(--sk-success);
+}
+
+.sk-cost-tracker__arrow--down {
+  color: var(--sk-info);
+}
+
+/* Token count */
+.sk-cost-tracker__token-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--sk-text-secondary);
+}
+
+/* Compact mode */
+.sk-cost-tracker--compact {
+  padding: var(--sk-space-px) var(--sk-space-xs);
+}
+
+/* Tooltip */
+.sk-cost-tracker__tooltip {
+  background: var(--sk-bg-elevated);
+  color: var(--sk-text-primary);
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-xs);
+  padding: var(--sk-space-sm);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  box-shadow: var(--sk-shadow-md);
+  z-index: var(--sk-z-tooltip);
+  animation: sk-fade-in var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+/* Tooltip content */
+.sk-cost-tracker__tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-xs);
+}
+
+/* Tooltip row */
+.sk-cost-tracker__tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sk-space-md);
+}
+
+/* Tooltip label */
+.sk-cost-tracker__tooltip-label {
+  color: var(--sk-text-secondary);
+  white-space: nowrap;
+}
+
+/* Tooltip value */
+.sk-cost-tracker__tooltip-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--sk-text-primary);
+}

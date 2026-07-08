@@ -1,0 +1,114 @@
+.sk-card {
+  display: block;
+  width: 100%;
+  border-radius: var(--sk-card-radius, var(--sk-radius-lg));
+  transition: all 0.15s ease;
+}
+
+/* Variants */
+.sk-card--default {
+  background: var(--sk-card-bg, var(--sk-bg-secondary));
+  border: 1px solid var(--sk-card-border-color, var(--sk-border-subtle));
+}
+
+.sk-card--outlined {
+  background: var(--sk-card-bg-outlined, transparent);
+  border: 1px solid var(--sk-card-border-color-outlined, var(--sk-border));
+}
+
+.sk-card--elevated {
+  background: var(--sk-card-bg-elevated, var(--sk-bg-elevated));
+  border: none;
+  box-shadow: var(--sk-card-shadow-elevated, 0 2px 8px rgb(0 0 0 / 0.1));
+}
+
+/* Accent border — the `borderColor` prop threads its value into
+   `--sk-card-border`; this rule (after the variants, same specificity)
+   wins the border on every variant, including the otherwise borderless
+   `elevated`. Two-tier token fallback keeps it theme-sourced when the
+   custom property is unset by a theme instead of the prop. */
+.sk-card--accent {
+  border: var(--sk-card-border-width, var(--sk-border-width)) solid
+    var(--sk-card-border, var(--sk-border));
+}
+
+/* Padding variants */
+.sk-card--padding-none {
+  padding: var(--sk-card-padding-none, 0);
+}
+
+.sk-card--padding-sm {
+  padding: var(--sk-card-padding-sm, 8px);
+}
+
+.sk-card--padding-md {
+  padding: var(--sk-card-padding-md, 16px);
+}
+
+.sk-card--padding-lg {
+  padding: var(--sk-card-padding-lg, 24px);
+}
+
+/* Interactive states */
+.sk-card--hoverable,
+.sk-card--clickable {
+  cursor: pointer;
+}
+
+.sk-card--hoverable.sk-card--default:hover,
+.sk-card--clickable.sk-card--default:hover {
+  background: var(--sk-card-hover-bg, var(--sk-bg-tertiary));
+  border-color: var(--sk-card-hover-border-color, var(--sk-accent-muted));
+}
+
+.sk-card--hoverable.sk-card--outlined:hover,
+.sk-card--clickable.sk-card--outlined:hover {
+  background: var(--sk-card-hover-bg-outlined, var(--sk-bg-secondary));
+  border-color: var(--sk-card-hover-border-color-outlined, var(--sk-accent));
+}
+
+.sk-card--hoverable.sk-card--elevated:hover,
+.sk-card--clickable.sk-card--elevated:hover {
+  background: var(--sk-card-hover-bg, var(--sk-bg-tertiary));
+}
+
+/* Accent border holds through hover — a data-driven status colour must not
+   flicker to the theme accent when the card is hoverable/clickable. */
+.sk-card--hoverable.sk-card--accent:hover,
+.sk-card--clickable.sk-card--accent:hover {
+  border-color: var(--sk-card-border, var(--sk-border));
+}
+
+/* Card sub-components */
+.sk-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-xs);
+  padding-bottom: var(--sk-space-sm);
+}
+
+.sk-card__title {
+  font-size: var(--sk-font-size-lg);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--sk-text-primary);
+  margin: 0;
+}
+
+.sk-card__description {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sk-card__content {
+  /* No default styles - inherits from card padding */
+}
+
+.sk-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  padding-top: var(--sk-space-sm);
+}

@@ -1,0 +1,25 @@
+.sk-cursor-spotlight {
+  --sk-spotlight-x: 50%;
+  --sk-spotlight-y: 50%;
+  --sk-spotlight-size: 200px;
+  --sk-spotlight-opacity: 0.15;
+  --sk-spotlight-color: var(--sk-accent);
+  --sk-spotlight-blend: screen;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-cursor-spotlight__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle var(--sk-spotlight-size) at var(--sk-spotlight-x) var(--sk-spotlight-y),
+    var(--sk-spotlight-color) 0%,
+    transparent 70%
+  );
+  mix-blend-mode: var(--sk-spotlight-blend);
+  transition: opacity var(--sk-duration-fast);
+  z-index: 1;
+}

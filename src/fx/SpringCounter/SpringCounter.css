@@ -1,0 +1,16 @@
+.sk-spring-counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--sk-font-size-xl);
+  color: var(--sk-text-primary);
+  transform-origin: center bottom;
+  will-change: transform;
+  line-height: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-spring-counter {
+    transition: none;
+    transform: none !important;
+  }
+}

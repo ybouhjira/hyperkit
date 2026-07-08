@@ -1,0 +1,161 @@
+.sk-number-input {
+  --sk-number-input-width: 120px;
+  --sk-number-input-bg: var(--sk-bg-secondary);
+  --sk-number-input-border: var(--sk-border);
+  --sk-number-input-btn-bg: var(--sk-bg-tertiary);
+  --sk-number-input-focus-ring: var(--sk-accent);
+
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--sk-space-xs);
+}
+
+.sk-number-input__label {
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+  color: var(--sk-text-primary);
+  margin-bottom: var(--sk-space-xs);
+}
+
+.sk-number-input__controls {
+  display: flex;
+  align-items: stretch;
+  width: var(--sk-number-input-width);
+  border: 1px solid var(--sk-number-input-border);
+  border-radius: var(--sk-radius-md);
+  overflow: hidden;
+  background: var(--sk-number-input-bg);
+}
+
+.sk-number-input__field {
+  flex: 1;
+  min-width: 0;
+  padding: var(--sk-space-sm) var(--sk-space-xs);
+  border: none;
+  background: transparent;
+  color: var(--sk-text-primary);
+  font-size: var(--sk-font-size-md);
+  text-align: center;
+  outline: none;
+  appearance: textfield;
+}
+
+.sk-number-input__field::-webkit-inner-spin-button,
+.sk-number-input__field::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sk-number-input__field::placeholder {
+  color: var(--sk-text-tertiary);
+}
+
+.sk-number-input__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  padding: var(--sk-space-xs);
+  background: var(--sk-number-input-btn-bg);
+  border: none;
+  color: var(--sk-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.sk-number-input__button:hover {
+  background: var(--sk-bg-hover);
+  color: var(--sk-text-primary);
+}
+
+.sk-number-input__button:active {
+  background: var(--sk-bg-active);
+}
+
+.sk-number-input__button[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sk-number-input__button--decrement {
+  border-right: 1px solid var(--sk-number-input-border);
+}
+
+.sk-number-input__button--increment {
+  border-left: 1px solid var(--sk-number-input-border);
+}
+
+/* Focus state */
+.sk-number-input:focus-within .sk-number-input__controls {
+  outline: 2px solid var(--sk-number-input-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.sk-number-input[data-disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sk-number-input[data-disabled] .sk-number-input__controls {
+  pointer-events: none;
+  background: var(--sk-bg-disabled, var(--sk-bg-tertiary));
+}
+
+.sk-number-input[data-disabled] .sk-number-input__field {
+  cursor: not-allowed;
+}
+
+/* Size variants */
+.sk-number-input--sm {
+  --sk-number-input-width: 100px;
+}
+
+.sk-number-input--sm .sk-number-input__field {
+  font-size: var(--sk-font-size-sm);
+  padding: var(--sk-space-xs);
+}
+
+.sk-number-input--sm .sk-number-input__button {
+  width: 28px;
+  padding: var(--sk-space-xs);
+}
+
+.sk-number-input--sm .sk-number-input__button svg {
+  width: 10px;
+  height: 10px;
+}
+
+.sk-number-input--md {
+  --sk-number-input-width: 120px;
+}
+
+.sk-number-input--md .sk-number-input__field {
+  font-size: var(--sk-font-size-md);
+  padding: var(--sk-space-sm) var(--sk-space-xs);
+}
+
+.sk-number-input--md .sk-number-input__button {
+  width: 32px;
+}
+
+.sk-number-input--lg {
+  --sk-number-input-width: 140px;
+}
+
+.sk-number-input--lg .sk-number-input__field {
+  font-size: var(--sk-font-size-lg);
+  padding: var(--sk-space-md) var(--sk-space-sm);
+}
+
+.sk-number-input--lg .sk-number-input__button {
+  width: 40px;
+  padding: var(--sk-space-sm);
+}
+
+.sk-number-input--lg .sk-number-input__button svg {
+  width: 14px;
+  height: 14px;
+}

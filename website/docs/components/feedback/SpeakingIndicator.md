@@ -1,0 +1,31 @@
+---
+title: SpeakingIndicator
+description: Voice-activity indicator.
+slug: /components/feedback/SpeakingIndicator
+---
+
+# SpeakingIndicator
+
+Voice-activity indicator.
+
+```tsx
+import { SpeakingIndicator } from '@ybouhjira/hyperkit';
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `visible` * | `boolean` | — | Toggle visibility. Enter/exit run through a scale+fade transition. |
+| `label` | `string` | — | Optional label shown alongside the animation (e.g. a short caption of what's being spoken). |
+| `variant` | `SpeakingVariant` | — | Visual style. - `bars` (default): 5 vertical waveform bars - `dot`: single pulsing dot with radiating ring - `wave`: sine-wave path scrolling left |
+| `size` | `'sm' \| 'md' \| 'lg'` | — | Size preset. `sm` = 12px tall bars, `md` = 16px, `lg` = 24px. |
+| `class` | `string` | — | Additional CSS classes. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-accent-muted`, `--sk-duration-normal`, `--sk-duration-pulse`, `--sk-ease-in-out`, `--sk-ease-out`, `--sk-font-size-xs`, `--sk-space-2xs`, `--sk-space-sm`, `--sk-space-xs`

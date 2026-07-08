@@ -1,0 +1,14 @@
+.sk-segmented-bar {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.sk-segmented-bar__segment {
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.sk-segmented-bar--animated .sk-segmented-bar__segment {
+  transition: width var(--sk-duration-normal, 300ms) ease;
+}

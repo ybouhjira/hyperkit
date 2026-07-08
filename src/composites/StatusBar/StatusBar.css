@@ -1,0 +1,105 @@
+/* StatusBar */
+.sk-status-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: var(--sk-statusbar-h, 22px);
+  overflow: hidden;
+  background: var(--sk-statusbar-bg, var(--sk-bg-secondary));
+  color: var(--sk-statusbar-text, var(--sk-text-secondary));
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-xs);
+}
+
+/* Sections */
+.sk-status-bar__section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+.sk-status-bar__section--left {
+  flex-shrink: 0;
+}
+
+.sk-status-bar__section--right {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Items */
+.sk-status-bar__item {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  min-height: 0;
+  padding: 0 var(--sk-space-sm);
+  color: var(--sk-statusbar-text, var(--sk-text-secondary));
+  background: transparent;
+  border: none;
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-xs);
+  transition:
+    background var(--sk-duration-fast) var(--sk-ease-default),
+    color var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-status-bar__item--clickable {
+  cursor: pointer;
+
+  &:hover {
+    background: var(
+      --sk-state-hover-bg,
+      color-mix(in srgb, var(--sk-text-primary) 12%, transparent)
+    );
+    color: var(--sk-statusbar-text, var(--sk-text-secondary));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-focus-color, var(--sk-accent));
+    outline-offset: -1px;
+  }
+}
+
+/* Icon */
+.sk-status-bar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sk-icon-sm);
+  height: var(--sk-icon-sm);
+  margin-right: var(--sk-space-xs);
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* Text */
+.sk-status-bar__text {
+  white-space: nowrap;
+}
+
+/* Tooltip trigger */
+.sk-status-bar__tooltip-trigger {
+  display: inline-flex;
+  min-height: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+}
+
+/* Tooltip content */
+.sk-status-bar__tooltip {
+  background: var(--sk-bg-elevated);
+  color: var(--sk-text-primary);
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-xs);
+  padding: var(--sk-space-xs) calc(var(--sk-space-xs) * 1.5);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  box-shadow: var(--sk-shadow-md);
+  z-index: var(--sk-z-tooltip);
+  animation: sk-zoom-in var(--sk-duration-fast) var(--sk-ease-default);
+}

@@ -1,0 +1,26 @@
+.sk-glass-card {
+  --sk-glass-blur: 12px;
+  --sk-glass-opacity: 0.15;
+  --sk-glass-tint: var(--sk-bg-elevated, var(--sk-bg-secondary));
+
+  background: color-mix(
+    in srgb,
+    var(--sk-glass-tint) calc(var(--sk-glass-opacity) * 100%),
+    transparent
+  );
+  backdrop-filter: blur(var(--sk-glass-blur));
+  -webkit-backdrop-filter: blur(var(--sk-glass-blur));
+  border-radius: var(--sk-radius-lg);
+  padding: var(--sk-space-md);
+}
+
+.sk-glass-card--border {
+  border: 1px solid color-mix(in srgb, var(--sk-border) 30%, transparent);
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+  .sk-glass-card {
+    background: color-mix(in srgb, var(--sk-glass-tint) 85%, transparent);
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@ybouhjira/hyperkit-ai-renderer",
+  "version": "0.1.0",
+  "description": "Transform raw data/intent into validated SolidKit UI schemas via LLM",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "effect": "^3.0.0",
+    "@ybouhjira/hyperkit-llm-pipeline": "*",
+    "@ybouhjira/hyperkit-mcp": "*"
+  },
+  "devDependencies": {
+    "effect": "^3.19.16",
+    "@ybouhjira/hyperkit-llm-pipeline": "workspace:*",
+    "@ybouhjira/hyperkit-mcp": "workspace:*",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.18"
+  },
+  "author": "Youssef Bouhjira",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybouhjira/hyperkit.git",
+    "directory": "packages/ai-renderer"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Feedback",
+  "position": 4,
+  "link": {
+    "type": "doc",
+    "id": "components/feedback/index"
+  }
+}

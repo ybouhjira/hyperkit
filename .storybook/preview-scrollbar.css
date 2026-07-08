@@ -1,0 +1,28 @@
+/* Catch-all: style any scrollbar in Storybook preview */
+*::-webkit-scrollbar {
+  width: var(--sk-scroll-width, 10px);
+  height: var(--sk-scroll-width, 10px);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sk-scroll-track, transparent);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sk-scroll-thumb, var(--sk-border));
+  border: 2px solid transparent;
+  border-radius: var(--sk-scroll-thumb-radius, 5px);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--sk-scroll-thumb-hover, var(--sk-text-muted));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sk-scroll-thumb, var(--sk-border)) var(--sk-scroll-track, transparent);
+}

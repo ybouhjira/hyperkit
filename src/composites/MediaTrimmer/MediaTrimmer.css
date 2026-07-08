@@ -1,0 +1,131 @@
+.sk-media-trimmer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+}
+
+.sk-media-trimmer__preview {
+  display: none;
+}
+
+.sk-media-trimmer__timeline {
+  position: relative;
+  user-select: none;
+  touch-action: none;
+}
+
+.sk-media-trimmer__thumbnails {
+  display: flex;
+  height: 60px;
+  background: var(--sk-bg-primary);
+  border-radius: var(--sk-radius-md);
+  overflow: hidden;
+}
+
+.sk-media-trimmer__thumb {
+  flex: 1;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.sk-media-trimmer__overlay-left,
+.sk-media-trimmer__overlay-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgb(0 0 0 / 0.5);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sk-media-trimmer__overlay-left {
+  left: 0;
+}
+
+.sk-media-trimmer__overlay-right {
+  right: 0;
+}
+
+.sk-media-trimmer__handle {
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 100%;
+  background: var(--sk-accent);
+  cursor: ew-resize;
+  z-index: 3;
+  transform: translateX(-50%);
+  transition: background 0.2s;
+}
+
+.sk-media-trimmer__handle:hover,
+.sk-media-trimmer__handle:active {
+  background: var(--sk-accent-hover, var(--sk-accent));
+}
+
+.sk-media-trimmer__handle--start {
+  border-radius: var(--sk-radius-md) 0 0 var(--sk-radius-md);
+}
+
+.sk-media-trimmer__handle--end {
+  border-radius: 0 var(--sk-radius-md) var(--sk-radius-md) 0;
+}
+
+.sk-media-trimmer__selection {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border: 2px solid var(--sk-accent);
+  border-left: none;
+  border-right: none;
+  pointer-events: none;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.sk-media-trimmer__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-md);
+}
+
+.sk-media-trimmer__play-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--sk-accent);
+  color: var(--sk-text-primary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.sk-media-trimmer__play-btn:hover {
+  transform: scale(1.05);
+  background: var(--sk-accent-hover, var(--sk-accent));
+}
+
+.sk-media-trimmer__play-btn:active {
+  transform: scale(0.95);
+}
+
+.sk-media-trimmer__times {
+  display: flex;
+  gap: var(--sk-space-md);
+  align-items: center;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+  flex: 1;
+}
+
+.sk-media-trimmer__duration {
+  font-weight: 600;
+  color: var(--sk-text-primary);
+}

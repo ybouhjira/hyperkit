@@ -1,0 +1,26 @@
+.sk-streaming {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-sm) var(--sk-space-md);
+  color: var(--sk-text-muted);
+  animation: sk-pulse var(--sk-duration-pulse) var(--sk-ease-in-out) infinite;
+}
+
+.sk-streaming__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+}
+
+.sk-streaming__dot {
+  width: var(--sk-space-sm);
+  height: var(--sk-space-sm);
+  background: var(--sk-accent);
+  border-radius: 9999px;
+  animation: sk-bounce var(--sk-duration-bounce) infinite;
+}
+
+.sk-streaming__text {
+  font-size: var(--sk-font-size-base);
+}

@@ -1,0 +1,15 @@
+.sk-tooltip__trigger {
+  display: inline-flex;
+}
+
+.sk-tooltip__content {
+  z-index: var(--sk-z-tooltip);
+  border-radius: var(--sk-radius-md);
+  background: var(--sk-bg-primary);
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-primary);
+  box-shadow: var(--sk-shadow-md);
+  border: 1px solid var(--sk-border);
+  animation: sk-zoom-in var(--sk-duration-instant) ease;
+}

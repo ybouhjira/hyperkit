@@ -1,0 +1,144 @@
+/**
+ * LivePulse — premium-ui Law #11 styling.
+ *
+ * GPU-only animations (transform + opacity + background-position).
+ * No width/height/top/left animations (CPU-bound, jank).
+ *
+ * Two motion layers when active:
+ *   1) the wrapper renders a conic-gradient border that rotates 1.5s/loop
+ *   2) the wrapped child gets a subtle opacity breath (0.94 ↔ 1.0)
+ *
+ * `prefers-reduced-motion`: kill the rotating border and the breath, but
+ * keep a static accent border + a low-frequency pulsing dot. The signal
+ * (this is alive) survives even if the motion doesn't.
+ */
+
+.sk-livepulse {
+  --sk-livepulse-color: var(--sk-accent, #1264a3);
+  --sk-livepulse-radius: var(--sk-radius-md, 6px);
+  --sk-livepulse-thickness: 1.5px;
+
+  position: relative;
+  display: contents; /* by default, wrapper is invisible — children take its place */
+}
+
+/* When ACTIVE — promote wrapper to its own box so we can paint the border.
+ *
+ * `display: contents` makes the wrapper layout-transparent (children
+ * lay out as if the wrapper weren't there). When we flip to `display:
+ * block` for the gradient border, the wrapper becomes a real box that
+ * INTERPOSES between parent and children — and unless we tell it to
+ * fill its parent, `height: 100%` on a child resolves against the
+ * wrapper's auto-height (≈ content size) instead of the parent's
+ * sized box. Result: a fixed-height parent (e.g. 140px) plus a
+ * `height: 100%` child renders fine when LivePulse is INACTIVE but
+ * overflows visibly when LivePulse is ACTIVE.
+ *
+ * Fix: when active, the wrapper itself fills its parent in BOTH
+ * dimensions, with border-box sizing so the 1.5px padding doesn't
+ * push the wrapper past the parent's bounds.
+ */
+.sk-livepulse--active {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: var(--sk-livepulse-radius);
+  padding: var(--sk-livepulse-thickness);
+  background: conic-gradient(
+    from var(--sk-livepulse-angle, 0deg),
+    var(--sk-livepulse-color) 0deg,
+    var(--sk-livepulse-color) 60deg,
+    transparent 120deg,
+    transparent 360deg
+  );
+  background-size: 200% 200%;
+  animation: sk-livepulse-rotate 1.6s linear infinite;
+  /* Cheap GPU promotion; keeps the rotating gradient smooth. */
+  will-change: background-position, transform;
+}
+
+/* The breathing inner — wraps the actual children. Fills the
+ * padded content area so a `height: 100%` consumer (e.g. Card)
+ * resolves against the parent's sized box like it does when
+ * LivePulse is inactive. */
+.sk-livepulse--active > :first-child {
+  border-radius: calc(var(--sk-livepulse-radius) - var(--sk-livepulse-thickness));
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  animation: sk-livepulse-breath 1.6s ease-in-out infinite;
+}
+
+/* Always-visible "I am alive" dot in the top-right */
+.sk-livepulse__dot {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--sk-livepulse-color);
+  box-shadow:
+    0 0 0 2px var(--sk-bg-primary, #1a1d21),
+    0 0 8px var(--sk-livepulse-color);
+  animation: sk-livepulse-dot 1.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes sk-livepulse-rotate {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes sk-livepulse-breath {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.94;
+  }
+}
+
+@keyframes sk-livepulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.6;
+  }
+}
+
+/* Respect prefers-reduced-motion — keep the SIGNAL, drop the MOTION. */
+@media (prefers-reduced-motion: reduce) {
+  .sk-livepulse--active {
+    background: linear-gradient(var(--sk-livepulse-color), var(--sk-livepulse-color));
+    animation: none;
+  }
+  .sk-livepulse--active > :first-child {
+    animation: none;
+  }
+  .sk-livepulse__dot {
+    animation: sk-livepulse-dot-still 2.5s ease-in-out infinite;
+  }
+}
+
+@keyframes sk-livepulse-dot-still {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}

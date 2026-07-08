@@ -1,0 +1,80 @@
+.sk-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-status-dot-gap, var(--sk-space-sm));
+}
+
+.sk-status-dot__indicator {
+  position: relative;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.sk-status-dot--sm .sk-status-dot__indicator {
+  width: var(--sk-status-dot-sm-size, 6px);
+  height: var(--sk-status-dot-sm-size, 6px);
+}
+
+.sk-status-dot--md .sk-status-dot__indicator {
+  width: var(--sk-status-dot-md-size, 8px);
+  height: var(--sk-status-dot-md-size, 8px);
+}
+
+.sk-status-dot--lg .sk-status-dot__indicator {
+  width: var(--sk-status-dot-lg-size, 12px);
+  height: var(--sk-status-dot-lg-size, 12px);
+}
+
+/* Status Colors */
+.sk-status-dot--default .sk-status-dot__indicator {
+  background: var(--sk-status-dot-default-bg, var(--sk-text-muted));
+}
+
+.sk-status-dot--success .sk-status-dot__indicator {
+  background: var(--sk-status-dot-success-bg, var(--sk-success));
+}
+
+.sk-status-dot--warning .sk-status-dot__indicator {
+  background: var(--sk-status-dot-warning-bg, var(--sk-warning));
+}
+
+.sk-status-dot--danger .sk-status-dot__indicator {
+  background: var(--sk-status-dot-danger-bg, var(--sk-error));
+}
+
+.sk-status-dot--info .sk-status-dot__indicator {
+  background: var(--sk-status-dot-info-bg, var(--sk-info));
+}
+
+/* Label */
+.sk-status-dot__label {
+  font-size: var(--sk-status-dot-label-font-size, var(--sk-font-size-sm));
+  color: var(--sk-status-dot-label-color, var(--sk-text-secondary));
+  line-height: 1;
+}
+
+/* Pulse Animation */
+.sk-status-dot--pulse .sk-status-dot__indicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: sk-status-dot-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes sk-status-dot-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

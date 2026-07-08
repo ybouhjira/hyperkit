@@ -1,0 +1,37 @@
+.sk-score-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sk-score-ring__svg {
+  display: block;
+  overflow: visible;
+}
+
+.sk-score-ring__track {
+  opacity: 0.25;
+}
+
+.sk-score-ring__progress {
+  will-change: stroke-dashoffset;
+}
+
+.sk-score-ring__label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-score-ring__progress {
+    transition: none;
+  }
+}

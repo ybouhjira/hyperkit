@@ -1,0 +1,55 @@
+.sk-tool-exec {
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-lg);
+  overflow: hidden;
+}
+
+.sk-tool-exec__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  width: 100%;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  font-size: var(--sk-font-size-base);
+}
+
+.sk-tool-exec__name {
+  font-family: var(--sk-font-mono);
+  color: var(--sk-text-primary);
+}
+
+.sk-tool-exec__duration {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-muted);
+  margin-left: auto;
+}
+
+.sk-tool-exec__details {
+  border-top: 1px solid var(--sk-border);
+}
+
+.sk-tool-exec__section {
+  padding: var(--sk-space-sm);
+}
+
+.sk-tool-exec__section--input {
+  background: color-mix(in srgb, var(--sk-bg-secondary) 50%, transparent);
+}
+
+.sk-tool-exec__section--output {
+  background: color-mix(in srgb, var(--sk-bg-primary) 50%, transparent);
+}
+
+.sk-tool-exec__section-label {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-muted);
+  margin-bottom: var(--sk-space-xs);
+}
+
+.sk-tool-exec__section-content {
+  font-size: var(--sk-font-size-sm);
+  font-family: var(--sk-font-mono);
+  color: var(--sk-text-primary);
+  white-space: pre-wrap;
+  word-break: break-all;
+}

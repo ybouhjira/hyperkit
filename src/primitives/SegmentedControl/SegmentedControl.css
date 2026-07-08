@@ -1,0 +1,115 @@
+/* SegmentedControl — pill-shaped radiogroup with animated sliding indicator */
+
+.sk-segmented-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: var(--sk-segmented-control-bg, var(--sk-bg-secondary));
+  border: 1px solid var(--sk-segmented-control-border, var(--sk-border));
+  border-radius: 9999px;
+  padding: var(--sk-space-2xs);
+  gap: 0;
+  user-select: none;
+}
+
+.sk-segmented-control--full-width {
+  display: flex;
+  width: 100%;
+}
+
+.sk-segmented-control--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ── Sliding indicator ──────────────────────────────────────────────────── */
+
+.sk-segmented-control__indicator {
+  position: absolute;
+  top: var(--sk-space-2xs);
+  bottom: var(--sk-space-2xs);
+  left: var(--sk-space-2xs);
+  border-radius: 9999px;
+  background: var(--sk-segmented-control-indicator-bg, var(--sk-accent));
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.15);
+  pointer-events: none;
+  transition:
+    transform var(--sk-duration-fast, 150ms) var(--sk-ease-default, ease),
+    width var(--sk-duration-fast, 150ms) var(--sk-ease-default, ease);
+  will-change: transform;
+}
+
+/* ── Options ────────────────────────────────────────────────────────────── */
+
+.sk-segmented-control__option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--sk-segmented-control-option-color, var(--sk-text-secondary));
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: color var(--sk-duration-fast, 150ms) var(--sk-ease-default, ease);
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: 2px;
+  }
+
+  &:hover:not([data-disabled], [data-selected]) {
+    color: var(--sk-text-primary);
+    background: var(--sk-segmented-control-option-hover-bg, var(--sk-bg-tertiary));
+  }
+
+  &[data-selected] {
+    color: var(--sk-segmented-control-option-selected-color, var(--sk-text-on-accent));
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+.sk-segmented-control__option-label {
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ── Size: sm ───────────────────────────────────────────────────────────── */
+
+.sk-segmented-control--sm {
+  .sk-segmented-control__option {
+    height: calc(var(--sk-height-sm, 28px) - 6px);
+    padding: 0 var(--sk-space-sm);
+    font-size: var(--sk-font-size-sm);
+  }
+}
+
+/* ── Size: md (default) ─────────────────────────────────────────────────── */
+
+.sk-segmented-control--md {
+  .sk-segmented-control__option {
+    height: calc(var(--sk-height-md, 32px) - 6px);
+    padding: 0 var(--sk-space-md);
+    font-size: var(--sk-font-size-base);
+  }
+}
+
+/* ── Size: lg ───────────────────────────────────────────────────────────── */
+
+.sk-segmented-control--lg {
+  .sk-segmented-control__option {
+    height: calc(var(--sk-height-lg, 40px) - 6px);
+    padding: 0 var(--sk-space-lg);
+    font-size: var(--sk-font-size-lg);
+  }
+}

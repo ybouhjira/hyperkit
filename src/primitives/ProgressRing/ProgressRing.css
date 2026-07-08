@@ -1,0 +1,29 @@
+.sk-progress-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sk-progress-ring__svg {
+  transform: rotate(-90deg);
+}
+
+.sk-progress-ring__track {
+  stroke: var(--sk-bg-tertiary);
+}
+
+.sk-progress-ring__fill {
+  stroke: var(--sk-accent);
+  transition: stroke-dashoffset 0.35s ease;
+}
+
+.sk-progress-ring__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

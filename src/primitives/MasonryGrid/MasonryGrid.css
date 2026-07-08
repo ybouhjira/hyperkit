@@ -1,0 +1,39 @@
+/* MasonryGrid: CSS columns-based masonry layout */
+.sk-masonry-grid {
+  column-count: var(--sk-masonry-grid-columns, 3);
+  column-gap: var(--sk-masonry-grid-gap, var(--sk-space-md, 16px));
+  width: 100%;
+}
+
+/* Responsive column counts */
+@media (width <= 640px) {
+  .sk-masonry-grid {
+    column-count: var(--sk-masonry-grid-columns-sm, var(--sk-masonry-grid-columns, 1));
+  }
+}
+
+@media (width >= 641px) and (width <= 768px) {
+  .sk-masonry-grid {
+    column-count: var(--sk-masonry-grid-columns-md, var(--sk-masonry-grid-columns, 2));
+  }
+}
+
+@media (width >= 769px) and (width <= 1024px) {
+  .sk-masonry-grid {
+    column-count: var(--sk-masonry-grid-columns-lg, var(--sk-masonry-grid-columns, 3));
+  }
+}
+
+@media (width >= 1025px) {
+  .sk-masonry-grid {
+    column-count: var(--sk-masonry-grid-columns-xl, var(--sk-masonry-grid-columns, 4));
+  }
+}
+
+/* Item wrapper - prevents items from breaking across columns */
+.sk-masonry-grid > * {
+  break-inside: avoid;
+  margin-bottom: var(--sk-masonry-grid-gap, var(--sk-space-md, 16px));
+  display: inline-block;
+  width: 100%;
+}

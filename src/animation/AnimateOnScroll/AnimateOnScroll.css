@@ -1,0 +1,73 @@
+.sk-animate-on-scroll {
+  --sk-aos-delay: 0ms;
+  --sk-aos-duration: 600ms;
+
+  opacity: 0;
+  transition:
+    opacity var(--sk-aos-duration) ease-out var(--sk-aos-delay),
+    transform var(--sk-aos-duration) ease-out var(--sk-aos-delay);
+}
+
+/* Animation: fade-in */
+.sk-animate-on-scroll--fade-in {
+  opacity: 0;
+}
+
+.sk-animate-on-scroll--fade-in.sk-animate-on-scroll--visible {
+  opacity: 1;
+}
+
+/* Animation: fade-up */
+.sk-animate-on-scroll--fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.sk-animate-on-scroll--fade-up.sk-animate-on-scroll--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation: fade-down */
+.sk-animate-on-scroll--fade-down {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.sk-animate-on-scroll--fade-down.sk-animate-on-scroll--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation: slide-left */
+.sk-animate-on-scroll--slide-left {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.sk-animate-on-scroll--slide-left.sk-animate-on-scroll--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animation: slide-right */
+.sk-animate-on-scroll--slide-right {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.sk-animate-on-scroll--slide-right.sk-animate-on-scroll--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animation: scale */
+.sk-animate-on-scroll--scale {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.sk-animate-on-scroll--scale.sk-animate-on-scroll--visible {
+  opacity: 1;
+  transform: scale(1);
+}

@@ -1,0 +1,158 @@
+# SolidKit — Cursor Rules
+
+## This is SolidJS, NOT React
+
+- `createSignal()` not `useState()`
+- `createEffect()` not `useEffect()`
+- `createMemo()` not `useMemo()`
+- `<Show when={}>` not `{cond && <X>}`
+- `<For each={}>` not `{arr.map()}`
+- `<Switch>` / `<Match>` not if/else chains in JSX
+- NEVER destructure props — `props.value`, not `const { value } = props`
+- Components run ONCE; only signals/memos re-execute
+- Access signal values with `()` — `count()` not `count`
+- Use `splitProps()` to separate component props from HTML attrs
+- Use `mergeProps()` for default prop values
+
+## Imports — Always from package root
+
+```ts
+import { Button, Input, Card, Stack } from "@ybouhjira/solidkit";
+```
+
+Never from internal paths:
+
+```ts
+// ❌ import { Button } from "@ybouhjira/solidkit/src/primitives/Button";
+```
+
+Also import the CSS once at app entry:
+
+```ts
+import "@ybouhjira/solidkit/dist/index.css";
+```
+
+## CSS Tokens — NEVER hardcode values
+
+```css
+/* Spacing */
+--sk-space-2xs  --sk-space-xs  --sk-space-sm  --sk-space-md
+--sk-space-lg   --sk-space-xl  --sk-space-2xl --sk-space-3xl
+
+/* Colors */
+--sk-bg-primary  --sk-bg-secondary  --sk-bg-tertiary
+--sk-text-primary  --sk-text-secondary  --sk-text-muted
+--sk-border  --sk-accent
+--sk-success  --sk-warning  --sk-error  --sk-info
+
+/* Typography */
+--sk-font-size-xs  --sk-font-size-sm  --sk-font-size-base
+--sk-font-size-md  --sk-font-size-lg  --sk-font-size-xl
+
+/* Border radius */
+--sk-radius-sm  --sk-radius-md  --sk-radius-lg  --sk-radius-xl
+
+/* Heights (for inputs/buttons) */
+--sk-height-xs  --sk-height-sm  --sk-height-md  --sk-height-lg  --sk-height-xl
+
+/* Animation */
+--sk-duration-fast  --sk-duration-normal  --sk-duration-slow
+--sk-ease-default  --sk-ease-out  --sk-ease-bounce
+```
+
+## Available Components
+
+### Primitives (base)
+**Layout:** Box, Flex, Stack, Grid, Wrap, Center, Container, Spacer, AspectRatio, Section
+**Input:** Button, Input, Select, Switch, NumberInput, SearchInput, ColorInput, RangeSlider, Slider, Checkbox, TagInput, DateInput, FileInput, ImageInput, VideoInput, AudioInput, RecordButton
+**Display:** Text, Badge, Card, MetricCard, ProjectCard, StatusDot, ProgressBar, ProgressRing, Skeleton, Spinner, Tooltip, Kbd, Separator, ColorDot, StreamingIndicator, StreamingText
+**Data:** Table, ScrollArea, MasonryGrid, MediaGrid
+**Feedback:** Dialog, EmptyState, ErrorBanner, DropZone
+**Rich content:** Markdown, CodeBlock, TerminalOutput, DocumentPage, ImagePreview
+**Navigation:** Tabs, Accordion, Collapsible, Dropdown, Popover
+**Charts/Viz:** Sparkline, SegmentedBar, WaterfallChart, SignalGrid
+**Other:** SuggestionChips, FilterChip, Timeline
+
+### Composites (complex)
+**Chat/AI:** ChatWindow, LLMChatBox, MessageBubble, MessageList, MessageInput, ToolApproval, ToolExecution, SubagentTracker, CostTracker, PromptQueue, StreamingText
+**Navigation:** Breadcrumb, MenuBar, Sidebar, TabBar, CommandPalette, ContextMenu, MobileNav, NavigationMenu
+**Layout systems:** DashboardContainer, DashboardGrid, MobilePanelView, SettingsPanel
+**Sessions:** SessionManager, SessionTabs, SessionSearch, SessionIndicator
+**File/Project:** FileExplorer, DirectoryPicker, RepoCard, ProjectDashboard
+**Data:** KanbanBoard, IssueBoard
+**Forms:** ActionForm, ConfirmDialog, SplitButton, ModelSelector, ModeSwitcher
+**Status:** StatusBar, StatBar, ConnectionStatus, Toast
+**Theme:** ThemeBuilder, ThemePickerModal
+**Other:** GuidedTour, MediaTrimmer, ExamBuilder
+
+### Theme System
+ThemeProvider, ThemePicker, FontSelect, useTheme, themePresets
+Built-in themes: galleryHubDarkTheme, reportDarkTheme, defaultLightTheme, highContrastTheme, warmDarkTheme, oceanTheme, roseTheme, devtoolsTheme
+
+### Report Components
+Report, ReportShell, ReportNav, ReportHero, ReportSection, ReportScoreCard, SummaryGrid, FlowDiagram, LayerStack, GapAnalysis, PackageTree, PresetGrid, SourceList, ReportFooter
+
+### Panel System
+PanelContainer, PanelGroup, PanelResizeHandle, PanelDropZone, usePanelLayout
+
+### Keyboard Shortcuts
+KeyboardProvider, useKeyboard, useShortcut, useShortcuts, KeyboardScope, ShortcutsHelp
+
+### Hooks
+useBreakpoint, useMode, createEffectResource, createEffectStream, useEventBus, useHaptic, useVideoPreview, createLLMUIController
+
+### Navigation/Navigable System
+NavigationProvider, useNavigation, createNavigable, registerNavigable, dispatchAction
+
+### Effects (services)
+WebSocketService, SessionService, FileSystemService, ClipboardService
+
+### Animation
+AnimationProvider, Transition, ScrollReveal, AnimateOnScroll
+
+## Component Design Philosophy
+
+Components have a **feature scale** — minimal to maximal via props:
+
+```tsx
+// Minimal
+<Progress value={62} />
+
+// Scaled up — same component
+<Progress value={62} variant="ring" size="lg" showLabel animated />
+```
+
+Use props over separate components for variants. Use compound sub-components for complex composition.
+
+## Testing
+
+```tsx
+import { render, screen } from "@solidjs/testing-library";
+import { Button } from "@ybouhjira/solidkit";
+
+it("renders", () => {
+  render(() => <Button>Click</Button>);
+  expect(screen.getByRole("button")).toBeInTheDocument();
+});
+```
+
+Test runner: `vitest`. Co-locate tests as `Component.test.tsx`.
+
+## Key Conventions
+
+1. Props interfaces named `{Component}Props`, exported from component file
+2. Every component accepts `style?: JSX.CSSProperties`
+3. Box, Text, Button support `as` prop for polymorphic rendering
+4. Use `SpaceToken` ('xs' | 'sm' | 'md' | 'lg' | 'xl') not raw px values
+5. Built on `@kobalte/core` for accessibility primitives
+6. Use Effect-TS for service composition, not raw try/catch in business logic
+7. `customProperties` in ThemeConfig become `--sk-custom-{key}` CSS variables
+8. CSS audit: `npm run audit:css-vars` validates CSS variable usage
+
+## Quality Gate
+
+```bash
+npm run quality  # format + lint + css-lint + audit-css-vars + test + build + publint + attw + size + knip
+npm run test     # vitest run
+npm run build    # tsc + vite build
+```

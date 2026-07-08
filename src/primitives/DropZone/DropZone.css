@@ -1,0 +1,102 @@
+.sk-dropzone {
+  --sk-dropzone-border-color: var(--sk-border);
+  --sk-dropzone-border-color-active: var(--sk-accent);
+  --sk-dropzone-bg: var(--sk-bg-secondary);
+  --sk-dropzone-bg-active: var(--sk-bg-tertiary);
+  --sk-dropzone-radius: var(--sk-radius-lg);
+  --sk-dropzone-min-height: 200px;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--sk-dropzone-min-height);
+  padding: var(--sk-space-xl);
+  border: 2px dashed var(--sk-dropzone-border-color);
+  border-radius: var(--sk-dropzone-radius);
+  background: var(--sk-dropzone-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.sk-dropzone:hover:not(.sk-dropzone--disabled) {
+  border-color: var(--sk-dropzone-border-color-active);
+  background: var(--sk-dropzone-bg-active);
+}
+
+.sk-dropzone:focus-visible {
+  border-color: var(--sk-dropzone-border-color-active);
+  box-shadow: 0 0 0 3px rgb(var(--sk-accent-rgb, 59, 130, 246), 0.1);
+}
+
+.sk-dropzone--active {
+  border-style: solid;
+  border-color: var(--sk-dropzone-border-color-active);
+  background: var(--sk-dropzone-bg-active);
+}
+
+.sk-dropzone--error {
+  border-color: var(--sk-error, #ef4444);
+  background: color-mix(in srgb, var(--sk-error) 5%, transparent);
+}
+
+.sk-dropzone--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sk-dropzone--no-click {
+  cursor: default;
+}
+
+.sk-dropzone__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sk-dropzone__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sk-space-md);
+  text-align: center;
+}
+
+.sk-dropzone__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--sk-text-muted);
+  transition: color 0.2s ease;
+}
+
+.sk-dropzone:hover:not(.sk-dropzone--disabled) .sk-dropzone__icon,
+.sk-dropzone--active .sk-dropzone__icon {
+  color: var(--sk-accent);
+}
+
+.sk-dropzone__text {
+  margin: 0;
+  color: var(--sk-text-muted);
+  font-size: var(--sk-font-size-md);
+}
+
+.sk-dropzone--active .sk-dropzone__text {
+  color: var(--sk-accent);
+  font-weight: 500;
+}
+
+.sk-dropzone__error-text {
+  margin: 0;
+  color: var(--sk-error, #ef4444);
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+}
+
+.sk-dropzone--error .sk-dropzone__icon {
+  color: var(--sk-error, #ef4444);
+}

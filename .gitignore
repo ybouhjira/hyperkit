@@ -1,0 +1,29 @@
+node_modules/
+dist/
+coverage/
+storybook-static/
+.DS_Store
+firebase-debug.log
+*.local
+
+# Test artifacts
+test-results/
+tests/visual/__diffs__/
+tests/visual/__report__/
+cli/dist
+
+# Docusaurus
+website/node_modules
+website/.docusaurus
+website/build
+website/docs/api
+
+# IDE / session artifacts
+.claude/
+.headless-ide/
+thumbnails/
+tools/*
+!tools/sk-audit/
+!tools/sk-audit/**
+2026-*.txt
+.idea/

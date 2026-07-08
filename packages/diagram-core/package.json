@@ -1,0 +1,92 @@
+{
+  "name": "@ybouhjira/diagram-core",
+  "version": "0.1.0",
+  "description": "Framework-agnostic diagramming engine core - graph model, layouts, edge routing",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./layout/hierarchical/dagre": {
+      "types": "./dist/layout/hierarchical/dagre.d.ts",
+      "import": "./dist/layout/hierarchical/dagre.js",
+      "default": "./dist/layout/hierarchical/dagre.js"
+    },
+    "./layout/hierarchical/elk": {
+      "types": "./dist/layout/hierarchical/elk.d.ts",
+      "import": "./dist/layout/hierarchical/elk.js",
+      "default": "./dist/layout/hierarchical/elk.js"
+    },
+    "./layout/force/d3-force": {
+      "types": "./dist/layout/force/d3-force.d.ts",
+      "import": "./dist/layout/force/d3-force.js",
+      "default": "./dist/layout/force/d3-force.js"
+    },
+    "./edge/straight": {
+      "types": "./dist/edge/straight.d.ts",
+      "import": "./dist/edge/straight.js",
+      "default": "./dist/edge/straight.js"
+    },
+    "./edge/bezier": {
+      "types": "./dist/edge/bezier.d.ts",
+      "import": "./dist/edge/bezier.js",
+      "default": "./dist/edge/bezier.js"
+    },
+    "./edge/step": {
+      "types": "./dist/edge/step.d.ts",
+      "import": "./dist/edge/step.js",
+      "default": "./dist/edge/step.js"
+    },
+    "./edge/bundled": {
+      "types": "./dist/edge/bundled.d.ts",
+      "import": "./dist/edge/bundled.js",
+      "default": "./dist/edge/bundled.js"
+    },
+    "./edge/manhattan": {
+      "types": "./dist/edge/manhattan.d.ts",
+      "import": "./dist/edge/manhattan.js",
+      "default": "./dist/edge/manhattan.js"
+    },
+    "./edge/astar": {
+      "types": "./dist/edge/astar.d.ts",
+      "import": "./dist/edge/astar.js",
+      "default": "./dist/edge/astar.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^1.1.4",
+    "d3-force": "^3.0.0",
+    "elkjs": "^0.11.1"
+  },
+  "peerDependencies": {
+    "effect": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/d3-force": "^3.0.10",
+    "effect": "^3.19.16",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.18"
+  },
+  "author": "Youssef Bouhjira",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybouhjira/hyperkit.git",
+    "directory": "packages/diagram-core"
+  }
+}

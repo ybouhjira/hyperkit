@@ -1,0 +1,8 @@
+{
+  "label": "Input",
+  "position": 2,
+  "link": {
+    "type": "doc",
+    "id": "components/input/index"
+  }
+}

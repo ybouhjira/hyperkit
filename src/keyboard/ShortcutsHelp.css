@@ -1,0 +1,84 @@
+.sk-shortcuts-help__search {
+  padding: var(--sk-density-pad-y) var(--sk-density-pad-x);
+  border-bottom: 1px solid var(--sk-border);
+}
+
+.sk-shortcuts-help__search-input {
+  width: 100%;
+  padding: var(--sk-density-pad-y) var(--sk-density-pad-x);
+  background: var(--sk-surface-sunken-bg);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  color: var(--sk-text-primary);
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-sm);
+  outline: none;
+}
+
+.sk-shortcuts-help__search-input:focus {
+  border-color: var(--sk-accent);
+}
+
+.sk-shortcuts-help__list {
+  padding: var(--sk-density-pad-y) 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.sk-shortcuts-help__group {
+  padding: 0 var(--sk-density-pad-x);
+}
+
+.sk-shortcuts-help__group + .sk-shortcuts-help__group {
+  margin-top: var(--sk-density-gap-md);
+}
+
+.sk-shortcuts-help__category {
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-xs);
+  font-weight: var(--sk-font-weight-semibold);
+  color: var(--sk-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--sk-letter-spacing-wide);
+  margin: 0 0 var(--sk-density-gap-sm) 0;
+  padding: 0;
+}
+
+.sk-shortcuts-help__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-density-gap-sm);
+}
+
+.sk-shortcuts-help__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sk-density-pad-y) 0;
+  gap: var(--sk-density-gap-md);
+}
+
+.sk-shortcuts-help__description {
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-primary);
+}
+
+.sk-shortcuts-help__kbd {
+  font-family: var(--sk-font-mono);
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-text-muted);
+  background: var(--sk-surface-sunken-bg);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+.sk-shortcuts-help__empty {
+  text-align: center;
+  color: var(--sk-text-muted);
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-sm);
+  padding: var(--sk-density-gap-lg) 0;
+}

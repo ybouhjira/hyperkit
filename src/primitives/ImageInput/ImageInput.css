@@ -1,0 +1,168 @@
+.sk-image-input {
+  --sk-image-input-preview-size: 80px;
+  --sk-image-input-border: var(--sk-border);
+  --sk-image-input-bg: var(--sk-bg-secondary);
+  --sk-image-input-radius: var(--sk-radius-md);
+
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.sk-image-input__file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sk-image-input__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-xl);
+  border: 2px dashed var(--sk-image-input-border);
+  border-radius: var(--sk-image-input-radius);
+  background-color: var(--sk-image-input-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 120px;
+}
+
+.sk-image-input__placeholder:hover:not(.sk-image-input--disabled .sk-image-input__placeholder) {
+  border-color: var(--sk-accent);
+  background-color: var(--sk-accent-subtle);
+}
+
+.sk-image-input--dragging .sk-image-input__placeholder {
+  border-color: var(--sk-accent);
+  background-color: var(--sk-accent-subtle);
+  transform: scale(1.02);
+}
+
+.sk-image-input__placeholder-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--sk-text-muted);
+}
+
+.sk-image-input__placeholder-text {
+  color: var(--sk-text-muted);
+  font-size: var(--sk-font-size-sm);
+}
+
+.sk-image-input--disabled .sk-image-input__placeholder {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sk-image-input__previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sk-space-sm);
+}
+
+.sk-image-input__preview {
+  position: relative;
+  width: var(--sk-image-input-preview-size);
+  height: var(--sk-image-input-preview-size);
+  border-radius: var(--sk-image-input-radius);
+  overflow: hidden;
+  border: 1px solid var(--sk-image-input-border);
+  background-color: var(--sk-image-input-bg);
+}
+
+.sk-image-input__preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sk-image-input__remove-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(0 0 0 / 0.6);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sk-image-input__preview:hover .sk-image-input__remove-button {
+  opacity: 1;
+}
+
+.sk-image-input__remove-button:hover {
+  background-color: rgb(0 0 0 / 0.8);
+}
+
+.sk-image-input__remove-button svg {
+  width: 12px;
+  height: 12px;
+}
+
+.sk-image-input__remove-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sk-image-input__add-button {
+  width: var(--sk-image-input-preview-size);
+  height: var(--sk-image-input-preview-size);
+  border: 2px dashed var(--sk-image-input-border);
+  border-radius: var(--sk-image-input-radius);
+  background-color: var(--sk-image-input-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.sk-image-input__add-button:hover:not(:disabled) {
+  border-color: var(--sk-accent);
+  background-color: var(--sk-accent-subtle);
+}
+
+.sk-image-input__add-button svg {
+  width: 24px;
+  height: 24px;
+  color: var(--sk-text-muted);
+}
+
+.sk-image-input__add-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sk-image-input__error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  background: var(--sk-color-danger-bg, #fef2f2);
+  color: var(--sk-color-danger, #dc2626);
+  border-radius: var(--sk-radius-sm, 4px);
+  font-size: 0.875rem;
+}
+
+.sk-image-input__error-icon {
+  flex-shrink: 0;
+}

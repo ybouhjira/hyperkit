@@ -1,0 +1,99 @@
+.sk-range-slider {
+  --sk-range-slider-track-bg: var(--sk-bg-tertiary);
+  --sk-range-slider-track-height: 4px;
+  --sk-range-slider-fill-bg: var(--sk-accent);
+  --sk-range-slider-thumb-size: 18px;
+  --sk-range-slider-thumb-bg: var(--sk-accent);
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sk-range-slider__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.sk-range-slider__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sk-text-primary);
+}
+
+.sk-range-slider__value {
+  font-size: 0.875rem;
+  color: var(--sk-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.sk-range-slider__track {
+  position: relative;
+  height: var(--sk-range-slider-track-height);
+  background: var(--sk-range-slider-track-bg);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.sk-range-slider[data-disabled] .sk-range-slider__track {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sk-range-slider__fill {
+  position: absolute;
+  height: 100%;
+  background: var(--sk-range-slider-fill-bg);
+  border-radius: 9999px;
+}
+
+.sk-range-slider__thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--sk-range-slider-thumb-size);
+  height: var(--sk-range-slider-thumb-size);
+  background: var(--sk-range-slider-thumb-bg);
+  border: 2px solid var(--sk-bg-primary);
+  border-radius: 50%;
+  cursor: grab;
+  transition: box-shadow 0.2s ease;
+}
+
+.sk-range-slider__thumb:hover {
+  box-shadow: 0 0 0 4px rgb(var(--sk-accent-rgb), 0.2);
+}
+
+.sk-range-slider__thumb:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(var(--sk-accent-rgb), 0.3);
+}
+
+.sk-range-slider__thumb:active {
+  cursor: grabbing;
+}
+
+.sk-range-slider[data-disabled] .sk-range-slider__thumb {
+  cursor: not-allowed;
+  background: var(--sk-text-tertiary);
+}
+
+.sk-range-slider[data-disabled] .sk-range-slider__thumb:hover {
+  box-shadow: none;
+}
+
+/* Hide the native input for accessibility but keep it in the DOM */
+.sk-range-slider__thumb input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

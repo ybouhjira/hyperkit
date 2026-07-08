@@ -1,0 +1,66 @@
+.sk-waterfall {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-text-secondary);
+}
+
+.sk-waterfall__header {
+  height: 20px;
+  position: relative;
+}
+
+.sk-waterfall__axis {
+  position: relative;
+  height: 100%;
+  border-bottom: 1px solid var(--sk-border);
+}
+
+.sk-waterfall__tick {
+  position: absolute;
+  transform: translateX(-50%);
+  color: var(--sk-text-muted);
+  font-size: var(--sk-font-size-xs);
+  white-space: nowrap;
+}
+
+.sk-waterfall__row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--sk-border);
+
+  &:hover {
+    background: var(--sk-bg-tertiary);
+  }
+}
+
+.sk-waterfall__label {
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: var(--sk-space-sm);
+  color: var(--sk-text-secondary);
+  font-size: var(--sk-font-size-xs);
+}
+
+.sk-waterfall__timeline {
+  flex: 1;
+  position: relative;
+  height: 100%;
+}
+
+.sk-waterfall__bar {
+  position: absolute;
+  top: 25%;
+  height: 50%;
+  border-radius: var(--sk-radius-sm);
+  min-width: 2px;
+  opacity: 0.85;
+  cursor: default;
+
+  &:hover {
+    opacity: 1;
+  }
+}

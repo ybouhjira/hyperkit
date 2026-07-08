@@ -1,0 +1,15 @@
+.sk-signal-grid {
+  display: grid;
+}
+
+.sk-signal-grid__cell {
+  border-radius: 2px;
+  cursor: default;
+  transition: transform var(--sk-duration-fast);
+
+  &:hover {
+    transform: scale(1.2);
+    z-index: 1;
+    position: relative;
+  }
+}

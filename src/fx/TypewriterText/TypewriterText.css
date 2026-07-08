@@ -1,0 +1,40 @@
+.sk-typewriter {
+  display: inline;
+  font-size: var(--sk-font-size-base);
+  color: var(--sk-text-primary);
+}
+
+.sk-typewriter__text {
+  display: inline;
+}
+
+.sk-typewriter__cursor {
+  display: inline;
+  user-select: none;
+  margin-left: 1px;
+  color: var(--sk-accent);
+  animation: sk-typewriter-blink 1s step-start infinite;
+}
+
+@keyframes sk-typewriter-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Stop cursor blinking during active typing */
+.sk-typewriter--typing .sk-typewriter__cursor {
+  animation: none;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-typewriter__cursor {
+    animation: none;
+    opacity: 1;
+  }
+}

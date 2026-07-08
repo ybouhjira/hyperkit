@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "workspaces": {
+    ".": {
+      "project": ["src/**/*.{ts,tsx}"]
+    }
+  },
+  "ignore": [
+    "src/composites/FileExplorer/views/index.ts",
+    "src/panels/index.ts",
+    "src/views/index.ts",
+    "src/fx/**",
+    "src/primitives/SegmentedControl/SegmentedControl.editor.ts",
+    "src/report/components/MockupRenderer.tsx",
+    "packages/**"
+  ],
+  "ignoreDependencies": [
+    "@typescript-eslint/eslint-plugin",
+    "@eslint/js",
+    "@modelcontextprotocol/sdk",
+    "@ybouhjira/hyperkit-devtools",
+    "chromatic",
+    "hypher",
+    "lucide-static"
+  ],
+  "ignoreExportsUsedInFile": true,
+  "exclude": ["duplicates", "unresolved", "exports", "types"]
+}

@@ -1,0 +1,101 @@
+.sk-repo-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-sm);
+}
+
+.sk-repo-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+}
+
+.sk-repo-card__title {
+  font-size: var(--sk-font-size-md);
+  font-weight: 600;
+  color: var(--sk-text-primary);
+  margin: 0;
+}
+
+.sk-repo-card__description {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+  margin: 0;
+}
+
+.sk-repo-card__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-md);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+}
+
+.sk-repo-card__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+}
+
+.sk-repo-card__path {
+  font-family: var(--sk-font-mono);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+}
+
+.sk-repo-card__git {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+}
+
+.sk-repo-card__status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+}
+
+.sk-repo-card__status--clean {
+  color: var(--sk-success);
+}
+
+.sk-repo-card__status--dirty {
+  color: var(--sk-warning);
+}
+
+.sk-repo-card__last-commit {
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+}
+
+.sk-repo-card__actions {
+  display: flex;
+  gap: var(--sk-space-sm);
+  flex-wrap: wrap;
+}
+
+.sk-repo-card__language-dot {
+  width: var(--sk-space-sm);
+  height: var(--sk-space-sm);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: var(--sk-space-xs);
+}
+
+.sk-repo-card__button {
+  font-size: var(--sk-font-size-sm);
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  background: var(--sk-bg-secondary);
+  color: var(--sk-text-primary);
+  cursor: pointer;
+  font-family: var(--sk-font-ui);
+  transition: background var(--sk-repo-card-transition-duration, var(--sk-duration-fast));
+}
+
+.sk-repo-card__button:hover {
+  background: var(--sk-bg-tertiary);
+}

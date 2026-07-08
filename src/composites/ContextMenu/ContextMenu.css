@@ -1,0 +1,107 @@
+.sk-context-menu__trigger {
+  display: inline-block;
+}
+
+.sk-context-menu {
+  min-width: var(--sk-context-menu-min-w, 200px);
+  background: var(--sk-bg-primary);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  box-shadow: var(--sk-shadow-lg);
+  padding: var(--sk-space-xs);
+  animation: sk-context-menu-fade-in var(--sk-transition-fast) ease-out;
+  z-index: var(--sk-z-popover);
+}
+
+.sk-context-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-sm) var(--sk-space-md);
+  border-radius: var(--sk-radius-sm);
+  font-size: var(--sk-font-sm);
+  color: var(--sk-text-primary);
+  cursor: pointer;
+  transition: all var(--sk-transition-fast);
+  outline: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    background: var(--sk-bg-hover);
+  }
+
+  &:focus-visible {
+    background: var(--sk-bg-hover);
+  }
+
+  &:active {
+    background: var(--sk-bg-active);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background: none;
+    }
+  }
+}
+
+.sk-context-menu__item--danger {
+  color: var(--sk-error);
+
+  &:hover {
+    background: color-mix(in srgb, var(--sk-error) 10%, transparent);
+  }
+}
+
+.sk-context-menu__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sk-icon-sm);
+  height: var(--sk-icon-sm);
+  flex-shrink: 0;
+}
+
+.sk-context-menu__item-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.sk-context-menu__item-shortcut {
+  font-size: var(--sk-font-xs);
+  color: var(--sk-text-muted);
+  margin-left: auto;
+  padding-left: var(--sk-space-lg);
+}
+
+.sk-context-menu__separator {
+  height: 1px;
+  background: var(--sk-border);
+  margin: var(--sk-space-xs) 0;
+}
+
+.sk-context-menu__label {
+  padding: var(--sk-space-sm) var(--sk-space-md);
+  font-size: var(--sk-font-xs);
+  font-weight: 600;
+  color: var(--sk-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@keyframes sk-context-menu-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

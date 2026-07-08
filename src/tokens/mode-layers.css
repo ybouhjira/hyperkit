@@ -1,0 +1,18 @@
+/* Design Mode Layer Cascade
+ * Lower layers have lower specificity — higher layers override.
+ * sk-base: default tokens and component styles
+ * sk-mode: design mode structural overrides (glass, ink, native, command)
+ * sk-component: per-component overrides from theme
+ * sk-override: user/app overrides (highest priority)
+ */
+@layer sk-base, sk-mode, sk-mode-glass, sk-mode-ink, sk-mode-native, sk-mode-command, sk-component, sk-override;
+
+/* Mode personality tokens — applied via CSS from JS-set custom properties */
+@layer sk-base {
+  :root {
+    --sk-radius-factor: 1;
+    --sk-press-scale: 0.98;
+    --sk-hover-lift: 0px;
+    --sk-use-backdrop: 0;
+  }
+}

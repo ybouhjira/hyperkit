@@ -1,0 +1,10 @@
+.sk-conn-status {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+}
+
+.sk-conn-status__label {
+  font-size: var(--sk-font-size-base);
+  color: var(--sk-text-secondary);
+}

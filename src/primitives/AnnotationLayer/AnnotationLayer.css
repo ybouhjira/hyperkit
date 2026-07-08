@@ -1,0 +1,339 @@
+/* ── AnnotationLayer Container ─────────────────────────────────────────────── */
+
+.sk-annotation-layer {
+  position: relative;
+  display: contents;
+}
+
+/* When annotation mode is active, show crosshair cursor on all descendants
+   except overlay elements */
+.sk-annotation-layer--active {
+  cursor: crosshair;
+}
+
+.sk-annotation-layer--active .sk-annotation-pin,
+.sk-annotation-layer--active .sk-annotation-popover {
+  cursor: default;
+}
+
+/* ── Annotation Pin ────────────────────────────────────────────────────────── */
+
+.sk-annotation-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--sk-accent);
+  color: var(--sk-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  transition:
+    transform var(--sk-duration-fast),
+    box-shadow var(--sk-duration-fast),
+    background-color var(--sk-duration-fast);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--sk-accent) 40%, transparent);
+  user-select: none;
+
+  &:hover,
+  &:focus-visible {
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--sk-accent) 50%, transparent);
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: 2px;
+  }
+}
+
+.sk-annotation-pin--active {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--sk-accent) 50%, transparent);
+}
+
+.sk-annotation-pin--resolved {
+  background: var(--sk-success);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--sk-success) 40%, transparent);
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--sk-success) 50%, transparent);
+  }
+}
+
+/* Pulse ring behind the pin */
+.sk-annotation-pin__pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--sk-accent);
+  opacity: 0.35;
+  animation: sk-annotation-pulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sk-annotation-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  60% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.sk-annotation-pin__label {
+  position: relative;
+  font-size: var(--sk-font-size-xs);
+  font-weight: 700;
+  line-height: 1;
+  z-index: 1;
+}
+
+/* ── Annotation Popovers ───────────────────────────────────────────────────── */
+
+.sk-annotation-popover {
+  background: var(--sk-bg-elevated, var(--sk-bg-secondary));
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  box-shadow:
+    0 4px 12px -2px color-mix(in srgb, currentColor 12%, transparent),
+    0 2px 6px -2px color-mix(in srgb, currentColor 8%, transparent);
+  z-index: 101;
+  min-width: 240px;
+  max-width: 320px;
+  animation: sk-annotation-popover-in var(--sk-duration-fast) var(--sk-ease-out);
+}
+
+@keyframes sk-annotation-popover-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* New annotation input popover */
+.sk-annotation-popover--new {
+  padding: var(--sk-space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-xs);
+}
+
+/* Thread popover */
+.sk-annotation-popover--thread {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Popover Header ────────────────────────────────────────────────────────── */
+
+.sk-annotation-popover__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  border-bottom: 1px solid var(--sk-border-subtle, var(--sk-border));
+  gap: var(--sk-space-xs);
+}
+
+.sk-annotation-popover__status {
+  font-size: var(--sk-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.sk-annotation-popover__status--open {
+  color: var(--sk-accent);
+}
+
+.sk-annotation-popover__status--resolved {
+  color: var(--sk-success);
+}
+
+.sk-annotation-popover__header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-2xs);
+  margin-left: auto;
+}
+
+/* ── Thread messages ───────────────────────────────────────────────────────── */
+
+.sk-annotation-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: var(--sk-space-xs) 0;
+}
+
+.sk-annotation-message {
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-2xs);
+
+  & + .sk-annotation-message {
+    border-top: 1px solid var(--sk-border-subtle, var(--sk-border));
+  }
+}
+
+.sk-annotation-message--ai {
+  background: color-mix(in srgb, var(--sk-accent) 5%, transparent);
+}
+
+.sk-annotation-message__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+}
+
+.sk-annotation-message__author {
+  font-size: var(--sk-font-size-xs);
+  font-weight: 600;
+  color: var(--sk-text-secondary);
+}
+
+.sk-annotation-message__time {
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-text-muted);
+}
+
+.sk-annotation-message__text {
+  margin: 0;
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-primary);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+/* ── Reply area ────────────────────────────────────────────────────────────── */
+
+.sk-annotation-popover__reply {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-xs);
+  padding: var(--sk-space-xs) var(--sk-space-sm) var(--sk-space-sm);
+  border-top: 1px solid var(--sk-border-subtle, var(--sk-border));
+}
+
+.sk-annotation-popover__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sk-space-xs);
+}
+
+/* ── Annotation Input (textarea) ───────────────────────────────────────────── */
+
+.sk-annotation-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--sk-bg-secondary);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  color: var(--sk-text-primary);
+  font-size: var(--sk-font-size-sm);
+  font-family: inherit;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  resize: none;
+  transition: border-color var(--sk-duration-fast);
+  line-height: 1.5;
+
+  &::placeholder {
+    color: var(--sk-text-muted);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--sk-accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--sk-accent) 20%, transparent);
+  }
+}
+
+.sk-annotation-input--sm {
+  font-size: var(--sk-font-size-xs);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+
+.sk-annotation-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-2xs);
+  border: 1px solid transparent;
+  border-radius: var(--sk-radius-sm);
+  font-size: var(--sk-font-size-sm);
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  transition:
+    background-color var(--sk-duration-fast),
+    border-color var(--sk-duration-fast),
+    opacity var(--sk-duration-fast);
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--sk-accent);
+    outline-offset: 2px;
+  }
+}
+
+.sk-annotation-btn--sm {
+  font-size: var(--sk-font-size-xs);
+  padding: var(--sk-space-2xs) var(--sk-space-xs);
+}
+
+.sk-annotation-btn--primary {
+  background: var(--sk-accent);
+  color: var(--sk-bg-primary);
+  border-color: var(--sk-accent);
+
+  &:hover:not(:disabled) {
+    background: var(--sk-accent-hover, var(--sk-accent));
+    filter: brightness(1.08);
+  }
+}
+
+.sk-annotation-btn--ghost {
+  background: transparent;
+  color: var(--sk-text-secondary);
+  border-color: transparent;
+
+  &:hover:not(:disabled) {
+    background: var(--sk-bg-tertiary);
+    color: var(--sk-text-primary);
+  }
+}
+
+.sk-annotation-btn--danger {
+  color: var(--sk-error);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--sk-error) 12%, transparent);
+    color: var(--sk-error);
+  }
+}

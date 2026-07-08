@@ -1,0 +1,22 @@
+.sk-color-dot {
+  display: inline-block;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid var(--sk-border-subtle);
+}
+
+/* Sizes */
+.sk-color-dot--sm {
+  width: var(--sk-space-sm);
+  height: var(--sk-space-sm);
+}
+
+.sk-color-dot--md {
+  width: var(--sk-icon-xs);
+  height: var(--sk-icon-xs);
+}
+
+.sk-color-dot--lg {
+  width: var(--sk-icon-md);
+  height: var(--sk-icon-md);
+}

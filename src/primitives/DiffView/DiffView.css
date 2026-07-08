@@ -1,0 +1,284 @@
+.sk-diff-view {
+  --sk-diff-num-w: 3rem;
+  --sk-diff-mark-w: 1.25rem;
+  --sk-diff-code-min: 24rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+  font-family: var(--sk-font-mono, ui-monospace, monospace);
+}
+
+/* Narrow containers (phones, slim IDE panels): the JS forces unified layout;
+   shrink the gutters and drop the code min-width so a single column fits the
+   viewport instead of forcing a wide horizontal scroll. */
+.sk-diff-view[data-narrow] {
+  --sk-diff-num-w: 2.25rem;
+  --sk-diff-code-min: 0;
+}
+
+.sk-diff-view__empty {
+  color: var(--sk-text-muted);
+  font-family: var(--sk-font-sans, inherit);
+  font-size: var(--sk-font-size-sm);
+}
+
+/* ── Toolbar ─────────────────────────────────────────── */
+.sk-diff-view__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sk-space-sm);
+}
+
+.sk-diff-view__count {
+  color: var(--sk-text-muted);
+  font-family: var(--sk-font-sans, inherit);
+  font-size: var(--sk-font-size-sm);
+  font-weight: 500;
+}
+
+/* ── File block ──────────────────────────────────────── */
+.sk-diff-view__file {
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  overflow: hidden;
+  background: var(--sk-bg-primary);
+}
+
+.sk-diff-view__file-header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  background: var(--sk-bg-secondary);
+  border-bottom: 1px solid var(--sk-border);
+}
+
+.sk-diff-view__file-path {
+  font-size: var(--sk-font-size-sm);
+  font-weight: 600;
+  color: var(--sk-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-diff-view__file-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-xs);
+  flex-shrink: 0;
+  font-size: var(--sk-font-size-sm);
+}
+
+.sk-diff-view__stat-add {
+  color: var(--sk-success);
+}
+
+.sk-diff-view__stat-del {
+  color: var(--sk-error);
+}
+
+/* ── The single horizontal scroll container ──────────── */
+.sk-diff-view__scroll {
+  overflow-x: auto;
+}
+
+.sk-diff-view__grid {
+  display: grid;
+  min-width: 100%;
+  width: max-content;
+  align-items: stretch;
+  font-size: var(--sk-font-size-sm);
+  line-height: 1.6;
+}
+
+.sk-diff-view__grid--split {
+  grid-template-columns:
+    var(--sk-diff-num-w) minmax(var(--sk-diff-code-min), max-content)
+    var(--sk-diff-num-w) minmax(var(--sk-diff-code-min), max-content);
+}
+
+.sk-diff-view__grid--unified {
+  grid-template-columns:
+    var(--sk-diff-num-w) var(--sk-diff-num-w) var(--sk-diff-mark-w)
+    minmax(var(--sk-diff-code-min), max-content);
+}
+
+/* Row wrapper participates transparently in the grid. */
+.sk-diff-view__row {
+  display: contents;
+}
+
+/* ── Line-number gutters (pinned while code scrolls) ─── */
+.sk-diff-view__num {
+  text-align: right;
+  padding: 0 var(--sk-space-xs);
+  color: var(--sk-text-muted);
+  background: var(--sk-bg-secondary);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.sk-diff-view__num--old {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+/* Unified view stacks both gutters + mark at the left edge. */
+.sk-diff-view[data-mode='unified'] .sk-diff-view__num--new {
+  position: sticky;
+  left: var(--sk-diff-num-w);
+  z-index: 2;
+}
+
+.sk-diff-view__mark {
+  text-align: center;
+  user-select: none;
+  background: var(--sk-bg-primary);
+}
+
+.sk-diff-view[data-mode='unified'] .sk-diff-view__mark {
+  position: sticky;
+  left: calc(var(--sk-diff-num-w) * 2);
+  z-index: 2;
+}
+
+.sk-diff-view__mark--add {
+  color: var(--sk-success);
+}
+
+.sk-diff-view__mark--del {
+  color: var(--sk-error);
+}
+
+.sk-diff-view__mark--context,
+.sk-diff-view__mark--meta {
+  color: var(--sk-text-muted);
+}
+
+/* ── Code cells ──────────────────────────────────────── */
+.sk-diff-view__code {
+  padding: 0 var(--sk-space-sm);
+  white-space: pre;
+  color: var(--sk-text-primary);
+}
+
+.sk-diff-view__code-inner {
+  font-family: inherit;
+  background: transparent;
+  padding: 0;
+}
+
+.sk-diff-view__code--add {
+  background: color-mix(in srgb, var(--sk-success) 14%, transparent);
+}
+
+.sk-diff-view__code--del {
+  background: color-mix(in srgb, var(--sk-error) 14%, transparent);
+}
+
+.sk-diff-view__code--context {
+  background: transparent;
+}
+
+.sk-diff-view__code--blank {
+  background: color-mix(in srgb, var(--sk-text-muted) 6%, transparent);
+}
+
+/* ── Hunk header (full-width row) ────────────────────── */
+.sk-diff-view__hunk {
+  grid-column: 1 / -1;
+  padding: var(--sk-space-2xs) var(--sk-space-sm);
+  background: color-mix(in srgb, var(--sk-accent) 10%, transparent);
+  color: var(--sk-accent);
+  white-space: pre;
+  position: sticky;
+  left: 0;
+}
+
+/* ── highlight.js token colors (scoped) ──────────────── */
+/* stylelint-disable selector-class-pattern */
+.sk-diff-view .hljs-keyword {
+  color: var(--sk-custom-code-keyword, #c678dd);
+}
+
+.sk-diff-view .hljs-string {
+  color: var(--sk-custom-code-string, #98c379);
+}
+
+.sk-diff-view .hljs-number {
+  color: var(--sk-custom-code-number, #d19a66);
+}
+
+.sk-diff-view .hljs-comment {
+  color: var(--sk-text-muted);
+  font-style: italic;
+}
+
+.sk-diff-view .hljs-title {
+  color: var(--sk-custom-code-function, #61afef);
+}
+
+.sk-diff-view .hljs-attr {
+  color: var(--sk-custom-code-attr, #d19a66);
+}
+
+.sk-diff-view .hljs-built_in {
+  color: var(--sk-custom-code-builtin, #e6c07b);
+}
+
+.sk-diff-view .hljs-type {
+  color: var(--sk-custom-code-type, #e6c07b);
+}
+
+.sk-diff-view .hljs-params {
+  color: var(--sk-text-primary);
+}
+
+.sk-diff-view .hljs-meta {
+  color: var(--sk-text-muted);
+}
+
+.sk-diff-view .hljs-punctuation {
+  color: var(--sk-text-secondary);
+}
+
+.sk-diff-view .hljs-name {
+  color: var(--sk-custom-code-function, #61afef);
+}
+
+.sk-diff-view .hljs-selector-tag {
+  color: var(--sk-custom-code-keyword, #c678dd);
+}
+
+.sk-diff-view .hljs-selector-class {
+  color: var(--sk-custom-code-type, #e6c07b);
+}
+
+.sk-diff-view .hljs-selector-id {
+  color: var(--sk-custom-code-function, #61afef);
+}
+
+.sk-diff-view .hljs-variable {
+  color: var(--sk-text-primary);
+}
+
+.sk-diff-view .hljs-tag {
+  color: var(--sk-text-secondary);
+}
+
+.sk-diff-view .hljs-regexp {
+  color: var(--sk-custom-code-string, #98c379);
+}
+
+.sk-diff-view .hljs-symbol {
+  color: var(--sk-custom-code-number, #d19a66);
+}
+/* stylelint-enable selector-class-pattern */
