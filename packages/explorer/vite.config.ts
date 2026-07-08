@@ -61,7 +61,7 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: [path.resolve(__dirname, '../../src/test-setup.ts')],
-    // Only run the explorer's own tests. The solidkit-src and diagram-solid
+    // Only run the explorer's own tests. The hyperkit-src and diagram-solid
     // symlinks exist for dev-server story discovery; their test suites belong
     // to the root package and @ybouhjira/diagram-solid respectively and run
     // there with their own configs.

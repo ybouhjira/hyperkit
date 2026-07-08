@@ -122,7 +122,7 @@ export function Shell() {
               color: 'var(--sk-text-primary)',
             }}
           >
-            SolidKit Explorer
+            HyperKit Explorer
           </h1>
 
           {/* Right side: toolbar plugin slots + theme picker */}

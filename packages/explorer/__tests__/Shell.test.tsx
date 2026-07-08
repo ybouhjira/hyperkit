@@ -20,7 +20,7 @@ function renderShell() {
 describe('Shell', () => {
   it('renders header title', () => {
     renderShell();
-    expect(screen.getByText('SolidKit Explorer')).toBeInTheDocument();
+    expect(screen.getByText('HyperKit Explorer')).toBeInTheDocument();
   });
 
   it('shows empty state when no story selected', () => {

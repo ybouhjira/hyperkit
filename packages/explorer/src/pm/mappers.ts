@@ -1,5 +1,5 @@
 /**
- * Adapter functions to map PMIssue/PMMilestone to various SolidKit component interfaces
+ * Adapter functions to map PMIssue/PMMilestone to various HyperKit component interfaces
  */
 
 import type { PMIssue, PMMilestone } from './types';

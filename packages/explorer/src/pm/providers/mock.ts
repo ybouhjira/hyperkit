@@ -75,7 +75,7 @@ let mockMilestones: PMMilestone[] = [
 ]
 
 let mockIssues: PMIssue[] = [
-  // SolidKit issues - 4-tier hierarchy
+  // HyperKit issues - 4-tier hierarchy
   // Tier 0 (roots)
   {
     uid: 'mock:ybouhjira/hyperkit:1',
