@@ -17,10 +17,12 @@ export default defineConfig({
 
   projects: [{ name: 'chromium', use: { browserName: 'chromium' } }],
 
+  // Serve the built explorer: on-demand vite dev compilation of the full
+  // module graph exceeds test timeouts on slow CI runners.
   webServer: {
-    command: 'pnpm --filter @ybouhjira/explorer dev',
+    command: 'pnpm --filter @ybouhjira/explorer build && pnpm --filter @ybouhjira/explorer preview',
     url: 'http://localhost:6007',
     reuseExistingServer: true,
-    timeout: 60_000,
+    timeout: 240_000,
   },
 });
