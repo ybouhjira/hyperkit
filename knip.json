@@ -18,9 +18,7 @@
     "@typescript-eslint/eslint-plugin",
     "@eslint/js",
     "@modelcontextprotocol/sdk",
-    "@ybouhjira/hyperkit-devtools",
     "chromatic",
-    "hypher",
     "lucide-static"
   ],
   "ignoreExportsUsedInFile": true,

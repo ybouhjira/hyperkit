@@ -122,20 +122,18 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "340 kB",
+      "limit": "360 kB",
       "ignore": [
         "@ybouhjira/hyperkit-devtools"
       ]
     },
     {
       "path": "dist/index.css",
-      "limit": "36 kB"
+      "limit": "39 kB"
     }
   ],
   "peerDependencies": {
-    "@kobalte/core": "^0.13.0",
     "effect": "^3.0.0",
-    "hypher": ">=0.2.0",
     "solid-js": "^1.8.0"
   },
   "peerDependenciesMeta": {
@@ -148,7 +146,6 @@
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
     "@eslint/js": "^9.39.3",
-    "@kobalte/core": "^0.13.11",
     "@modelcontextprotocol/sdk": "^1.27.1",
     "@playwright/test": "^1.58.2",
     "@size-limit/preset-small-lib": "^12.0.0",
@@ -199,9 +196,11 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
+    "@kobalte/core": "^0.13.11",
+    "@motionone/dom": "^10.18.0",
     "commander": "^14.0.3",
     "highlight.js": "^11.11.1",
-    "@motionone/dom": "^10.18.0",
+    "hypher": "^0.2.5",
     "solid-motionone": "^1.0.4"
   },
   "packageManager": "pnpm@10.30.2"

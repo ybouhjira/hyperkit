@@ -498,12 +498,13 @@ Factory: `makeLoggingLayer(config?: LoggingServiceConfig)`
 Pipeline: `enrichOptions` → `redactOptions` → `shouldSample`
 
 Transport constructors:
-| Constructor | Type | Notes |
-| ----------- | ---- | ----- |
-| `ConsoleTransport(config?)` | Simple | Formats: pretty / json / logfmt |
-| `HttpTransport(config)` | Scoped | Batched POST to endpoint |
-| `BeaconTransport(config)` | Scoped | `navigator.sendBeacon` on page unload |
-| `SentryTransport(config)` | Simple | Accepts any `SentryLike` interface |
+
+| Constructor                 | Type   | Notes                                 |
+| --------------------------- | ------ | ------------------------------------- |
+| `ConsoleTransport(config?)` | Simple | Formats: pretty / json / logfmt       |
+| `HttpTransport(config)`     | Scoped | Batched POST to endpoint              |
+| `BeaconTransport(config)`   | Scoped | `navigator.sendBeacon` on page unload |
+| `SentryTransport(config)`   | Simple | Accepts any `SentryLike` interface    |
 
 Transport wrappers: `SimpleTransport(logger)` / `ScopedTransport(effect)` — use when building custom transports.
 
@@ -943,7 +944,7 @@ cd packages/devtools && npm test
 
 - **Name**: `@ybouhjira/hyperkit`
 - **Version**: 3.4.1
-- **Peer deps**: `solid-js ^1.8.0`, `@kobalte/core ^0.13.0`, `effect ^3.0.0`
+- **Peer deps**: `solid-js ^1.8.0`, `effect ^3.0.0` (@kobalte/core and hypher are regular dependencies)
 - **Registry**: npmjs.org (public)
 - **Exports**: `@ybouhjira/hyperkit` (JS) + `@ybouhjira/hyperkit/dist/index.css` (CSS)
 - **Tests**: 5,000+ tests across main package + all sub-packages

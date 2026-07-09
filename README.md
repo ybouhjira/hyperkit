@@ -26,8 +26,10 @@ The long-term goal is **one component API, many renderers** — the SolidJS rend
 ## Install
 
 ```bash
-npm install @ybouhjira/hyperkit solid-js @kobalte/core effect
+npm install @ybouhjira/hyperkit
 ```
+
+`solid-js` and `effect` are peer dependencies (npm ≥7 and pnpm install them automatically) — they must be single-instance in your app because HyperKit shares Solid's reactivity graph and Effect's service tags with your code.
 
 ```tsx
 import '@ybouhjira/hyperkit/dist/index.css';

@@ -10,8 +10,11 @@ pnpm add @ybouhjira/hyperkit
 
 ## Peer dependencies
 
+`solid-js` and `effect` are peer dependencies; npm ≥7 and pnpm install them automatically. They are peers (not bundled) because both must be single-instance across your app — HyperKit shares Solid's reactivity graph and Effect's service tags with your code.
+
 ```bash
-npm install solid-js @kobalte/core effect
+# only needed on yarn or npm <7
+npm install solid-js effect
 ```
 
 ## Styles
@@ -24,12 +27,12 @@ import '@ybouhjira/hyperkit/dist/index.css';
 
 ## Optional packages
 
-| Package | Install |
-| --- | --- |
-| Diagrams (SolidJS) | `npm install @ybouhjira/diagram-solid @ybouhjira/diagram-core` |
-| Diagrams (vanilla SVG) | `npm install @ybouhjira/diagram-svg @ybouhjira/diagram-core` |
-| Schema-driven views | `npm install @ybouhjira/hyperkit-views` |
-| ESLint rules | `npm install -D @ybouhjira/eslint-plugin-hyperkit` |
+| Package                | Install                                                        |
+| ---------------------- | -------------------------------------------------------------- |
+| Diagrams (SolidJS)     | `npm install @ybouhjira/diagram-solid @ybouhjira/diagram-core` |
+| Diagrams (vanilla SVG) | `npm install @ybouhjira/diagram-svg @ybouhjira/diagram-core`   |
+| Schema-driven views    | `npm install @ybouhjira/hyperkit-views`                        |
+| ESLint rules           | `npm install -D @ybouhjira/eslint-plugin-hyperkit`             |
 
 ## Update
 
