@@ -38,9 +38,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       # The runtime lazy-imports hyperkit-devtools, which resolves to its
-      # built dist — build it and its workspace dependencies first.
+      # built dist. hyperkit is a peer/dev dependency of timeline and devtools,
+      # so pnpm's topological ordering doesn't cover it — build explicitly.
       - name: Build playground dependencies
-        run: pnpm --filter "@ybouhjira/hyperkit-devtools..." build
+        run: |
+          pnpm build
+          pnpm --filter @ybouhjira/hyperkit-timeline build
+          pnpm --filter @ybouhjira/hyperkit-devtools build
 
       - name: Install website dependencies
         working-directory: website
