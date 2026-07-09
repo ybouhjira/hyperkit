@@ -22,7 +22,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@ybouhjira/diagram-core": "workspace:*",
+    "@ybouhjira/diagram-core": "workspace:^",
     "rbush": "^4.0.1"
   },
   "peerDependencies": {
@@ -43,5 +43,9 @@
     "type": "git",
     "url": "git+https://github.com/ybouhjira/hyperkit.git",
     "directory": "packages/diagram-svg"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

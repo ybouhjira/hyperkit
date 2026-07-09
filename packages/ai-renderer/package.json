@@ -41,5 +41,9 @@
     "type": "git",
     "url": "git+https://github.com/ybouhjira/hyperkit.git",
     "directory": "packages/ai-renderer"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

@@ -1,7 +1,6 @@
 {
   "name": "@ybouhjira/eslint-plugin-hyperkit",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
@@ -19,5 +18,13 @@
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybouhjira/hyperkit.git"
+  }
 }

@@ -22,7 +22,7 @@
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "@ybouhjira/hyperkit": "workspace:*",
+    "@ybouhjira/hyperkit": "workspace:^",
     "effect": "^3.0.0",
     "solid-js": "^1.8.0"
   },
@@ -45,5 +45,9 @@
     "type": "git",
     "url": "git+https://github.com/ybouhjira/hyperkit.git",
     "directory": "packages/editor"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

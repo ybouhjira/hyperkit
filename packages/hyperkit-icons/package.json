@@ -40,5 +40,9 @@
     "type": "git",
     "url": "git+https://github.com/ybouhjira/hyperkit.git",
     "directory": "packages/hyperkit-icons"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

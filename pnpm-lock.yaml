@@ -210,15 +210,16 @@ importers:
 
   packages/devtools:
     dependencies:
-      '@ybouhjira/hyperkit':
-        specifier: workspace:*
-        version: link:../..
       '@ybouhjira/hyperkit-timeline':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../timeline
       solid-js:
         specifier: ^1.8.0
         version: 1.9.14
+    devDependencies:
+      '@ybouhjira/hyperkit':
+        specifier: workspace:*
+        version: link:../..
 
   packages/diagram-core:
     dependencies:
@@ -254,10 +255,10 @@ importers:
   packages/diagram-solid:
     dependencies:
       '@ybouhjira/diagram-core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../diagram-core
       '@ybouhjira/diagram-svg':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../diagram-svg
     devDependencies:
       '@solidjs/testing-library':
@@ -294,7 +295,7 @@ importers:
   packages/diagram-svg:
     dependencies:
       '@ybouhjira/diagram-core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../diagram-core
       rbush:
         specifier: ^4.0.1
@@ -572,12 +573,13 @@ importers:
 
   packages/timeline:
     dependencies:
-      '@ybouhjira/hyperkit':
-        specifier: workspace:*
-        version: link:../..
       solid-js:
         specifier: ^1.8.0
         version: 1.9.14
+    devDependencies:
+      '@ybouhjira/hyperkit':
+        specifier: workspace:*
+        version: link:../..
 
   packages/views:
     devDependencies:

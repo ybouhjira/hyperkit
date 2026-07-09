@@ -37,5 +37,9 @@
     "type": "git",
     "url": "git+https://github.com/ybouhjira/hyperkit.git",
     "directory": "packages/llm-pipeline"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

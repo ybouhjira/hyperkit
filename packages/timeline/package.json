@@ -1,7 +1,6 @@
 {
   "name": "@ybouhjira/hyperkit-timeline",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -21,11 +20,21 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "dependencies": {
-    "@ybouhjira/hyperkit": "workspace:*"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "solid-js": "^1.8.0"
+    "solid-js": "^1.8.0",
+    "@ybouhjira/hyperkit": "workspace:^"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybouhjira/hyperkit.git"
+  },
+  "devDependencies": {
+    "@ybouhjira/hyperkit": "workspace:*"
+  }
 }
