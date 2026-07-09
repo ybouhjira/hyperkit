@@ -1,0 +1,38 @@
+---
+title: BugReporter
+description: In-app bug report dialog.
+slug: /components/utilities/BugReporter
+---
+
+# BugReporter
+
+In-app bug report dialog.
+
+:::note[Static examples]
+This component depends on app-level context (providers, services, or interactive setup) that does not fit the inline playground yet, so its examples are shown as static code.
+:::
+
+```tsx
+import { BugReporter } from '@ybouhjira/hyperkit';
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `storage` * | `BugReportStorage` | — | — |
+| `product` * | `string` | — | — |
+| `reporterEmail` | `string` | — | — |
+| `reporterName` | `string` | — | — |
+| `open` | `boolean` | — | Controlled open state — when provided, component is controlled. |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state should change (controlled mode). |
+| `hideFab` | `boolean` | — | Hide the built-in floating bug button (use when providing your own trigger). |
+| `disableShortcut` | `boolean` | — | Disable the built-in Ctrl+Shift+B keyboard shortcut. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-sev-color`

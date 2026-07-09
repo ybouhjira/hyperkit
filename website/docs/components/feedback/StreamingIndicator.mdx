@@ -1,0 +1,51 @@
+---
+title: StreamingIndicator
+description: Animated typing/streaming dots.
+slug: /components/feedback/StreamingIndicator
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# StreamingIndicator
+
+Animated typing/streaming dots.
+
+```tsx
+import { StreamingIndicator } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { StreamingIndicator } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <StreamingIndicator visible />\n  );\n}\n"} />
+
+## More Examples
+
+### Custom Message
+
+```tsx
+<StreamingIndicator visible message="Processing your request..." />
+```
+
+### Hidden
+
+```tsx
+<StreamingIndicator visible={false} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `visible` * | `boolean` | — | Whether to show the indicator. |
+| `message` | `string` | `'Thinking...'` | Status message to display. |
+| `class` | `string` | — | Additional CSS classes. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-duration-bounce`, `--sk-duration-pulse`, `--sk-ease-in-out`, `--sk-font-size-base`, `--sk-space-md`, `--sk-space-sm`, `--sk-space-xs`, `--sk-text-muted`

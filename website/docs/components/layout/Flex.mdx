@@ -1,0 +1,32 @@
+---
+title: Flex
+description: Flexbox container with direction, align, justify, gap, and wrap props.
+slug: /components/layout/Flex
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Flex
+
+Flexbox container with direction, align, justify, gap, and wrap props.
+
+```tsx
+import { Flex } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Flex, Box } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Flex gap=\"md\">\n      <Box p=\"md\" bg=\"secondary\" borderRadius=\"md\">Item 1</Box>\n      <Box p=\"md\" bg=\"secondary\" borderRadius=\"md\">Item 2</Box>\n      <Box p=\"md\" bg=\"secondary\" borderRadius=\"md\">Item 3</Box>\n    </Flex>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `direction` | `'row' \| 'column' \| 'row-reverse' \| 'column-reverse'` | — | Flex direction. Controls main axis orientation. |
+| `align` | `'start' \| 'center' \| 'end' \| 'stretch' \| 'baseline'` | — | Align items along cross axis. |
+| `justify` | `'start' \| 'center' \| 'end' \| 'between' \| 'around' \| 'evenly'` | — | Justify content along main axis. |
+| `gap` | `SpaceToken` | — | Gap between flex children. Uses spacing token. |
+| `wrap` | `'nowrap' \| 'wrap' \| 'wrap-reverse'` | `'nowrap'` | Flex wrap behavior. |
+| `inline` | `boolean` | `false` | Use inline-flex instead of flex display. |

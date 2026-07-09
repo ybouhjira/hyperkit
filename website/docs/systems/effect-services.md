@@ -8,13 +8,13 @@ description: Typed Effect-TS services for logging, sessions, WebSocket, file sys
 
 HyperKit ships first-class [Effect](https://effect.website/) services for common runtime concerns. Each service is a typed layer you compose into your Effect runtime — no singletons, no hidden globals, and every failure mode is a typed error.
 
-| Service             | What it does                                                                |
-| ------------------- | ---------------------------------------------------------------------------- |
-| `LoggingService`    | Structured log stream with transports, enrichment, redaction, and sampling  |
-| `SessionService`    | Create, list, activate, and remove named sessions                           |
-| `WebSocketService`  | Auto-reconnecting WebSocket with typed message stream                       |
-| `FileSystemService` | Directory listing, parent resolution, and `isDirectory` checks              |
-| `ClipboardService`  | Copy/paste with typed `ClipboardError`                                      |
+| Service             | What it does                                                               |
+| ------------------- | -------------------------------------------------------------------------- |
+| `LoggingService`    | Structured log stream with transports, enrichment, redaction, and sampling |
+| `SessionService`    | Create, list, activate, and remove named sessions                          |
+| `WebSocketService`  | Auto-reconnecting WebSocket with typed message stream                      |
+| `FileSystemService` | Directory listing, parent resolution, and `isDirectory` checks             |
+| `ClipboardService`  | Copy/paste with typed `ClipboardError`                                     |
 
 Exported error types: `WebSocketError`, `WebSocketConnectionError`, `SessionNotFoundError`, `SessionCreationError`, `FileSystemError`, `DirectoryNotFoundError`, `ClipboardError`, `ApiError`.
 
@@ -109,7 +109,7 @@ interface FileSystemService {
 }
 ```
 
-`FileEntry`: `{ name, path, isDirectory, size?, modifiedAt? }`. This service backs [FileExplorer](../components/data/FileExplorer.md) and [DirectoryPicker](../components/data/DirectoryPicker.md).
+`FileEntry`: `{ name, path, isDirectory, size?, modifiedAt? }`. This service backs [FileExplorer](../components/data/FileExplorer.mdx) and [DirectoryPicker](../components/data/DirectoryPicker.mdx).
 
 ## ClipboardService
 

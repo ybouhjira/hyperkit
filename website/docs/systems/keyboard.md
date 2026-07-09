@@ -65,7 +65,7 @@ import { KeyboardScope } from '@ybouhjira/hyperkit';
 
 <KeyboardScope id="dialog" exclusive>
   <Dialog open>{/* Escape, Enter, etc. handled here only */}</Dialog>
-</KeyboardScope>
+</KeyboardScope>;
 ```
 
 ## Shortcuts Help Dialog
@@ -78,7 +78,12 @@ import { createSignal, Show } from 'solid-js';
 
 function HelpOverlay() {
   const [open, setOpen] = createSignal(false);
-  useShortcut({ key: '?', shift: true, handler: () => setOpen(true), description: 'Show shortcuts' });
+  useShortcut({
+    key: '?',
+    shift: true,
+    handler: () => setOpen(true),
+    description: 'Show shortcuts',
+  });
 
   return (
     <Show when={open()}>
@@ -90,4 +95,4 @@ function HelpOverlay() {
 
 ## Displaying Keys
 
-Use the [Kbd](../components/display/Kbd.md) component to render shortcut hints in menus and tooltips, and `formatShortcut` to produce the platform-correct label.
+Use the [Kbd](../components/display/Kbd.mdx) component to render shortcut hints in menus and tooltips, and `formatShortcut` to produce the platform-correct label.

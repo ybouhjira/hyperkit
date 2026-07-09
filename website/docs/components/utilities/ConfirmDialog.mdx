@@ -1,0 +1,44 @@
+---
+title: ConfirmDialog
+description: Confirmation modal with OK/Cancel.
+slug: /components/utilities/ConfirmDialog
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# ConfirmDialog
+
+Confirmation modal with OK/Cancel.
+
+```tsx
+import { ConfirmDialog } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Button, ConfirmDialog } from '@ybouhjira/hyperkit';\nimport { createSignal } from 'solid-js';\n\nexport default function Demo() {\n  const [open, setOpen] = createSignal(false);\n  return (\n    <>\n      <Button variant=\"danger\" onClick={() => setOpen(true)}>\n        Delete item…\n      </Button>\n      <ConfirmDialog\n        open={open()}\n        onClose={() => setOpen(false)}\n        onConfirm={() => {\n          console.log('Confirmed');\n          setOpen(false);\n        }}\n      >\n        <div>This action cannot be undone.</div>\n      </ConfirmDialog>\n    </>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `open` * | `boolean` | — | — |
+| `onClose` * | `() => void` | — | — |
+| `onConfirm` * | `() => void` | — | — |
+| `title` | `string` | — | — |
+| `children` | `JSX.Element` | — | — |
+| `confirmLabel` | `string` | — | — |
+| `cancelLabel` | `string` | — | — |
+| `variant` | `'default' \| 'danger'` | — | — |
+| `loading` | `boolean` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-border`, `--sk-space-md`, `--sk-space-sm`

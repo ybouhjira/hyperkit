@@ -1,0 +1,45 @@
+---
+title: DropZone
+description: Drag-and-drop file drop target.
+slug: /components/input/DropZone
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# DropZone
+
+Drag-and-drop file drop target.
+
+```tsx
+import { DropZone } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { DropZone } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <DropZone\n      onDrop={(files: File[]) => {\n              console.log('Files dropped:', files);\n              alert(`Received ${files.length} file(s): ${files.map((f: File) => f.name).join(', ')}`);\n            }}\n    />\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `onDrop` * | `(files: File[]) => void` | — | Callback when files are dropped or selected. |
+| `accept` | `string` | `'*'` | Accepted MIME types or file extensions. |
+| `multiple` | `boolean` | `false` | Allow multiple file selection. |
+| `maxSize` | `number` | — | Maximum file size in bytes. |
+| `disabled` | `boolean` | `false` | Disable drag & drop and file selection. |
+| `disableClick` | `boolean` | `false` | Disable click-to-browse (the native file dialog). Drag & drop stays fully functional. Use when files are picked through another mechanism (e.g. a server-side media library) and opening the OS picker is undesirable. |
+| `children` | `JSX.Element` | — | Custom content to render instead of default UI. |
+| `idleText` | `string` | `'Drop files here or click to browse'` | Text shown when not dragging. |
+| `activeText` | `string` | `'Release to upload'` | Text shown while dragging files over the zone. |
+| `class` | `string` | — | Additional CSS classes. |
+| `style` | `JSX.CSSProperties` | — | Custom styles. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-accent-rgb`, `--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-dropzone-bg`, `--sk-dropzone-bg-active`, `--sk-dropzone-border-color`, `--sk-dropzone-border-color-active`, `--sk-dropzone-min-height`, `--sk-dropzone-radius`, `--sk-error`, `--sk-font-size-md`, `--sk-font-size-sm`, `--sk-radius-lg`, `--sk-space-md`, `--sk-space-xl`, `--sk-text-muted`

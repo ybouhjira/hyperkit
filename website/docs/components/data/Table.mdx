@@ -1,0 +1,37 @@
+---
+title: Table
+description: Data table with typed columns, sorting, and selection.
+slug: /components/data/Table
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Table
+
+Data table with typed columns, sorting, and selection.
+
+```tsx
+import { Table } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Table } from '@ybouhjira/hyperkit';\n\nconst columns = [\n  { key: 'name', header: 'Name' },\n  { key: 'role', header: 'Role' },\n  { key: 'status', header: 'Status' },\n];\n\nconst data = [\n  { id: '1', name: 'Ada Lovelace', role: 'Engineer', status: 'Active' },\n  { id: '2', name: 'Grace Hopper', role: 'Admiral', status: 'Active' },\n  { id: '3', name: 'Alan Turing', role: 'Scientist', status: 'Away' },\n];\n\nexport default function Demo() {\n  return <Table columns={columns} data={data} getRowKey={(row) => row.id} />;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `columns` * | `TableColumn\<T>[]` | — | Column definitions. |
+| `data` * | `T[]` | — | Data rows to display. |
+| `onRowClick` | `(item: T) => void` | — | Callback when a row is clicked. |
+| `selectedKey` | `string \| null` | — | Key of the currently selected row. |
+| `getRowKey` * | `(item: T) => string` | — | Function to extract unique key from each row. |
+| `sortColumn` | `string` | — | Key of the currently sorted column. |
+| `sortDirection` | `'asc' \| 'desc'` | — | Current sort direction. |
+| `onSort` | `(column: string, direction: 'asc' \| 'desc') => void` | — | Callback when column header is clicked for sorting. |
+| `emptyState` | `JSX.Element \| string` | — | Content shown when data array is empty. |
+
+`*` required prop.

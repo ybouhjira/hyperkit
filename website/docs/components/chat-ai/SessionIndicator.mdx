@@ -1,0 +1,53 @@
+---
+title: SessionIndicator
+description: Active session badge.
+slug: /components/chat-ai/SessionIndicator
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# SessionIndicator
+
+Active session badge.
+
+```tsx
+import { SessionIndicator } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { SessionIndicator } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <SessionIndicator status=\"idle\" name=\"My Session\" model=\"Claude Opus\" />\n  );\n}\n"} />
+
+## More Examples
+
+### Streaming
+
+```tsx
+<SessionIndicator status="streaming" name="Active Chat" model="Claude Sonnet" />
+```
+
+### Error
+
+```tsx
+<SessionIndicator status="error" name="Failed Session" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `status` * | `SessionStatus` | — | — |
+| `name` * | `string` | — | — |
+| `model` | `string` | — | — |
+| `unreadCount` | `number` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-font-size-base`, `--sk-font-size-sm`, `--sk-space-sm`, `--sk-text-muted`, `--sk-text-primary`

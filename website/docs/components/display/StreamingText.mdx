@@ -1,0 +1,38 @@
+---
+title: StreamingText
+description: Animated text that streams character by character.
+slug: /components/display/StreamingText
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# StreamingText
+
+Animated text that streams character by character.
+
+```tsx
+import { StreamingText } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { StreamingText } from '@ybouhjira/hyperkit';\nimport { createSignal } from 'solid-js';\n\nexport default function Demo() {\n  const [chunks] = createSignal(['Hello ', 'world ', 'from ', 'streaming ', 'text!']);\n  return <StreamingText chunks={chunks} />;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `chunks` * | `Accessor\<string[]>` | — | Reactive array of text chunks to display. |
+| `format` | `'markdown' \| 'plain'` | `'markdown'` | Output format. |
+| `autoScroll` | `boolean` | `true` | Auto-scroll to bottom as content streams. |
+| `class` | `string` | — | Additional CSS classes. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-font-mono`

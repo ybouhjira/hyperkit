@@ -1,0 +1,27 @@
+---
+title: Wrap
+description: Flex-wrap container for tag and chip layouts.
+slug: /components/layout/Wrap
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Wrap
+
+Flex-wrap container for tag and chip layouts.
+
+```tsx
+import { Wrap } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Wrap, Badge } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Wrap spacing=\"sm\">\n      <Badge>SolidJS</Badge>\n      <Badge variant=\"success\">Effect</Badge>\n      <Badge variant=\"info\">Kobalte</Badge>\n      <Badge variant=\"warning\">Vite</Badge>\n      <Badge variant=\"danger\">TypeScript</Badge>\n    </Wrap>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `spacing` | `SpaceToken` | `'sm'` | Gap between wrapped items. Alias for gap prop. |

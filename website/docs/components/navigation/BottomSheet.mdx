@@ -1,0 +1,39 @@
+---
+title: BottomSheet
+description: Mobile bottom sheet overlay.
+slug: /components/navigation/BottomSheet
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# BottomSheet
+
+Mobile bottom sheet overlay.
+
+```tsx
+import { BottomSheet } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Box, Button, BottomSheet, Stack, Text } from '@ybouhjira/hyperkit';\nimport { createSignal } from 'solid-js';\n\nexport default function Demo() {\n  const [open, setOpen] = createSignal(false);\n  return (\n    <Box bg=\"primary\" h=\"100vh\">\n      <Box m=\"md\">\n        <Button onClick={() => setOpen(true)}>Open</Button>\n      </Box>\n      <BottomSheet open={open()} onOpenChange={setOpen} aria-label=\"Demo sheet\">\n        <Stack gap=\"sm\" p=\"md\">\n          <Text as=\"h2\" size=\"lg\" weight=\"semibold\">\n            Filters\n          </Text>\n          <Text color=\"secondary\">Drag the handle to dismiss, or press Esc.</Text>\n        </Stack>\n      </BottomSheet>\n    </Box>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `open` * | `boolean` | — | Whether the sheet is open. |
+| `onOpenChange` * | `(open: boolean) => void` | — | Called when open state changes (ESC, backdrop click, swipe-down). |
+| `snapPoints` | `number[]` | — | Snap points as a fraction of viewport height (0-1). The sheet sizes to the largest snap. Users can swipe between snaps; swiping below the smallest dismisses. Default: `[0.5, 0.9]` (half and almost-full). |
+| `maxWidth` | `string` | `'640px'` | Maximum width in CSS when viewport is wider than `640px`. On mobile, the sheet is always full-width. |
+| `showHandle` | `boolean` | `true` | Show the drag handle at the top. |
+| `swipeToDismiss` | `boolean` | `true` | Allow swipe-down gesture to dismiss. |
+| `dismissible` | `boolean` | `true` | Close when the backdrop is clicked or ESC is pressed. |
+| `'aria-label'` | `string` | — | Accessible label for the sheet region. |
+| `children` * | `JSX.Element` | — | Sheet body content. |
+| `class` | `string` | — | Additional CSS class for the sheet content surface. |
+| `style` | `JSX.CSSProperties` | — | Inline styles applied to the sheet content surface. |
+
+`*` required prop.

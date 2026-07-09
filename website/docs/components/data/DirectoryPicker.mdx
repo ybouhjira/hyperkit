@@ -1,0 +1,37 @@
+---
+title: DirectoryPicker
+description: Directory selection dialog.
+slug: /components/data/DirectoryPicker
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# DirectoryPicker
+
+Directory selection dialog.
+
+```tsx
+import { DirectoryPicker } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { DirectoryPicker } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <DirectoryPicker items={[]} currentPath=\"/home\" loading />\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `items` * | `FileItem[]` | — | — |
+| `currentPath` * | `string` | — | — |
+| `onNavigate` | `(path: string) => void` | — | — |
+| `onBack` | `() => void` | — | — |
+| `onSelect` | `(path: string) => void` | — | — |
+| `loading` | `boolean` | — | — |
+| `title` | `string` | — | — |
+| `description` | `string` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.

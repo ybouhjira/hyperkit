@@ -1,0 +1,39 @@
+---
+title: Tabs
+description: Horizontal tabbed content.
+slug: /components/navigation/Tabs
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Tabs
+
+Horizontal tabbed content.
+
+```tsx
+import { Tabs } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Tabs } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Tabs\n      items={[\n              {\n                value: 'account',\n                label: 'Account',\n                content: <div class=\"p-4\">Manage your account settings.</div>,\n              },\n              {\n                value: 'password',\n                label: 'Password',\n                content: <div class=\"p-4\">Change your password.</div>,\n              },\n              {\n                value: 'billing',\n                label: 'Billing',\n                content: <div class=\"p-4\">Billing information.</div>,\n                disabled: true,\n              },\n              {\n                value: 'notifications',\n                label: 'Notifications',\n                content: <div class=\"p-4\">Notification settings.</div>,\n              },\n            ]}\n    />\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `items` * | `TabItem[]` | — | Array of tab items. |
+| `value` | `string` | — | Controlled active tab value. |
+| `onChange` | `(value: string) => void` | — | Callback when active tab changes. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Tab orientation. |
+| `class` | `string` | — | Additional CSS classes. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-border`, `--sk-duration-fast`, `--sk-font-size-base`, `--sk-radius-md`, `--sk-space-md`, `--sk-space-sm`, `--sk-space-xs`, `--sk-text-muted`, `--sk-text-primary`

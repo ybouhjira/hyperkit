@@ -8,19 +8,19 @@ sidebar_position: 0
 
 Palettes, dialogs, settings, and developer tools.
 
-| Component | Description |
-| --------- | ----------- |
-| [BugReporter](./BugReporter.md) | In-app bug report dialog. |
-| [CommandPalette](./CommandPalette.md) | Keyboard-driven command palette with fuzzy search. |
-| [ConfirmDialog](./ConfirmDialog.md) | Confirmation modal with OK/Cancel. |
-| [ConnectionStatus](./ConnectionStatus.md) | Network/WebSocket connection indicator. |
-| [ContextMenu](./ContextMenu.md) | Right-click context menu. |
-| [DevToolbar](./DevToolbar.md) | Development toolbar overlay. |
-| [GuidedTour](./GuidedTour.md) | Step-by-step onboarding tour. |
-| [Inspector](./Inspector.md) | Component and state inspector panel. |
-| [SettingsPanel](./SettingsPanel.md) | Tabbed settings drawer. |
-| [SplitButton](./SplitButton.md) | Button with dropdown arrow. |
-| [ThemeBuilder](./ThemeBuilder.md) | Interactive theme editor. |
-| [ThemePickerModal](./ThemePickerModal.md) | Theme selection modal. |
-| [Toast](./Toast.md) | Toast notification system. |
-| [UserProvider](./UserProvider.md) | User identity context provider. |
+| Component                                  | Description                                        |
+| ------------------------------------------ | -------------------------------------------------- |
+| [BugReporter](./BugReporter.mdx)           | In-app bug report dialog.                          |
+| [CommandPalette](./CommandPalette.mdx)     | Keyboard-driven command palette with fuzzy search. |
+| [ConfirmDialog](./ConfirmDialog.mdx)       | Confirmation modal with OK/Cancel.                 |
+| [ConnectionStatus](./ConnectionStatus.mdx) | Network/WebSocket connection indicator.            |
+| [ContextMenu](./ContextMenu.mdx)           | Right-click context menu.                          |
+| [DevToolbar](./DevToolbar.mdx)             | Development toolbar overlay.                       |
+| [GuidedTour](./GuidedTour.mdx)             | Step-by-step onboarding tour.                      |
+| [Inspector](./Inspector.mdx)               | Component and state inspector panel.               |
+| [SettingsPanel](./SettingsPanel.mdx)       | Tabbed settings drawer.                            |
+| [SplitButton](./SplitButton.mdx)           | Button with dropdown arrow.                        |
+| [ThemeBuilder](./ThemeBuilder.mdx)         | Interactive theme editor.                          |
+| [ThemePickerModal](./ThemePickerModal.mdx) | Theme selection modal.                             |
+| [Toast](./Toast.mdx)                       | Toast notification system.                         |
+| [UserProvider](./UserProvider.mdx)         | User identity context provider.                    |

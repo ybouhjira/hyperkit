@@ -4,5 +4,7 @@
   "compilerOptions": {
     "baseUrl": "."
   },
-  "exclude": [".docusaurus", "build"]
+  // playground-runtime is Solid JSX compiled by its own Vite build — keep it
+  // out of the React-JSX Docusaurus program.
+  "exclude": [".docusaurus", "build", "playground-runtime", "static/playground"]
 }

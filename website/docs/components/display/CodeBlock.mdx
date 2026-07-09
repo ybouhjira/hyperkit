@@ -1,0 +1,63 @@
+---
+title: CodeBlock
+description: Syntax-highlighted code with copy button.
+slug: /components/display/CodeBlock
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# CodeBlock
+
+Syntax-highlighted code with copy button.
+
+```tsx
+import { CodeBlock } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { CodeBlock } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <CodeBlock\n      code={\"This is plain text without syntax highlighting.\\nIt can span multiple lines.\\nBut no language is specified.\"}\n    />\n  );\n}\n"} />
+
+## More Examples
+
+### Bash
+
+```tsx
+<CodeBlock
+  code={"#!/bin/bash\n\n# Install dependencies\nnpm install\n\n# Run tests\nnpm test\n\n# Build for production\nnpm run build"}
+  language="bash"
+  label="build.sh"
+  showLineNumbers
+/>
+```
+
+### HTML
+
+```tsx
+<CodeBlock
+  code={"<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>SolidKit Demo</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/index.tsx\"></script>\n  </body>\n</html>"}
+  language="html"
+  label="index.html"
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `code` * | `string` | — | Code content to display. |
+| `language` | `string` | — | Syntax highlighting language. If omitted, auto-detects language. |
+| `label` | `string` | — | Optional label shown in the header. |
+| `showLineNumbers` | `boolean` | `false` | Show line numbers in the gutter. |
+| `class` | `string` | — | Additional CSS classes. |
+| `style` | `JSX.CSSProperties` | — | Custom styles. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-bg-primary`, `--sk-bg-secondary`, `--sk-border-subtle`, `--sk-custom-code-attr`, `--sk-custom-code-builtin`, `--sk-custom-code-function`, `--sk-custom-code-keyword`, `--sk-custom-code-number`, `--sk-custom-code-string`, `--sk-custom-code-type`, `--sk-font-mono`, `--sk-font-size-sm`, `--sk-font-size-xs`, `--sk-radius-md`, `--sk-space-md`, `--sk-space-xs`, `--sk-text-muted`, `--sk-text-primary`, `--sk-text-secondary`

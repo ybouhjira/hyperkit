@@ -1,0 +1,21 @@
+---
+title: Center
+description: Centers content on both axes.
+slug: /components/layout/Center
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Center
+
+Centers content on both axes.
+
+```tsx
+import { Center } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Center, Box } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Box h=\"160px\" bg=\"tertiary\" borderRadius=\"md\">\n      <Center style={{ height: '100%' }}>\n        <Box p=\"md\" bg=\"secondary\" borderRadius=\"md\">Centered content</Box>\n      </Center>\n    </Box>\n  );\n}\n"} />

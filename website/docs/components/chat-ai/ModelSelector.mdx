@@ -1,0 +1,31 @@
+---
+title: ModelSelector
+description: LLM model picker dropdown.
+slug: /components/chat-ai/ModelSelector
+---
+
+# ModelSelector
+
+LLM model picker dropdown.
+
+![ModelSelector preview](/img/components/ModelSelector.webp)
+
+:::note[Static examples]
+This component depends on app-level context (providers, services, or interactive setup) that does not fit the inline playground yet, so its examples are shown as static code.
+:::
+
+```tsx
+import { ModelSelector } from '@ybouhjira/hyperkit';
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `models` * | `ModelOption[]` | — | — |
+| `value` | `string` | — | — |
+| `onChange` | `(modelId: string) => void` | — | — |
+| `disabled` | `boolean` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.

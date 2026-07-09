@@ -1,0 +1,35 @@
+---
+title: MobileBottomBar
+description: Mobile bottom action bar.
+slug: /components/navigation/MobileBottomBar
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# MobileBottomBar
+
+Mobile bottom action bar.
+
+```tsx
+import { MobileBottomBar } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Box, MobileBottomBar } from '@ybouhjira/hyperkit';\nimport { createSignal } from 'solid-js';\n\nexport default function Demo() {\n  const [active, setActive] = createSignal('home');\n  return (\n    <Box h=\"100vh\" bg=\"primary\">\n      <MobileBottomBar\n        items={[\n          { id: 'home', label: 'Home', icon: '🏠' },\n          { id: 'chat', label: 'Chat', icon: '💬' },\n          { id: 'locked', label: 'Locked', icon: '🔒', disabled: true },\n        ]}\n        activeId={active()}\n        onSelect={setActive}\n      />\n    </Box>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `items` * | `MobileBottomBarItem[]` | — | Navigation items rendered left-to-right. 2-5 items is the recommended range. |
+| `activeId` | `string` | — | Currently active item id. If unset, no item is highlighted. |
+| `onSelect` | `(id: string) => void` | — | Called when a user taps a non-disabled item. |
+| `hidden` | `boolean` | `false` | When true, the bar renders nothing. The primitive itself is viewport-agnostic — consumers use `useBreakpoint()` (or their own logic) to decide when to hide it on larger screens. |
+| `'aria-label'` | `string` | `'Primary'` | Accessible label for the \<nav> landmark. |
+| `class` | `string` | — | Additional class applied to the root \<nav>. |
+| `style` | `JSX.CSSProperties` | — | Inline style merged onto the root \<nav>. |
+
+`*` required prop.

@@ -1,0 +1,41 @@
+---
+title: Sidebar
+description: Collapsible navigation sidebar.
+slug: /components/navigation/Sidebar
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Sidebar
+
+Collapsible navigation sidebar.
+
+```tsx
+import { Sidebar } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Sidebar, Text, Box } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Sidebar\n      open\n      header={<Text size=\"sm\" color=\"secondary\">\n                Sessions\n              </Text>}\n      footer={<Text size=\"xs\" color=\"muted\">\n                v1.0.0\n              </Text>}\n    ><Box p=\"sm\">\n            <Text size=\"sm\" color=\"muted\">\n              Session list here\n            </Text>\n          </Box></Sidebar>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `open` | `boolean` | — | — |
+| `onToggle` | `() => void` | — | — |
+| `width` | `string` | — | — |
+| `header` | `JSX.Element` | — | — |
+| `footer` | `JSX.Element` | — | — |
+| `children` * | `JSX.Element` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-border-subtle`, `--sk-duration-normal`, `--sk-font-size-sm`, `--sk-icon-xl`, `--sk-space-sm`, `--sk-text-primary`, `--sk-text-secondary`, `--sk-z-sticky`

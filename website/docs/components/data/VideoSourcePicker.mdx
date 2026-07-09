@@ -1,0 +1,47 @@
+---
+title: VideoSourcePicker
+description: Video source selection (library, URL, or local file).
+slug: /components/data/VideoSourcePicker
+---
+
+# VideoSourcePicker
+
+Video source selection (library, URL, or local file).
+
+:::note[Static examples]
+This component depends on app-level context (providers, services, or interactive setup) that does not fit the inline playground yet, so its examples are shown as static code.
+:::
+
+```tsx
+import { VideoSourcePicker } from '@ybouhjira/hyperkit';
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `providers` * | `ReadonlyArray\<VideoSourceProvider>` | — | The sources to offer, in tab order. |
+| `onSelect` * | `(source: VideoSource) => void` | — | Called with the chosen video source. |
+| `onError` | `(error: Error) => void` | — | Surface provider errors (download/list failures). |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Accessibility
+
+Built on the @kobalte Tabs primitive (role=tablist/tab/tabpanel), arrow-key navigable. Provider errors are surfaced in a role=alert banner.
+
+## Usage Notes
+
+- **Do:** Compose the built-in `libraryVideoProvider` / `urlVideoProvider` / `localVideoProvider` factories instead of re-implementing the panels.
+- **Do:** Use `comingSoonVideoProvider` to stub a not-yet-wired source with a labelled, icon'd placeholder tab.
+- **Do:** Handle `onError` to surface download/list failures, and keep backend coupling in the `VideoSourceAdapter` you supply.
+- **Don't:** Don't hand-roll provider objects when a factory exists — the factories carry the correct label, icon and behavior.
+- **Don't:** Don't put API/network code inside the widget — it stays backend-agnostic via the adapter.
+- **Don't:** Don't assume a fixed tab set — the provider list is the contract; order and availability come from it.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-primary`, `--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-duration-fast`, `--sk-ease-default`, `--sk-error`, `--sk-error-muted`, `--sk-font-size-sm`, `--sk-icon-sm`, `--sk-radius-md`, `--sk-radius-sm`, `--sk-space-2xs`, `--sk-space-sm`, `--sk-space-xs`, `--sk-text-muted`, `--sk-text-primary`

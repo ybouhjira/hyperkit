@@ -196,5 +196,5 @@ function CodeBlockWithCopy(props: { language?: string; code: string }) {
 
 ## Next Steps
 
-- Browse the [Markdown component API](../components/display/Markdown.md) for all available props
+- Browse the [Markdown component API](../components/display/Markdown.mdx) for all available props
 - See [Streaming Markdown](./streaming-markdown) for real-time rendering patterns

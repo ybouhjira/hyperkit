@@ -1,0 +1,34 @@
+---
+title: TopProgressBar
+description: Top-of-page route progress bar.
+slug: /components/feedback/TopProgressBar
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# TopProgressBar
+
+Top-of-page route progress bar.
+
+```tsx
+import { TopProgressBar } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Stack, Text, Button, TopProgressBar } from '@ybouhjira/hyperkit';\nimport { createSignal } from 'solid-js';\n\nexport default function Demo() {\n  const [active, setActive] = createSignal(false);\n  const simulate = () => {\n    setActive(true);\n    setTimeout(() => setActive(false), 2000);\n  };\n  return (\n    <Stack gap=\"md\" p=\"lg\">\n      <Text>Simulates a 2-second async route change.</Text>\n      <Button onClick={simulate} disabled={active()}>\n        {active() ? 'Loading…' : 'Simulate load'}\n      </Button>\n      <TopProgressBar active={active()} />\n    </Stack>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `active` * | `boolean` | — | Whether the bar is visible and animating. |
+| `progress` | `number` | — | Optional determinate progress value in [0, 1]. When provided the bar fills to `progress * 100%`; otherwise an indeterminate shimmer is shown. |
+| `color` | `string` | `'var(--sk-accent)'` | Fill color (any CSS color value). |
+| `height` | `number` | `2` | Bar height in pixels. |
+| `style` | `JSX.CSSProperties` | — | Inline style overrides merged onto the fixed container. |
+| `class` | `string` | — | Additional CSS class for the bar container. |
+
+`*` required prop.

@@ -1,0 +1,39 @@
+---
+title: DiffView
+description: Side-by-side and inline diff viewer.
+slug: /components/display/DiffView
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# DiffView
+
+Side-by-side and inline diff viewer.
+
+```tsx
+import { DiffView } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { DiffView } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <DiffView diff=\"\" view=\"split\" />\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `diff` * | `string` | — | Raw unified diff text (e.g. `git diff` / `gh pr diff` output). |
+| `view` | `DiffViewMode` | — | Initial layout: side-by-side `split` (default) or single-column `unified`. |
+| `language` | `string` | — | Syntax-highlighting language for code lines. Auto-detects when omitted. |
+| `class` | `string` | — | Additional CSS classes. |
+| `style` | `JSX.CSSProperties` | — | Inline styles. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-primary`, `--sk-bg-secondary`, `--sk-border`, `--sk-custom-code-attr`, `--sk-custom-code-builtin`, `--sk-custom-code-function`, `--sk-custom-code-keyword`, `--sk-custom-code-number`, `--sk-custom-code-string`, `--sk-custom-code-type`, `--sk-diff-code-min`, `--sk-diff-mark-w`, `--sk-diff-num-w`, `--sk-error`, `--sk-font-mono`, `--sk-font-sans`, `--sk-font-size-sm`, `--sk-radius-md`, `--sk-space-2xs`, `--sk-space-md`, `--sk-space-sm`, `--sk-space-xs`, `--sk-success`, `--sk-text-muted`, `--sk-text-primary`, `--sk-text-secondary`

@@ -1,0 +1,40 @@
+---
+title: MediaTrimmer
+description: Video/audio trim range selector.
+slug: /components/data/MediaTrimmer
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# MediaTrimmer
+
+Video/audio trim range selector.
+
+```tsx
+import { MediaTrimmer } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Box, MediaTrimmer, Text } from '@ybouhjira/hyperkit';\nimport { createSignal } from 'solid-js';\n\nexport default function Demo() {\n  const [range, setRange] = createSignal({ start: 0, end: 0 });\n  return (\n    <Box maxW=\"800px\">\n      <MediaTrimmer\n        src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"\n        onTrimChange={(start, end) => setRange({ start, end })}\n      />\n      <Text as=\"p\" mt=\"md\" size=\"base\" color=\"secondary\">\n        Selection: {range().start.toFixed(1)}s - {range().end.toFixed(1)}s (\n        {(range().end - range().start).toFixed(1)}s duration)\n      </Text>\n    </Box>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `src` * | `string` | — | — |
+| `onTrimChange` * | `(start: number, end: number) => void` | — | — |
+| `thumbnailCount` | `number` | — | — |
+| `minDuration` | `number` | — | — |
+| `class` | `string` | — | — |
+| `style` | `JSX.CSSProperties` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-accent-hover`, `--sk-bg-primary`, `--sk-font-size-sm`, `--sk-radius-md`, `--sk-space-md`, `--sk-text-primary`, `--sk-text-secondary`

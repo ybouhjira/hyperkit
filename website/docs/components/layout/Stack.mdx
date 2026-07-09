@@ -1,0 +1,28 @@
+---
+title: Stack
+description: Vertical flex column with a consistent spacing token.
+slug: /components/layout/Stack
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Stack
+
+Vertical flex column with a consistent spacing token.
+
+```tsx
+import { Stack } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Stack, Box } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return <Stack p=\"lg\" bg=\"secondary\" borderRadius=\"md\" maxW={400}>\n    <Box>\n      <Box as=\"label\" color=\"primary\" mb=\"xs\" display=\"block\">\n        Name\n      </Box>\n      <Box as=\"input\" w=\"100%\" p=\"sm\" bg=\"primary\" border borderRadius=\"sm\" />\n    </Box>\n    <Box>\n      <Box as=\"label\" color=\"primary\" mb=\"xs\" display=\"block\">\n        Email\n      </Box>\n      <Box as=\"input\" w=\"100%\" p=\"sm\" bg=\"primary\" border borderRadius=\"sm\" />\n    </Box>\n    <Stack direction=\"horizontal\" justify=\"end\" gap=\"sm\">\n      <Box as=\"button\" px=\"lg\" py=\"sm\" bg=\"secondary\" borderRadius=\"sm\" cursor=\"pointer\">\n        Cancel\n      </Box>\n      <Box\n        as=\"button\"\n        px=\"lg\"\n        py=\"sm\"\n        bg=\"accent\"\n        color=\"on-accent\"\n        borderRadius=\"sm\"\n        cursor=\"pointer\"\n      >\n        Submit\n      </Box>\n    </Stack>\n  </Stack>;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `direction` | `'vertical' \| 'horizontal'` | `'vertical'` | Stack direction. |
+| `wrap` | `boolean` | `false` | Allow children to wrap to the next line when they exceed the container's main-axis size. Sets `flex-wrap: wrap` on the underlying flex container. |

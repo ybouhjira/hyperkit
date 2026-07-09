@@ -1,0 +1,50 @@
+---
+title: ConnectionStatus
+description: Network/WebSocket connection indicator.
+slug: /components/utilities/ConnectionStatus
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# ConnectionStatus
+
+Network/WebSocket connection indicator.
+
+```tsx
+import { ConnectionStatus } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { ConnectionStatus } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <ConnectionStatus state=\"connected\" />\n  );\n}\n"} />
+
+## More Examples
+
+### Disconnected
+
+```tsx
+<ConnectionStatus state="disconnected" />
+```
+
+### Connecting
+
+```tsx
+<ConnectionStatus state="connecting" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `state` * | `ConnectionState` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-font-size-base`, `--sk-space-sm`, `--sk-text-secondary`

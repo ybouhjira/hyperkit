@@ -1,0 +1,37 @@
+---
+title: ThemeBuilder
+description: Interactive theme editor.
+slug: /components/utilities/ThemeBuilder
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# ThemeBuilder
+
+Interactive theme editor.
+
+```tsx
+import { ThemeBuilder } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Stack, ThemeBuilder, Box, CodeBlock } from '@ybouhjira/hyperkit';\nimport { createSignal, Show } from 'solid-js';\n\nexport default function Demo() {\n  const [exportedCode, setExportedCode] = createSignal('');\n  return (\n    <Stack gap=\"md\" style={{ height: '800px' }}>\n      <ThemeBuilder onExport={setExportedCode} />\n      <Show when={exportedCode()}>\n        <Box overflow=\"auto\" style={{ 'max-height': '300px' }}>\n          <CodeBlock code={exportedCode()} language=\"typescript\" />\n        </Box>\n      </Show>\n    </Stack>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `initialTheme` | `Partial\<ThemeConfig>` | — | — |
+| `onThemeChange` | `(theme: ThemeConfig) => void` | — | — |
+| `onExport` | `(code: string) => void` | — | — |
+| `class` | `string` | — | — |
+| `style` | `JSX.CSSProperties` | — | — |
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-accent-hover`, `--sk-bg-primary`, `--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-border-subtle`, `--sk-radius-lg`, `--sk-spacing-lg`, `--sk-spacing-md`, `--sk-spacing-sm`

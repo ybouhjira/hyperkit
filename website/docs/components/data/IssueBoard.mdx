@@ -1,0 +1,36 @@
+---
+title: IssueBoard
+description: GitHub-style issue tracker board.
+slug: /components/data/IssueBoard
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# IssueBoard
+
+GitHub-style issue tracker board.
+
+```tsx
+import { IssueBoard } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { IssueBoard } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return <IssueBoard issues={[]} repos={[]} view=\"board\" />;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `issues` * | `readonly Issue[]` | — | — |
+| `repos` * | `readonly string[]` | — | — |
+| `groupBy` | `'repo' \| 'label' \| 'priority' \| 'milestone' \| 'none'` | — | — |
+| `view` | `'list' \| 'board' \| 'table'` | — | — |
+| `filters` | `IssueFilters` | — | — |
+| `onFiltersChange` | `(filters: IssueFilters) => void` | — | — |
+| `onIssueClick` | `(issue: Issue) => void` | — | — |
+| `onStartWork` | `(issue: Issue) => void` | — | — |
+
+`*` required prop.

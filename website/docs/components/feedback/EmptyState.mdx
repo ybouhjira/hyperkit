@@ -1,0 +1,54 @@
+---
+title: EmptyState
+description: Empty content placeholder with icon, title, and CTA.
+slug: /components/feedback/EmptyState
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# EmptyState
+
+Empty content placeholder with icon, title, and CTA.
+
+```tsx
+import { EmptyState } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { EmptyState } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <EmptyState\n      icon=\"inbox\"\n      title=\"No items found\"\n      description=\"There are no items to display at this time.\"\n    />\n  );\n}\n"} />
+
+## More Examples
+
+### No Icon
+
+```tsx
+<EmptyState title="Nothing here" description="This space is empty for now." />
+```
+
+### No Description
+
+```tsx
+<EmptyState icon="search" title="No results" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `icon` | `string` | — | Icon name to display above the title. |
+| `title` * | `string` | — | Main heading text. |
+| `description` | `string` | — | Optional description text below the title. |
+| `action` | `JSX.Element` | — | Optional action button or element. |
+| `class` | `string` | — | Additional CSS classes. |
+| `unstyled` | `boolean` | `false` | Remove all default styling classes. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-bg-tertiary`, `--sk-empty-state-max-w`, `--sk-font-size-base`, `--sk-font-size-sm`, `--sk-space-2xl`, `--sk-space-md`, `--sk-space-sm`, `--sk-space-xl`, `--sk-text-muted`, `--sk-text-primary`, `--sk-text-secondary`

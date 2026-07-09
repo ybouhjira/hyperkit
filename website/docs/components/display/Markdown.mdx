@@ -1,0 +1,40 @@
+---
+title: Markdown
+description: Markdown renderer with streaming support.
+slug: /components/display/Markdown
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Markdown
+
+Markdown renderer with streaming support.
+
+```tsx
+import { Markdown } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Markdown } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n      const content = `# Hello World\n\n  This is **bold** and *italic* text.\n\n  Here's a [link to SolidJS](https://www.solidjs.com/).\n\n  - List item 1\n  - List item 2\n  - List item 3`;\n\n      return <Markdown content={content} />;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `content` * | `string` | — | Markdown content string to render |
+| `streaming` | `boolean` | — | Whether content is still streaming (shows cursor) |
+| `components` | `Partial\<MarkdownComponents>` | — | Custom component overrides |
+| `class` | `string` | — | Additional CSS class |
+| `style` | `JSX.CSSProperties` | — | Additional inline styles |
+| `justify` | `boolean` | — | Apply Knuth-Plass optimal line breaking to paragraph and list-item elements. Requires `text-align: justify` to be set on the container for the inter-word spacing to be visible. Off by default to keep the line-breaking engine out of the bundle when unused. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-elevated`, `--sk-border`, `--sk-font-mono`, `--sk-radius-md`, `--sk-radius-sm`, `--sk-text-muted`, `--sk-text-primary`, `--sk-text-secondary`

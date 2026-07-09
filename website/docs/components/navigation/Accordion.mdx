@@ -1,0 +1,42 @@
+---
+title: Accordion
+description: Collapsible section group.
+slug: /components/navigation/Accordion
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Accordion
+
+Collapsible section group.
+
+```tsx
+import { Accordion } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Accordion } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Accordion\n      items={[\n          {\n            value: 'item-1',\n            title: 'Active Item',\n            content: 'This item is interactive.'\n          },\n          {\n            value: 'item-2',\n            title: 'Disabled Item',\n            content: 'This content is not accessible.',\n            disabled: true\n          },\n          {\n            value: 'item-3',\n            title: 'Another Active Item',\n            content: 'This item works normally.'\n          }\n        ]}\n    />\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `items` * | `AccordionItemData[]` | — | Array of accordion items |
+| `type` | `'single' \| 'multiple'` | `'single'` | Whether multiple items can be expanded simultaneously |
+| `defaultValue` | `string \| string[]` | — | Default expanded item(s) For 'single' type: string For 'multiple' type: string[] |
+| `collapsible` | `boolean` | `true` | Whether all items can be collapsed (only for single mode) |
+| `disabled` | `boolean` | `false` | Disable all accordion items |
+| `class` | `string` | — | Additional CSS classes |
+| `style` | `JSX.CSSProperties` | — | Custom styles |
+| `unstyled` | `boolean` | — | Remove sk-* styling classes |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-accordion-bg`, `--sk-accordion-border`, `--sk-accordion-content-padding`, `--sk-accordion-trigger-hover-bg`, `--sk-accordion-trigger-padding`, `--sk-bg-secondary`, `--sk-border`, `--sk-font-size-base`, `--sk-space-md`, `--sk-space-sm`, `--sk-text-muted`, `--sk-text-primary`

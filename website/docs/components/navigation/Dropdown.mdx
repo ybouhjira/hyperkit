@@ -1,0 +1,38 @@
+---
+title: Dropdown
+description: Trigger with floating menu.
+slug: /components/navigation/Dropdown
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Dropdown
+
+Trigger with floating menu.
+
+```tsx
+import { Dropdown } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Dropdown } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Dropdown\n      trigger={<button class=\"px-3 py-1.5 text-sm border rounded-md\">Open Menu</button>}\n      items={[{ label: 'Edit' }, { label: 'Duplicate' }, { label: 'Delete', destructive: true }]}\n    />\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `items` * | `DropdownItem[]` | — | Array of menu items to display. |
+| `trigger` * | `JSX.Element` | — | Trigger element that opens the dropdown when clicked. |
+| `class` | `string` | — | Additional CSS class name for the dropdown content. |
+| `unstyled` | `boolean` | `false` | Disable default styling and apply only custom classes. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-duration-fast`, `--sk-duration-instant`, `--sk-error`, `--sk-font-size-base`, `--sk-icon-md`, `--sk-radius-md`, `--sk-radius-sm`, `--sk-shadow-md`, `--sk-space-sm`, `--sk-space-xs`, `--sk-text-primary`, `--sk-z-popover`

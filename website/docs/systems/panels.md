@@ -10,14 +10,14 @@ The panel system provides IDE-style layouts: resizable split panes, drag-and-dro
 
 ## Public API
 
-| Export                | Description                             |
-| --------------------- | --------------------------------------- |
-| `PanelContainer`      | Root IDE panel layout                   |
-| `PanelGroup`          | Split panel group (horizontal/vertical) |
-| `PanelResizeHandle`   | Drag handle between panels              |
-| `PanelDropZone`       | Drop target for panel rearranging       |
-| `usePanelLayout`      | Panel layout state accessor             |
-| `usePanelDrag`        | Panel drag-and-drop state               |
+| Export              | Description                             |
+| ------------------- | --------------------------------------- |
+| `PanelContainer`    | Root IDE panel layout                   |
+| `PanelGroup`        | Split panel group (horizontal/vertical) |
+| `PanelResizeHandle` | Drag handle between panels              |
+| `PanelDropZone`     | Drop target for panel rearranging       |
+| `usePanelLayout`    | Panel layout state accessor             |
+| `usePanelDrag`      | Panel drag-and-drop state               |
 
 Key types: `PanelConfig`, `PanelState`, `PanelLayoutState`, `PanelLayoutActions`, `PanelPosition`, `PanelDirection`, `DropZoneInfo`, `PanelDragState`.
 
@@ -81,4 +81,4 @@ Panel chrome is themed via `--sk-panel-header-padding`, `--sk-panel-border-radiu
 ## Related
 
 - [Composition Patterns — IDE-Like Panel Layout](../guides/patterns.md#13-ide-like-panel-layout)
-- [MobilePanelView](../components/navigation/MobilePanelView.md) for small screens
+- [MobilePanelView](../components/navigation/MobilePanelView.mdx) for small screens

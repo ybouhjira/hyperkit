@@ -164,4 +164,4 @@ function RobustStream() {
 ## Next Steps
 
 - Learn about [Custom Components](./custom-components)
-- Browse the [Markdown component API](../components/display/Markdown.md)
+- Browse the [Markdown component API](../components/display/Markdown.mdx)

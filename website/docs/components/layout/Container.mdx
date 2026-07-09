@@ -1,0 +1,33 @@
+---
+title: Container
+description: Max-width page wrapper with padding.
+slug: /components/layout/Container
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Container
+
+Max-width page wrapper with padding.
+
+```tsx
+import { Container } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Container, Box, Stack, Text } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return <Container>\n    <Box p=\"md\">\n      <Stack gap=\"sm\">\n        <Text as=\"h2\" size=\"xl\" weight=\"semibold\">\n          Default Container\n        </Text>\n        <Text as=\"p\">\n          This is a container with default settings. It automatically centers content and applies\n          responsive max-width constraints.\n        </Text>\n      </Stack>\n    </Box>\n  </Container>;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `maxW` | `'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| string` | `'xl' (1200px)` | Maximum width of the container. Accepts preset sizes or custom CSS value. |
+| `px` | `SpaceToken` | `'lg'` | Horizontal padding using SpaceToken. |
+| `py` | `SpaceToken` | — | Vertical padding using SpaceToken |
+| `center` | `boolean` | `true` | Whether to horizontally center the container with auto margins. |
+| `class` | `string` | — | Additional CSS classes |
+| `style` | `JSX.CSSProperties` | — | Inline styles |
+| `children` | `JSX.Element` | — | Content to render inside the container |

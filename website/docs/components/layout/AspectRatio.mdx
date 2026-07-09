@@ -1,0 +1,27 @@
+---
+title: AspectRatio
+description: Maintains the aspect ratio of its child.
+slug: /components/layout/AspectRatio
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# AspectRatio
+
+Maintains the aspect ratio of its child.
+
+```tsx
+import { AspectRatio } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { AspectRatio, Box } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return <AspectRatio ratio={1} w={200} bg=\"tertiary\" borderRadius=\"md\">\n    <Box p=\"md\" color=\"primary\">\n      1:1 Square\n    </Box>\n  </AspectRatio>;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `ratio` | `number` | `1` | Width-to-height ratio (e.g., 16/9, 4/3, 1). |

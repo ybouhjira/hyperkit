@@ -1,0 +1,44 @@
+---
+title: MenuBar
+description: Application menu bar (File/Edit/…).
+slug: /components/navigation/MenuBar
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# MenuBar
+
+Application menu bar (File/Edit/…).
+
+```tsx
+import { MenuBar } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { MenuBar } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <MenuBar\n      menus={[\n              {\n                id: 'file',\n                label: 'File',\n                items: [\n                  { id: 'new', label: 'New File', shortcut: 'Ctrl+N', handler: () => console.log('New') },\n                  { id: 'open', label: 'Open...', shortcut: 'Ctrl+O', handler: () => console.log('Open') },\n                  {\n                    id: 'recent',\n                    label: 'Open Recent',\n                    submenu: [\n                      { id: 'recent1', label: 'project.tsx', handler: () => console.log('Recent 1') },\n                      { id: 'recent2', label: 'component.css', handler: () => console.log('Recent 2') },\n                      { id: 'recent3', label: 'utils.ts', handler: () => console.log('Recent 3') },\n                    ],\n                  },\n                  { id: 'sep1', label: '', type: 'separator' },\n                  { id: 'exit', label: 'Exit', shortcut: 'Ctrl+Q', handler: () => console.log('Exit') },\n                ],\n              },\n              {\n                id: 'edit',\n                label: 'Edit',\n                items: [\n                  { id: 'undo', label: 'Undo', shortcut: 'Ctrl+Z', handler: () => console.log('Undo') },\n                  { id: 'redo', label: 'Redo', shortcut: 'Ctrl+Y', handler: () => console.log('Redo') },\n                ],\n              },\n            ]}\n    />\n  );\n}\n"} />
+
+## More Examples
+
+### Empty
+
+```tsx
+<MenuBar menus={[]} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `menus` * | `MenuDefinition[]` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-elevated`, `--sk-bg-primary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-border-subtle`, `--sk-duration-fast`, `--sk-ease-default`, `--sk-font-size-sm`, `--sk-font-size-xs`, `--sk-font-ui`, `--sk-height-sm`, `--sk-icon-md`, `--sk-menubar-dropdown-min-w`, `--sk-menubar-h`, `--sk-menubar-item-h`, `--sk-radius-md`, `--sk-radius-sm`, `--sk-shadow-lg`, `--sk-space-lg`, `--sk-space-px`, `--sk-space-sm`, `--sk-space-xs`, `--sk-text-muted`, `--sk-text-primary`, `--sk-text-secondary`, `--sk-z-dropdown`

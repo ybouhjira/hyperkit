@@ -1,0 +1,63 @@
+---
+title: Button
+description: Polymorphic button with size and variant props.
+slug: /components/input/Button
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Button
+
+Polymorphic button with size and variant props.
+
+```tsx
+import { Button } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Button } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Button variant=\"primary\">Primary Button</Button>\n  );\n}\n"} />
+
+## More Examples
+
+### Secondary
+
+```tsx
+<Button variant="secondary">Secondary</Button>
+```
+
+### Ghost
+
+```tsx
+<Button variant="ghost">Ghost</Button>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'danger' \| 'outline' \| 'link'` | `'primary'` | Visual style variant. Affects background, border, and text color. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant. Controls padding and font size. |
+| `loading` | `boolean` | `false` | Show loading spinner and disable interaction. |
+| `disabled` | `boolean` | `false` | Disable button interaction. |
+| `fullWidth` | `boolean` | `false` | Expand button to full width of container. |
+| `rounded` | `boolean` | `false` | Apply pill shape with fully rounded corners (border-radius: 9999px). |
+| `as` | `string` | `KobalteButton` | HTML element to render as (e.g., 'a', 'button'). |
+| `unstyled` | `boolean` | `false` | Remove all default styles, only apply classNames. |
+| `classNames` | `\{ /** Class for root button element. */ root?: string; /** Class for loading spinner element. */ spinner?: string; }` | — | Custom class names for sub-elements. |
+| `class` | `string` | — | Additional CSS class for root element. |
+| `style` | `JSX.CSSProperties` | — | Inline styles for root element. |
+| `children` * | `JSX.Element` | — | Button content. |
+| `onClick` | `(e: MouseEvent) => void` | — | Click event handler. |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type attribute. |
+| `tooltip` | `string` | — | Tooltip content. When provided, the button is wrapped in a Tooltip primitive with this content. When omitted, the button renders without any tooltip wrapper. |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-accent-hover`, `--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-btn-danger-bg`, `--sk-btn-danger-color`, `--sk-btn-disabled-opacity`, `--sk-btn-font-weight`, `--sk-btn-ghost-bg`, `--sk-btn-ghost-color`, `--sk-btn-ghost-hover-bg`, `--sk-btn-lg-font-size`, `--sk-btn-lg-padding-x`, `--sk-btn-lg-padding-y`, `--sk-btn-line-height`, `--sk-btn-link-bg`, `--sk-btn-link-color`, `--sk-btn-md-font-size`, `--sk-btn-md-padding-x`, `--sk-btn-md-padding-y`, `--sk-btn-outline-bg`, `--sk-btn-outline-border-color`, `--sk-btn-outline-color`, `--sk-btn-outline-hover-bg`, `--sk-btn-outline-hover-border-color`, `--sk-btn-primary-bg`, `--sk-btn-primary-color`, `--sk-btn-primary-hover-bg`, `--sk-btn-radius`, `--sk-btn-secondary-bg`, `--sk-btn-secondary-color`, `--sk-btn-secondary-hover-bg`, `--sk-btn-sm-font-size`, `--sk-btn-sm-padding-x`, `--sk-btn-sm-padding-y`, `--sk-duration-fast`, `--sk-duration-spin`, `--sk-error`, `--sk-font-size-base`, `--sk-font-size-lg`, `--sk-icon-md`, `--sk-radius-md`, `--sk-space-lg`, `--sk-space-md`, `--sk-space-sm`, `--sk-space-xs`, `--sk-text-on-accent`, `--sk-text-primary`, `--sk-text-secondary`

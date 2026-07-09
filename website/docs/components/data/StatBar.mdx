@@ -1,0 +1,40 @@
+---
+title: StatBar
+description: Horizontal stats bar.
+slug: /components/data/StatBar
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# StatBar
+
+Horizontal stats bar.
+
+```tsx
+import { StatBar } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { StatBar } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return <StatBar\n    items={[\n      {\n        label: 'Revenue',\n        value: '$125,430',\n        variant: 'success',\n        trend: '+12.5%',\n        trendDirection: 'up',\n      },\n      { label: 'Users', value: '2,543', variant: 'info', trend: '-3.2%', trendDirection: 'down' },\n      { label: 'Orders', value: 842, variant: 'default', trend: '0%', trendDirection: 'neutral' },\n      {\n        label: 'Conversion',\n        value: '3.2%',\n        variant: 'accent',\n        trend: '+0.8%',\n        trendDirection: 'up',\n      },\n    ]}\n  />;\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `items` * | `StatBarItem[]` | — | Array of stat items to display. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant. |
+| `direction` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction. |
+| `class` | `string` | — | — |
+| `style` | `JSX.CSSProperties` | — | — |
+| `unstyled` | `boolean` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-secondary`, `--sk-bg-tertiary`, `--sk-border`, `--sk-border-subtle`, `--sk-duration-fast`, `--sk-ease-default`, `--sk-error`, `--sk-font-mono`, `--sk-font-size-sm`, `--sk-font-size-xl`, `--sk-font-size-xs`, `--sk-info`, `--sk-radius-md`, `--sk-space-md`, `--sk-space-sm`, `--sk-space-xs`, `--sk-stat-bar-gap`, `--sk-stat-bar-item-min-w`, `--sk-stat-bar-item-padding`, `--sk-stat-bar-label-letter-spacing`, `--sk-stat-bar-label-size`, `--sk-stat-bar-value-size`, `--sk-success`, `--sk-text-muted`, `--sk-text-primary`, `--sk-text-secondary`, `--sk-warning`

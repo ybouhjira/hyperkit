@@ -1,0 +1,39 @@
+---
+title: MobilePanelView
+description: Mobile-optimized panel switcher.
+slug: /components/navigation/MobilePanelView
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# MobilePanelView
+
+Mobile-optimized panel switcher.
+
+```tsx
+import { MobilePanelView } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { MobilePanelView, Box, Stack, Text } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <MobilePanelView\n      tabs={[\n              {\n                id: 'home',\n                label: 'Home',\n                icon: 'home',\n                render: () => (\n                  <Box p=\"md\">\n                    <Stack gap=\"sm\">\n                      <Text as=\"h2\" size=\"lg\" weight=\"semibold\">\n                        Home Content\n                      </Text>\n                      <Text as=\"p\">This is the home tab content.</Text>\n                    </Stack>\n                  </Box>\n                ),\n              },\n              {\n                id: 'files',\n                label: 'Files',\n                icon: 'folder',\n                render: () => (\n                  <Box p=\"md\">\n                    <Stack gap=\"sm\">\n                      <Text as=\"h2\" size=\"lg\" weight=\"semibold\">\n                        Files Content\n                      </Text>\n                      <Text as=\"p\">This is the files tab content.</Text>\n                    </Stack>\n                  </Box>\n                ),\n              },\n              {\n                id: 'settings',\n                label: 'Settings',\n                icon: 'settings',\n                render: () => (\n                  <Box p=\"md\">\n                    <Stack gap=\"sm\">\n                      <Text as=\"h2\" size=\"lg\" weight=\"semibold\">\n                        Settings Content\n                      </Text>\n                      <Text as=\"p\">This is the settings tab content.</Text>\n                    </Stack>\n                  </Box>\n                ),\n              },\n            ]}\n    />\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `tabs` * | `MobilePanelTab[]` | — | — |
+| `activeId` | `string` | — | — |
+| `defaultId` | `string` | — | — |
+| `onTabChange` | `(id: string) => void` | — | — |
+| `class` | `string` | — | — |
+
+`*` required prop.
+
+## Design Tokens
+
+This component reads the following CSS custom properties. Override them globally or per-instance to restyle it — see the [CSS Variables guide](../../guides/css-variables.md).
+
+`--sk-accent`, `--sk-bg-primary`, `--sk-border`, `--sk-font-sm`, `--sk-mobile-panel-header-h`, `--sk-space-md`, `--sk-space-xs`, `--sk-text-muted`, `--sk-text-primary`, `--sk-transition-fast`

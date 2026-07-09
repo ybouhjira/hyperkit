@@ -45,6 +45,33 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    // babel-preset-solid (used by the live playground's in-browser compiler)
+    // transitively uses Node's `assert` and the `process` global; webpack 5
+    // no longer auto-polyfills core modules, so wire the userland shims.
+    function playgroundNodePolyfills() {
+      return {
+        name: 'playground-node-polyfills',
+        configureWebpack() {
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
+          const webpack = require('webpack');
+          return {
+            resolve: {
+              fallback: {
+                assert: require.resolve('assert/'),
+              },
+            },
+            plugins: [
+              new webpack.ProvidePlugin({
+                process: require.resolve('process/browser.js'),
+              }),
+            ],
+          };
+        },
+      };
+    },
+  ],
+
   presets: [
     [
       'classic',

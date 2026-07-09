@@ -1,0 +1,109 @@
+.playground {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  margin-bottom: var(--ifm-leading);
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  font-size: 0.8rem;
+}
+
+.toolbarLabel {
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+}
+
+.toolbarSpacer {
+  flex: 1;
+}
+
+.themeSelect {
+  font: inherit;
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+  max-width: 12rem;
+}
+
+.resetButton {
+  font: inherit;
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.previewWrap {
+  position: relative;
+  background:
+    repeating-conic-gradient(var(--ifm-color-emphasis-100) 0% 25%, transparent 0% 50%) 0 0 / 16px
+    16px;
+}
+
+.previewFrame {
+  display: block;
+  width: 100%;
+  min-height: 140px;
+  border: 0;
+  transition: height 120ms ease;
+}
+
+.previewLoading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.85rem;
+  background: var(--ifm-background-color);
+}
+
+.editorWrap {
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  max-height: 24rem;
+  overflow: auto;
+  font-size: 0.85rem;
+}
+
+.editorWrap :global(.cm-editor) {
+  background: var(--ifm-code-background);
+}
+
+.editorWrap :global(.cm-editor.cm-focused) {
+  outline: none;
+}
+
+.errorPanel {
+  border-top: 1px solid var(--ifm-color-danger-dark);
+  background: var(--ifm-color-danger-contrast-background);
+  color: var(--ifm-color-danger-darkest);
+  padding: 0.6rem 0.9rem;
+  margin: 0;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 12rem;
+}
+
+[data-theme='dark'] .errorPanel {
+  color: var(--ifm-color-danger-lightest);
+}

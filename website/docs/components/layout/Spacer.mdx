@@ -1,0 +1,28 @@
+---
+title: Spacer
+description: Flexible space filler for flex and grid layouts.
+slug: /components/layout/Spacer
+---
+
+import LivePlayground from '@site/src/components/LivePlayground';
+
+# Spacer
+
+Flexible space filler for flex and grid layouts.
+
+```tsx
+import { Spacer } from '@ybouhjira/hyperkit';
+```
+
+## Playground
+
+Edit the code — the preview recompiles and re-renders as you type.
+
+<LivePlayground code={"import { Flex, Box, Spacer } from '@ybouhjira/hyperkit';\n\nexport default function Demo() {\n  return (\n    <Flex gap=\"md\">\n      <Box p=\"md\" bg=\"secondary\" borderRadius=\"md\">Start</Box>\n      <Spacer />\n      <Box p=\"md\" bg=\"secondary\" borderRadius=\"md\">End</Box>\n    </Flex>\n  );\n}\n"} />
+
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `size` | `SpaceToken \| string \| number` | — | Fixed size. If omitted, uses flex:1 to fill available space. |
+| `axis` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which dimension to space. |
