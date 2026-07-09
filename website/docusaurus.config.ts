@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -14,7 +14,8 @@ const baseUrl = process.env.DOCS_BASE_URL ?? '/hyperkit/';
 
 const config: Config = {
   title: 'HyperKit',
-  tagline: '133+ SolidJS components with Effect services and CSS token theming',
+  tagline:
+    'An application platform with a framework-agnostic core — 130+ components for SolidJS today, React next.',
   favicon: 'img/favicon.svg',
 
   future: {

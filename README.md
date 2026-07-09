@@ -5,14 +5,17 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@ybouhjira/hyperkit)](https://bundlephobia.com/package/@ybouhjira/hyperkit)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**An application framework for SolidJS — 130+ components, IDE-grade panels, a navigation/action registry, theming, and AI-native tooling.**
+**An application platform with a framework-agnostic core — 130+ components for SolidJS today, React next. IDE-grade panels, a navigation/action registry, a diagram engine, theming, Effect services, and AI-native tooling.**
 
 ![HyperKit components](.github/assets/component-collage.png)
 
-HyperKit is not another button library. It is the full application layer for SolidJS: accessible primitives (built on [@kobalte/core](https://kobalte.dev)), feature-rich composites (chat, kanban, file explorer, command palette), resizable IDE panels, a keyboard system, 39 theme presets driven entirely by CSS custom properties, typed [Effect](https://effect.website) services, and an MCP server so AI assistants can look up its API like a teammate would.
+HyperKit is not another button library. It is a full application layer: accessible primitives (built on [@kobalte/core](https://kobalte.dev)), feature-rich composites (chat, kanban, file explorer, command palette), resizable IDE panels, a keyboard system, 39 theme presets driven entirely by CSS custom properties, typed [Effect](https://effect.website) services, and an MCP server so AI assistants can look up its API like a teammate would.
+
+The long-term goal is **one component API, many renderers** — the SolidJS renderer ships today, a React adapter is the next milestone, and the core (diagram engine, design tokens, theme system, behavior tests) is already framework-agnostic. Alongside the UI, a full-stack platform layer (services, realtime, persistence, desktop) is taking shape. See the [Roadmap](ROADMAP.md).
 
 ## Why HyperKit
 
+- **One API, many renderers** — the component contract, `--sk-*` tokens, themes, and behavior tests are renderer-independent; SolidJS is the first renderer, React ([roadmap](ROADMAP.md)) is next. `diagram-core` is already fully framework-agnostic.
 - **AI-native by design** — Ships an [MCP server](#ai-integration) for component-doc lookup, `llms.txt`/`llms-full.txt` for machine consumption, and a navigation registry that can expose your UI's actions as MCP tools (`generateMCPTools`) so agents can drive the interface.
 - **IDE-grade systems, not just widgets** — Resizable panel layouts, a navigable action registry with middleware (permissions, undo/redo, rate limiting), transport adapters (WebSocket, MessagePort, Tauri), and recording/replay.
 - **Token-first theming** — Every visual value flows through `--sk-*` CSS custom properties. 39 built-in presets (editor, OS, and product-inspired). A custom ESLint plugin enforces the token discipline in this repo's own CI.
@@ -53,46 +56,46 @@ SSR (SolidStart) works out of the box — see the [SSR Guide](docs/SSR.md) and t
 
 ### Components (130+)
 
-| Category | Highlights |
-| --- | --- |
-| **Layout** | Box, Flex, Stack, Grid, ScrollArea, MasonryGrid, DocumentPage |
-| **Input** | Button, Input, Select, Slider, RangeSlider, TagInput, DateInput, ColorInput, FileInput, AudioInput, VideoInput |
-| **Display** | Text, Badge, Card, MetricCard, CodeBlock, Markdown, Timeline, Sparkline, TerminalOutput, StreamingText |
-| **Feedback** | Spinner, ProgressBar, ProgressRing, Skeleton, ErrorBanner, EmptyState |
-| **Overlay & Navigation** | Dialog, Popover, Dropdown, Tabs, Accordion, Tooltip, Table |
-| **Chat & AI** | ChatWindow, LLMChatBox, MessageList, ToolApproval, SubagentTracker, CostTracker, ModelSelector |
-| **Data & Apps** | FileExplorer, FilePicker, KanbanBoard, IssueBoard, DashboardContainer, ActionForm |
-| **Utilities** | CommandPalette, ContextMenu, Toast, SettingsPanel, ThemeBuilder, GuidedTour |
+| Category                 | Highlights                                                                                                     |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| **Layout**               | Box, Flex, Stack, Grid, ScrollArea, MasonryGrid, DocumentPage                                                  |
+| **Input**                | Button, Input, Select, Slider, RangeSlider, TagInput, DateInput, ColorInput, FileInput, AudioInput, VideoInput |
+| **Display**              | Text, Badge, Card, MetricCard, CodeBlock, Markdown, Timeline, Sparkline, TerminalOutput, StreamingText         |
+| **Feedback**             | Spinner, ProgressBar, ProgressRing, Skeleton, ErrorBanner, EmptyState                                          |
+| **Overlay & Navigation** | Dialog, Popover, Dropdown, Tabs, Accordion, Tooltip, Table                                                     |
+| **Chat & AI**            | ChatWindow, LLMChatBox, MessageList, ToolApproval, SubagentTracker, CostTracker, ModelSelector                 |
+| **Data & Apps**          | FileExplorer, FilePicker, KanbanBoard, IssueBoard, DashboardContainer, ActionForm                              |
+| **Utilities**            | CommandPalette, ContextMenu, Toast, SettingsPanel, ThemeBuilder, GuidedTour                                    |
 
 Full catalog with props and examples: [`llms.txt`](llms.txt) (index) / [`llms-full.txt`](llms-full.txt) (complete API).
 
 ### Systems
 
-| System | What it provides |
-| --- | --- |
-| **Panel system** | IDE-style resizable/dockable panel layouts with drag-and-drop rearranging |
+| System                   | What it provides                                                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Panel system**         | IDE-style resizable/dockable panel layouts with drag-and-drop rearranging                                                                                                |
 | **Navigation framework** | Navigable registry + action dispatch, 5 middleware (permissions, undo/redo, logging, analytics, rate limiting), transports, persistence, recording/replay, health checks |
-| **Theme system** | ThemeProvider, 39 presets, theme sounds (Web-Audio), visual effect toggles |
-| **Keyboard system** | Scoped shortcuts, conflict handling, searchable ShortcutsHelp dialog |
-| **Animation** | Transition presets, scroll reveal, `prefers-reduced-motion` respected |
-| **Effect services** | Logging (transports/redaction/sampling), WebSocket, Session, FileSystem, Clipboard |
+| **Theme system**         | ThemeProvider, 39 presets, theme sounds (Web-Audio), visual effect toggles                                                                                               |
+| **Keyboard system**      | Scoped shortcuts, conflict handling, searchable ShortcutsHelp dialog                                                                                                     |
+| **Animation**            | Transition presets, scroll reveal, `prefers-reduced-motion` respected                                                                                                    |
+| **Effect services**      | Logging (transports/redaction/sampling), WebSocket, Session, FileSystem, Clipboard                                                                                       |
 
 ### Packages
 
-| Package | Description |
-| --- | --- |
-| [`diagram-core`](packages/diagram-core) | Framework-agnostic graph engine — branded IDs, dagre/ELK/force layouts, A\* edge routing, serialization |
-| [`diagram-svg`](packages/diagram-svg) | Vanilla SVG renderer — pan/zoom, themes, grid, markers |
-| [`diagram-solid`](packages/diagram-solid) | SolidJS diagram bindings — 7 components, 13 hooks |
-| [`devtools`](packages/devtools) | In-app CSS inspector — component tree, token tracing, theme audit |
-| [`explorer`](packages/explorer) | A self-built Storybook alternative (this repo dogfoods it) |
-| [`views`](packages/views) | Schema-driven view generation from Effect Schema |
-| [`editor`](packages/editor) | WYSIWYG component-tree editor |
-| [`mcp`](packages/mcp) | Effect-TS MCP server framework |
-| [`ai-renderer`](packages/ai-renderer) | Intent → validated UI schema via LLM |
-| [`llm-pipeline`](packages/llm-pipeline) | Multi-LLM orchestration with typed steps and cost tracing |
-| [`eslint-plugin-hyperkit`](packages/eslint-plugin-hyperkit) | 6 rules enforcing the design-token system |
-| [`gantt`](packages/gantt) / [`timeline`](packages/timeline) / [`sequence-diagram`](packages/sequence-diagram) | Token-styled visualization components |
+| Package                                                                                                       | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [`diagram-core`](packages/diagram-core)                                                                       | Framework-agnostic graph engine — branded IDs, dagre/ELK/force layouts, A\* edge routing, serialization |
+| [`diagram-svg`](packages/diagram-svg)                                                                         | Vanilla SVG renderer — pan/zoom, themes, grid, markers                                                  |
+| [`diagram-solid`](packages/diagram-solid)                                                                     | SolidJS diagram bindings — 7 components, 13 hooks                                                       |
+| [`devtools`](packages/devtools)                                                                               | In-app CSS inspector — component tree, token tracing, theme audit                                       |
+| [`explorer`](packages/explorer)                                                                               | A self-built Storybook alternative (this repo dogfoods it)                                              |
+| [`views`](packages/views)                                                                                     | Schema-driven view generation from Effect Schema                                                        |
+| [`editor`](packages/editor)                                                                                   | WYSIWYG component-tree editor                                                                           |
+| [`mcp`](packages/mcp)                                                                                         | Effect-TS MCP server framework                                                                          |
+| [`ai-renderer`](packages/ai-renderer)                                                                         | Intent → validated UI schema via LLM                                                                    |
+| [`llm-pipeline`](packages/llm-pipeline)                                                                       | Multi-LLM orchestration with typed steps and cost tracing                                               |
+| [`eslint-plugin-hyperkit`](packages/eslint-plugin-hyperkit)                                                   | 6 rules enforcing the design-token system                                                               |
+| [`gantt`](packages/gantt) / [`timeline`](packages/timeline) / [`sequence-diagram`](packages/sequence-diagram) | Token-styled visualization components                                                                   |
 
 ## Theme System
 
@@ -136,8 +139,8 @@ import { makeLoggingLayer, ConsoleTransport, HttpTransport } from '@ybouhjira/hy
 const LoggingLayer = makeLoggingLayer({
   maxHistory: 500,
   context: { app: 'my-app', env: 'production' },
-  redact: ['token', 'password'],       // masked as [REDACTED]
-  sampling: { rate: 0.1 },             // 10% sent to external transports
+  redact: ['token', 'password'], // masked as [REDACTED]
+  sampling: { rate: 0.1 }, // 10% sent to external transports
   transports: [
     ConsoleTransport({ format: 'pretty' }),
     HttpTransport({ url: 'https://logs.example.com/ingest' }),
@@ -179,7 +182,9 @@ Bundle budgets are enforced: `dist/index.js` ≤ 340 kB, `dist/index.css` ≤ 36
 
 ## Documentation
 
-- [Getting started & guides](website/) — docs site
+- [Docs site](https://ybouhjira.github.io/hyperkit/) — getting started, guides, all 131 component pages
+- [Live Explorer](https://hyperkit-explorer.vercel.app) — every component, interactive
+- [Roadmap](ROADMAP.md) — multi-renderer vision and the full-stack platform plan
 - [Design principles](PRINCIPLES.md) — the feature-scale philosophy
 - [Patterns](PATTERNS.md) / [Cookbook](COOKBOOK.md)
 - [CSS variables reference](docs/CSS_VARIABLES.md)
