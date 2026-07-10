@@ -1,17 +1,23 @@
-import { onMount } from 'solid-js'
-import { createNavigable } from '@ybouhjira/hyperkit'
-import { ExplorerProvider, useExplorer } from './stores/explorerStore'
-import { PluginProvider, usePlugins } from './plugins/pluginStore'
-import { Shell } from './components/Shell'
-import { registerStory, type StoryDef, type StoryEntry, isCSFModule, convertCSFModule } from './api'
-import { defaultSidebarPlugin } from './plugins/default-sidebar'
-import { commandPalettePlugin } from './plugins/command-palette'
-import { smartSidebarPlugin } from './plugins/smart-sidebar'
-import { commandCenterPlugin } from './plugins/command-center'
+import { onMount } from 'solid-js';
+import { createNavigable } from '@ybouhjira/hyperkit';
+import { ExplorerProvider, useExplorer } from './stores/explorerStore';
+import { PluginProvider, usePlugins } from './plugins/pluginStore';
+import { Shell } from './components/Shell';
+import {
+  registerStory,
+  type StoryDef,
+  type StoryEntry,
+  isCSFModule,
+  convertCSFModule,
+} from './api';
+import { defaultSidebarPlugin } from './plugins/default-sidebar';
+import { commandPalettePlugin } from './plugins/command-palette';
+import { smartSidebarPlugin } from './plugins/smart-sidebar';
+import { commandCenterPlugin } from './plugins/command-center';
 
 function AppContent() {
-  const { state, actions } = useExplorer()
-  const { actions: pluginActions } = usePlugins()
+  const { state, actions } = useExplorer();
+  const { actions: pluginActions } = usePlugins();
 
   createNavigable({
     id: 'explorer',
@@ -27,9 +33,9 @@ function AppContent() {
           required: ['id'],
         },
         handler: (params: unknown) => {
-          const p = params as { id: string }
-          actions.selectStory(p.id)
-          return { ok: true, selectedId: p.id }
+          const p = params as { id: string };
+          actions.selectStory(p.id);
+          return { ok: true, selectedId: p.id };
         },
       },
       {
@@ -41,12 +47,12 @@ function AppContent() {
           required: ['title'],
         },
         handler: (params: unknown) => {
-          const p = params as { title: string }
-          const needle = p.title.toLowerCase()
-          const match = state.stories.find((s) => s.title.toLowerCase().includes(needle))
-          if (!match) return { ok: false, error: `no story matches "${p.title}"` }
-          actions.selectStory(match.id)
-          return { ok: true, selectedId: match.id, title: match.title }
+          const p = params as { title: string };
+          const needle = p.title.toLowerCase();
+          const match = state.stories.find((s) => s.title.toLowerCase().includes(needle));
+          if (!match) return { ok: false, error: `no story matches "${p.title}"` };
+          actions.selectStory(match.id);
+          return { ok: true, selectedId: match.id, title: match.title };
         },
       },
     ],
@@ -54,31 +60,34 @@ function AppContent() {
       selectedId: state.selectedId,
       stories: state.stories.map((s) => ({ id: s.id, title: s.title, category: s.category })),
     }),
-  })
+  });
 
   onMount(() => {
     // Discover stories
-    const storyModules = import.meta.glob<Record<string, StoryDef>>([
-      '../../src/**/*.story.tsx',
-      '../../src/**/*.stories.tsx',
-      '../../editor/src/**/*.stories.tsx',
-      '../stories/**/*.story.tsx',
-      '../hyperkit-src/**/*.story.tsx',
-      '../hyperkit-src/**/*.stories.tsx',
-      '../../diagram-solid/src/**/*.stories.tsx',
-      '../../timeline/src/**/*.stories.tsx',
-      '../../devtools/src/**/*.stories.tsx',
-    ], { eager: true }) as Record<string, Record<string, StoryDef>>
-    const discoveredStories: StoryEntry[] = []
+    const storyModules = import.meta.glob<Record<string, StoryDef>>(
+      [
+        '../../src/**/*.story.tsx',
+        '../../src/**/*.stories.tsx',
+        '../../editor/src/**/*.stories.tsx',
+        '../stories/**/*.story.tsx',
+        '../hyperkit-src/**/*.story.tsx',
+        '../hyperkit-src/**/*.stories.tsx',
+        '../../diagram-solid/src/**/*.stories.tsx',
+        '../../timeline/src/**/*.stories.tsx',
+        '../../devtools/src/**/*.stories.tsx',
+      ],
+      { eager: true }
+    ) as Record<string, Record<string, StoryDef>>;
+    const discoveredStories: StoryEntry[] = [];
     for (const [path, mod] of Object.entries(storyModules)) {
       // Check if this is a CSF (Storybook) module
       if (isCSFModule(mod)) {
-        const csfEntries = convertCSFModule(mod, path)
+        const csfEntries = convertCSFModule(mod, path);
         for (const entry of csfEntries) {
-          registerStory(entry)
-          discoveredStories.push(entry)
+          registerStory(entry);
+          discoveredStories.push(entry);
         }
-        continue
+        continue;
       }
 
       // Otherwise, process as Explorer format
@@ -90,24 +99,27 @@ function AppContent() {
           'title' in storyDef &&
           'category' in storyDef
         ) {
-          const id = `${path}--${exportName}`
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
+          const id = `${path}--${exportName}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
           const entry: StoryEntry = {
             id,
             title: storyDef.title,
             category: storyDef.category,
             def: storyDef,
-          }
+          };
 
-          registerStory(entry)
-          discoveredStories.push(entry)
+          registerStory(entry);
+          discoveredStories.push(entry);
         }
       }
     }
 
-    actions.setStories(discoveredStories)
+    actions.setStories(discoveredStories);
+
+    // Tooling hook: expose the discovered story index for automation
+    // (thumbnail generation, e2e) — same data as the 'explorer' navigable state.
+    (window as unknown as Record<string, unknown>)['__SK_EXPLORER_STORIES__'] =
+      discoveredStories.map((s) => ({ id: s.id, title: s.title, category: s.category }));
 
     if (discoveredStories.length > 0 && discoveredStories[0]) {
       // Deep-link: ?story=<id|title> or #story=<id|title> (or bare #<title>)
@@ -115,49 +127,47 @@ function AppContent() {
       // or case-insensitive title substring; falls back to the first story.
       const want = (() => {
         try {
-          const q = new URLSearchParams(window.location.search).get('story')
-          if (q) return q
-          const h = window.location.hash.replace(/^#/, '')
-          const m = /(?:^|[&?])story=([^&]+)/.exec(h)
-          return m?.[1] ? decodeURIComponent(m[1]) : h ? decodeURIComponent(h) : null
+          const q = new URLSearchParams(window.location.search).get('story');
+          if (q) return q;
+          const h = window.location.hash.replace(/^#/, '');
+          const m = /(?:^|[&?])story=([^&]+)/.exec(h);
+          return m?.[1] ? decodeURIComponent(m[1]) : h ? decodeURIComponent(h) : null;
         } catch {
-          return null
+          return null;
         }
-      })()
-      const lower = want?.toLowerCase()
+      })();
+      const lower = want?.toLowerCase();
       const match = lower
-        ? discoveredStories.find(
-            (s) => s.id === want || s.title.toLowerCase().includes(lower),
-          )
-        : undefined
-      actions.selectStory((match ?? discoveredStories[0]).id)
+        ? discoveredStories.find((s) => s.id === want || s.title.toLowerCase().includes(lower))
+        : undefined;
+      actions.selectStory((match ?? discoveredStories[0]).id);
     }
 
     // Register built-in plugins
-    pluginActions.registerPlugin(defaultSidebarPlugin)
-    pluginActions.registerPlugin(commandPalettePlugin)
-    pluginActions.registerPlugin(smartSidebarPlugin)
-    pluginActions.registerPlugin(commandCenterPlugin)
+    pluginActions.registerPlugin(defaultSidebarPlugin);
+    pluginActions.registerPlugin(commandPalettePlugin);
+    pluginActions.registerPlugin(smartSidebarPlugin);
+    pluginActions.registerPlugin(commandCenterPlugin);
 
     // Enable smart-sidebar by default if no saved preference
     const savedEnabled = (() => {
       try {
-        const raw = localStorage.getItem('sk-explorer-enabled-plugins')
-        return raw ? (JSON.parse(raw) as string[]) : null
+        const raw = localStorage.getItem('sk-explorer-enabled-plugins');
+        return raw ? (JSON.parse(raw) as string[]) : null;
       } catch {
-        return null
+        return null;
       }
-    })()
+    })();
 
     if (!savedEnabled || savedEnabled.length === 0) {
       // First run: enable smart-sidebar by default
-      pluginActions.enablePlugin('smart-sidebar')
+      pluginActions.enablePlugin('smart-sidebar');
       // Set smart-sidebar as active sidebar
-      pluginActions.setActiveSidebar('smart-sidebar')
+      pluginActions.setActiveSidebar('smart-sidebar');
     }
-  })
+  });
 
-  return <Shell />
+  return <Shell />;
 }
 
 export function App() {
@@ -167,5 +177,5 @@ export function App() {
         <AppContent />
       </PluginProvider>
     </ExplorerProvider>
-  )
+  );
 }

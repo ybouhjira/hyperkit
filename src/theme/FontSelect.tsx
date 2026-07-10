@@ -1,5 +1,6 @@
 import { Component, createSignal, For } from 'solid-js';
 import { useTheme } from './useTheme';
+import './FontSelect.css';
 
 interface FontOption {
   name: string;
@@ -45,86 +46,31 @@ export const FontSelect: Component<FontSelectProps> = (props) => {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
-      <button
-        onClick={() => setIsOpen(!isOpen())}
-        style={{
-          width: '100%',
-          padding: '0.75rem 1rem',
-          background: 'var(--sk-bg-secondary)',
-          border: '1px solid var(--sk-border)',
-          'border-radius': 'var(--sk-radius-md)',
-          color: 'var(--sk-text-primary)',
-          'font-family': 'var(--sk-font-ui)',
-          'font-size': 'var(--sk-font-size-base)',
-          cursor: 'pointer',
-          display: 'flex',
-          'justify-content': 'space-between',
-          'align-items': 'center',
-          transition: 'border-color 0.2s ease',
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = 'var(--sk-accent-muted)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = 'var(--sk-border)';
-        }}
-      >
+    <div class="sk-font-select">
+      <button class="sk-font-select__trigger" onClick={() => setIsOpen(!isOpen())}>
+        {/* font-family is theme data (the selected font itself), not chrome */}
         <span style={{ 'font-family': currentFont() }}>{getCurrentFontName()}</span>
-        <span style={{ 'margin-left': '0.5rem' }}>{isOpen() ? '▲' : '▼'}</span>
+        <span class="sk-font-select__arrow">{isOpen() ? '▲' : '▼'}</span>
       </button>
 
       {isOpen() && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 'calc(100% + 0.5rem)',
-            left: '0',
-            right: '0',
-            background: 'var(--sk-bg-elevated)',
-            border: '1px solid var(--sk-border)',
-            'border-radius': 'var(--sk-radius-md)',
-            'box-shadow': '0 4px 12px rgba(0, 0, 0, 0.3)',
-            'max-height': '300px',
-            'overflow-y': 'auto',
-            'z-index': '1000',
-          }}
-        >
+        <div class="sk-font-select__dropdown">
           <For each={FONT_OPTIONS}>
             {(font) => {
               const isSelected = () => currentFont() === font.family;
 
               return (
                 <button
+                  classList={{
+                    'sk-font-select__option': true,
+                    'sk-font-select__option--selected': isSelected(),
+                  }}
                   onClick={() => handleSelect(font)}
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem 1rem',
-                    background: isSelected() ? 'var(--sk-accent-muted)' : 'transparent',
-                    border: 'none',
-                    color: 'var(--sk-text-primary)',
-                    'font-family': font.family,
-                    'font-size': 'var(--sk-font-size-base)',
-                    cursor: 'pointer',
-                    'text-align': 'left',
-                    transition: 'background 0.2s ease',
-                    display: 'flex',
-                    'justify-content': 'space-between',
-                    'align-items': 'center',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isSelected()) {
-                      e.currentTarget.style.background = 'var(--sk-bg-tertiary)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isSelected()) {
-                      e.currentTarget.style.background = 'transparent';
-                    }
-                  }}
+                  // font-family is option data (each row previews its own font), not chrome
+                  style={{ 'font-family': font.family }}
                 >
                   <span>{font.name}</span>
-                  {isSelected() && <span style={{ color: 'var(--sk-accent)' }}>✓</span>}
+                  {isSelected() && <span class="sk-font-select__check">✓</span>}
                 </button>
               );
             }}

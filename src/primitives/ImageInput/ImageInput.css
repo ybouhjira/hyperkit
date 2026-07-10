@@ -38,12 +38,12 @@
 
 .sk-image-input__placeholder:hover:not(.sk-image-input--disabled .sk-image-input__placeholder) {
   border-color: var(--sk-accent);
-  background-color: var(--sk-accent-subtle);
+  background-color: var(--sk-accent-muted);
 }
 
 .sk-image-input--dragging .sk-image-input__placeholder {
   border-color: var(--sk-accent);
-  background-color: var(--sk-accent-subtle);
+  background-color: var(--sk-accent-muted);
   transform: scale(1.02);
 }
 
@@ -137,7 +137,7 @@
 
 .sk-image-input__add-button:hover:not(:disabled) {
   border-color: var(--sk-accent);
-  background-color: var(--sk-accent-subtle);
+  background-color: var(--sk-accent-muted);
 }
 
 .sk-image-input__add-button svg {

@@ -1,11 +1,9 @@
 import { createSignal, For, type Component } from 'solid-js';
-import { Flex } from '../../primitives/Flex';
-import { Text } from '../../primitives/Text';
-import { Box } from '../../primitives/Box';
 import { AppearancePanel } from './AppearancePanel';
 import { AnimationPanel } from './AnimationPanel';
 import { LayoutPanel } from './LayoutPanel';
 import type { SettingsPanelProps, SettingsConfig } from './types';
+import './SettingsPanel.css';
 
 type Tab = 'appearance' | 'animation' | 'layout';
 
@@ -19,60 +17,29 @@ export const SettingsPanel: Component<SettingsPanelProps> = (props) => {
   ];
 
   return (
-    <Box
-      style={{
-        'background-color': 'var(--color-surface, #f5f5f5)',
-        'border-radius': '0.75rem',
-        overflow: 'hidden',
-        border: '1px solid var(--color-border, #e0e0e0)',
-      }}
-    >
+    <div class={`sk-settings ${props.class ?? ''}`} style={props.style}>
       {/* Tab Navigation */}
-      <Flex
-        style={{
-          'border-bottom': '1px solid var(--color-border, #e0e0e0)',
-          'background-color': 'var(--color-background, white)',
-        }}
-      >
+      <div class="sk-settings__tabs" role="tablist" aria-label="Settings sections">
         <For each={tabs}>
           {(tab) => (
-            <Box
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab() === tab.id}
+              class={`sk-settings__tab ${activeTab() === tab.id ? 'sk-settings__tab--active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
-              style={{
-                flex: 1,
-                padding: '1rem',
-                cursor: 'pointer',
-                'text-align': 'center',
-                'border-bottom': `3px solid ${
-                  activeTab() === tab.id ? 'var(--color-primary, #007bff)' : 'transparent'
-                }`,
-                'background-color':
-                  activeTab() === tab.id ? 'var(--color-primary-light, #e3f2fd)' : 'transparent',
-                transition: 'all 0.2s ease',
-              }}
             >
-              <Flex direction="column" align="center" gap="xs">
-                <Text style={{ 'font-size': '1.25rem' }}>{tab.icon}</Text>
-                <Text
-                  style={{
-                    'font-size': '0.875rem',
-                    'font-weight': activeTab() === tab.id ? '600' : '400',
-                    color:
-                      activeTab() === tab.id
-                        ? 'var(--color-primary, #007bff)'
-                        : 'var(--color-text, #333)',
-                  }}
-                >
-                  {tab.label}
-                </Text>
-              </Flex>
-            </Box>
+              <span class="sk-settings__tab-icon" aria-hidden="true">
+                {tab.icon}
+              </span>
+              {tab.label}
+            </button>
           )}
         </For>
-      </Flex>
+      </div>
 
       {/* Panel Content */}
-      <Box style={{ padding: '1.5rem', 'background-color': 'var(--color-background, white)' }}>
+      <div class="sk-settings__body">
         {activeTab() === 'appearance' && (
           <AppearancePanel
             settings={props.settings.appearance}
@@ -92,8 +59,8 @@ export const SettingsPanel: Component<SettingsPanelProps> = (props) => {
             onChange={(layout) => props.onChange({ ...props.settings, layout })}
           />
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

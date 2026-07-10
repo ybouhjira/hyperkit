@@ -89,7 +89,10 @@ describe('Table', () => {
     ));
 
     const bobRow = screen.getByText('Bob').closest('tr') as HTMLElement;
-    expect(bobRow.style.background).toBe('var(--sk-bg-tertiary)');
+    expect(bobRow.classList.contains('sk-table__row--selected')).toBe(true);
+
+    const aliceRow = screen.getByText('Alice').closest('tr') as HTMLElement;
+    expect(aliceRow.classList.contains('sk-table__row--selected')).toBe(false);
   });
 
   it('handles sortable columns', () => {
@@ -165,7 +168,7 @@ describe('Table', () => {
     expect(nameHeader.style.width).toBe('200px');
   });
 
-  it('handles mouse hover on clickable rows', () => {
+  it('marks clickable rows so CSS hover styling applies', () => {
     render(() => (
       <Table
         columns={columns}
@@ -176,14 +179,44 @@ describe('Table', () => {
     ));
 
     const row = screen.getByText('Alice').closest('tr') as HTMLElement;
+    expect(row.classList.contains('sk-table__row--clickable')).toBe(true);
+    // Hover styling lives in CSS — mouse events must not mutate inline styles.
     fireEvent.mouseEnter(row);
-    expect(row.style.background).toBe('var(--sk-bg-secondary)');
+    expect(row.style.background).toBe('');
   });
 
-  it('does not apply hover cursor when onRowClick is not provided', () => {
+  it('does not mark rows clickable when onRowClick is not provided', () => {
     render(() => <Table columns={columns} data={testData} getRowKey={(item) => item.id} />);
 
     const row = screen.getByText('Alice').closest('tr') as HTMLElement;
-    expect(row.style.cursor).toBe('default');
+    expect(row.classList.contains('sk-table__row--clickable')).toBe(false);
+  });
+
+  it('applies the sk-table class on the root element', () => {
+    const { container } = render(() => (
+      <Table columns={columns} data={testData} getRowKey={(item) => item.id} />
+    ));
+
+    const root = container.firstChild as HTMLElement;
+    expect(root.classList.contains('sk-table')).toBe(true);
+  });
+
+  it('supports keyboard sorting on sortable headers', () => {
+    const handleSort = vi.fn();
+    const sortableColumns = [{ key: 'name', header: 'Name', sortable: true }];
+
+    render(() => (
+      <Table
+        columns={sortableColumns}
+        data={testData}
+        getRowKey={(item) => item.id}
+        onSort={handleSort}
+      />
+    ));
+
+    const nameHeader = screen.getByText('Name').closest('th') as HTMLElement;
+    expect(nameHeader.getAttribute('tabindex')).toBe('0');
+    fireEvent.keyDown(nameHeader, { key: 'Enter' });
+    expect(handleSort).toHaveBeenCalledWith('name', 'asc');
   });
 });

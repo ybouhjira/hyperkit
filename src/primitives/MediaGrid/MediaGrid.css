@@ -49,12 +49,12 @@
 
 .sk-media-grid__add-card:hover:not(.sk-media-grid--disabled .sk-media-grid__add-card) {
   border-color: var(--sk-accent);
-  background-color: var(--sk-accent-subtle);
+  background-color: var(--sk-accent-muted);
 }
 
 .sk-media-grid--dragging .sk-media-grid__add-card {
   border-color: var(--sk-accent);
-  background-color: var(--sk-accent-subtle);
+  background-color: var(--sk-accent-muted);
   transform: scale(1.02);
 }
 
@@ -87,7 +87,7 @@
 
 .sk-media-grid__item--drag-over {
   border-color: var(--sk-accent);
-  background-color: var(--sk-accent-subtle);
+  background-color: var(--sk-accent-muted);
   transform: scale(1.02);
 }
 

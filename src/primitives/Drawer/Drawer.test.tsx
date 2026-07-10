@@ -1,8 +1,13 @@
 import { render, screen } from '@solidjs/testing-library';
 import { fireEvent } from '@testing-library/dom';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { createSignal } from 'solid-js';
+import { readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Drawer } from './Drawer';
+
+const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'Drawer.css'), 'utf8');
 
 describe('Drawer', () => {
   it('does not render content when closed', () => {
@@ -114,7 +119,7 @@ describe('Drawer', () => {
     expect(document.querySelector('[data-sk-drawer][data-side="bottom"]')).not.toBeNull();
   });
 
-  it('applies custom size to left/right drawers as width', () => {
+  it('applies custom size via the --sk-drawer-size custom property', () => {
     render(() => (
       <Drawer open={true} onOpenChange={() => {}} side="left" size="420px">
         <div>Body</div>
@@ -122,17 +127,53 @@ describe('Drawer', () => {
     ));
     const drawer = document.querySelector('[data-sk-drawer]') as HTMLElement | null;
     expect(drawer).not.toBeNull();
-    expect(drawer!.style.width).toBe('420px');
+    expect(drawer!.style.getPropertyValue('--sk-drawer-size')).toBe('420px');
   });
 
-  it('applies custom size to top/bottom drawers as height', () => {
+  it('consumes --sk-drawer-size as width on left/right and height on top/bottom', () => {
+    expect(css).toMatch(/data-side='left'[^}]*width: var\(--sk-drawer-size/);
+    expect(css).toMatch(/data-side='bottom'[^}]*height: var\(--sk-drawer-size/);
+  });
+
+  it('does not set the size custom property by default', () => {
     render(() => (
-      <Drawer open={true} onOpenChange={() => {}} side="bottom" size="50vh">
+      <Drawer open={true} onOpenChange={() => {}}>
         <div>Body</div>
       </Drawer>
     ));
     const drawer = document.querySelector('[data-sk-drawer]') as HTMLElement | null;
-    expect(drawer!.style.height).toBe('50vh');
+    expect(drawer!.style.getPropertyValue('--sk-drawer-size')).toBe('');
+  });
+
+  it('applies the sk-drawer class on the content and merges a custom class', () => {
+    render(() => (
+      <Drawer open={true} onOpenChange={() => {}} class="my-drawer">
+        <div>Body</div>
+      </Drawer>
+    ));
+    const drawer = document.querySelector('[data-sk-drawer]') as HTMLElement;
+    expect(drawer.classList.contains('sk-drawer')).toBe(true);
+    expect(drawer.classList.contains('my-drawer')).toBe(true);
+  });
+
+  it('applies the sk-drawer__overlay class on the backdrop', () => {
+    render(() => (
+      <Drawer open={true} onOpenChange={() => {}}>
+        <div>Body</div>
+      </Drawer>
+    ));
+    const overlay = document.querySelector('[data-sk-drawer-overlay]') as HTMLElement;
+    expect(overlay.classList.contains('sk-drawer__overlay')).toBe(true);
+  });
+
+  it('user style prop merges last so it can override component styles', () => {
+    render(() => (
+      <Drawer open={true} onOpenChange={() => {}} style={{ 'z-index': '4242' }}>
+        <div>Body</div>
+      </Drawer>
+    ));
+    const drawer = document.querySelector('[data-sk-drawer]') as HTMLElement;
+    expect(drawer.style.zIndex).toBe('4242');
   });
 
   it('sets aria-label when provided', () => {
@@ -147,31 +188,11 @@ describe('Drawer', () => {
   });
 
   describe('reduced motion', () => {
-    const originalMatchMedia = window.matchMedia;
-    beforeEach(() => {
-      window.matchMedia = vi.fn().mockImplementation((query: string) => ({
-        matches: query.includes('reduce'),
-        media: query,
-        onchange: null,
-        addListener: () => {},
-        removeListener: () => {},
-        addEventListener: () => {},
-        removeEventListener: () => {},
-        dispatchEvent: () => false,
-      })) as unknown as typeof window.matchMedia;
-    });
-    afterEach(() => {
-      window.matchMedia = originalMatchMedia;
-    });
-
-    it('disables transition when prefers-reduced-motion is set', () => {
-      render(() => (
-        <Drawer open={true} onOpenChange={() => {}}>
-          <div>Body</div>
-        </Drawer>
-      ));
-      const drawer = document.querySelector('[data-sk-drawer]') as HTMLElement | null;
-      expect(drawer!.style.transition).toBe('none');
+    it('drives all motion from --sk-duration-normal, which collapses to 0ms under prefers-reduced-motion', () => {
+      // tokens.css zeroes --sk-duration-* under prefers-reduced-motion, so the
+      // drawer must not hardcode any animation duration.
+      expect(css).toContain('var(--sk-duration-normal)');
+      expect(css).not.toMatch(/animation:[^;]*\d+m?s/);
     });
   });
 });

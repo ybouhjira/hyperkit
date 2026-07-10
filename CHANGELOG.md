@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.4.2
+
+### Fixed
+
+- 52 CSS references to nonexistent tokens (`--sk-transition-*`, `--sk-font-size-md`, `--sk-accent-subtle`, `--sk-color-*`, …) silently resolved to nothing across 22 components — borders, hover washes, and transitions now render
+- `Table` row selection no longer goes stale (reactivity bug); hover moved from DOM mutation to CSS
+- `IssueBoard` GitHub label colors with `#`-prefix produced invalid CSS
+- `SessionManager` subagent tree alignment (monospace + preserved whitespace)
+- `ColorInput` focus/alpha styling referenced an undefined token
+
+### Changed
+
+- Inline-style-era components migrated to co-located token-driven stylesheets: Table, Text, TopProgressBar, DocumentPage, Drawer, BottomSheet, MobileBottomBar, IssueBoard, SessionManager, SettingsPanel, Inspector, FontSelect, ThemeAuditor, ThemePicker, ThemeBuilder, Panel, ReportScoreCard — themes now apply to every component
+- New `fjord` theme preset (40 total)
+- Design-token lint rules (`eslint-plugin-hyperkit`) now enforced on the library's own source; `audit:css-vars` validates that component-scoped vars carry fallbacks or definitions
+- Size budgets rebalanced: JS 355 kB (was 360), CSS 45 kB (styles moved from JS to CSS)
+
 ## [3.0.0] - 2026-04-13
 
 ### Removed (BREAKING)

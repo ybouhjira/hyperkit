@@ -1,4 +1,5 @@
 import { JSX, For, Show, splitProps } from 'solid-js';
+import './Table.css';
 
 /** Configuration for a single table column. */
 export interface TableColumn<T> {
@@ -93,10 +94,17 @@ export function Table<T>(props: TableProps<T>): JSX.Element {
     local.onSort(String(column.key), newDirection);
   };
 
-  const getSortIndicator = (column: TableColumn<T>): JSX.Element => {
-    if (!column.sortable) return '';
-    if (local.sortColumn !== column.key) return <span style={{ opacity: '0.3' }}>▲</span>;
+  const isColumnSorted = (column: TableColumn<T>): boolean => local.sortColumn === column.key;
+
+  const sortGlyph = (column: TableColumn<T>): string => {
+    if (!isColumnSorted(column)) return '▲';
     return local.sortDirection === 'asc' ? '▲' : '▼';
+  };
+
+  const ariaSort = (column: TableColumn<T>): 'ascending' | 'descending' | 'none' | undefined => {
+    if (!column.sortable) return undefined;
+    if (!isColumnSorted(column)) return 'none';
+    return local.sortDirection === 'asc' ? 'ascending' : 'descending';
   };
 
   const isRowSelected = (item: T): boolean => {
@@ -104,76 +112,45 @@ export function Table<T>(props: TableProps<T>): JSX.Element {
   };
 
   return (
-    <div
-      style={{
-        width: '100%',
-        'overflow-x': 'auto',
-      }}
-      {...others}
-    >
+    <div class="sk-table" {...others}>
       <Show
         when={local.data.length > 0}
         fallback={
-          <div
-            style={{
-              display: 'flex',
-              'align-items': 'center',
-              'justify-content': 'center',
-              padding: '48px 16px',
-              color: 'var(--sk-text-muted)',
-              'font-family': 'var(--sk-font-ui)',
-              'text-align': 'center',
-            }}
-          >
+          <div class="sk-table__empty">
             {local.emptyState != null ? local.emptyState : 'No data available'}
           </div>
         }
       >
-        <table
-          style={{
-            width: '100%',
-            'border-collapse': 'collapse',
-            'font-family': 'var(--sk-font-ui)',
-          }}
-        >
-          <thead
-            style={{
-              position: 'sticky',
-              top: '0',
-              background: 'var(--sk-bg-secondary)',
-              'z-index': '10',
-            }}
-          >
+        <table class="sk-table__table">
+          <thead class="sk-table__head">
             <tr>
               <For each={local.columns}>
                 {(column) => (
                   <th
-                    style={{
-                      padding: '8px 12px',
-                      'text-align': 'left',
-                      color: 'var(--sk-text-muted)',
-                      'font-weight': '600',
-                      'font-size': 'var(--sk-font-size-sm)',
-                      'text-transform': 'uppercase',
-                      'letter-spacing': '0.5px',
-                      'border-bottom': '1px solid var(--sk-border-subtle)',
-                      cursor: column.sortable ? 'pointer' : 'default',
-                      'user-select': 'none',
-                      width: column.width,
-                    }}
+                    class={`sk-table__header-cell${column.sortable ? ' sk-table__header-cell--sortable' : ''}`}
+                    style={{ width: column.width }}
+                    aria-sort={ariaSort(column)}
+                    tabIndex={column.sortable ? 0 : undefined}
                     onClick={() => handleSort(column)}
+                    onKeyDown={(e: KeyboardEvent) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleSort(column);
+                      }
+                    }}
                   >
-                    <div
-                      style={{
-                        display: 'flex',
-                        'align-items': 'center',
-                        gap: '4px',
-                      }}
-                    >
+                    <div class="sk-table__header-label">
                       {column.header}
                       <Show when={column.sortable}>
-                        <span style={{ 'font-size': 'var(--sk-font-size-xs)' }}>
-                          {getSortIndicator(column)}
+                        <span
+                          class={`sk-table__sort-indicator ${
+                            isColumnSorted(column)
+                              ? 'sk-table__sort-indicator--active'
+                              : 'sk-table__sort-indicator--inactive'
+                          }`}
+                          aria-hidden="true"
+                        >
+                          {sortGlyph(column)}
                         </span>
                       </Show>
                     </div>
@@ -184,46 +161,22 @@ export function Table<T>(props: TableProps<T>): JSX.Element {
           </thead>
           <tbody>
             <For each={local.data}>
-              {(item) => {
-                const selected = isRowSelected(item);
-                return (
-                  <tr
-                    style={{
-                      background: selected ? 'var(--sk-bg-tertiary)' : 'var(--sk-bg-primary)',
-                      cursor: local.onRowClick ? 'pointer' : 'default',
-                      transition: 'background 0.15s ease',
-                      'border-left': selected
-                        ? '3px solid var(--sk-accent-muted)'
-                        : '3px solid transparent',
-                    }}
-                    onClick={() => local.onRowClick?.(item)}
-                    onMouseEnter={(e) => {
-                      if (!local.onRowClick) return;
-                      (e.currentTarget as HTMLElement).style.background = 'var(--sk-bg-secondary)';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!local.onRowClick) return;
-                      (e.currentTarget as HTMLElement).style.background = selected
-                        ? 'var(--sk-bg-tertiary)'
-                        : 'var(--sk-bg-primary)';
-                    }}
-                  >
-                    <For each={local.columns}>
-                      {(column) => (
-                        <td
-                          style={{
-                            padding: '8px 12px',
-                            color: 'var(--sk-text-secondary)',
-                            'border-bottom': '1px solid var(--sk-border-subtle)',
-                          }}
-                        >
-                          {column.render ? column.render(item) : String(item[column.key])}
-                        </td>
-                      )}
-                    </For>
-                  </tr>
-                );
-              }}
+              {(item) => (
+                <tr
+                  class={`sk-table__row${local.onRowClick ? ' sk-table__row--clickable' : ''}${
+                    isRowSelected(item) ? ' sk-table__row--selected' : ''
+                  }`}
+                  onClick={() => local.onRowClick?.(item)}
+                >
+                  <For each={local.columns}>
+                    {(column) => (
+                      <td class="sk-table__cell">
+                        {column.render ? column.render(item) : String(item[column.key])}
+                      </td>
+                    )}
+                  </For>
+                </tr>
+              )}
             </For>
           </tbody>
         </table>

@@ -62,26 +62,22 @@ describe('Text', () => {
       const { container } = render(() => <Text align="center">Centered</Text>);
       const el = container.firstChild as HTMLElement;
 
-      expect(el.style.textAlign).toBe('center');
+      expect(el.classList.contains('sk-text--align-center')).toBe(true);
     });
 
     it('applies truncation styles', () => {
       const { container } = render(() => <Text truncate>Long text that should truncate</Text>);
       const el = container.firstChild as HTMLElement;
 
-      expect(el.style.overflow).toBe('hidden');
-      expect(el.style.textOverflow).toBe('ellipsis');
-      expect(el.style.whiteSpace).toBe('nowrap');
+      expect(el.classList.contains('sk-text--truncate')).toBe(true);
     });
 
     it('applies line-clamp styles', () => {
       const { container } = render(() => <Text lineClamp={2}>Multi line text</Text>);
       const el = container.firstChild as HTMLElement;
 
-      expect(el.style.overflow).toBe('hidden');
-      expect(el.style.display).toBe('-webkit-box');
-      // Note: -webkit-line-clamp and -webkit-box-orient are not supported in JSDOM
-      // but are applied correctly in the component code
+      expect(el.classList.contains('sk-text--clamp')).toBe(true);
+      expect(el.style.getPropertyValue('--sk-text-line-clamp')).toBe('2');
     });
 
     it('applies gradient text', () => {
@@ -89,10 +85,8 @@ describe('Text', () => {
       const { container } = render(() => <Text gradient={gradient}>Gradient</Text>);
       const el = container.firstChild as HTMLElement;
 
-      expect(el.style.background).toContain(gradient);
-      expect(el.style.backgroundClip).toBe('text');
-      // Note: -webkit-background-clip and -webkit-text-fill-color are not fully supported in JSDOM
-      // but are applied correctly in the component code
+      expect(el.classList.contains('sk-text--gradient')).toBe(true);
+      expect(el.style.getPropertyValue('--sk-text-gradient')).toBe(gradient);
     });
 
     it('applies margin-bottom from mb prop', () => {
@@ -148,21 +142,21 @@ describe('Text', () => {
       const { container } = render(() => <Text whiteSpace="pre-wrap">Text</Text>);
       const el = container.firstChild as HTMLElement;
 
-      expect(el.style.whiteSpace).toBe('pre-wrap');
+      expect(el.classList.contains('sk-text--ws-pre-wrap')).toBe(true);
     });
 
     it('applies font-style: italic when italic prop is true', () => {
       const { container } = render(() => <Text italic>Italic Text</Text>);
       const el = container.firstChild as HTMLElement;
 
-      expect(el.style.fontStyle).toBe('italic');
+      expect(el.classList.contains('sk-text--italic')).toBe(true);
     });
 
     it('does not apply italic by default', () => {
       const { container } = render(() => <Text>Normal Text</Text>);
       const el = container.firstChild as HTMLElement;
 
-      expect(el.style.fontStyle).toBe('');
+      expect(el.classList.contains('sk-text--italic')).toBe(false);
     });
 
     it('applies error color', () => {
@@ -235,19 +229,29 @@ describe('Text', () => {
     it('applies monospace font via font="mono"', () => {
       const { container } = render(() => <Text font="mono">12:34:56</Text>);
       const el = container.firstChild as HTMLElement;
-      expect(el.style.fontFamily).toContain('var(--sk-font-code)');
+      expect(el.classList.contains('sk-text--font-mono')).toBe(true);
     });
 
     it('applies UI font via font="body"', () => {
       const { container } = render(() => <Text font="body">hello</Text>);
       const el = container.firstChild as HTMLElement;
-      expect(el.style.fontFamily).toContain('var(--sk-font-ui)');
+      expect(el.classList.contains('sk-text--font-body')).toBe(true);
     });
 
     it('does not set font-family by default', () => {
       const { container } = render(() => <Text>hello</Text>);
       const el = container.firstChild as HTMLElement;
       expect(el.style.fontFamily).toBe('');
+      expect(el.classList.contains('sk-text--font-mono')).toBe(false);
+      expect(el.classList.contains('sk-text--font-body')).toBe(false);
+    });
+  });
+
+  describe('root class', () => {
+    it('applies the sk-text class on the root element', () => {
+      const { container } = render(() => <Text>hello</Text>);
+      const el = container.firstChild as HTMLElement;
+      expect(el.classList.contains('sk-text')).toBe(true);
     });
   });
 });

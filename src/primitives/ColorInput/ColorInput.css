@@ -33,6 +33,10 @@
   gap: var(--sk-color-input-gap);
 }
 
+.sk-color-input__native {
+  display: none;
+}
+
 .sk-color-input__swatch {
   width: var(--sk-color-input-swatch-size);
   height: var(--sk-color-input-swatch-size);
@@ -40,8 +44,10 @@
   border-radius: var(--sk-color-input-radius);
   cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.15s ease;
-  background-color: transparent;
+  transition: transform var(--sk-duration-fast) ease;
+
+  /* Selected color value flows in as an inline custom property (data, not chrome) */
+  background: var(--sk-color-input-swatch-color, transparent);
   padding: 0;
 }
 
@@ -67,12 +73,12 @@
   font-size: var(--sk-font-size-sm);
   font-family: var(--sk-font-mono);
   min-width: 0;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--sk-duration-fast) ease;
 }
 
 .sk-color-input__text:focus {
   outline: none;
-  border-color: var(--sk-color-primary);
+  border-color: var(--sk-accent);
 }
 
 .sk-color-input__text:disabled {
@@ -96,7 +102,7 @@
   height: 4px;
   border-radius: 2px;
   appearance: none;
-  background: linear-gradient(to right, transparent, var(--sk-color-primary));
+  background: linear-gradient(to right, transparent, var(--sk-accent));
   cursor: pointer;
 }
 
@@ -105,20 +111,20 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--sk-color-primary);
+  background: var(--sk-accent);
   cursor: pointer;
   border: 2px solid var(--sk-bg-primary);
-  box-shadow: 0 1px 3px rgb(0, 0, 0, 0.2);
+  box-shadow: var(--sk-shadow-sm);
 }
 
 .sk-color-input__alpha-slider::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--sk-color-primary);
+  background: var(--sk-accent);
   cursor: pointer;
   border: 2px solid var(--sk-bg-primary);
-  box-shadow: 0 1px 3px rgb(0, 0, 0, 0.2);
+  box-shadow: var(--sk-shadow-sm);
 }
 
 .sk-color-input__alpha-value {
@@ -142,15 +148,17 @@
   border-radius: var(--sk-radius-sm);
   cursor: pointer;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-  background-color: transparent;
+    transform var(--sk-duration-fast) ease,
+    box-shadow var(--sk-duration-fast) ease;
+
+  /* Preset color value flows in as an inline custom property (data, not chrome) */
+  background: var(--sk-color-input-swatch-color, transparent);
   padding: 0;
 }
 
 .sk-color-input__preset:hover:not(:disabled) {
   transform: scale(1.1);
-  box-shadow: 0 2px 4px rgb(0, 0, 0, 0.2);
+  box-shadow: var(--sk-shadow-sm);
 }
 
 .sk-color-input__preset:active:not(:disabled) {

@@ -84,7 +84,7 @@ describe('BottomSheet', () => {
     expect(handler).not.toHaveBeenCalled();
   });
 
-  it('defaults snap point to 90vh when no snapPoints provided', () => {
+  it('defaults snap point to 0.9 when no snapPoints provided', () => {
     render(() => (
       <BottomSheet open={true} onOpenChange={() => {}}>
         <div>Body</div>
@@ -92,7 +92,7 @@ describe('BottomSheet', () => {
     ));
     const sheet = document.querySelector('[data-sk-bottom-sheet]') as HTMLElement;
     expect(sheet).not.toBeNull();
-    expect(sheet.style.height).toBe('90vh');
+    expect(sheet.style.getPropertyValue('--sk-bottom-sheet-snap')).toBe('0.9');
   });
 
   it('uses the largest snap point as height', () => {
@@ -102,7 +102,7 @@ describe('BottomSheet', () => {
       </BottomSheet>
     ));
     const sheet = document.querySelector('[data-sk-bottom-sheet]') as HTMLElement;
-    expect(sheet.style.height).toBe('60vh');
+    expect(sheet.style.getPropertyValue('--sk-bottom-sheet-snap')).toBe('0.6');
   });
 
   it('clamps snap points outside (0, 1]', () => {
@@ -112,38 +112,50 @@ describe('BottomSheet', () => {
       </BottomSheet>
     ));
     const sheet = document.querySelector('[data-sk-bottom-sheet]') as HTMLElement;
-    expect(sheet.style.height).toBe('100vh');
+    expect(sheet.style.getPropertyValue('--sk-bottom-sheet-snap')).toBe('1');
   });
 
-  it('applies default max-width for desktop centering', () => {
+  it('applies the sk-bottom-sheet class on the sheet and overlay', () => {
     render(() => (
       <BottomSheet open={true} onOpenChange={() => {}}>
         <div>Body</div>
       </BottomSheet>
     ));
     const sheet = document.querySelector('[data-sk-bottom-sheet]') as HTMLElement;
-    expect(sheet.style.maxWidth).toBe('640px');
+    const overlay = document.querySelector('[data-sk-bottom-sheet-overlay]') as HTMLElement;
+    expect(sheet.classList.contains('sk-bottom-sheet')).toBe(true);
+    expect(overlay.classList.contains('sk-bottom-sheet__overlay')).toBe(true);
   });
 
-  it('honors custom maxWidth', () => {
+  it('does not set the max-width custom property by default (640px fallback in CSS)', () => {
+    render(() => (
+      <BottomSheet open={true} onOpenChange={() => {}}>
+        <div>Body</div>
+      </BottomSheet>
+    ));
+    const sheet = document.querySelector('[data-sk-bottom-sheet]') as HTMLElement;
+    expect(sheet.style.getPropertyValue('--sk-bottom-sheet-max-width')).toBe('');
+  });
+
+  it('honors custom maxWidth via CSS custom property', () => {
     render(() => (
       <BottomSheet open={true} onOpenChange={() => {}} maxWidth="800px">
         <div>Body</div>
       </BottomSheet>
     ));
     const sheet = document.querySelector('[data-sk-bottom-sheet]') as HTMLElement;
-    expect(sheet.style.maxWidth).toBe('800px');
+    expect(sheet.style.getPropertyValue('--sk-bottom-sheet-max-width')).toBe('800px');
   });
 
-  it('uses token-based elevated background and shadow', () => {
+  it('merges a custom class with the sheet class', () => {
     render(() => (
-      <BottomSheet open={true} onOpenChange={() => {}}>
+      <BottomSheet open={true} onOpenChange={() => {}} class="my-sheet">
         <div>Body</div>
       </BottomSheet>
     ));
     const sheet = document.querySelector('[data-sk-bottom-sheet]') as HTMLElement;
-    expect(sheet.style.background).toContain('var(--sk-bg-elevated)');
-    expect(sheet.style.boxShadow).toContain('var(--sk-shadow-2xl)');
+    expect(sheet.classList.contains('sk-bottom-sheet')).toBe(true);
+    expect(sheet.classList.contains('my-sheet')).toBe(true);
   });
 
   it('dismisses on swipe-down past threshold', () => {

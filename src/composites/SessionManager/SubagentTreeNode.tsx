@@ -1,7 +1,6 @@
 import { For, Show } from 'solid-js';
-import type { JSX } from 'solid-js';
 import type { SessionSubagentInfo } from './SessionManager';
-import { getSubagentStatusColor, getModelIcon } from './sessionManagerUtils';
+import { getModelIcon } from './sessionManagerUtils';
 
 export const SubagentTreeNode = (props: {
   readonly agent: SessionSubagentInfo;
@@ -12,36 +11,21 @@ export const SubagentTreeNode = (props: {
   const children = () => props.tree.get(props.agent.id) || [];
   const hasChildren = () => children().length > 0;
 
-  const nodeStyle = (): JSX.CSSProperties => ({
-    display: 'flex',
-    'align-items': 'center',
-    gap: '8px',
-    'font-size': '13px',
-    'font-family': 'var(--sk-font-ui)',
-    color: 'var(--sk-text-secondary)',
-    'margin-left': `${props.prefix.length * 8}px`,
-    'margin-top': '4px',
-  });
-
-  const dotStyle = (): JSX.CSSProperties => ({
-    width: '6px',
-    height: '6px',
-    'border-radius': '50%',
-    'background-color': getSubagentStatusColor(props.agent.status),
-    'flex-shrink': '0',
-  });
-
   const connector = () => (props.isLast ? '└──' : '├──');
 
   return (
     <>
-      <div style={nodeStyle()}>
-        <span style={{ color: 'var(--sk-border)' }}>
+      <div class="sk-subagent" style={{ '--sk-subagent-depth': props.prefix.length }}>
+        <span class="sk-subagent__connector">
           {props.prefix}
           {connector()}
         </span>
         <span>{getModelIcon(props.agent.model)}</span>
-        <div style={dotStyle()} />
+        <div
+          class={`sk-subagent__dot sk-subagent__dot--${props.agent.status}`}
+          role="img"
+          aria-label={props.agent.status}
+        />
         <span>{props.agent.description}</span>
       </div>
       <Show when={hasChildren()}>

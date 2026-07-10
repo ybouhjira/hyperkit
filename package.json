@@ -1,6 +1,6 @@
 {
   "name": "@ybouhjira/hyperkit",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "A scalable SolidJS component library with token-based theming and CSS variable customization",
   "type": "module",
   "sideEffects": [
@@ -122,14 +122,14 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "360 kB",
+      "limit": "355 kB",
       "ignore": [
         "@ybouhjira/hyperkit-devtools"
       ]
     },
     {
       "path": "dist/index.css",
-      "limit": "39 kB"
+      "limit": "45 kB"
     }
   ],
   "peerDependencies": {

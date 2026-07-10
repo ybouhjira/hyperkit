@@ -11,8 +11,20 @@ export interface ThemePickerModalProps {
 
 const GRID_COLUMNS = 3;
 
+/**
+ * Data: macOS traffic-light colors (close/minimize/zoom). Part of the mini-IDE
+ * illustration and intentionally identical in every theme preview — these are
+ * content, not host-theme chrome, so they must NOT follow --sk-* tokens.
+ */
+const TRAFFIC_LIGHT_COLORS = ['#ff5f57', '#febc2e', '#28c840'] as const;
+
 type Category = 'all' | 'dark' | 'light' | 'editor' | 'platform';
 
+/**
+ * Renders a miniature IDE mock painted with the TARGET theme's own colors
+ * (inline, from `props.theme.colors`) — deliberately not the active theme's
+ * --sk-* tokens, since each card must preview the theme it represents.
+ */
 function MiniIdePreview(props: { theme: ThemeConfig }) {
   const t = () => props.theme.colors;
   return (
@@ -23,9 +35,7 @@ function MiniIdePreview(props: { theme: ThemeConfig }) {
       {/* Title bar */}
       <div class="sk-theme-card__titlebar" style={{ background: t().bgSecondary }}>
         <div class="sk-theme-card__dots">
-          <span style={{ background: '#ff5f57' }} />
-          <span style={{ background: '#febc2e' }} />
-          <span style={{ background: '#28c840' }} />
+          <For each={TRAFFIC_LIGHT_COLORS}>{(dot) => <span style={{ background: dot }} />}</For>
         </div>
         <span class="sk-theme-card__name" style={{ color: t().textSecondary }}>
           {props.theme.name}

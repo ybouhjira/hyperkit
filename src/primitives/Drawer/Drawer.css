@@ -1,0 +1,129 @@
+.sk-drawer__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--sk-z-modal, 1000);
+  background: var(--sk-drawer-overlay-bg, rgb(0 0 0 / 0.5));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  &[data-expanded] {
+    animation: sk-fade-in var(--sk-duration-normal) var(--sk-ease-default);
+  }
+
+  &[data-closed] {
+    animation: sk-fade-in var(--sk-duration-normal) var(--sk-ease-default) reverse;
+  }
+}
+
+.sk-drawer {
+  position: fixed;
+  z-index: var(--sk-z-modal, 1000);
+  background: var(--sk-drawer-bg, var(--sk-bg-elevated));
+  box-shadow: var(--sk-shadow-2xl);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.sk-drawer[data-side='left'] {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--sk-drawer-size, min(320px, 80vw));
+  border-right: 1px solid var(--sk-drawer-border, var(--sk-border));
+
+  &[data-expanded] {
+    animation: sk-drawer-in-left var(--sk-duration-normal) var(--sk-ease-default);
+  }
+
+  &[data-closed] {
+    animation: sk-drawer-in-left var(--sk-duration-normal) var(--sk-ease-default) reverse;
+  }
+}
+
+.sk-drawer[data-side='right'] {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: var(--sk-drawer-size, min(320px, 80vw));
+  border-left: 1px solid var(--sk-drawer-border, var(--sk-border));
+
+  &[data-expanded] {
+    animation: sk-drawer-in-right var(--sk-duration-normal) var(--sk-ease-default);
+  }
+
+  &[data-closed] {
+    animation: sk-drawer-in-right var(--sk-duration-normal) var(--sk-ease-default) reverse;
+  }
+}
+
+.sk-drawer[data-side='top'] {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--sk-drawer-size, min(60vh, 480px));
+  border-bottom: 1px solid var(--sk-drawer-border, var(--sk-border));
+
+  &[data-expanded] {
+    animation: sk-drawer-in-top var(--sk-duration-normal) var(--sk-ease-default);
+  }
+
+  &[data-closed] {
+    animation: sk-drawer-in-top var(--sk-duration-normal) var(--sk-ease-default) reverse;
+  }
+}
+
+.sk-drawer[data-side='bottom'] {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--sk-drawer-size, min(60vh, 480px));
+  border-top: 1px solid var(--sk-drawer-border, var(--sk-border));
+
+  &[data-expanded] {
+    animation: sk-drawer-in-bottom var(--sk-duration-normal) var(--sk-ease-default);
+  }
+
+  &[data-closed] {
+    animation: sk-drawer-in-bottom var(--sk-duration-normal) var(--sk-ease-default) reverse;
+  }
+}
+
+@keyframes sk-drawer-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sk-drawer-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sk-drawer-in-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sk-drawer-in-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion: --sk-duration-normal collapses to 0ms globally (tokens.css),
+ * so the slide/fade animations complete instantly — no extra rules needed. */

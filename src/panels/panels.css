@@ -321,6 +321,10 @@
   transform: rotate(180deg);
 }
 
+.sk-panel-header__button-icon {
+  font-size: var(--sk-font-size-xs, 12px);
+}
+
 .sk-panel-content {
   flex: 1;
   overflow: auto;

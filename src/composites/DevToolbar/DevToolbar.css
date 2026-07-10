@@ -3,6 +3,28 @@
  * Independent from host app. Always looks like a dev overlay.
  */
 
+/*
+ * Status palette used by the TSX (breakpoint, health, severity, service dots).
+ * Data, not host-theme chrome: the overlay is deliberately theme-independent —
+ * host --sk-* status colors are tuned for the host surface and could be
+ * unreadable on this fixed dark panel. Centralized here as the single source
+ * of truth (and as an override hook for embedders).
+ */
+.sk-dt-toggle,
+.sk-dt-panel {
+  --sk-dt-accent: #7c3aed;
+  --sk-dt-violet: #8b5cf6;
+  --sk-dt-indigo: #6366f1;
+  --sk-dt-blue: #3b82f6;
+  --sk-dt-cyan: #06b6d4;
+  --sk-dt-green: #10b981;
+  --sk-dt-amber: #f59e0b;
+  --sk-dt-orange: #f97316;
+  --sk-dt-yellow: #eab308;
+  --sk-dt-red: #ef4444;
+  --sk-dt-gray: #4b5563;
+}
+
 /* ─── Toggle Button ──────────────────────────────────────────────────────── */
 
 .sk-dt-toggle {
@@ -141,6 +163,10 @@
   flex: 1;
 }
 
+.sk-dt-bug-filters__spacer {
+  flex: 1;
+}
+
 .sk-dt-tabbar__brand {
   padding: 2px 8px;
   background: rgb(124, 58, 237, 0.15);
@@ -235,7 +261,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--sk-card-accent, #7c3aed);
+  background: var(--sk-card-accent, var(--sk-dt-accent));
   opacity: 0.7;
 }
 

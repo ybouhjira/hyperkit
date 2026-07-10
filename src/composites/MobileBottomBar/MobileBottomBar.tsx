@@ -1,4 +1,5 @@
 import { Component, For, JSX, Show, splitProps } from 'solid-js';
+import './MobileBottomBar.css';
 
 /**
  * A single item in the {@link MobileBottomBar}.
@@ -52,9 +53,6 @@ export interface MobileBottomBarProps {
   style?: JSX.CSSProperties;
 }
 
-const BAR_MIN_HEIGHT = '56px';
-const TOUCH_TARGET = '44px';
-
 /**
  * Fixed bottom navigation bar for mobile apps. Honors iOS
  * `env(safe-area-inset-bottom)` so it lifts above the home indicator and
@@ -99,22 +97,6 @@ export const MobileBottomBar: Component<MobileBottomBarProps> = (props) => {
     'style',
   ]);
 
-  const rootStyle = (): JSX.CSSProperties => ({
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    right: '0',
-    display: 'flex',
-    'align-items': 'stretch',
-    'justify-content': 'space-around',
-    'min-height': BAR_MIN_HEIGHT,
-    background: 'var(--sk-bg-secondary)',
-    'border-top': '1px solid var(--sk-border)',
-    'padding-bottom': 'env(safe-area-inset-bottom, 0px)',
-    'z-index': 'var(--sk-z-sticky, 100)',
-    ...(local.style ?? {}),
-  });
-
   const handleClick = (item: MobileBottomBarItem) => {
     if (item.disabled) return;
     local.onSelect?.(item.id);
@@ -123,8 +105,8 @@ export const MobileBottomBar: Component<MobileBottomBarProps> = (props) => {
   return (
     <Show when={!local.hidden}>
       <nav
-        class={local.class}
-        style={rootStyle()}
+        class={`sk-mobile-bottom-bar ${local.class ?? ''}`.trim()}
+        style={local.style}
         data-sk-mobile-bottom-bar=""
         data-sk-safe-area-bottom=""
         data-testid="mobile-bottom-bar"
@@ -137,81 +119,31 @@ export const MobileBottomBar: Component<MobileBottomBarProps> = (props) => {
             return (
               <button
                 type="button"
+                class={`sk-mobile-bottom-bar__item${
+                  isActive() ? ' sk-mobile-bottom-bar__item--active' : ''
+                }`}
                 data-testid={`mobile-bottom-bar-item-${item.id}`}
                 data-active={isActive() ? '' : undefined}
                 aria-current={isActive() ? 'page' : undefined}
                 aria-label={item.label}
                 disabled={item.disabled}
                 onClick={() => handleClick(item)}
-                style={{
-                  flex: '1 1 0',
-                  display: 'flex',
-                  'flex-direction': 'column',
-                  'align-items': 'center',
-                  'justify-content': 'center',
-                  gap: 'var(--sk-space-2xs)',
-                  'min-width': TOUCH_TARGET,
-                  'min-height': TOUCH_TARGET,
-                  padding: 'var(--sk-space-xs) var(--sk-space-sm)',
-                  background: 'transparent',
-                  border: 'none',
-                  'border-top': isActive() ? '2px solid var(--sk-accent)' : '2px solid transparent',
-                  color: isActive() ? 'var(--sk-accent)' : 'var(--sk-text-secondary)',
-                  'font-size': 'var(--sk-font-size-xs)',
-                  'font-family': 'inherit',
-                  cursor: item.disabled ? 'not-allowed' : 'pointer',
-                  opacity: item.disabled ? 0.5 : 1,
-                  transition:
-                    'color var(--sk-duration-fast) var(--sk-ease-default), border-color var(--sk-duration-fast) var(--sk-ease-default)',
-                }}
               >
                 <span
-                  style={{
-                    position: 'relative',
-                    display: 'inline-flex',
-                    'align-items': 'center',
-                    'justify-content': 'center',
-                    'font-size': 'var(--sk-icon-lg, 20px)',
-                    'line-height': '1',
-                  }}
+                  class="sk-mobile-bottom-bar__icon"
                   data-testid={`mobile-bottom-bar-icon-${item.id}`}
                 >
                   {item.icon}
                   <Show when={item.badge !== undefined && item.badge !== ''}>
                     <span
+                      class="sk-mobile-bottom-bar__badge"
                       data-testid={`mobile-bottom-bar-badge-${item.id}`}
-                      style={{
-                        position: 'absolute',
-                        top: '-4px',
-                        right: '-8px',
-                        'min-width': 'var(--sk-space-md)',
-                        height: 'var(--sk-space-md)',
-                        padding: '0 var(--sk-space-2xs)',
-                        'border-radius': '9999px',
-                        background: 'var(--sk-error)',
-                        color: 'var(--sk-text-on-accent)',
-                        'font-size': 'var(--sk-font-size-xs)',
-                        'font-weight': 'var(--sk-font-weight-semibold)',
-                        display: 'inline-flex',
-                        'align-items': 'center',
-                        'justify-content': 'center',
-                        'line-height': '1',
-                      }}
                     >
                       {item.badge}
                     </span>
                   </Show>
                 </span>
-                <span
-                  style={{
-                    'max-width': '100%',
-                    'white-space': 'nowrap',
-                    overflow: 'hidden',
-                    'text-overflow': 'ellipsis',
-                  }}
-                >
-                  {item.label}
-                </span>
+                <span class="sk-mobile-bottom-bar__label">{item.label}</span>
               </button>
             );
           }}

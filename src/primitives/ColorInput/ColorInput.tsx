@@ -135,6 +135,7 @@ export const ColorInput: Component<ColorInputProps> = (props) => {
   ]);
 
   const [internalColor, setInternalColor] = createSignal(
+    // Data: documented API default for the color VALUE, not theme chrome.
     normalizeHex(local.defaultValue ?? '#000000')
   );
 
@@ -218,16 +219,16 @@ export const ColorInput: Component<ColorInputProps> = (props) => {
         <input
           id="color-picker-native"
           type="color"
+          class="sk-color-input__native"
           value={currentColor()}
           onInput={handleNativeColorChange}
           disabled={local.disabled}
-          style={{ display: 'none' }}
         />
 
         <button
           type="button"
           class="sk-color-input__swatch"
-          style={{ background: currentColor() }}
+          style={{ '--sk-color-input-swatch-color': currentColor() }}
           onClick={handleSwatchClick}
           disabled={local.disabled}
           aria-label="Choose color"
@@ -268,7 +269,7 @@ export const ColorInput: Component<ColorInputProps> = (props) => {
               <button
                 type="button"
                 class="sk-color-input__preset"
-                style={{ background: preset }}
+                style={{ '--sk-color-input-swatch-color': preset }}
                 onClick={() => handlePresetClick(preset)}
                 disabled={local.disabled}
                 aria-label={`Preset color ${preset}`}

@@ -1,0 +1,62 @@
+.sk-top-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--sk-top-progress-height, 2px);
+  z-index: var(--sk-z-toast, 9999);
+  pointer-events: none;
+  overflow: hidden;
+  background: transparent;
+  opacity: 0;
+  transition: opacity var(--sk-duration-normal) var(--sk-ease-default);
+}
+
+.sk-top-progress--visible {
+  opacity: 1;
+}
+
+.sk-top-progress__fill {
+  height: 100%;
+  background: var(--sk-top-progress-color, var(--sk-accent));
+}
+
+.sk-top-progress--determinate .sk-top-progress__fill {
+  width: calc(var(--sk-top-progress-value, 0) * 100%);
+  transition: width var(--sk-duration-normal) var(--sk-ease-out);
+}
+
+.sk-top-progress--indeterminate .sk-top-progress__fill {
+  width: 30%;
+  animation: sk-top-progress-shimmer var(--sk-top-progress-shimmer-duration, 1.5s) infinite
+    ease-in-out;
+  will-change: transform;
+}
+
+@keyframes sk-top-progress-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(500%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-top-progress {
+    transition: none;
+  }
+
+  .sk-top-progress--determinate .sk-top-progress__fill {
+    transition: none;
+  }
+
+  .sk-top-progress--indeterminate .sk-top-progress__fill {
+    width: 100%;
+    animation: none;
+    opacity: 0.8;
+  }
+}

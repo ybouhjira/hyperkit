@@ -10,6 +10,7 @@ import {
   untrack,
 } from 'solid-js';
 import { Dialog as KobalteDialog } from '@kobalte/core/dialog';
+import './BottomSheet.css';
 
 /**
  * Props for {@link BottomSheet}.
@@ -51,11 +52,6 @@ export interface BottomSheetProps {
   /** Inline styles applied to the sheet content surface. */
   style?: JSX.CSSProperties;
 }
-
-const prefersReducedMotion = (): boolean =>
-  typeof window !== 'undefined' &&
-  typeof window.matchMedia === 'function' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const SWIPE_DISMISS_THRESHOLD = 80; // px
 
@@ -108,7 +104,6 @@ export const BottomSheet: Component<BottomSheetProps> = (props) => {
   );
   const [dragOffset, setDragOffset] = createSignal(0);
   const [dragging, setDragging] = createSignal(false);
-  const reducedMotion = createMemo(() => prefersReducedMotion());
 
   // Reset snap index when opening
   createEffect(() => {
@@ -118,7 +113,6 @@ export const BottomSheet: Component<BottomSheetProps> = (props) => {
     }
   });
 
-  const maxWidth = () => local.maxWidth ?? '640px';
   const showHandle = () => local.showHandle !== false;
   const swipeToDismiss = () => local.swipeToDismiss !== false;
   const dismissible = () => local.dismissible !== false;
@@ -170,45 +164,19 @@ export const BottomSheet: Component<BottomSheetProps> = (props) => {
     pointerId = null;
   });
 
-  const contentStyle = (): JSX.CSSProperties => {
-    const heightVh = maxSnap() * 100;
-    const translate = dragOffset();
-    return {
-      position: 'fixed',
-      left: '50%',
-      bottom: '0',
-      transform: `translateX(-50%) translateY(${local.open ? translate : 9999}px)`,
-      width: '100%',
-      'max-width': maxWidth(),
-      height: `${heightVh}vh`,
-      'max-height': '100vh',
-      background: 'var(--sk-bg-elevated)',
-      'border-top-left-radius': 'var(--sk-radius-lg)',
-      'border-top-right-radius': 'var(--sk-radius-lg)',
-      'box-shadow': 'var(--sk-shadow-2xl)',
-      display: 'flex',
-      'flex-direction': 'column',
-      overflow: 'hidden',
-      'z-index': 'var(--sk-z-modal, 1000)',
-      transition:
-        reducedMotion() || dragging()
-          ? 'none'
-          : 'transform var(--sk-duration-fast, 150ms) var(--sk-ease-default, cubic-bezier(0.4, 0, 0.2, 1))',
-      'touch-action': 'none',
-      ...(local.style ?? {}),
-    };
-  };
+  const contentClass = () =>
+    ['sk-bottom-sheet', dragging() ? 'sk-bottom-sheet--dragging' : '', local.class ?? '']
+      .filter(Boolean)
+      .join(' ');
 
-  const backdropStyle = (): JSX.CSSProperties => ({
-    position: 'fixed',
-    inset: '0',
-    background: 'var(--sk-overlay-bg, rgba(0, 0, 0, 0.5))',
-    'backdrop-filter': 'blur(4px)',
-    '-webkit-backdrop-filter': 'blur(4px)',
-    'z-index': 'var(--sk-z-modal, 1000)',
-    transition: reducedMotion()
-      ? 'none'
-      : 'opacity var(--sk-duration-fast, 150ms) var(--sk-ease-default, cubic-bezier(0.4, 0, 0.2, 1))',
+  // The drag transform is genuinely dynamic (pointer-driven); snap height and
+  // max-width feed the stylesheet through CSS custom properties. The user
+  // style prop merges last so it can override anything.
+  const contentStyle = (): JSX.CSSProperties => ({
+    transform: `translateX(-50%) translateY(${local.open ? dragOffset() : 9999}px)`,
+    '--sk-bottom-sheet-snap': String(maxSnap()),
+    ...(local.maxWidth !== undefined ? { '--sk-bottom-sheet-max-width': local.maxWidth } : {}),
+    ...(local.style ?? {}),
   });
 
   return (
@@ -223,7 +191,7 @@ export const BottomSheet: Component<BottomSheetProps> = (props) => {
         <KobalteDialog.Overlay
           data-sk-bottom-sheet-overlay=""
           data-testid="bottom-sheet-overlay"
-          style={backdropStyle()}
+          class="sk-bottom-sheet__overlay"
           onClick={(e: MouseEvent) => {
             if (!dismissible()) e.preventDefault();
           }}
@@ -234,7 +202,7 @@ export const BottomSheet: Component<BottomSheetProps> = (props) => {
           data-snap={activeSnapIndex()}
           role="dialog"
           aria-label={local['aria-label']}
-          class={local.class}
+          class={contentClass()}
           style={contentStyle()}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -253,34 +221,17 @@ export const BottomSheet: Component<BottomSheetProps> = (props) => {
               data-testid="bottom-sheet-handle"
               role="separator"
               aria-label="Drag to resize or dismiss"
-              style={{
-                display: 'flex',
-                'align-items': 'center',
-                'justify-content': 'center',
-                padding: 'var(--sk-space-sm) 0 var(--sk-space-xs)',
-                cursor: swipeToDismiss() ? 'grab' : 'default',
-                'flex-shrink': '0',
-                'touch-action': 'none',
-              }}
+              class={`sk-bottom-sheet__handle${
+                swipeToDismiss() ? ' sk-bottom-sheet__handle--grabbable' : ''
+              }`}
             >
-              <span
-                style={{
-                  width: 'var(--sk-space-2xl)',
-                  height: 'var(--sk-space-2xs)',
-                  'border-radius': '9999px',
-                  background: 'var(--sk-border)',
-                }}
-              />
+              <span class="sk-bottom-sheet__handle-bar" />
             </div>
           </Show>
           <div
             data-sk-bottom-sheet-body=""
             data-testid="bottom-sheet-body"
-            style={{
-              flex: '1 1 auto',
-              overflow: 'auto',
-              'min-height': '0',
-            }}
+            class="sk-bottom-sheet__body"
           >
             {local.children}
           </div>

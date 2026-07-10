@@ -31,18 +31,22 @@ export interface RepoCardProps {
   readonly onStartWork?: () => void;
 }
 
-const getLanguageColor = (language?: string): string => {
-  const colors: Record<string, string> = {
-    TypeScript: '#3178c6',
-    JavaScript: '#f1e05a',
-    Python: '#3572a5',
-    Elixir: '#6e4a7e',
-    Rust: '#dea584',
-    Go: '#00add8',
-    Java: '#b07219',
-  };
-  return colors[language ?? ''] ?? '#858585';
+/**
+ * Data: GitHub linguist's per-language brand colors — intentionally identical
+ * in every theme (content, not theme chrome). Unknown languages return
+ * undefined so the dot falls back to the theme's muted color in CSS.
+ */
+const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: '#3178c6',
+  JavaScript: '#f1e05a',
+  Python: '#3572a5',
+  Elixir: '#6e4a7e',
+  Rust: '#dea584',
+  Go: '#00add8',
+  Java: '#b07219',
 };
+
+const getLanguageColor = (language?: string): string | undefined => LANGUAGE_COLORS[language ?? ''];
 
 export const RepoCard: Component<RepoCardProps> = (props) => {
   const [local, others] = splitProps(props, [
@@ -110,7 +114,7 @@ export const RepoCard: Component<RepoCardProps> = (props) => {
             <span class="sk-repo-card__stat">
               <span
                 class="sk-repo-card__language-dot"
-                style={{ background: getLanguageColor(local.repo.language) }}
+                style={{ '--sk-repo-card-language-color': getLanguageColor(local.repo.language) }}
               />
               <span>{local.repo.language}</span>
             </span>

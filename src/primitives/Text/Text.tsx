@@ -10,6 +10,7 @@ import {
   mapFontWeight,
   mapSpace,
 } from '../layout';
+import './Text.css';
 
 export interface TextProps {
   /** Font size token. Maps to theme typography scale. */
@@ -117,10 +118,29 @@ export const Text: Component<TextProps> = (props) => {
     'as',
     'mb',
     'mt',
+    'class',
     'style',
   ]);
 
+  const computedClass = (): string => {
+    const classes = ['sk-text'];
+
+    if (textProps.align) classes.push(`sk-text--align-${textProps.align}`);
+    if (textProps.truncate) classes.push('sk-text--truncate');
+    if (textProps.lineClamp != null) classes.push('sk-text--clamp');
+    if (textProps.whiteSpace) classes.push(`sk-text--ws-${textProps.whiteSpace}`);
+    if (textProps.italic) classes.push('sk-text--italic');
+    if (textProps.font) classes.push(`sk-text--font-${textProps.font}`);
+    if (textProps.gradient) classes.push('sk-text--gradient');
+    if (textProps.class) classes.push(textProps.class);
+
+    return classes.join(' ');
+  };
+
   const computedStyle = (): JSX.CSSProperties => {
+    // Token-valued props resolve to var(--sk-*) references, so every value
+    // below is theme-reactive; free-form props (letterSpacing, lineHeight,
+    // maxW, numeric weight, gradient, lineClamp) are genuinely dynamic.
     const style: JSX.CSSProperties = {};
 
     if (textProps.size) {
@@ -136,21 +156,12 @@ export const Text: Component<TextProps> = (props) => {
       style.color = mapTextColor(textProps.color);
     }
 
-    if (textProps.align) {
-      style['text-align'] = textProps.align;
-    }
-
-    if (textProps.truncate) {
-      style.overflow = 'hidden';
-      style['text-overflow'] = 'ellipsis';
-      style['white-space'] = 'nowrap';
-    }
-
     if (textProps.lineClamp != null) {
-      style.overflow = 'hidden';
-      style.display = '-webkit-box';
-      style['-webkit-line-clamp'] = textProps.lineClamp;
-      style['-webkit-box-orient'] = 'vertical';
+      style['--sk-text-line-clamp'] = String(textProps.lineClamp);
+    }
+
+    if (textProps.gradient) {
+      style['--sk-text-gradient'] = textProps.gradient;
     }
 
     if (textProps.letterSpacing) {
@@ -169,20 +180,6 @@ export const Text: Component<TextProps> = (props) => {
         typeof textProps.maxW === 'number' ? `${textProps.maxW}px` : textProps.maxW;
     }
 
-    if (textProps.whiteSpace) {
-      style['white-space'] = textProps.whiteSpace;
-    }
-
-    if (textProps.italic) {
-      style['font-style'] = 'italic';
-    }
-
-    if (textProps.font === 'mono') {
-      style['font-family'] = 'var(--sk-font-code)';
-    } else if (textProps.font === 'body') {
-      style['font-family'] = 'var(--sk-font-ui)';
-    }
-
     if (textProps.mb) {
       style['margin-bottom'] = mapSpace(textProps.mb);
     }
@@ -191,21 +188,19 @@ export const Text: Component<TextProps> = (props) => {
       style['margin-top'] = mapSpace(textProps.mt);
     }
 
-    const merged = {
+    // User style prop merges last so it can override computed values.
+    return {
       ...style,
       ...textProps.style,
     };
-
-    // Gradient text must come last to override color
-    if (textProps.gradient) {
-      merged.background = textProps.gradient;
-      merged['-webkit-background-clip'] = 'text';
-      merged['-webkit-text-fill-color'] = 'transparent';
-      merged['background-clip'] = 'text';
-    }
-
-    return merged;
   };
 
-  return <Dynamic component={textProps.as || 'span'} {...nativeProps} style={computedStyle()} />;
+  return (
+    <Dynamic
+      component={textProps.as || 'span'}
+      {...nativeProps}
+      class={computedClass()}
+      style={computedStyle()}
+    />
+  );
 };

@@ -3,6 +3,7 @@ import tseslint from 'typescript-eslint';
 import tsparser from '@typescript-eslint/parser';
 import solid from 'eslint-plugin-solid';
 import prettier from 'eslint-plugin-prettier';
+import hyperkit from './packages/eslint-plugin-hyperkit/dist/index.js';
 import prettierConfig from 'eslint-config-prettier';
 import globals from 'globals';
 import { fileURLToPath } from 'url';
@@ -37,11 +38,19 @@ export default [
       },
     },
     plugins: {
+      hyperkit,
       '@typescript-eslint': tseslint.plugin,
       solid: solid,
       prettier: prettier,
     },
     rules: {
+      // HyperKit design-token discipline — the library enforces its own plugin.
+      // Scope: component source only (tests/stories may use literals as fixtures).
+      'hyperkit/no-hardcoded-colors': 'error',
+      'hyperkit/no-hardcoded-spacing': 'error',
+      'hyperkit/no-hardcoded-font-size': 'error',
+      'hyperkit/no-important': 'error',
+
       // TypeScript rules - basic
       ...(tseslint.configs.recommended.find(c => c.rules && '@typescript-eslint/no-unused-vars' in c.rules)?.rules ?? {}),
       '@typescript-eslint/no-unused-vars': [
@@ -108,6 +117,9 @@ export default [
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/no-floating-promises': 'off',
       'solid/reactivity': 'off',
+      'hyperkit/no-hardcoded-colors': 'off',
+      'hyperkit/no-hardcoded-spacing': 'off',
+      'hyperkit/no-hardcoded-font-size': 'off',
     },
   },
 
@@ -127,9 +139,9 @@ export default [
     },
   },
 
-  // Story files - relaxed rules
+  // Story files and demo mockups - relaxed rules
   {
-    files: ['**/*.stories.tsx'],
+    files: ['**/*.stories.tsx', 'src/stories/**'],
     rules: {
       'no-console': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
@@ -137,6 +149,9 @@ export default [
       'solid/reactivity': 'off',
       'solid/prefer-for': 'off',
       'solid/components-return-once': 'off',
+      'hyperkit/no-hardcoded-colors': 'off',
+      'hyperkit/no-hardcoded-spacing': 'off',
+      'hyperkit/no-hardcoded-font-size': 'off',
     },
   },
 

@@ -1,5 +1,6 @@
-import { type JSX, type Component, splitProps, Show, createMemo } from 'solid-js';
+import { type JSX, type Component, splitProps, Show } from 'solid-js';
 import { Dialog as KobalteDialog } from '@kobalte/core/dialog';
+import './Drawer.css';
 
 /** Which edge of the viewport the drawer slides in from. */
 export type DrawerSide = 'left' | 'right' | 'top' | 'bottom';
@@ -32,76 +33,6 @@ export interface DrawerProps {
   class?: string;
   /** Inline styles applied to the drawer content surface. */
   style?: JSX.CSSProperties;
-}
-
-const sideTransforms: Record<DrawerSide, { hidden: string; visible: string }> = {
-  left: { hidden: 'translateX(-100%)', visible: 'translateX(0)' },
-  right: { hidden: 'translateX(100%)', visible: 'translateX(0)' },
-  top: { hidden: 'translateY(-100%)', visible: 'translateY(0)' },
-  bottom: { hidden: 'translateY(100%)', visible: 'translateY(0)' },
-};
-
-const prefersReducedMotion = (): boolean =>
-  typeof window !== 'undefined' &&
-  typeof window.matchMedia === 'function' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-const backdropStyle = (modal: boolean): JSX.CSSProperties => ({
-  position: 'fixed',
-  inset: '0',
-  'z-index': 'var(--sk-z-modal, 1000)',
-  background: modal ? 'var(--sk-overlay-bg, rgba(0, 0, 0, 0.5))' : 'transparent',
-  'backdrop-filter': modal ? 'blur(4px)' : 'none',
-  '-webkit-backdrop-filter': modal ? 'blur(4px)' : 'none',
-  'pointer-events': modal ? 'auto' : 'none',
-});
-
-function contentStyle(
-  side: DrawerSide,
-  size: string | undefined,
-  reducedMotion: boolean,
-  extra?: JSX.CSSProperties
-): JSX.CSSProperties {
-  const base: JSX.CSSProperties = {
-    position: 'fixed',
-    'z-index': 'var(--sk-z-modal, 1000)',
-    background: 'var(--sk-bg-elevated)',
-    'box-shadow': 'var(--sk-shadow-2xl)',
-    display: 'flex',
-    'flex-direction': 'column',
-    overflow: 'auto',
-    transition: reducedMotion
-      ? 'none'
-      : 'transform var(--sk-duration-normal, 200ms) var(--sk-ease-default, cubic-bezier(0.4, 0, 0.2, 1))',
-  };
-
-  if (side === 'left') {
-    base.top = '0';
-    base.bottom = '0';
-    base.left = '0';
-    base.width = size ?? 'min(320px, 80vw)';
-    base['border-right'] = '1px solid var(--sk-border)';
-  } else if (side === 'right') {
-    base.top = '0';
-    base.bottom = '0';
-    base.right = '0';
-    base.width = size ?? 'min(320px, 80vw)';
-    base['border-left'] = '1px solid var(--sk-border)';
-  } else if (side === 'top') {
-    base.top = '0';
-    base.left = '0';
-    base.right = '0';
-    base.height = size ?? 'min(60vh, 480px)';
-    base['border-bottom'] = '1px solid var(--sk-border)';
-  } else {
-    base.bottom = '0';
-    base.left = '0';
-    base.right = '0';
-    base.height = size ?? 'min(60vh, 480px)';
-    base['border-top'] = '1px solid var(--sk-border)';
-  }
-
-  return { ...base, ...(extra ?? {}) };
 }
 
 /**
@@ -149,9 +80,12 @@ export const Drawer: Component<DrawerProps> = (props) => {
   const dismissible = () => local.dismissible ?? true;
   const trapFocus = () => local.trapFocus ?? modal();
 
-  const reducedMotion = createMemo(() => prefersReducedMotion());
-
-  const transforms = () => sideTransforms[side()];
+  // The size prop feeds the stylesheet through the --sk-drawer-size custom
+  // property; the user style prop merges last so it can override anything.
+  const contentStyle = (): JSX.CSSProperties => ({
+    ...(local.size !== undefined ? { '--sk-drawer-size': local.size } : {}),
+    ...(local.style ?? {}),
+  });
 
   return (
     <KobalteDialog
@@ -165,7 +99,7 @@ export const Drawer: Component<DrawerProps> = (props) => {
         <Show when={modal()}>
           <KobalteDialog.Overlay
             data-sk-drawer-overlay=""
-            style={backdropStyle(modal())}
+            class="sk-drawer__overlay"
             onClick={(e: MouseEvent) => {
               if (!dismissible()) {
                 e.preventDefault();
@@ -178,14 +112,8 @@ export const Drawer: Component<DrawerProps> = (props) => {
           data-side={side()}
           role="dialog"
           aria-label={local['aria-label']}
-          class={local.class}
-          style={contentStyle(side(), local.size, reducedMotion(), {
-            // Kobalte toggles data-expanded / data-closed; translate accordingly
-            // via inline CSS variable. We use a starting transform state
-            // and rely on data attribute to drive the visible transform.
-            transform: local.open ? transforms().visible : transforms().hidden,
-            ...(local.style ?? {}),
-          })}
+          class={`sk-drawer ${local.class ?? ''}`.trim()}
+          style={contentStyle()}
           onEscapeKeyDown={(e: KeyboardEvent) => {
             if (!dismissible() || !modal()) {
               e.preventDefault();

@@ -7,6 +7,7 @@ import {
   type ThemeAuditResult,
   type AuditGroupResult,
 } from './auditThemeVars';
+import './ThemeAuditor.css';
 
 interface ThemeAuditorProps {
   /** Show floating overlay panel. Default: false (console only) */
@@ -19,103 +20,61 @@ const AuditorOverlay: Component<{ result: ThemeAuditResult; onClose: () => void 
   const [expanded, setExpanded] = createSignal<string | null>(null);
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: '16px',
-        right: '16px',
-        'z-index': '99999',
-        'max-width': '360px',
-        'max-height': '480px',
-        overflow: 'auto',
-        background: 'var(--sk-bg-secondary)',
-        color: 'var(--sk-text-primary)',
-        'border-radius': '8px',
-        'box-shadow': '0 8px 32px rgba(0,0,0,0.4)',
-        'font-family': 'ui-monospace, monospace',
-        'font-size': '12px',
-        border: '1px solid var(--sk-border)',
-      }}
-    >
+    <div class="sk-theme-auditor">
       {/* Header */}
       <div
-        style={{
-          display: 'flex',
-          'align-items': 'center',
-          'justify-content': 'space-between',
-          padding: '8px 12px',
-          'border-bottom': '1px solid var(--sk-border)',
-          background:
-            props.result.totalFailed > 0
-              ? 'color-mix(in srgb, var(--sk-error) 15%, var(--sk-bg-secondary))'
-              : 'color-mix(in srgb, var(--sk-success) 15%, var(--sk-bg-secondary))',
+        classList={{
+          'sk-theme-auditor__header': true,
+          'sk-theme-auditor__header--fail': props.result.totalFailed > 0,
+          'sk-theme-auditor__header--pass': props.result.totalFailed === 0,
         }}
       >
-        <span style={{ 'font-weight': '600' }}>
+        <span class="sk-theme-auditor__title">
           {props.result.totalFailed > 0 ? '⚠' : '✓'} Theme Audit
         </span>
-        <span style={{ opacity: '0.7' }}>
+        <span class="sk-theme-auditor__count">
           {props.result.totalPassed}/{props.result.totalVars}
         </span>
-        <button
-          onClick={() => props.onClose?.()}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'var(--sk-text-muted)',
-            cursor: 'pointer',
-            'font-size': '14px',
-            padding: '0 4px',
-          }}
-        >
+        <button class="sk-theme-auditor__close" onClick={() => props.onClose?.()}>
           ×
         </button>
       </div>
 
       {/* Groups */}
-      <div style={{ padding: '4px 0' }}>
+      <div class="sk-theme-auditor__groups">
         <For each={props.result.groups}>
           {(group: AuditGroupResult) => (
             <div>
               <button
-                onClick={() => setExpanded((prev) => (prev === group.group ? null : group.group))}
-                style={{
-                  display: 'flex',
-                  'align-items': 'center',
-                  'justify-content': 'space-between',
-                  width: '100%',
-                  padding: '6px 12px',
-                  background: 'none',
-                  border: 'none',
-                  color: group.failed > 0 ? 'var(--sk-error)' : 'var(--sk-success)',
-                  cursor: 'pointer',
-                  'font-family': 'inherit',
-                  'font-size': 'inherit',
-                  'text-align': 'left',
+                classList={{
+                  'sk-theme-auditor__group-toggle': true,
+                  'sk-theme-auditor__group-toggle--fail': group.failed > 0,
+                  'sk-theme-auditor__group-toggle--pass': group.failed === 0,
                 }}
+                onClick={() => setExpanded((prev) => (prev === group.group ? null : group.group))}
               >
                 <span>
                   {group.failed > 0 ? '✗' : '✓'} {group.group}
                 </span>
-                <span style={{ opacity: '0.6' }}>
+                <span class="sk-theme-auditor__group-count">
                   {group.passed}/{group.vars.length}
                 </span>
               </button>
               <Show when={expanded() === group.group}>
-                <div style={{ padding: '2px 12px 8px 24px' }}>
+                <div class="sk-theme-auditor__group-vars">
                   <For each={group.vars}>
                     {(v) => (
                       <div
-                        style={{
-                          padding: '2px 0',
-                          color: v.status === 'ok' ? 'var(--sk-success)' : 'var(--sk-error)',
-                          opacity: v.status === 'ok' ? '0.6' : '1',
+                        classList={{
+                          'sk-theme-auditor__var': true,
+                          'sk-theme-auditor__var--ok': v.status === 'ok',
+                          'sk-theme-auditor__var--fail': v.status !== 'ok',
                         }}
                       >
                         <span>{v.status === 'ok' ? '•' : '✗'} </span>
                         <span>{v.name.replace('--sk-', '')}</span>
                         <Show when={v.status === 'ok'}>
-                          <span style={{ opacity: '0.4', 'margin-left': '8px' }}>
+                          <span class="sk-theme-auditor__var-value">
                             {v.value.length > 20 ? v.value.slice(0, 20) + '…' : v.value}
                           </span>
                         </Show>
@@ -131,32 +90,19 @@ const AuditorOverlay: Component<{ result: ThemeAuditResult; onClose: () => void 
         {/* Component overrides section */}
         <Show when={props.result.componentVars.length > 0}>
           <button
+            class="sk-theme-auditor__group-toggle sk-theme-auditor__group-toggle--comp"
             onClick={() => setExpanded((prev) => (prev === '__comp' ? null : '__comp'))}
-            style={{
-              display: 'flex',
-              'align-items': 'center',
-              'justify-content': 'space-between',
-              width: '100%',
-              padding: '6px 12px',
-              background: 'none',
-              border: 'none',
-              color: 'var(--sk-info)',
-              cursor: 'pointer',
-              'font-family': 'inherit',
-              'font-size': 'inherit',
-              'text-align': 'left',
-            }}
           >
             <span>◆ Components</span>
-            <span style={{ opacity: '0.6' }}>{props.result.componentVars.length}</span>
+            <span class="sk-theme-auditor__group-count">{props.result.componentVars.length}</span>
           </button>
           <Show when={expanded() === '__comp'}>
-            <div style={{ padding: '2px 12px 8px 24px' }}>
+            <div class="sk-theme-auditor__group-vars">
               <For each={props.result.componentVars}>
                 {(v) => (
-                  <div style={{ padding: '2px 0', color: 'var(--sk-info)', opacity: '0.8' }}>
+                  <div class="sk-theme-auditor__var sk-theme-auditor__var--comp">
                     <span>• {v.name.replace('--sk-comp-', '')}</span>
-                    <span style={{ opacity: '0.4', 'margin-left': '8px' }}>
+                    <span class="sk-theme-auditor__var-value">
                       {v.value.length > 20 ? v.value.slice(0, 20) + '…' : v.value}
                     </span>
                   </div>

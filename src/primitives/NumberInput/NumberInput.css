@@ -34,7 +34,7 @@
   border: none;
   background: transparent;
   color: var(--sk-text-primary);
-  font-size: var(--sk-font-size-md);
+  font-size: var(--sk-font-size-base);
   text-align: center;
   outline: none;
   appearance: textfield;
@@ -47,7 +47,7 @@
 }
 
 .sk-number-input__field::placeholder {
-  color: var(--sk-text-tertiary);
+  color: var(--sk-text-muted);
 }
 
 .sk-number-input__button {
@@ -133,7 +133,7 @@
 }
 
 .sk-number-input--md .sk-number-input__field {
-  font-size: var(--sk-font-size-md);
+  font-size: var(--sk-font-size-base);
   padding: var(--sk-space-sm) var(--sk-space-xs);
 }
 

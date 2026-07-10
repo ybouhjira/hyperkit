@@ -1,6 +1,7 @@
 import { Component, For } from 'solid-js';
 import { useTheme } from './useTheme';
 import { ThemeConfig } from './types';
+import './ThemePicker.css';
 
 interface ThemePickerProps {
   onThemeChange?: (theme: ThemeConfig) => void;
@@ -15,102 +16,41 @@ export const ThemePicker: Component<ThemePickerProps> = (props) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        'grid-template-columns': 'repeat(auto-fill, minmax(200px, 1fr))',
-        gap: '1rem',
-        padding: '1rem',
-      }}
-    >
+    <div class="sk-theme-picker">
       <For each={themes}>
         {(themeConfig) => {
           const isSelected = () => theme().id === themeConfig.id;
 
           return (
             <button
+              classList={{
+                'sk-theme-picker__card': true,
+                'sk-theme-picker__card--selected': isSelected(),
+              }}
               onClick={() => handleThemeClick(themeConfig)}
-              style={{
-                display: 'flex',
-                'flex-direction': 'column',
-                gap: '0.75rem',
-                padding: '1rem',
-                background: 'var(--sk-bg-secondary)',
-                border: `2px solid ${isSelected() ? 'var(--sk-accent)' : 'var(--sk-border)'}`,
-                'border-radius': 'var(--sk-radius-lg)',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                'box-shadow': isSelected() ? '0 0 0 3px var(--sk-accent-muted)' : 'none',
-              }}
-              onMouseEnter={(e) => {
-                if (!isSelected()) {
-                  e.currentTarget.style.borderColor = 'var(--sk-border-subtle)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isSelected()) {
-                  e.currentTarget.style.borderColor = 'var(--sk-border)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }
-              }}
             >
-              <div
-                style={{
-                  'font-size': 'var(--sk-font-size-base)',
-                  'font-weight': '600',
-                  color: 'var(--sk-text-primary)',
-                  'font-family': 'var(--sk-font-ui)',
-                }}
-              >
-                {themeConfig.name}
-              </div>
+              <div class="sk-theme-picker__name">{themeConfig.name}</div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '0.5rem',
-                }}
-              >
+              <div class="sk-theme-picker__swatches">
+                {/* Swatch colors are theme preview data (each preset's own palette), not chrome */}
                 <div
+                  class="sk-theme-picker__swatch"
                   style={{
-                    width: '2rem',
-                    height: '2rem',
                     background: themeConfig.colors.bgPrimary,
                     border: `1px solid ${themeConfig.colors.border}`,
-                    'border-radius': 'var(--sk-radius-sm)',
                   }}
                 />
                 <div
-                  style={{
-                    width: '2rem',
-                    height: '2rem',
-                    background: themeConfig.colors.accent,
-                    'border-radius': 'var(--sk-radius-sm)',
-                  }}
+                  class="sk-theme-picker__swatch"
+                  style={{ background: themeConfig.colors.accent }}
                 />
                 <div
-                  style={{
-                    width: '2rem',
-                    height: '2rem',
-                    background: themeConfig.colors.textPrimary,
-                    'border-radius': 'var(--sk-radius-sm)',
-                  }}
+                  class="sk-theme-picker__swatch"
+                  style={{ background: themeConfig.colors.textPrimary }}
                 />
               </div>
 
-              {isSelected() && (
-                <div
-                  style={{
-                    'font-size': 'var(--sk-font-size-sm)',
-                    color: 'var(--sk-accent)',
-                    'font-weight': '500',
-                    'font-family': 'var(--sk-font-ui)',
-                  }}
-                >
-                  ✓ Selected
-                </div>
-              )}
+              {isSelected() && <div class="sk-theme-picker__selected-label">✓ Selected</div>}
             </button>
           );
         }}

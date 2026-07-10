@@ -71,13 +71,20 @@ describe('MobileBottomBar', () => {
     expect(queryByTestId('mobile-bottom-bar')).toBeNull();
   });
 
-  it('fixes to bottom of the viewport', () => {
+  it('applies the sk-mobile-bottom-bar class on the root nav', () => {
     const { getByTestId } = render(() => <MobileBottomBar items={items} />);
     const nav = getByTestId('mobile-bottom-bar') as HTMLElement;
-    expect(nav.style.position).toBe('fixed');
-    expect(nav.style.bottom).toBe('0px');
-    expect(nav.style.left).toBe('0px');
-    expect(nav.style.right).toBe('0px');
+    expect(nav.classList.contains('sk-mobile-bottom-bar')).toBe(true);
+  });
+
+  it('merges a custom class and passes the style prop through', () => {
+    const { getByTestId } = render(() => (
+      <MobileBottomBar items={items} class="my-bar" style={{ 'z-index': '77' }} />
+    ));
+    const nav = getByTestId('mobile-bottom-bar') as HTMLElement;
+    expect(nav.classList.contains('sk-mobile-bottom-bar')).toBe(true);
+    expect(nav.classList.contains('my-bar')).toBe(true);
+    expect(nav.style.zIndex).toBe('77');
   });
 
   it('has the safe-area data marker for iOS/Android home-indicator padding', () => {
@@ -89,17 +96,24 @@ describe('MobileBottomBar', () => {
     expect(nav.hasAttribute('data-sk-safe-area-bottom')).toBe(true);
   });
 
-  it('applies accent color + top indicator on the active item', () => {
+  it('marks the active item with the active modifier class (accent + top rail in CSS)', () => {
     const { getByTestId } = render(() => <MobileBottomBar items={items} activeId="home" />);
     const home = getByTestId('mobile-bottom-bar-item-home') as HTMLElement;
-    expect(home.style.color).toContain('var(--sk-accent)');
-    expect(home.style.borderTop).toContain('var(--sk-accent)');
+    const chat = getByTestId('mobile-bottom-bar-item-chat') as HTMLElement;
+    expect(home.classList.contains('sk-mobile-bottom-bar__item--active')).toBe(true);
+    expect(chat.classList.contains('sk-mobile-bottom-bar__item--active')).toBe(false);
   });
 
-  it('uses token-based background and border', () => {
+  it('applies BEM classes on items, icons, badges, and labels', () => {
     const { getByTestId } = render(() => <MobileBottomBar items={items} />);
-    const nav = getByTestId('mobile-bottom-bar') as HTMLElement;
-    expect(nav.style.background).toContain('var(--sk-bg-secondary)');
-    expect(nav.style.borderTop).toContain('var(--sk-border)');
+    expect(
+      getByTestId('mobile-bottom-bar-item-home').classList.contains('sk-mobile-bottom-bar__item')
+    ).toBe(true);
+    expect(
+      getByTestId('mobile-bottom-bar-icon-home').classList.contains('sk-mobile-bottom-bar__icon')
+    ).toBe(true);
+    expect(
+      getByTestId('mobile-bottom-bar-badge-chat').classList.contains('sk-mobile-bottom-bar__badge')
+    ).toBe(true);
   });
 });

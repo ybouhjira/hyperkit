@@ -64,12 +64,12 @@
 }
 
 .sk-range-slider__thumb:hover {
-  box-shadow: 0 0 0 4px rgb(var(--sk-accent-rgb), 0.2);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--sk-accent) 20%, transparent);
 }
 
 .sk-range-slider__thumb:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgb(var(--sk-accent-rgb), 0.3);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--sk-accent) 30%, transparent);
 }
 
 .sk-range-slider__thumb:active {
@@ -78,7 +78,7 @@
 
 .sk-range-slider[data-disabled] .sk-range-slider__thumb {
   cursor: not-allowed;
-  background: var(--sk-text-tertiary);
+  background: var(--sk-text-muted);
 }
 
 .sk-range-slider[data-disabled] .sk-range-slider__thumb:hover {

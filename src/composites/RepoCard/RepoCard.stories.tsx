@@ -25,6 +25,7 @@ export const Clean: Story = {
         lastCommitTime: '2026-06-10T09:00:00Z',
         stars: 42,
         forks: 3,
+        language: 'TypeScript',
       }}
       onOpen={() => undefined}
       onTerminal={() => undefined}
@@ -47,6 +48,8 @@ export const DirtyAhead: Story = {
         commitsBehind: 1,
         lastCommitMessage: 'fix(sidebar): canonical rail taxonomy',
         lastCommitTime: '2026-06-10T12:00:00Z',
+        stars: 7,
+        language: 'Zig', // not in LANGUAGE_COLORS — dot falls back to --sk-text-muted
       }}
       onStartWork={() => undefined}
     />

@@ -1,0 +1,238 @@
+.sk-settings {
+  background: var(--sk-settings-bg, var(--sk-bg-secondary));
+  border: 1px solid var(--sk-settings-border-color, var(--sk-border));
+  border-radius: var(--sk-settings-radius, var(--sk-radius-lg));
+  overflow: hidden;
+}
+
+/* ── Tabs ──────────────────────────────────────────────────────────────── */
+
+.sk-settings__tabs {
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid var(--sk-settings-border-color, var(--sk-border));
+}
+
+.sk-settings__tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sk-space-xs);
+  height: var(--sk-settings-tab-h, var(--sk-height-lg));
+  padding: 0 var(--sk-space-md);
+  margin-bottom: -1px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-sm);
+  font-weight: var(--sk-font-weight-medium, 500);
+  letter-spacing: -0.01em;
+  color: var(--sk-text-secondary);
+  cursor: pointer;
+  transition:
+    color var(--sk-duration-fast) var(--sk-ease-default),
+    background var(--sk-duration-fast) var(--sk-ease-default),
+    border-color var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-settings__tab:hover {
+  color: var(--sk-text-primary);
+  background: var(--sk-bg-tertiary);
+}
+
+.sk-settings__tab:active {
+  transform: scale(0.98);
+}
+
+.sk-settings__tab:focus-visible {
+  outline: 2px solid var(--sk-accent);
+  outline-offset: -2px;
+}
+
+.sk-settings__tab--active,
+.sk-settings__tab--active:hover {
+  color: var(--sk-accent);
+  border-bottom-color: var(--sk-accent);
+  font-weight: var(--sk-font-weight-semibold, 600);
+  background: transparent;
+}
+
+.sk-settings__tab-icon {
+  font-size: var(--sk-font-size-sm);
+  line-height: var(--sk-leading-none, 1);
+  opacity: 0.8;
+}
+
+.sk-settings__tab--active .sk-settings__tab-icon {
+  opacity: 1;
+}
+
+/* ── Body & section rhythm ─────────────────────────────────────────────── */
+
+.sk-settings__body {
+  padding: var(--sk-settings-body-padding, var(--sk-space-lg));
+}
+
+.sk-settings__section-title {
+  font-size: var(--sk-font-size-xs);
+  font-weight: var(--sk-font-weight-semibold, 600);
+  color: var(--sk-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sk-settings__hint {
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-text-muted);
+}
+
+.sk-settings__value {
+  font-family: var(--sk-font-code);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Selectable option tiles (theme / speed / density) ─────────────────── */
+
+.sk-settings__theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--sk-settings-tile-min-w, 120px), 1fr));
+  gap: var(--sk-space-sm);
+}
+
+.sk-settings__choices {
+  display: flex;
+  gap: var(--sk-space-sm);
+}
+
+.sk-settings__choices > .sk-settings__option {
+  flex: 1;
+}
+
+.sk-settings__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sk-space-sm) var(--sk-space-md);
+  background: var(--sk-settings-option-bg, var(--sk-bg-primary));
+  border: 1px solid var(--sk-settings-border-color, var(--sk-border));
+  border-radius: var(--sk-radius-md);
+  font-family: var(--sk-font-ui);
+  font-size: var(--sk-font-size-sm);
+  font-weight: var(--sk-font-weight-medium, 500);
+  color: var(--sk-text-primary);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background var(--sk-duration-fast) var(--sk-ease-default),
+    border-color var(--sk-duration-fast) var(--sk-ease-default),
+    color var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-settings__option:hover {
+  background: var(--sk-bg-tertiary);
+}
+
+.sk-settings__option:active {
+  transform: scale(0.98);
+}
+
+.sk-settings__option:focus-visible {
+  outline: 2px solid var(--sk-accent);
+  outline-offset: 2px;
+}
+
+.sk-settings__option--selected,
+.sk-settings__option--selected:hover {
+  border-color: var(--sk-accent);
+  background: var(--sk-accent-muted);
+}
+
+/* Row-style option (density list): content left, check right */
+.sk-settings__option--row {
+  justify-content: space-between;
+  gap: var(--sk-space-md);
+  text-align: left;
+}
+
+.sk-settings__option-label {
+  text-transform: capitalize;
+}
+
+.sk-settings__option-desc {
+  font-size: var(--sk-font-size-xs);
+  font-weight: var(--sk-font-weight-regular, 400);
+  color: var(--sk-text-muted);
+}
+
+.sk-settings__option-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-2xs);
+}
+
+.sk-settings__option-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sk-icon-xl);
+  height: var(--sk-icon-xl);
+  flex-shrink: 0;
+  border-radius: var(--sk-settings-check-radius, 9999px);
+  background: var(--sk-accent);
+  color: var(--sk-text-on-accent);
+  font-size: var(--sk-font-size-xs);
+  line-height: var(--sk-leading-none, 1);
+}
+
+/* ── Switch row ────────────────────────────────────────────────────────── */
+
+.sk-settings__switch {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sk-space-md);
+}
+
+/* ── Font-size slider ──────────────────────────────────────────────────── */
+
+.sk-settings__slider {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--sk-accent);
+  cursor: pointer;
+}
+
+.sk-settings__slider:focus-visible {
+  outline: 2px solid var(--sk-accent);
+  outline-offset: 2px;
+  border-radius: var(--sk-radius-sm);
+}
+
+.sk-settings__scale {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── Animation preview ─────────────────────────────────────────────────── */
+
+.sk-settings__preview-btn {
+  align-self: flex-start;
+}
+
+.sk-settings__preview-box {
+  width: var(--sk-settings-preview-size, var(--sk-height-xl));
+  height: var(--sk-settings-preview-size, var(--sk-height-xl));
+  background: var(--sk-accent);
+  border-radius: var(--sk-radius-md);
+  transform: translateX(0) rotate(0);
+  transition: transform var(--sk-settings-preview-duration, 1s) var(--sk-ease-in-out);
+}
+
+.sk-settings__preview-box--animating {
+  transform: translateX(var(--sk-settings-preview-travel, 200px)) rotate(360deg);
+}

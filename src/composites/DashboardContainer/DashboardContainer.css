@@ -28,7 +28,7 @@
   border-radius: var(--sk-radius-sm);
   background: var(--sk-bg-secondary);
   color: var(--sk-text-secondary);
-  font-size: var(--sk-font-size-md);
+  font-size: var(--sk-font-size-base);
   cursor: pointer;
   transition:
     background 120ms ease,
@@ -212,7 +212,7 @@
   border-radius: var(--sk-radius-sm);
   background: transparent;
   color: var(--sk-text-muted);
-  font-size: var(--sk-font-size-md);
+  font-size: var(--sk-font-size-base);
   line-height: 1;
   cursor: pointer;
   padding: 0;

@@ -64,7 +64,7 @@ export const Panel: Component<PanelProps> = (props) => {
                     }}
                   >
                     {typeof action.icon === 'string' ? (
-                      <span style={{ 'font-size': '12px' }}>{action.icon}</span>
+                      <span class="sk-panel-header__button-icon">{action.icon}</span>
                     ) : (
                       action.icon()
                     )}

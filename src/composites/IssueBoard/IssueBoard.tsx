@@ -1,6 +1,7 @@
 import { createMemo, createSignal, For, Show } from 'solid-js';
 import type { JSX } from 'solid-js';
 import { IssueBoardListView, IssueBoardBoardView, IssueBoardTableView } from './IssueBoardViews';
+import './IssueBoard.css';
 
 export interface IssueLabel {
   readonly name: string;
@@ -41,6 +42,8 @@ export interface IssueBoardProps {
   readonly onFiltersChange?: (filters: IssueFilters) => void;
   readonly onIssueClick?: (issue: Issue) => void;
   readonly onStartWork?: (issue: Issue) => void;
+  readonly class?: string;
+  readonly style?: JSX.CSSProperties;
 }
 
 interface GroupedIssues {
@@ -138,7 +141,6 @@ export function IssueBoard(props: IssueBoardProps): JSX.Element {
     return groups as GroupedIssues;
   });
 
-  const [hoveredIssue, setHoveredIssue] = createSignal<string | null>(null);
   const [sortColumn, setSortColumn] = createSignal<string>('number');
   const [sortDirection, setSortDirection] = createSignal<'asc' | 'desc'>('desc');
 
@@ -196,57 +198,22 @@ export function IssueBoard(props: IssueBoardProps): JSX.Element {
   const view = createMemo(() => props.view || 'list');
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        'flex-direction': 'column',
-        height: '100%',
-        'font-family': 'var(--sk-font-ui)',
-        background: 'var(--sk-bg-primary)',
-        color: 'var(--sk-text-primary)',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          'align-items': 'center',
-          gap: '8px',
-          padding: '12px',
-          background: 'var(--sk-bg-secondary)',
-          'border-bottom': '1px solid var(--sk-border)',
-          'flex-wrap': 'wrap',
-        }}
-      >
+    <div class={`sk-issue-board${props.class ? ` ${props.class}` : ''}`} style={props.style}>
+      <div class="sk-issue-board__toolbar">
         <input
           type="text"
+          class="sk-issue-board__search"
           placeholder="🔍 Search issues..."
           value={activeFilters().search || ''}
           onInput={(e) => updateFilters({ search: e.currentTarget.value })}
-          style={{
-            padding: '6px 12px',
-            border: '1px solid var(--sk-border)',
-            'border-radius': '4px',
-            background: 'var(--sk-bg-primary)',
-            color: 'var(--sk-text-primary)',
-            'font-size': '13px',
-            'min-width': '200px',
-            flex: '1',
-          }}
         />
 
         <select
+          class="sk-issue-board__select"
           value={activeFilters().state || 'open'}
           onChange={(e) =>
             updateFilters({ state: e.currentTarget.value as 'open' | 'closed' | 'all' })
           }
-          style={{
-            padding: '6px 12px',
-            border: '1px solid var(--sk-border)',
-            'border-radius': '4px',
-            background: 'var(--sk-bg-primary)',
-            color: 'var(--sk-text-primary)',
-            'font-size': '13px',
-          }}
         >
           <option value="open">Open</option>
           <option value="closed">Closed</option>
@@ -254,64 +221,33 @@ export function IssueBoard(props: IssueBoardProps): JSX.Element {
         </select>
 
         <select
+          class="sk-issue-board__select"
           value={activeFilters().repo || ''}
           onChange={(e) => updateFilters({ repo: e.currentTarget.value || undefined })}
-          style={{
-            padding: '6px 12px',
-            border: '1px solid var(--sk-border)',
-            'border-radius': '4px',
-            background: 'var(--sk-bg-primary)',
-            color: 'var(--sk-text-primary)',
-            'font-size': '13px',
-          }}
         >
           <option value="">All repos</option>
           <For each={props.repos}>{(repo) => <option value={repo}>{repo}</option>}</For>
         </select>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: '4px',
-            'margin-left': 'auto',
-          }}
-        >
+        <div class="sk-issue-board__views">
           <button
-            style={{
-              padding: '6px 12px',
-              border: '1px solid var(--sk-border)',
-              'border-radius': '4px',
-              background: view() === 'list' ? 'var(--sk-accent)' : 'var(--sk-bg-primary)',
-              color: view() === 'list' ? '#fff' : 'var(--sk-text-primary)',
-              'font-size': '13px',
-              cursor: 'pointer',
-            }}
+            class={`sk-issue-board__view-btn${
+              view() === 'list' ? ' sk-issue-board__view-btn--active' : ''
+            }`}
           >
             List
           </button>
           <button
-            style={{
-              padding: '6px 12px',
-              border: '1px solid var(--sk-border)',
-              'border-radius': '4px',
-              background: view() === 'board' ? 'var(--sk-accent)' : 'var(--sk-bg-primary)',
-              color: view() === 'board' ? '#fff' : 'var(--sk-text-primary)',
-              'font-size': '13px',
-              cursor: 'pointer',
-            }}
+            class={`sk-issue-board__view-btn${
+              view() === 'board' ? ' sk-issue-board__view-btn--active' : ''
+            }`}
           >
             Board
           </button>
           <button
-            style={{
-              padding: '6px 12px',
-              border: '1px solid var(--sk-border)',
-              'border-radius': '4px',
-              background: view() === 'table' ? 'var(--sk-accent)' : 'var(--sk-bg-primary)',
-              color: view() === 'table' ? '#fff' : 'var(--sk-text-primary)',
-              'font-size': '13px',
-              cursor: 'pointer',
-            }}
+            class={`sk-issue-board__view-btn${
+              view() === 'table' ? ' sk-issue-board__view-btn--active' : ''
+            }`}
           >
             Table
           </button>
@@ -322,8 +258,6 @@ export function IssueBoard(props: IssueBoardProps): JSX.Element {
         <IssueBoardListView
           groupedIssues={groupedIssues()}
           groupBy={props.groupBy}
-          hoveredIssue={hoveredIssue}
-          onHover={setHoveredIssue}
           onIssueClick={props.onIssueClick}
           onStartWork={props.onStartWork}
         />

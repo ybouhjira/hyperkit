@@ -16,7 +16,6 @@
   ],
   "ignoreDependencies": [
     "@typescript-eslint/eslint-plugin",
-    "@eslint/js",
     "@modelcontextprotocol/sdk",
     "chromatic",
     "lucide-static"

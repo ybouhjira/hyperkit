@@ -63,6 +63,52 @@ describe('composites/SettingsPanel', () => {
     });
   });
 
+  // ── CSS class contract ──────────────────────────────────────────────────────
+
+  it('renders tokenized sk- root and tab classes', () => {
+    const onChange = vi.fn();
+    const { container } = render(() => (
+      <SettingsPanel settings={mockSettings} onChange={onChange} />
+    ));
+    expect(container.querySelector('.sk-settings')).toBeInTheDocument();
+    expect(container.querySelectorAll('.sk-settings__tab')).toHaveLength(3);
+    expect(container.querySelector('.sk-settings__tab--active')).toHaveTextContent('Appearance');
+    expect(container.querySelector('.sk-settings__body')).toBeInTheDocument();
+  });
+
+  it('marks the clicked tab as active', () => {
+    const onChange = vi.fn();
+    const { container } = render(() => (
+      <SettingsPanel settings={mockSettings} onChange={onChange} />
+    ));
+    fireEvent.click(screen.getByText('Layout'));
+    expect(container.querySelector('.sk-settings__tab--active')).toHaveTextContent('Layout');
+  });
+
+  it('marks the selected theme option', () => {
+    const onChange = vi.fn();
+    const { container } = render(() => (
+      <SettingsPanel settings={mockSettings} onChange={onChange} />
+    ));
+    const selected = container.querySelector('.sk-settings__option--selected');
+    expect(selected).toHaveTextContent('Light');
+  });
+
+  it('passes through class and style to the root element', () => {
+    const onChange = vi.fn();
+    const { container } = render(() => (
+      <SettingsPanel
+        settings={mockSettings}
+        onChange={onChange}
+        class="custom-class"
+        style={{ 'margin-top': '5px' }}
+      />
+    ));
+    const root = container.querySelector('.sk-settings') as HTMLElement;
+    expect(root).toHaveClass('custom-class');
+    expect(root.style.marginTop).toBe('5px');
+  });
+
   // ── Tab switching ───────────────────────────────────────────────────────────
 
   it('shows all three tab labels', () => {
@@ -150,8 +196,9 @@ describe('composites/SettingsPanel', () => {
     const onChange = vi.fn();
     render(() => <SettingsPanel settings={mockSettings} onChange={onChange} />);
     fireEvent.click(screen.getByText('Animation'));
-    const checkbox = document.querySelector('input[type="checkbox"]') as HTMLInputElement;
-    fireEvent.change(checkbox, { target: { checked: false } });
+    const control = document.querySelector('.sk-switch__control') as HTMLElement;
+    expect(control).toBeInTheDocument();
+    fireEvent.click(control);
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({
         animation: expect.objectContaining({ enabled: false }),
@@ -189,9 +236,9 @@ describe('composites/SettingsPanel', () => {
     const onChange = vi.fn();
     render(() => <SettingsPanel settings={mockSettings} onChange={onChange} />);
     fireEvent.click(screen.getByText('Layout'));
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const sidebarToggle = checkboxes[0] as HTMLInputElement;
-    fireEvent.change(sidebarToggle, { target: { checked: false } });
+    const control = document.querySelector('.sk-switch__control') as HTMLElement;
+    expect(control).toBeInTheDocument();
+    fireEvent.click(control);
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({
         layout: expect.objectContaining({ sidebarOpen: false }),

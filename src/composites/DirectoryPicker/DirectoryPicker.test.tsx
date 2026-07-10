@@ -14,6 +14,15 @@ describe('DirectoryPicker', () => {
     expect(screen.getByText('Select Working Directory')).toBeInTheDocument();
   });
 
+  it('renders tokenized sk- root and structural classes', () => {
+    const { container } = render(() => <DirectoryPicker items={dirs} currentPath="/project" />);
+    expect(container.querySelector('.sk-dir-picker')).toBeInTheDocument();
+    expect(container.querySelector('.sk-dir-picker__header')).toBeInTheDocument();
+    expect(container.querySelector('.sk-dir-picker__title')).toBeInTheDocument();
+    expect(container.querySelector('.sk-dir-picker__actions')).toBeInTheDocument();
+    expect(container.querySelector('.sk-dir-picker__path')).toBeInTheDocument();
+  });
+
   it('uses custom title', () => {
     render(() => <DirectoryPicker items={dirs} currentPath="/project" title="Choose Folder" />);
     expect(screen.getByText('Choose Folder')).toBeInTheDocument();

@@ -186,26 +186,32 @@ describe('IssueBoard', () => {
       <IssueBoard issues={mockIssues} repos={repos} view="list" onStartWork={onStartWork} />
     ));
 
-    // Find the first issue row
-    const issueElement = screen.getByText('Test Issue 1').closest('div')!;
+    // The start button is always in the DOM (revealed on hover/focus via CSS)
+    const row = screen.getByText('Test Issue 1').closest('.sk-issue-row')!;
+    const startButton = row.querySelector<HTMLButtonElement>('.sk-issue-row__start');
+    expect(startButton).toBeInTheDocument();
+    expect(startButton!.textContent).toContain('Start');
 
-    // Trigger mouseenter to make button visible
-    fireEvent.mouseEnter(issueElement);
+    fireEvent.click(startButton!);
+    expect(onStartWork).toHaveBeenCalledWith(mockIssues[0]);
+    expect(container.querySelectorAll('.sk-issue-row__start').length).toBe(mockIssues.length);
+  });
 
-    // Find button by role within the container - it should exist in DOM even if hidden
-    const startButton =
-      container.querySelector('button[style*="Start"]') ||
-      Array.from(container.querySelectorAll('button')).find((btn) =>
-        btn.textContent?.includes('Start')
-      );
+  it('applies the root class and forwards class/style props', () => {
+    const { container } = render(() => (
+      <IssueBoard
+        issues={mockIssues}
+        repos={repos}
+        view="list"
+        class="my-extra"
+        style={{ 'max-width': '900px' }}
+      />
+    ));
 
-    if (startButton) {
-      fireEvent.click(startButton);
-      expect(onStartWork).toHaveBeenCalledWith(mockIssues[0]);
-    } else {
-      // If button not rendered, test that callback exists and would work
-      expect(onStartWork).toBeDefined();
-    }
+    const root = container.querySelector('.sk-issue-board');
+    expect(root).toBeInTheDocument();
+    expect(root).toHaveClass('my-extra');
+    expect((root as HTMLElement).style.maxWidth).toBe('900px');
   });
 
   it('shows correct label badges', () => {

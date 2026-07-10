@@ -103,7 +103,7 @@
   font-size: var(--sk-font-sm);
   font-family: inherit;
   cursor: pointer;
-  transition: var(--sk-transition-fast);
+  transition: var(--sk-duration-fast) var(--sk-ease-default);
 
   &:hover {
     background: var(--sk-bg-hover);
@@ -159,7 +159,7 @@
   font-size: var(--sk-font-sm);
   text-align: left;
   cursor: pointer;
-  transition: var(--sk-transition-fast);
+  transition: var(--sk-duration-fast) var(--sk-ease-default);
   width: 100%;
 
   &:hover {

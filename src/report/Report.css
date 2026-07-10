@@ -210,6 +210,25 @@
   flex-shrink: 0;
 }
 
+.sk-report-score__ring-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.sk-report-score__value {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.sk-report-score__value-caption {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--sk-text-secondary);
+  margin-top: var(--sk-space-xs);
+}
+
 .sk-report-score__details h3 {
   font-size: 1.1rem;
   font-weight: 700;

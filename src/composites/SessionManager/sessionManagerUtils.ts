@@ -1,4 +1,4 @@
-import type { SessionInfo, SessionSubagentInfo } from './SessionManager';
+import type { SessionSubagentInfo } from './SessionManager';
 
 export const formatDuration = (minutes: number): string => {
   if (minutes < 60) {
@@ -11,30 +11,6 @@ export const formatDuration = (minutes: number): string => {
 
 export const formatCost = (cost: number): string => {
   return `$${cost.toFixed(2)}`;
-};
-
-export const getStatusColor = (status: SessionInfo['status']): string => {
-  switch (status) {
-    case 'active':
-      return '#22c55e';
-    case 'paused':
-      return '#eab308';
-    case 'completed':
-      return '#94a3b8';
-    case 'failed':
-      return '#ef4444';
-  }
-};
-
-export const getSubagentStatusColor = (status: SessionSubagentInfo['status']): string => {
-  switch (status) {
-    case 'running':
-      return '#22c55e';
-    case 'waiting':
-      return '#eab308';
-    case 'completed':
-      return '#94a3b8';
-  }
 };
 
 export const getModelIcon = (model: string): string => {

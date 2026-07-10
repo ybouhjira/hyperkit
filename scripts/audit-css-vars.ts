@@ -106,6 +106,7 @@ const REQUIRED_CSS_VARS: readonly string[] = [
   // Spacing (10)
   '--sk-space-0',
   '--sk-space-px',
+  '--sk-space-2xs',
   '--sk-space-xs',
   '--sk-space-sm',
   '--sk-space-md',
@@ -182,9 +183,15 @@ function isValidCssVar(varName: string): boolean {
     }
   }
 
-  // 4. Component-scoped vars: --sk-{component}-{property}
-  //    These are legitimate consumer-facing override points
-  //    Pattern: at least 3 meaningful segments after --sk-
+  // 4. Known wrong-family prefixes (theme injects --sk-space-*, not --sk-spacing-*)
+  if (varName.startsWith('--sk-spacing-')) {
+    return false;
+  }
+
+  // 5. Component-scoped vars: --sk-{component}-{property}
+  //    Legitimate consumer-facing override points — but an UNDEFINED var
+  //    without a fallback resolves to nothing (silent theming bug), so the
+  //    caller additionally requires hasFallback or a definition for these.
   const parts = varName.replace('--sk-', '').split('-');
   if (parts.length >= 2) {
     return true;
@@ -224,21 +231,26 @@ function findSuggestion(invalidVar: string): string | undefined {
 /**
  * Extract all var(--sk-*) references from CSS content
  */
-function extractCssVars(content: string): Map<string, number[]> {
-  const varPattern = /var\((--sk-[a-z0-9-]+)/g;
+interface VarOccurrence {
+  line: number;
+  hasFallback: boolean;
+}
+
+function extractCssVars(content: string): Map<string, VarOccurrence[]> {
+  const varPattern = /var\((--sk-[a-z0-9-]+)\s*([,)])/g;
   const lines = content.split('\n');
-  const vars = new Map<string, number[]>();
+  const vars = new Map<string, VarOccurrence[]>();
 
   lines.forEach((line, index) => {
     let match;
     while ((match = varPattern.exec(line)) !== null) {
       const varName = match[1];
-      const lineNum = index + 1; // 1-indexed
+      const hasFallback = match[2] === ',';
 
       if (!vars.has(varName)) {
         vars.set(varName, []);
       }
-      vars.get(varName)!.push(lineNum);
+      vars.get(varName)!.push({ line: index + 1, hasFallback });
     }
   });
 
@@ -246,25 +258,73 @@ function extractCssVars(content: string): Map<string, number[]> {
 }
 
 /**
+ * Collect every --sk-* custom property DEFINED anywhere in src — CSS
+ * declarations and TSX inline custom properties. A reference to a defined
+ * var is valid even without a fallback.
+ */
+function collectDefinedVars(srcDir: string): Set<string> {
+  const defined = new Set<string>();
+  const defPatternCss = /(--sk-[a-z0-9-]+)\s*:/g;
+  // Any quoted --sk-* string in TS/TSX counts as a potential definition
+  // (object keys, bracket assignments like style['--sk-x'] = ...).
+  const defPatternTsx = /['"](--sk-[a-z0-9-]+)['"]/g;
+  const files = [...findCssFiles(srcDir), ...findTsxFiles(srcDir)];
+  for (const file of files) {
+    const content = readFileSync(file, 'utf-8');
+    const pattern = file.endsWith('.css') ? defPatternCss : defPatternTsx;
+    let match;
+    while ((match = pattern.exec(content)) !== null) {
+      defined.add(match[1]);
+    }
+  }
+  return defined;
+}
+
+function findTsxFiles(dir: string, results: string[] = []): string[] {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) findTsxFiles(full, results);
+    else if (entry.name.endsWith('.tsx') || entry.name.endsWith('.ts')) results.push(full);
+  }
+  return results;
+}
+
+/**
  * Audit a single CSS file
  */
-function auditCssFile(filePath: string, rootDir: string): Violation[] {
+function auditCssFile(filePath: string, rootDir: string, defined: Set<string>): Violation[] {
   const content = readFileSync(filePath, 'utf-8');
   const vars = extractCssVars(content);
   const violations: Violation[] = [];
+  const relativePath = relative(rootDir, filePath);
 
-  for (const [varName, lineNumbers] of vars.entries()) {
+  for (const [varName, occurrences] of vars.entries()) {
+    const knownTheme =
+      REQUIRED_SET.has(varName) ||
+      varName.startsWith('--sk-comp-') ||
+      varName.startsWith('--sk-z-') ||
+      varName.startsWith('--sk-custom-');
+
     if (!isValidCssVar(varName)) {
       const suggestion = findSuggestion(varName);
-      const relativePath = relative(rootDir, filePath);
+      for (const occ of occurrences) {
+        violations.push({ file: relativePath, line: occ.line, varName, suggestion });
+      }
+      continue;
+    }
 
-      for (const lineNum of lineNumbers) {
-        violations.push({
-          file: relativePath,
-          line: lineNum,
-          varName,
-          suggestion,
-        });
+    // Component-scoped var: must carry a fallback or be defined somewhere,
+    // otherwise it silently resolves to nothing.
+    if (!knownTheme && !defined.has(varName)) {
+      for (const occ of occurrences) {
+        if (!occ.hasFallback) {
+          violations.push({
+            file: relativePath,
+            line: occ.line,
+            varName,
+            suggestion: `add a fallback: var(${varName}, var(--sk-<semantic-token>)) — undefined vars resolve to nothing`,
+          });
+        }
       }
     }
   }
@@ -282,11 +342,12 @@ function main() {
   console.log('Scanning CSS files for invalid --sk-* variable references...\n');
 
   const cssFiles = findCssFiles(srcDir);
+  const definedVars = collectDefinedVars(srcDir);
 
   const allViolations: Violation[] = [];
 
   for (const file of cssFiles) {
-    const violations = auditCssFile(file, rootDir);
+    const violations = auditCssFile(file, rootDir, definedVars);
     allViolations.push(...violations);
   }
 

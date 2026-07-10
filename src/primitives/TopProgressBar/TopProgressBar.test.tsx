@@ -1,17 +1,20 @@
 import { render } from '@solidjs/testing-library';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { createSignal } from 'solid-js';
 import { TopProgressBar } from './TopProgressBar';
+import { readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const css = readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), 'TopProgressBar.css'),
+  'utf8'
+);
 
 const getBar = () => document.querySelector('[data-sk-top-progress]') as HTMLElement | null;
 const getFill = () => document.querySelector('[data-sk-top-progress-fill]') as HTMLElement | null;
 
 describe('TopProgressBar', () => {
-  afterEach(() => {
-    // Remove injected keyframes between tests to avoid cross-test leakage.
-    document.getElementById('sk-top-progress-keyframes')?.remove();
-  });
-
   it('does not render when inactive initially', () => {
     render(() => <TopProgressBar active={false} />);
     expect(getBar()).toBeNull();
@@ -22,32 +25,37 @@ describe('TopProgressBar', () => {
     const bar = getBar();
     expect(bar).not.toBeNull();
     expect(bar!.getAttribute('data-mode')).toBe('indeterminate');
+    expect(bar!.classList.contains('sk-top-progress--indeterminate')).toBe(true);
   });
 
-  it('applies indeterminate shimmer animation to fill', () => {
+  it('applies the sk-top-progress class on the root element', () => {
+    render(() => <TopProgressBar active={true} />);
+    expect(getBar()!.classList.contains('sk-top-progress')).toBe(true);
+  });
+
+  it('renders the fill element with its BEM class', () => {
     render(() => <TopProgressBar active={true} />);
     const fill = getFill();
     expect(fill).not.toBeNull();
-    expect(fill!.style.animation).toContain('sk-top-progress-shimmer');
-    expect(fill!.style.width).toBe('30%');
+    expect(fill!.classList.contains('sk-top-progress__fill')).toBe(true);
   });
 
-  it('renders determinate fill width when progress provided', () => {
+  it('marks determinate mode and exposes progress via CSS custom property', () => {
     render(() => <TopProgressBar active={true} progress={0.5} />);
-    const bar = getBar();
-    expect(bar!.getAttribute('data-mode')).toBe('determinate');
-    const fill = getFill();
-    expect(fill!.style.width).toBe('50%');
+    const bar = getBar()!;
+    expect(bar.getAttribute('data-mode')).toBe('determinate');
+    expect(bar.classList.contains('sk-top-progress--determinate')).toBe(true);
+    expect(bar.style.getPropertyValue('--sk-top-progress-value')).toBe('0.5');
   });
 
   it('clamps progress above 1', () => {
     render(() => <TopProgressBar active={true} progress={5} />);
-    expect(getFill()!.style.width).toBe('100%');
+    expect(getBar()!.style.getPropertyValue('--sk-top-progress-value')).toBe('1');
   });
 
   it('clamps progress below 0', () => {
     render(() => <TopProgressBar active={true} progress={-2} />);
-    expect(getFill()!.style.width).toBe('0%');
+    expect(getBar()!.style.getPropertyValue('--sk-top-progress-value')).toBe('0');
   });
 
   it('sets aria attributes for determinate progress', () => {
@@ -65,19 +73,25 @@ describe('TopProgressBar', () => {
     expect(bar.getAttribute('aria-valuenow')).toBeNull();
   });
 
-  it('applies custom color to fill', () => {
+  it('applies custom color via CSS custom property', () => {
     render(() => <TopProgressBar active={true} color="tomato" />);
-    expect(getFill()!.style.background).toBe('tomato');
+    expect(getBar()!.style.getPropertyValue('--sk-top-progress-color')).toBe('tomato');
   });
 
-  it('applies custom height to container', () => {
-    render(() => <TopProgressBar active={true} height={4} />);
-    expect(getBar()!.style.height).toBe('4px');
-  });
-
-  it('defaults to 2px height', () => {
+  it('does not set the color custom property by default (accent fallback in CSS)', () => {
     render(() => <TopProgressBar active={true} />);
-    expect(getBar()!.style.height).toBe('2px');
+    expect(getBar()!.style.getPropertyValue('--sk-top-progress-color')).toBe('');
+  });
+
+  it('applies custom height via CSS custom property', () => {
+    render(() => <TopProgressBar active={true} height={4} />);
+    expect(getBar()!.style.getPropertyValue('--sk-top-progress-height')).toBe('4px');
+  });
+
+  it('defaults to 2px height in the stylesheet', () => {
+    render(() => <TopProgressBar active={true} />);
+    expect(getBar()!.style.getPropertyValue('--sk-top-progress-height')).toBe('');
+    expect(css).toContain('height: var(--sk-top-progress-height, 2px)');
   });
 
   it('merges custom style into container', () => {
@@ -85,10 +99,18 @@ describe('TopProgressBar', () => {
     expect(getBar()!.style.zIndex).toBe('123');
   });
 
-  it('injects shimmer keyframes stylesheet once', () => {
+  it('custom style prop can override component-set custom properties', () => {
+    render(() => (
+      <TopProgressBar active={true} height={4} style={{ '--sk-top-progress-height': '6px' }} />
+    ));
+    expect(getBar()!.style.getPropertyValue('--sk-top-progress-height')).toBe('6px');
+  });
+
+  it('marks visibility with a modifier class for the fade transition', async () => {
     render(() => <TopProgressBar active={true} />);
-    const styleEls = document.querySelectorAll('#sk-top-progress-keyframes');
-    expect(styleEls.length).toBe(1);
+    // Visibility flips on the next microtask after mount.
+    await Promise.resolve();
+    expect(getBar()!.classList.contains('sk-top-progress--visible')).toBe(true);
   });
 
   it('unmounts after fade-out window when active becomes false', async () => {
@@ -101,40 +123,13 @@ describe('TopProgressBar', () => {
     expect(getBar()).toBeNull();
   });
 
-  describe('reduced motion', () => {
-    const originalMatchMedia = window.matchMedia;
-    beforeEach(() => {
-      window.matchMedia = vi.fn().mockImplementation((query: string) => ({
-        matches: query.includes('reduce'),
-        media: query,
-        onchange: null,
-        addListener: () => {},
-        removeListener: () => {},
-        addEventListener: () => {},
-        removeEventListener: () => {},
-        dispatchEvent: () => false,
-      })) as unknown as typeof window.matchMedia;
-    });
-    afterEach(() => {
-      window.matchMedia = originalMatchMedia;
-    });
-
-    it('skips shimmer animation and shows steady 80% opacity bar', () => {
-      render(() => <TopProgressBar active={true} />);
-      const fill = getFill()!;
-      expect(fill.style.animation).toBe('');
-      expect(fill.style.width).toBe('100%');
-      expect(fill.style.opacity).toBe('0.8');
-    });
-
-    it('skips container opacity transition', () => {
-      render(() => <TopProgressBar active={true} />);
-      expect(getBar()!.style.transition).toBe('none');
-    });
-
-    it('skips determinate width transition', () => {
-      render(() => <TopProgressBar active={true} progress={0.3} />);
-      expect(getFill()!.style.transition).toBe('none');
+  describe('reduced motion (handled in CSS)', () => {
+    it('ships a prefers-reduced-motion block that stills the shimmer', () => {
+      expect(css).toContain('@media (prefers-reduced-motion: reduce)');
+      // Steady 80%-opacity full-width bar replaces the shimmer.
+      expect(css).toMatch(/prefers-reduced-motion[\s\S]*animation: none/);
+      expect(css).toMatch(/prefers-reduced-motion[\s\S]*width: 100%/);
+      expect(css).toMatch(/prefers-reduced-motion[\s\S]*opacity: 0\.8/);
     });
   });
 });

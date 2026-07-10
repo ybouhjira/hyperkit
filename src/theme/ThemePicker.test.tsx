@@ -70,7 +70,7 @@ describe('theme/ThemePicker', () => {
       </ThemeProvider>
     ));
 
-    const colorSwatches = container.querySelectorAll('div[style*="width: 2rem"]');
+    const colorSwatches = container.querySelectorAll('.sk-theme-picker__swatch');
     expect(colorSwatches.length).toBeGreaterThan(0);
   });
 
@@ -82,7 +82,6 @@ describe('theme/ThemePicker', () => {
     ));
 
     const gridContainer = container.firstElementChild as HTMLElement;
-    expect(gridContainer?.style.display).toBe('grid');
-    expect(gridContainer?.style.gridTemplateColumns).toContain('repeat');
+    expect(gridContainer?.classList.contains('sk-theme-picker')).toBe(true);
   });
 });

@@ -65,7 +65,7 @@
 
 /* Value size variants */
 .sk-metric--sm .sk-metric__value {
-  font-size: var(--sk-metric-sm-value-font-size, var(--sk-font-size-md));
+  font-size: var(--sk-metric-sm-value-font-size, var(--sk-font-size-base));
 }
 
 .sk-metric--md .sk-metric__value {

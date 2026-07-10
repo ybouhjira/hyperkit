@@ -9,7 +9,7 @@
   border-radius: var(--sk-radius-md);
   box-shadow: var(--sk-shadow-lg);
   padding: var(--sk-space-xs);
-  animation: sk-context-menu-fade-in var(--sk-transition-fast) ease-out;
+  animation: sk-context-menu-fade-in var(--sk-duration-fast) ease-out;
   z-index: var(--sk-z-popover);
 }
 
@@ -22,7 +22,7 @@
   font-size: var(--sk-font-sm);
   color: var(--sk-text-primary);
   cursor: pointer;
-  transition: all var(--sk-transition-fast);
+  transition: all var(--sk-duration-fast) var(--sk-ease-default);
   outline: none;
   border: none;
   background: none;

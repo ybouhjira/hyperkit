@@ -1,17 +1,19 @@
-export const getPriorityColor = (priority: string | null): string => {
+export const getPriorityClass = (priority: string | null): string => {
   switch (priority) {
     case 'P0':
-      return '#ef4444';
+      return 'sk-issue-priority sk-issue-priority--p0';
     case 'P1':
-      return '#f97316';
+      return 'sk-issue-priority sk-issue-priority--p1';
     case 'P2':
-      return '#eab308';
-    case 'P3':
-      return '#3b82f6';
+      return 'sk-issue-priority sk-issue-priority--p2';
     default:
-      return 'var(--sk-text-secondary)';
+      return 'sk-issue-priority sk-issue-priority--p3';
   }
 };
+
+/** GitHub label colors arrive with or without a leading `#` — normalize to a CSS color. */
+export const normalizeLabelColor = (color: string): string =>
+  color.startsWith('#') ? color : `#${color}`;
 
 export const getRelativeTime = (date: string): string => {
   const now = new Date();

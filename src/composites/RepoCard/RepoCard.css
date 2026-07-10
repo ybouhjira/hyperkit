@@ -11,7 +11,7 @@
 }
 
 .sk-repo-card__title {
-  font-size: var(--sk-font-size-md);
+  font-size: var(--sk-font-size-base);
   font-weight: 600;
   color: var(--sk-text-primary);
   margin: 0;
@@ -82,6 +82,10 @@
   border-radius: 50%;
   display: inline-block;
   margin-right: var(--sk-space-xs);
+
+  /* Language brand color flows in as an inline custom property (data);
+     unknown languages fall back to the theme's muted color. */
+  background: var(--sk-repo-card-language-color, var(--sk-text-muted));
 }
 
 .sk-repo-card__button {

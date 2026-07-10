@@ -12,7 +12,7 @@ describe('ColorInput', () => {
   it('shows color swatch', () => {
     render(() => <ColorInput defaultValue="#ff5500" />);
     const swatch = screen.getByLabelText('Choose color') as HTMLButtonElement;
-    expect(swatch.style.background).toBe('rgb(255, 85, 0)');
+    expect(swatch.style.getPropertyValue('--sk-color-input-swatch-color')).toBe('#ff5500');
   });
 
   it('shows hex value in text input', () => {

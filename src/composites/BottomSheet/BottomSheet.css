@@ -1,0 +1,70 @@
+.sk-bottom-sheet__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--sk-z-modal, 1000);
+  background: var(--sk-bottom-sheet-overlay-bg, rgb(0 0 0 / 0.5));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-bottom-sheet {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  max-width: var(--sk-bottom-sheet-max-width, 640px);
+  height: calc(var(--sk-bottom-sheet-snap, 0.9) * 100vh);
+  max-height: 100vh;
+  z-index: var(--sk-z-modal, 1000);
+  background: var(--sk-bottom-sheet-bg, var(--sk-bg-elevated));
+  border-top-left-radius: var(--sk-bottom-sheet-radius, var(--sk-radius-lg));
+  border-top-right-radius: var(--sk-bottom-sheet-radius, var(--sk-radius-lg));
+  box-shadow: var(--sk-shadow-2xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--sk-duration-fast) var(--sk-ease-default);
+  touch-action: none;
+}
+
+/* While dragging, the finger drives the transform directly. */
+.sk-bottom-sheet--dragging {
+  transition: none;
+}
+
+.sk-bottom-sheet__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sk-space-sm) 0 var(--sk-space-xs);
+  cursor: default;
+  flex-shrink: 0;
+  touch-action: none;
+}
+
+.sk-bottom-sheet__handle--grabbable {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.sk-bottom-sheet__handle-bar {
+  width: var(--sk-bottom-sheet-handle-width, var(--sk-space-2xl));
+  height: var(--sk-bottom-sheet-handle-height, var(--sk-space-xs));
+  border-radius: var(--sk-radius-full, 9999px);
+  background: var(--sk-bottom-sheet-handle-bg, var(--sk-border));
+  transition: background-color var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.sk-bottom-sheet__handle:hover .sk-bottom-sheet__handle-bar {
+  background: var(--sk-bottom-sheet-handle-hover-bg, var(--sk-text-muted));
+}
+
+.sk-bottom-sheet__body {
+  flex: 1 1 auto;
+  overflow: auto;
+  min-height: 0;
+}

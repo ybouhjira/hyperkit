@@ -124,11 +124,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
           <Stack gap="lg">
             {/* Colors Section */}
             <Box class="sk-theme-builder__section">
-              <Text
-                size="sm"
-                weight="semibold"
-                style={{ 'margin-bottom': 'var(--sk-spacing-md, 12px)' }}
-              >
+              <Text size="sm" weight="semibold" style={{ 'margin-bottom': 'var(--sk-space-md)' }}>
                 Colors
               </Text>
               <Stack gap="md">
@@ -139,7 +135,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
                         size="xs"
                         style={{
                           color: 'var(--sk-text-secondary)',
-                          'margin-bottom': 'var(--sk-spacing-sm, 8px)',
+                          'margin-bottom': 'var(--sk-space-sm)',
                           'text-transform': 'uppercase',
                           'letter-spacing': '0.05em',
                         }}
@@ -150,20 +146,12 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
                         <For each={group.colors}>
                           {(color) => (
                             <Box class="sk-theme-builder__color-item">
-                              <label
-                                style={{ display: 'flex', 'align-items': 'center', gap: '8px' }}
-                              >
+                              <label class="sk-theme-builder__color-label">
                                 <input
                                   type="color"
+                                  class="sk-theme-builder__color-input"
                                   value={normalizeColor(workingTheme().colors[color.key])}
                                   onInput={(e) => updateColor(color.key, e.currentTarget.value)}
-                                  style={{
-                                    width: '32px',
-                                    height: '32px',
-                                    border: 'none',
-                                    'border-radius': '4px',
-                                    cursor: 'pointer',
-                                  }}
                                 />
                                 <Text size="sm">{color.label}</Text>
                               </label>
@@ -179,11 +167,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
 
             {/* Radius Section */}
             <Box class="sk-theme-builder__section">
-              <Text
-                size="sm"
-                weight="semibold"
-                style={{ 'margin-bottom': 'var(--sk-spacing-md, 12px)' }}
-              >
+              <Text size="sm" weight="semibold" style={{ 'margin-bottom': 'var(--sk-space-md)' }}>
                 Border Radius
               </Text>
               <Stack gap="sm">
@@ -193,7 +177,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
                       <Flex
                         justify="between"
                         align="center"
-                        style={{ 'margin-bottom': 'var(--sk-spacing-xs, 4px)' }}
+                        style={{ 'margin-bottom': 'var(--sk-space-xs)' }}
                       >
                         <Text size="sm">{size.toUpperCase()}</Text>
                         <Text size="xs" style={{ color: 'var(--sk-text-secondary)' }}>
@@ -216,16 +200,12 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
 
             {/* Typography Section */}
             <Box class="sk-theme-builder__section">
-              <Text
-                size="sm"
-                weight="semibold"
-                style={{ 'margin-bottom': 'var(--sk-spacing-md, 12px)' }}
-              >
+              <Text size="sm" weight="semibold" style={{ 'margin-bottom': 'var(--sk-space-md)' }}>
                 Typography
               </Text>
               <Stack gap="sm">
                 <Box>
-                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-spacing-xs, 4px)' }}>
+                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-space-xs)' }}>
                     UI Font
                   </Text>
                   <Input
@@ -234,7 +214,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
                   />
                 </Box>
                 <Box>
-                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-spacing-xs, 4px)' }}>
+                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-space-xs)' }}>
                     Code Font
                   </Text>
                   <Input
@@ -243,7 +223,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
                   />
                 </Box>
                 <Box>
-                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-spacing-xs, 4px)' }}>
+                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-space-xs)' }}>
                     Mono Font
                   </Text>
                   <Input
@@ -252,7 +232,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
                   />
                 </Box>
                 <Box>
-                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-spacing-xs, 4px)' }}>
+                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-space-xs)' }}>
                     Base Font Size
                   </Text>
                   <Input
@@ -261,7 +241,7 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
                   />
                 </Box>
                 <Box>
-                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-spacing-xs, 4px)' }}>
+                  <Text size="sm" style={{ 'margin-bottom': 'var(--sk-space-xs)' }}>
                     Large Font Size
                   </Text>
                   <Input
@@ -288,29 +268,18 @@ export function ThemeBuilder(props: ThemeBuilderProps) {
         </Flex>
 
         <Show when={showImport()}>
-          <Box style={{ 'margin-top': 'var(--sk-spacing-md, 12px)' }}>
+          <Box style={{ 'margin-top': 'var(--sk-space-md)' }}>
             <textarea
+              class="sk-theme-builder__import-textarea"
               placeholder="Paste ThemeConfig JSON here..."
               value={importText()}
               onInput={(e) => setImportText(e.currentTarget.value)}
-              style={{
-                width: '100%',
-                height: '150px',
-                padding: '8px',
-                'border-radius': '4px',
-                border: '1px solid var(--sk-border)',
-                background: 'var(--sk-bg-secondary)',
-                color: 'var(--sk-text-primary)',
-                'font-family': 'monospace',
-                'font-size': '0.875rem',
-                resize: 'vertical',
-              }}
             />
             <Button
               variant="primary"
               size="sm"
               onClick={handleImport}
-              style={{ 'margin-top': 'var(--sk-spacing-sm, 8px)' }}
+              style={{ 'margin-top': 'var(--sk-space-sm)' }}
             >
               Apply Import
             </Button>

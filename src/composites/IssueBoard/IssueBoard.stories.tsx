@@ -78,6 +78,10 @@ export const List: Story = {
   ),
 };
 
+export const Table: Story = {
+  render: () => <IssueBoard issues={ISSUES} repos={['hyperkit', 'hyperbuild']} view="table" />,
+};
+
 export const Empty: Story = {
   render: () => <IssueBoard issues={[]} repos={[]} view="board" />,
 };

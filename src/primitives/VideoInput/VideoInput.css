@@ -28,13 +28,13 @@
 }
 
 .sk-video-input__dropzone:hover:not(.sk-video-input--disabled .sk-video-input__dropzone) {
-  border-color: var(--sk-color-primary);
-  background: var(--sk-color-primary-bg);
+  border-color: var(--sk-accent);
+  background: var(--sk-accent-muted);
 }
 
 .sk-video-input__dropzone--dragging {
-  border-color: var(--sk-color-primary);
-  background: var(--sk-color-primary-bg);
+  border-color: var(--sk-accent);
+  background: var(--sk-accent-muted);
   transform: scale(1.02);
 }
 
@@ -48,7 +48,7 @@
   margin: 0;
   font-size: var(--sk-font-size-base);
   font-weight: 500;
-  color: var(--sk-color-text);
+  color: var(--sk-text-primary);
 }
 
 .sk-video-input__hint {
@@ -171,7 +171,7 @@
 .sk-video-input__filename {
   margin: 0;
   font-size: var(--sk-font-size-sm);
-  color: var(--sk-color-text);
+  color: var(--sk-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

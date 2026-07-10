@@ -21,27 +21,11 @@ export const ReportScoreCard: Component<ReportScoreCardProps> = (props) => {
     <div class="sk-report-score" {...others}>
       <div class="sk-report-score__ring">
         <ProgressRing value={local.value} size={120} strokeWidth={8} color={local.color}>
-          <div
-            style={{
-              display: 'flex',
-              'flex-direction': 'column',
-              'align-items': 'center',
-              'line-height': '1',
-            }}
-          >
-            <span style={{ 'font-size': '2rem', 'font-weight': '800', color: local.color }}>
+          <div class="sk-report-score__ring-center">
+            <span class="sk-report-score__value" style={{ color: local.color }}>
               {local.value}%
             </span>
-            <small
-              style={{
-                'font-size': '0.7rem',
-                'font-weight': '500',
-                color: 'var(--sk-text-secondary)',
-                'margin-top': '0.25rem',
-              }}
-            >
-              complete
-            </small>
+            <small class="sk-report-score__value-caption">complete</small>
           </div>
         </ProgressRing>
       </div>

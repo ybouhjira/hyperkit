@@ -6,9 +6,9 @@ import {
   createSignal,
   createEffect,
   onCleanup,
-  createMemo,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
+import './TopProgressBar.css';
 
 /** Props for the TopProgressBar component. */
 export interface TopProgressBarProps {
@@ -29,21 +29,6 @@ export interface TopProgressBarProps {
   class?: string;
 }
 
-const prefersReducedMotion = (): boolean =>
-  typeof window !== 'undefined' &&
-  typeof window.matchMedia === 'function' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-const KEYFRAMES_STYLE_ID = 'sk-top-progress-keyframes';
-
-const SHIMMER_CSS = `
-@keyframes sk-top-progress-shimmer {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(200%); }
-  100% { transform: translateX(500%); }
-}
-`;
-
 /**
  * 2px-high animated bar pinned to the top of the viewport, used to indicate
  * async work such as route changes or data fetching.
@@ -51,7 +36,8 @@ const SHIMMER_CSS = `
  * Mirrors the YouTube / GitHub / Linear pattern: an indeterminate shimmer by
  * default, or a determinate fill when `progress` is provided. Portals to
  * `document.body` with `position: fixed`, zero layout impact, and fades out
- * before unmounting when `active` flips to false.
+ * before unmounting when `active` flips to false. Honors
+ * `prefers-reduced-motion` via CSS (steady bar instead of shimmer).
  *
  * @example
  * ```tsx
@@ -85,25 +71,12 @@ export const TopProgressBar: Component<TopProgressBarProps> = (props) => {
       queueMicrotask(() => setVisible(true));
     } else if (mounted()) {
       setVisible(false);
+      // Matches --sk-duration-normal (200ms) so the opacity fade completes.
       const timeout = window.setTimeout(() => setMounted(false), 200);
       onCleanup(() => window.clearTimeout(timeout));
     }
   });
 
-  // Inject keyframes once per document.
-  createEffect(() => {
-    if (!mounted()) return;
-    if (typeof document === 'undefined') return;
-    if (document.getElementById(KEYFRAMES_STYLE_ID)) return;
-    const styleEl = document.createElement('style');
-    styleEl.id = KEYFRAMES_STYLE_ID;
-    styleEl.textContent = SHIMMER_CSS;
-    document.head.appendChild(styleEl);
-  });
-
-  const reducedMotion = createMemo(() => prefersReducedMotion());
-  const height = () => local.height ?? 2;
-  const color = () => local.color ?? 'var(--sk-accent)';
   const isDeterminate = () => typeof local.progress === 'number';
   const clampedProgress = () => {
     const p = local.progress ?? 0;
@@ -112,47 +85,24 @@ export const TopProgressBar: Component<TopProgressBarProps> = (props) => {
     return p;
   };
 
+  const containerClass = () =>
+    [
+      'sk-top-progress',
+      isDeterminate() ? 'sk-top-progress--determinate' : 'sk-top-progress--indeterminate',
+      visible() ? 'sk-top-progress--visible' : '',
+      local.class ?? '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+  // Dynamic prop values feed the stylesheet through CSS custom properties;
+  // the user style prop merges last so it can override anything.
   const containerStyle = (): JSX.CSSProperties => ({
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    right: '0',
-    height: `${height()}px`,
-    'z-index': 'var(--sk-z-toast, 9999)',
-    'pointer-events': 'none',
-    overflow: 'hidden',
-    background: 'transparent',
-    opacity: visible() ? '1' : '0',
-    transition: reducedMotion()
-      ? 'none'
-      : 'opacity var(--sk-duration-normal, 200ms) var(--sk-ease-default, cubic-bezier(0.4, 0, 0.2, 1))',
+    ...(local.height !== undefined ? { '--sk-top-progress-height': `${local.height}px` } : {}),
+    ...(local.color !== undefined ? { '--sk-top-progress-color': local.color } : {}),
+    ...(isDeterminate() ? { '--sk-top-progress-value': String(clampedProgress()) } : {}),
     ...(local.style ?? {}),
   });
-
-  const determinateFillStyle = (): JSX.CSSProperties => ({
-    height: '100%',
-    width: `${clampedProgress() * 100}%`,
-    background: color(),
-    transition: reducedMotion() ? 'none' : 'width 200ms ease-out',
-  });
-
-  const indeterminateFillStyle = (): JSX.CSSProperties => {
-    if (reducedMotion()) {
-      return {
-        height: '100%',
-        width: '100%',
-        background: color(),
-        opacity: '0.8',
-      };
-    }
-    return {
-      height: '100%',
-      width: '30%',
-      background: color(),
-      animation: 'sk-top-progress-shimmer 1.5s infinite ease-in-out',
-      'will-change': 'transform',
-    };
-  };
 
   return (
     <Show when={mounted()}>
@@ -165,15 +115,10 @@ export const TopProgressBar: Component<TopProgressBarProps> = (props) => {
           aria-valuenow={isDeterminate() ? clampedProgress() : undefined}
           data-sk-top-progress=""
           data-mode={isDeterminate() ? 'determinate' : 'indeterminate'}
-          class={local.class}
+          class={containerClass()}
           style={containerStyle()}
         >
-          <Show
-            when={isDeterminate()}
-            fallback={<div data-sk-top-progress-fill="" style={indeterminateFillStyle()} />}
-          >
-            <div data-sk-top-progress-fill="" style={determinateFillStyle()} />
-          </Show>
+          <div data-sk-top-progress-fill="" class="sk-top-progress__fill" />
         </div>
       </Portal>
     </Show>

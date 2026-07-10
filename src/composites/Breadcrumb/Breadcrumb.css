@@ -30,7 +30,7 @@
   font-size: var(--sk-font-sm);
   text-decoration: none;
   cursor: pointer;
-  transition: var(--sk-transition-fast);
+  transition: var(--sk-duration-fast) var(--sk-ease-default);
   white-space: nowrap;
 
   &:not(.current, [disabled]):hover {

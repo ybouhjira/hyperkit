@@ -94,7 +94,7 @@
   padding: var(--sk-space-xs) var(--sk-space-sm);
   border-radius: var(--sk-radius-md);
   font-weight: 600;
-  font-size: var(--sk-text-sm);
+  font-size: var(--sk-font-size-sm);
   transition: opacity var(--sk-duration-fast);
 
   &:hover {

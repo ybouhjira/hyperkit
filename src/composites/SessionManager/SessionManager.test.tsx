@@ -93,9 +93,24 @@ describe('SessionManager', () => {
   it('shows correct status indicators', () => {
     const { container } = render(() => <SessionManager sessions={mockSessions} />);
 
-    // Check that status dots are rendered (they're divs with specific background colors)
-    const dots = container.querySelectorAll('div[style*="border-radius: 50%"]');
-    expect(dots.length).toBeGreaterThan(0);
+    // One status dot per session, carrying its status modifier class
+    const dots = container.querySelectorAll('.sk-session-card__status');
+    expect(dots.length).toBe(mockSessions.length);
+    expect(container.querySelector('.sk-session-card__status--active')).toBeInTheDocument();
+    expect(container.querySelector('.sk-session-card__status--paused')).toBeInTheDocument();
+    expect(container.querySelector('.sk-session-card__status--completed')).toBeInTheDocument();
+    expect(container.querySelector('.sk-session-card__status--failed')).toBeInTheDocument();
+  });
+
+  it('applies the root class and forwards class/style props', () => {
+    const { container } = render(() => (
+      <SessionManager sessions={mockSessions} class="my-extra" style={{ 'max-width': '640px' }} />
+    ));
+
+    const root = container.querySelector('.sk-session-manager');
+    expect(root).toBeInTheDocument();
+    expect(root).toHaveClass('my-extra');
+    expect((root as HTMLElement).style.maxWidth).toBe('640px');
   });
 
   it('shows subagent tree with proper hierarchy', () => {

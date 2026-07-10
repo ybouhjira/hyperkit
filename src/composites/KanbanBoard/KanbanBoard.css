@@ -140,7 +140,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--sk-space-mdxl);
+  height: var(--sk-space-lg);
   color: var(--sk-text-muted);
   font-size: var(--sk-font-size-xs);
 }

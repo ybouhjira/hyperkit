@@ -45,7 +45,7 @@
 
 .sk-subagent-tracker__title {
   margin: 0;
-  font-size: var(--sk-font-size-md);
+  font-size: var(--sk-font-size-base);
   font-weight: var(--sk-font-weight-semibold);
   color: var(--sk-text-primary);
 }

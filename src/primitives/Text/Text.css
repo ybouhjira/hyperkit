@@ -1,0 +1,64 @@
+/* Text is a polymorphic typography primitive: token-valued props (size, weight,
+ * color, margins) resolve to `var(--sk-*)` references at the call site, so they
+ * stay fully theme-reactive. The static styling recipes live here. */
+
+.sk-text--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sk-text--clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--sk-text-line-clamp, 1);
+  line-clamp: var(--sk-text-line-clamp, 1);
+  -webkit-box-orient: vertical;
+}
+
+.sk-text--italic {
+  font-style: italic;
+}
+
+.sk-text--font-mono {
+  font-family: var(--sk-font-code);
+}
+
+.sk-text--font-body {
+  font-family: var(--sk-font-ui);
+}
+
+.sk-text--align-left {
+  text-align: left;
+}
+
+.sk-text--align-center {
+  text-align: center;
+}
+
+.sk-text--align-right {
+  text-align: right;
+}
+
+.sk-text--ws-normal {
+  white-space: normal;
+}
+
+.sk-text--ws-nowrap {
+  white-space: nowrap;
+}
+
+.sk-text--ws-pre {
+  white-space: pre;
+}
+
+.sk-text--ws-pre-wrap {
+  white-space: pre-wrap;
+}
+
+.sk-text--gradient {
+  background: var(--sk-text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -33,7 +33,7 @@
   font-size: var(--sk-font-sm);
   white-space: nowrap;
   cursor: pointer;
-  transition: var(--sk-transition-fast);
+  transition: var(--sk-duration-fast) var(--sk-ease-default);
   flex-shrink: 0;
   position: relative;
 
@@ -85,7 +85,7 @@
   border-radius: var(--sk-radius-sm);
   color: inherit;
   cursor: pointer;
-  transition: var(--sk-transition-fast);
+  transition: var(--sk-duration-fast) var(--sk-ease-default);
   margin: 0 calc(var(--sk-space-xs) * -1) 0 0;
 
   &:hover {
@@ -110,7 +110,7 @@
   border-left: 1px solid var(--sk-border);
   color: var(--sk-text-muted);
   cursor: pointer;
-  transition: var(--sk-transition-fast);
+  transition: var(--sk-duration-fast) var(--sk-ease-default);
   flex-shrink: 0;
 
   &:hover {

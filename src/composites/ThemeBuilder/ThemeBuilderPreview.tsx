@@ -19,11 +19,7 @@ export function ThemeBuilderPreview(props: ThemeBuilderPreviewProps): JSX.Elemen
     <Box class="sk-theme-builder__preview">
       <ThemeProvider theme={props.theme}>
         <Stack gap="lg">
-          <Text
-            size="sm"
-            weight="semibold"
-            style={{ 'margin-bottom': 'var(--sk-spacing-sm, 8px)' }}
-          >
+          <Text size="sm" weight="semibold" style={{ 'margin-bottom': 'var(--sk-space-sm)' }}>
             Preview
           </Text>
 
@@ -33,7 +29,7 @@ export function ThemeBuilderPreview(props: ThemeBuilderPreviewProps): JSX.Elemen
               size="xs"
               style={{
                 color: 'var(--sk-text-secondary)',
-                'margin-bottom': 'var(--sk-spacing-sm, 8px)',
+                'margin-bottom': 'var(--sk-space-sm)',
               }}
             >
               BUTTONS
@@ -52,7 +48,7 @@ export function ThemeBuilderPreview(props: ThemeBuilderPreviewProps): JSX.Elemen
               size="xs"
               style={{
                 color: 'var(--sk-text-secondary)',
-                'margin-bottom': 'var(--sk-spacing-sm, 8px)',
+                'margin-bottom': 'var(--sk-space-sm)',
               }}
             >
               CARD
@@ -75,7 +71,7 @@ export function ThemeBuilderPreview(props: ThemeBuilderPreviewProps): JSX.Elemen
               size="xs"
               style={{
                 color: 'var(--sk-text-secondary)',
-                'margin-bottom': 'var(--sk-spacing-sm, 8px)',
+                'margin-bottom': 'var(--sk-space-sm)',
               }}
             >
               INPUTS
@@ -92,7 +88,7 @@ export function ThemeBuilderPreview(props: ThemeBuilderPreviewProps): JSX.Elemen
               size="xs"
               style={{
                 color: 'var(--sk-text-secondary)',
-                'margin-bottom': 'var(--sk-spacing-sm, 8px)',
+                'margin-bottom': 'var(--sk-space-sm)',
               }}
             >
               BADGES
@@ -111,7 +107,7 @@ export function ThemeBuilderPreview(props: ThemeBuilderPreviewProps): JSX.Elemen
               size="xs"
               style={{
                 color: 'var(--sk-text-secondary)',
-                'margin-bottom': 'var(--sk-spacing-sm, 8px)',
+                'margin-bottom': 'var(--sk-space-sm)',
               }}
             >
               TYPOGRAPHY

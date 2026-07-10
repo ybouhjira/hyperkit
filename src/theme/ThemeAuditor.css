@@ -1,0 +1,111 @@
+/* Dev-only floating overlay for ThemeAuditor */
+.sk-theme-auditor {
+  position: fixed;
+  bottom: var(--sk-space-md);
+  right: var(--sk-space-md);
+  z-index: 99999;
+  max-width: 360px;
+  max-height: 480px;
+  overflow: auto;
+  background: var(--sk-bg-secondary);
+  color: var(--sk-text-primary);
+  border-radius: var(--sk-radius-md);
+  box-shadow: var(--sk-shadow-xl);
+  font-family: var(--sk-font-mono, ui-monospace, monospace);
+  font-size: var(--sk-font-size-xs);
+  border: 1px solid var(--sk-border);
+}
+
+.sk-theme-auditor__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sk-space-sm) var(--sk-density-pad-x);
+  border-bottom: 1px solid var(--sk-border);
+}
+
+.sk-theme-auditor__header--fail {
+  background: color-mix(in srgb, var(--sk-error) 15%, var(--sk-bg-secondary));
+}
+
+.sk-theme-auditor__header--pass {
+  background: color-mix(in srgb, var(--sk-success) 15%, var(--sk-bg-secondary));
+}
+
+.sk-theme-auditor__title {
+  font-weight: var(--sk-font-weight-semibold, 600);
+}
+
+.sk-theme-auditor__count {
+  opacity: 0.7;
+}
+
+.sk-theme-auditor__close {
+  background: none;
+  border: none;
+  color: var(--sk-text-muted);
+  cursor: pointer;
+  font-size: var(--sk-font-size-sm);
+  padding: 0 var(--sk-space-xs);
+}
+
+.sk-theme-auditor__groups {
+  padding: var(--sk-space-xs) 0;
+}
+
+.sk-theme-auditor__group-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px var(--sk-density-pad-x);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+}
+
+.sk-theme-auditor__group-toggle--fail {
+  color: var(--sk-error);
+}
+
+.sk-theme-auditor__group-toggle--pass {
+  color: var(--sk-success);
+}
+
+.sk-theme-auditor__group-toggle--comp {
+  color: var(--sk-info);
+}
+
+.sk-theme-auditor__group-count {
+  opacity: 0.6;
+}
+
+.sk-theme-auditor__group-vars {
+  padding: var(--sk-space-2xs) var(--sk-density-pad-x) var(--sk-space-sm) var(--sk-space-lg);
+}
+
+.sk-theme-auditor__var {
+  padding: var(--sk-space-2xs) 0;
+}
+
+.sk-theme-auditor__var--ok {
+  color: var(--sk-success);
+  opacity: 0.6;
+}
+
+.sk-theme-auditor__var--fail {
+  color: var(--sk-error);
+}
+
+.sk-theme-auditor__var--comp {
+  color: var(--sk-info);
+  opacity: 0.8;
+}
+
+.sk-theme-auditor__var-value {
+  opacity: 0.4;
+  margin-left: var(--sk-space-sm);
+}

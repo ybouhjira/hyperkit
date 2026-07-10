@@ -1,9 +1,5 @@
 import { createSignal, createEffect, onCleanup, For, Show, type ParentProps } from 'solid-js';
-import { Box } from '../../primitives/Box/Box';
-import { Text } from '../../primitives/Text/Text';
 import { Button } from '../../primitives/Button/Button';
-import { Stack } from '../../primitives/Stack/Stack';
-import { Flex } from '../../primitives/Flex/Flex';
 import { Badge } from '../../primitives/Badge/Badge';
 import { Card } from '../../primitives/Card/Card';
 import type {
@@ -15,13 +11,17 @@ import type {
 } from './types';
 import { InspectorContext } from './context';
 import { useInspectorStorage } from './context';
+import './Inspector.css';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const INSPECTOR_ATTR = 'data-sk-inspector';
-const PANEL_WIDTH = 360;
+// Note popover geometry lives here (not in CSS) because the placement math
+// below needs the numbers to clamp against the viewport; width is applied
+// inline together with the computed top/left.
 const ANNOTATION_PANEL_WIDTH = 320;
 const ANNOTATION_PANEL_HEIGHT = 240;
+const PIN_OFFSET = 16;
 
 // ─── InspectorProvider ───────────────────────────────────────────────────────
 
@@ -100,26 +100,19 @@ function getElementInfo(el: Element): AnnotationElementInfo {
   };
 }
 
-function getOverlayStyle(el: Element, selected: boolean): Record<string, string> {
+/** Runtime-computed overlay geometry — visual styling lives in Inspector.css. */
+function getOverlayPosition(el: Element): Record<string, string> {
   const rect = el.getBoundingClientRect();
   return {
-    position: 'fixed',
     top: rect.top + 'px',
     left: rect.left + 'px',
     width: rect.width + 'px',
     height: rect.height + 'px',
-    'pointer-events': 'none',
-    'box-sizing': 'border-box',
-    border: selected ? '2px solid var(--sk-accent)' : '2px solid var(--sk-info)',
-    background: selected
-      ? 'color-mix(in srgb, var(--sk-accent) 10%, transparent)'
-      : 'color-mix(in srgb, var(--sk-info) 10%, transparent)',
-    'z-index': '99990',
-    'border-radius': 'var(--sk-radius-sm)',
   };
 }
 
-function getAnnotationPanelStyle(el: Element): Record<string, string> {
+/** Runtime-computed popover placement — visual styling lives in Inspector.css. */
+function getAnnotationPanelPosition(el: Element): Record<string, string> {
   const rect = el.getBoundingClientRect();
   const spaceBelow = window.innerHeight - rect.bottom;
 
@@ -135,12 +128,9 @@ function getAnnotationPanelStyle(el: Element): Record<string, string> {
   if (left < 8) left = 8;
 
   return {
-    position: 'fixed',
     top: Math.max(8, top) + 'px',
     left: left + 'px',
     width: ANNOTATION_PANEL_WIDTH + 'px',
-    'z-index': '99999',
-    'box-shadow': 'var(--sk-shadow-lg)',
   };
 }
 
@@ -158,38 +148,19 @@ function ThreadMessageItem(props: { msg: ThreadMessage }) {
   const isClaude = () => props.msg.author === 'claude';
   const attr = { [INSPECTOR_ATTR]: 'true' };
   return (
-    <Box
-      {...attr}
-      style={{
-        'padding-left': 'var(--sk-space-sm)',
-        'border-left': isClaude() ? '2px solid var(--sk-accent)' : '2px solid var(--sk-border)',
-        background: isClaude()
-          ? 'color-mix(in srgb, var(--sk-accent) 5%, transparent)'
-          : 'transparent',
-        'border-radius': '0 var(--sk-radius-sm) var(--sk-radius-sm) 0',
-        padding: 'var(--sk-space-xs) var(--sk-space-sm)',
-        'margin-bottom': 'var(--sk-space-xs)',
-      }}
-    >
-      <Flex align="center" gap="xs" {...attr} style={{ 'margin-bottom': '2px' }}>
-        <Text
-          size="xs"
-          {...attr}
-          style={{
-            color: isClaude() ? 'var(--sk-accent)' : 'var(--sk-text-muted)',
-            'font-weight': '600',
-          }}
-        >
+    <div {...attr} class={`sk-inspector__msg ${isClaude() ? 'sk-inspector__msg--claude' : ''}`}>
+      <div class="sk-inspector__msg-meta" {...attr}>
+        <span class="sk-inspector__msg-author" {...attr}>
           {isClaude() ? 'Claude' : 'You'}
-        </Text>
-        <Text size="xs" color="muted" {...attr}>
+        </span>
+        <span class="sk-inspector__msg-time" {...attr}>
           {formatRelativeTime(props.msg.timestamp)}
-        </Text>
-      </Flex>
-      <Text size="sm" {...attr} style={{ 'line-height': '1.4' }}>
+        </span>
+      </div>
+      <div class="sk-inspector__msg-text" {...attr}>
         {props.msg.text}
-      </Text>
-    </Box>
+      </div>
+    </div>
   );
 }
 
@@ -220,49 +191,18 @@ function ThreadItem(props: {
   const el = () => props.ann.elementInfo;
 
   return (
-    <Box
+    <div
       {...attr}
-      style={{
-        border: '1px solid var(--sk-border)',
-        'border-radius': 'var(--sk-radius-md)',
-        'margin-bottom': 'var(--sk-space-xs)',
-        background: isResolved()
-          ? 'color-mix(in srgb, var(--sk-bg-secondary) 60%, transparent)'
-          : 'var(--sk-bg-secondary)',
-        opacity: isResolved() ? '0.75' : '1',
-        overflow: 'hidden',
-      }}
+      class={`sk-inspector__thread ${isResolved() ? 'sk-inspector__thread--resolved' : ''}`}
     >
       {/* Thread header */}
-      <Flex
-        {...attr}
-        align="start"
-        gap="xs"
-        style={{ padding: 'var(--sk-space-sm)', cursor: 'pointer' }}
-        onClick={props.onToggle}
-      >
-        <Box
+      <div {...attr} class="sk-inspector__thread-header" onClick={() => props.onToggle()}>
+        <div
           {...attr}
-          style={{
-            'min-width': '8px',
-            height: '8px',
-            'border-radius': '50%',
-            background: isResolved() ? 'var(--sk-success)' : 'var(--sk-warning)',
-            'margin-top': '4px',
-          }}
+          class={`sk-inspector__dot ${isResolved() ? 'sk-inspector__dot--resolved' : ''}`}
         />
-        <Stack gap="xs" style={{ flex: '1', 'min-width': '0' }} {...attr}>
-          <Text
-            size="xs"
-            color="muted"
-            {...attr}
-            style={{
-              'font-family': 'monospace',
-              'white-space': 'nowrap',
-              overflow: 'hidden',
-              'text-overflow': 'ellipsis',
-            }}
-          >
+        <div class="sk-inspector__thread-main" {...attr}>
+          <span class="sk-inspector__thread-selector" {...attr}>
             {'<' + (el()?.tagName || '?') + '>'}
             {(el()?.classes ?? [])
               .slice(0, 2)
@@ -271,23 +211,14 @@ function ThreadItem(props: {
             {el()?.textPreview != null
               ? ' "' + (el()?.textPreview ?? '').substring(0, 20) + '"'
               : ''}
-          </Text>
+          </span>
           <Show when={firstMsg()}>
-            <Text
-              size="sm"
-              {...attr}
-              style={{
-                'white-space': 'nowrap',
-                overflow: 'hidden',
-                'text-overflow': 'ellipsis',
-                opacity: isResolved() ? '0.7' : '1',
-              }}
-            >
+            <span class="sk-inspector__thread-preview" {...attr}>
               {firstMsg()?.text}
-            </Text>
+            </span>
           </Show>
-        </Stack>
-        <Flex gap="xs" align="center" {...attr} style={{ 'flex-shrink': '0' }}>
+        </div>
+        <div class="sk-inspector__thread-actions" {...attr}>
           <Show when={replyCount() > 0}>
             <Badge variant="default" {...attr}>
               {replyCount()}
@@ -303,7 +234,7 @@ function ThreadItem(props: {
                 props.onResolve();
               }}
             >
-              {isResolved() ? '\u21A9' : '\u2713'}
+              {isResolved() ? '↩' : '✓'}
             </Button>
           </div>
           <div {...attr} title="Delete">
@@ -316,37 +247,31 @@ function ThreadItem(props: {
                 props.onDelete();
               }}
             >
-              \u2715
+              ✕
             </Button>
           </div>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
 
       {/* Expanded thread body */}
       <Show when={props.expanded}>
-        <Box
-          {...attr}
-          style={{ 'border-top': '1px solid var(--sk-border)', padding: 'var(--sk-space-sm)' }}
-        >
+        <div {...attr} class="sk-inspector__thread-body">
           <Button
             {...attr}
             variant="ghost"
             size="sm"
+            class="sk-inspector__jump-btn"
             onClick={props.onHighlight}
-            style={{
-              'margin-bottom': 'var(--sk-space-sm)',
-              'font-family': 'monospace',
-              'font-size': 'var(--sk-font-size-xs)',
-            }}
           >
-            Jump to element \u2197
+            Jump to element ↗
           </Button>
-          <Stack gap="xs" {...attr}>
+          <div class="sk-inspector__msgs" {...attr}>
             <For each={props.ann.thread}>{(msg) => <ThreadMessageItem msg={msg} />}</For>
-          </Stack>
-          <Box {...attr} style={{ 'margin-top': 'var(--sk-space-sm)' }}>
+          </div>
+          <div {...attr} class="sk-inspector__reply-box">
             <textarea
               {...attr}
+              class="sk-inspector__textarea sk-inspector__textarea--reply"
               placeholder="Reply..."
               value={replyText()}
               onInput={(e) => setReplyText(e.currentTarget.value)}
@@ -357,30 +282,11 @@ function ThreadItem(props: {
                 }
                 e.stopPropagation();
               }}
-              style={{
-                width: '100%',
-                'min-height': '56px',
-                padding: 'var(--sk-space-sm)',
-                background: 'var(--sk-bg-primary)',
-                color: 'var(--sk-text-primary)',
-                border: '1px solid var(--sk-border)',
-                'border-radius': 'var(--sk-radius-sm)',
-                'font-size': 'var(--sk-font-size-sm)',
-                resize: 'vertical',
-                outline: 'none',
-                'font-family': 'inherit',
-                'box-sizing': 'border-box',
-              }}
             />
-            <Flex justify="end" gap="xs" {...attr} style={{ 'margin-top': 'var(--sk-space-xs)' }}>
-              <Text
-                size="xs"
-                color="muted"
-                {...attr}
-                style={{ 'align-self': 'center', 'margin-right': 'auto' }}
-              >
+            <div class="sk-inspector__actions sk-inspector__actions--reply" {...attr}>
+              <span class="sk-inspector__kbd-hint" {...attr}>
                 Ctrl+Enter
-              </Text>
+              </span>
               <Button
                 {...attr}
                 variant="primary"
@@ -390,11 +296,11 @@ function ThreadItem(props: {
               >
                 Reply
               </Button>
-            </Flex>
-          </Box>
-        </Box>
+            </div>
+          </div>
+        </div>
       </Show>
-    </Box>
+    </div>
   );
 }
 
@@ -571,25 +477,12 @@ export const Inspector = (props: InspectorProps) => {
     <>
       {/* Hover highlight overlay */}
       <Show when={props.active && hoveredEl() != null && !selectedEl()}>
-        <div {...attr} style={getOverlayStyle(hoveredEl() as Element, false)}>
-          <div
-            {...attr}
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              background: 'var(--sk-info)',
-              color: 'var(--sk-bg-primary)',
-              'font-size': 'var(--sk-font-size-xs)',
-              padding: '1px var(--sk-space-xs)',
-              'border-radius': 'var(--sk-radius-sm)',
-              'pointer-events': 'none',
-              'white-space': 'nowrap',
-              'max-width': '200px',
-              overflow: 'hidden',
-              'text-overflow': 'ellipsis',
-            }}
-          >
+        <div
+          {...attr}
+          class="sk-inspector__overlay"
+          style={getOverlayPosition(hoveredEl() as Element)}
+        >
+          <div {...attr} class="sk-inspector__overlay-tag">
             {(hoveredEl() as Element).tagName.toLowerCase()}
             {(hoveredEl() as Element).className
               ? ' .' +
@@ -603,47 +496,41 @@ export const Inspector = (props: InspectorProps) => {
 
       {/* Selected element highlight */}
       <Show when={selectedEl() != null}>
-        <div {...attr} style={getOverlayStyle(selectedEl() as Element, true)} />
+        <div
+          {...attr}
+          class="sk-inspector__overlay sk-inspector__overlay--selected"
+          style={getOverlayPosition(selectedEl() as Element)}
+        />
       </Show>
 
       {/* Annotation input panel */}
       <Show when={selectedEl() != null}>
-        <div {...attr} style={getAnnotationPanelStyle(selectedEl() as Element)}>
-          <Card {...attr} style={{ padding: 'var(--sk-space-md)' }}>
-            <Stack gap="sm" {...attr}>
-              <Box
-                {...attr}
-                style={{
-                  background: 'var(--sk-bg-secondary)',
-                  'border-radius': 'var(--sk-radius-sm)',
-                  padding: 'var(--sk-space-xs) var(--sk-space-sm)',
-                  border: '1px solid var(--sk-border)',
-                }}
-              >
-                <Text size="xs" color="secondary" {...attr}>
-                  <span style={{ color: 'var(--sk-accent)', 'font-family': 'monospace' }} {...attr}>
-                    {'<' + (selectedEl() as Element).tagName.toLowerCase() + '>'}
-                  </span>{' '}
-                  <span style={{ color: 'var(--sk-text-muted)' }} {...attr}>
-                    {Array.from((selectedEl() as Element).classList)
-                      .slice(0, 3)
-                      .map((c: string) => '.' + c)
-                      .join('')}
-                  </span>
-                </Text>
+        <div
+          {...attr}
+          class="sk-inspector__note"
+          style={getAnnotationPanelPosition(selectedEl() as Element)}
+        >
+          <Card {...attr} padding="md">
+            <div class="sk-inspector__note-stack" {...attr}>
+              <div {...attr} class="sk-inspector__element-chip">
+                <span class="sk-inspector__element-tag" {...attr}>
+                  {'<' + (selectedEl() as Element).tagName.toLowerCase() + '>'}
+                </span>{' '}
+                <span class="sk-inspector__element-classes" {...attr}>
+                  {Array.from((selectedEl() as Element).classList)
+                    .slice(0, 3)
+                    .map((c: string) => '.' + c)
+                    .join('')}
+                </span>
                 <Show when={getTextPreview(selectedEl() as Element)}>
-                  <Text
-                    size="xs"
-                    color="muted"
-                    {...attr}
-                    style={{ 'margin-top': 'var(--sk-space-xs)' }}
-                  >
+                  <div class="sk-inspector__element-preview sk-inspector__hint-text" {...attr}>
                     "{getTextPreview(selectedEl() as Element)}"
-                  </Text>
+                  </div>
                 </Show>
-              </Box>
+              </div>
               <textarea
                 {...attr}
+                class="sk-inspector__textarea"
                 placeholder="Add a comment on this element..."
                 value={noteText()}
                 onInput={(e) => setNoteText(e.currentTarget.value)}
@@ -654,30 +541,11 @@ export const Inspector = (props: InspectorProps) => {
                   }
                   e.stopPropagation();
                 }}
-                style={{
-                  width: '100%',
-                  'min-height': '80px',
-                  padding: 'var(--sk-space-sm)',
-                  background: 'var(--sk-bg-secondary)',
-                  color: 'var(--sk-text-primary)',
-                  border: '1px solid var(--sk-border)',
-                  'border-radius': 'var(--sk-radius-sm)',
-                  'font-size': 'var(--sk-font-size-sm)',
-                  resize: 'vertical',
-                  outline: 'none',
-                  'font-family': 'inherit',
-                  'box-sizing': 'border-box',
-                }}
               />
-              <Flex gap="xs" justify="end" {...attr}>
-                <Text
-                  size="xs"
-                  color="muted"
-                  {...attr}
-                  style={{ 'align-self': 'center', 'margin-right': 'auto' }}
-                >
+              <div class="sk-inspector__actions" {...attr}>
+                <span class="sk-inspector__kbd-hint" {...attr}>
                   Ctrl+Enter to save
-                </Text>
+                </span>
                 <Button
                   {...attr}
                   variant="ghost"
@@ -698,8 +566,8 @@ export const Inspector = (props: InspectorProps) => {
                 >
                   Comment
                 </Button>
-              </Flex>
-            </Stack>
+              </div>
+            </div>
           </Card>
         </div>
       </Show>
@@ -719,6 +587,7 @@ export const Inspector = (props: InspectorProps) => {
           return (
             <div
               {...attr}
+              class={`sk-inspector__pin ${isResolved ? 'sk-inspector__pin--resolved' : ''}`}
               title={ann.thread[0]?.text || ''}
               onClick={() => {
                 setExpandedId(ann.id);
@@ -726,18 +595,11 @@ export const Inspector = (props: InspectorProps) => {
                 highlightAnnotationElement(ann);
               }}
               style={{
-                position: 'fixed',
                 top: rect.top + 'px',
-                left: rect.right - 16 + 'px',
-                'z-index': '99991',
-                cursor: 'pointer',
-                'font-size': '12px',
-                'line-height': '1',
-                'user-select': 'none',
-                opacity: isResolved ? '0.5' : '1',
+                left: rect.right - PIN_OFFSET + 'px',
               }}
             >
-              {'\uD83D\uDCAC'}
+              {'💬'}
             </div>
           );
         }}
@@ -747,12 +609,8 @@ export const Inspector = (props: InspectorProps) => {
       <Show when={highlightEl() != null}>
         <div
           {...attr}
-          style={{
-            ...getOverlayStyle(highlightEl() as Element, true),
-            border: '2px solid var(--sk-warning)',
-            background: 'color-mix(in srgb, var(--sk-warning) 15%, transparent)',
-            'z-index': '99992',
-          }}
+          class="sk-inspector__overlay sk-inspector__overlay--flash"
+          style={getOverlayPosition(highlightEl() as Element)}
         />
       </Show>
 
@@ -761,72 +619,32 @@ export const Inspector = (props: InspectorProps) => {
         <Show
           when={panelOpen()}
           fallback={
-            <div
-              {...attr}
-              style={{
-                position: 'fixed',
-                bottom: 'var(--sk-space-lg)',
-                right: 'var(--sk-space-md)',
-                'z-index': '99993',
-              }}
-            >
+            <div {...attr} class="sk-inspector__fab">
               <Button {...attr} variant="primary" size="sm" onClick={() => setPanelOpen(true)}>
-                {'\uD83D\uDCAC'} {annotations().length} comment
+                {'💬'} {annotations().length} comment
                 {annotations().length !== 1 ? 's' : ''}
               </Button>
             </div>
           }
         >
-          <div
-            {...attr}
-            style={{
-              position: 'fixed',
-              top: '0',
-              right: '0',
-              width: PANEL_WIDTH + 'px',
-              height: '100vh',
-              'z-index': '99993',
-              display: 'flex',
-              'flex-direction': 'column',
-              'border-left': '1px solid var(--sk-border)',
-              background: 'var(--sk-bg-primary)',
-              'box-shadow': 'var(--sk-shadow-lg)',
-            }}
-          >
+          <div {...attr} class="sk-inspector__panel">
             {/* Panel header */}
-            <Flex
-              {...attr}
-              align="center"
-              justify="between"
-              style={{
-                padding: 'var(--sk-space-sm) var(--sk-space-md)',
-                'border-bottom': '1px solid var(--sk-border)',
-                'flex-shrink': '0',
-              }}
-            >
-              <Flex align="center" gap="sm" {...attr}>
-                <Text weight="semibold" size="sm" {...attr}>
+            <div {...attr} class="sk-inspector__panel-header">
+              <div class="sk-inspector__panel-title" {...attr}>
+                <span class="sk-inspector__panel-title-text" {...attr}>
                   Comments
-                </Text>
+                </span>
                 <Badge variant="info" {...attr}>
                   {annotations().length}
                 </Badge>
-              </Flex>
+              </div>
               <Button {...attr} variant="ghost" size="sm" onClick={() => setPanelOpen(false)}>
-                {'\u2715'}
+                {'✕'}
               </Button>
-            </Flex>
+            </div>
 
             {/* Filter tabs */}
-            <Flex
-              {...attr}
-              gap="xs"
-              style={{
-                padding: 'var(--sk-space-xs) var(--sk-space-md)',
-                'border-bottom': '1px solid var(--sk-border)',
-                'flex-shrink': '0',
-              }}
-            >
+            <div {...attr} class="sk-inspector__panel-filters">
               <For each={['all', 'open', 'resolved'] as const}>
                 {(f) => (
                   <Button
@@ -843,18 +661,21 @@ export const Inspector = (props: InspectorProps) => {
                   </Button>
                 )}
               </For>
-            </Flex>
+            </div>
 
             {/* Thread list */}
-            <Box {...attr} style={{ overflow: 'auto', flex: '1', padding: 'var(--sk-space-sm)' }}>
+            <div {...attr} class="sk-inspector__panel-list">
               <Show
                 when={filteredAnnotations().length > 0}
                 fallback={
-                  <Box {...attr} style={{ 'text-align': 'center', padding: 'var(--sk-space-xl)' }}>
-                    <Text size="sm" color="muted" {...attr}>
+                  <div {...attr} class="sk-inspector__panel-empty">
+                    <span class="sk-inspector__panel-empty-icon" aria-hidden="true" {...attr}>
+                      {'💬'}
+                    </span>
+                    <span class="sk-inspector__hint-text" {...attr}>
                       No {filter() !== 'all' ? filter() + ' ' : ''}comments
-                    </Text>
-                  </Box>
+                    </span>
+                  </div>
                 }
               >
                 <For each={filteredAnnotations()}>
@@ -871,27 +692,20 @@ export const Inspector = (props: InspectorProps) => {
                   )}
                 </For>
               </Show>
-            </Box>
+            </div>
 
             {/* Panel footer */}
-            <Box
-              {...attr}
-              style={{
-                padding: 'var(--sk-space-sm) var(--sk-space-md)',
-                'border-top': '1px solid var(--sk-border)',
-                'flex-shrink': '0',
-              }}
-            >
+            <div {...attr} class="sk-inspector__panel-footer">
               <Button
                 {...attr}
                 variant={props.active ? 'primary' : 'secondary'}
                 size="sm"
-                style={{ width: '100%' }}
+                class="sk-inspector__footer-btn"
                 onClick={props.active ? props.onClose : (props.onNewComment ?? props.onClose)}
               >
-                {props.active ? '\u2713 Click any element to comment' : '+ New Comment'}
+                {props.active ? '✓ Click any element to comment' : '+ New Comment'}
               </Button>
-            </Box>
+            </div>
           </div>
         </Show>
       </Show>

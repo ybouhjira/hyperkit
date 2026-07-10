@@ -31,8 +31,7 @@ describe('DocumentPage', () => {
   it('does not render header when not provided', () => {
     const { container } = render(() => <DocumentPage>Content</DocumentPage>);
 
-    // Header div should not be present (checked by border-bottom style)
-    const headerDivs = container.querySelectorAll('div[style*="border-bottom: 1px solid"]');
+    const headerDivs = container.querySelectorAll('.sk-doc-page__header');
     expect(headerDivs.length).toBe(0);
   });
 
@@ -53,9 +52,9 @@ describe('DocumentPage', () => {
   it('does not render footer section when neither footer nor pageNumber provided', () => {
     const { container } = render(() => <DocumentPage>Content</DocumentPage>);
 
-    // The page container should not have a footer div with page-number text
+    // The page container should not have a footer element
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    const footerDivs = docPage.querySelectorAll('div[style*="margin-top: auto"]');
+    const footerDivs = docPage.querySelectorAll('.sk-doc-page__footer');
     expect(footerDivs.length).toBe(0);
   });
 
@@ -63,7 +62,7 @@ describe('DocumentPage', () => {
     const { container } = render(() => <DocumentPage>Content</DocumentPage>);
 
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    expect(docPage.style.maxWidth).toBe('800px');
+    expect(docPage.classList.contains('sk-doc-page-container--portrait')).toBe(true);
   });
 
   it('applies landscape orientation', () => {
@@ -72,33 +71,35 @@ describe('DocumentPage', () => {
     ));
 
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    expect(docPage.style.maxWidth).toBe('1100px');
+    expect(docPage.classList.contains('sk-doc-page-container--landscape')).toBe(true);
   });
 
-  it('defaults to A4 size with portrait aspect ratio', () => {
+  it('defaults to A4 size', () => {
     const { container } = render(() => <DocumentPage>Content</DocumentPage>);
 
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    expect(docPage.style.aspectRatio).toBe('210 / 297');
+    expect(docPage.classList.contains('sk-doc-page-container--a4')).toBe(true);
+    expect(docPage.classList.contains('sk-doc-page-container--portrait')).toBe(true);
   });
 
-  it('applies letter size portrait aspect ratio', () => {
+  it('applies letter size class', () => {
     const { container } = render(() => <DocumentPage size="letter">Content</DocumentPage>);
 
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    expect(docPage.style.aspectRatio).toBe('8.5 / 11');
+    expect(docPage.classList.contains('sk-doc-page-container--letter')).toBe(true);
   });
 
-  it('applies A4 landscape aspect ratio', () => {
+  it('applies A4 landscape classes', () => {
     const { container } = render(() => (
       <DocumentPage orientation="landscape">Content</DocumentPage>
     ));
 
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    expect(docPage.style.aspectRatio).toBe('297 / 210');
+    expect(docPage.classList.contains('sk-doc-page-container--a4')).toBe(true);
+    expect(docPage.classList.contains('sk-doc-page-container--landscape')).toBe(true);
   });
 
-  it('applies letter landscape aspect ratio', () => {
+  it('applies letter landscape classes', () => {
     const { container } = render(() => (
       <DocumentPage size="letter" orientation="landscape">
         Content
@@ -106,7 +107,8 @@ describe('DocumentPage', () => {
     ));
 
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    expect(docPage.style.aspectRatio).toBe('11 / 8.5');
+    expect(docPage.classList.contains('sk-doc-page-container--letter')).toBe(true);
+    expect(docPage.classList.contains('sk-doc-page-container--landscape')).toBe(true);
   });
 
   it('applies custom style', () => {
@@ -118,11 +120,18 @@ describe('DocumentPage', () => {
     expect(docPage.style.color).toBe('red');
   });
 
-  it('applies custom padding', () => {
+  it('applies custom padding via the --sk-doc-padding custom property', () => {
     const { container } = render(() => <DocumentPage padding="30mm">Content</DocumentPage>);
 
     const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
-    expect(docPage.style.padding).toContain('30mm');
+    expect(docPage.style.getPropertyValue('--sk-doc-padding')).toBe('30mm');
+  });
+
+  it('does not set the padding custom property by default', () => {
+    const { container } = render(() => <DocumentPage>Content</DocumentPage>);
+
+    const docPage = container.querySelector('.sk-doc-page-container') as HTMLElement;
+    expect(docPage.style.getPropertyValue('--sk-doc-padding')).toBe('');
   });
 
   it('renders both header and footer together', () => {

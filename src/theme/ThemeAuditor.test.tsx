@@ -136,7 +136,7 @@ describe('ThemeAuditor', () => {
   describe('default behavior (no props)', () => {
     it('renders no overlay by default', () => {
       render(() => <ThemeAuditor />);
-      expect(document.querySelector('[style*="position: fixed"]')).toBeNull();
+      expect(document.querySelector('.sk-theme-auditor')).toBeNull();
     });
 
     it('calls auditThemeVars after 50ms timer', () => {
@@ -173,15 +173,14 @@ describe('ThemeAuditor', () => {
       render(() => <ThemeAuditor overlay={true} />);
       vi.advanceTimersByTime(50);
       // DEV mode is true in vitest, so the overlay should render
-      // jsdom serializes inline styles without spaces: "position:fixed"
-      const overlay = document.querySelector('[style*="position:fixed"]');
+      const overlay = document.querySelector('.sk-theme-auditor');
       expect(overlay).not.toBeNull();
     });
 
     it('does not render overlay when overlay=false', () => {
       render(() => <ThemeAuditor overlay={false} />);
       vi.advanceTimersByTime(50);
-      expect(document.querySelector('[style*="position:fixed"]')).toBeNull();
+      expect(document.querySelector('.sk-theme-auditor')).toBeNull();
     });
   });
 
@@ -213,12 +212,12 @@ describe('ThemeAuditor', () => {
     it('close button hides the overlay', () => {
       render(() => <ThemeAuditor overlay={true} />);
       vi.advanceTimersByTime(50);
-      expect(document.querySelector('[style*="position:fixed"]')).not.toBeNull();
+      expect(document.querySelector('.sk-theme-auditor')).not.toBeNull();
 
       const closeBtn = screen.getByText('×');
       fireEvent.click(closeBtn);
 
-      expect(document.querySelector('[style*="position:fixed"]')).toBeNull();
+      expect(document.querySelector('.sk-theme-auditor')).toBeNull();
     });
   });
 

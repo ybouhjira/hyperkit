@@ -33,7 +33,7 @@
 
 .sk-file-input--dragging .sk-file-input__dropzone {
   border-color: var(--sk-accent);
-  background: var(--sk-accent-alpha);
+  background: var(--sk-accent-muted);
 }
 
 .sk-file-input--disabled .sk-file-input__dropzone {
@@ -42,7 +42,7 @@
 }
 
 .sk-file-input__placeholder {
-  font-size: var(--sk-font-size-md);
+  font-size: var(--sk-font-size-base);
   color: var(--sk-text-primary);
   font-weight: 500;
 }
@@ -79,7 +79,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--sk-accent-alpha);
+  background: var(--sk-accent-muted);
   color: var(--sk-accent);
   border-radius: var(--sk-radius-sm);
   font-size: var(--sk-font-size-xs);
@@ -128,7 +128,7 @@
 }
 
 .sk-file-input__remove:hover:not(:disabled) {
-  background: var(--sk-error-alpha);
+  background: color-mix(in srgb, var(--sk-error) 15%, transparent);
   color: var(--sk-error);
 }
 
@@ -150,7 +150,7 @@
 }
 
 .sk-file-input__add-more:hover:not(:disabled) {
-  background: var(--sk-accent-alpha);
+  background: var(--sk-accent-muted);
   border-color: var(--sk-accent);
 }
 

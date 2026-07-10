@@ -43,11 +43,17 @@ interface Tab {
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
+/*
+ * Status colors reference the self-contained --sk-dt-* palette defined in
+ * DevToolbar.css. The overlay is deliberately independent from the host
+ * theme (fixed dark surface), so it must not use host --sk-* status tokens.
+ */
+
 function getBreakpoint(w: number): { label: string; color: string } {
-  if (w < 640) return { label: 'Phone', color: '#f59e0b' };
-  if (w < 1024) return { label: 'Tablet', color: '#3b82f6' };
-  if (w < 1920) return { label: 'Desktop', color: '#10b981' };
-  return { label: 'Wide', color: '#8b5cf6' };
+  if (w < 640) return { label: 'Phone', color: 'var(--sk-dt-amber)' };
+  if (w < 1024) return { label: 'Tablet', color: 'var(--sk-dt-blue)' };
+  if (w < 1920) return { label: 'Desktop', color: 'var(--sk-dt-green)' };
+  return { label: 'Wide', color: 'var(--sk-dt-violet)' };
 }
 
 function getMemoryMB(): string {
@@ -73,9 +79,9 @@ function getThemeFromDom(): string {
 }
 
 function getHealthColor(status: string): string {
-  if (status === 'healthy') return '#10b981';
-  if (status === 'degraded') return '#f59e0b';
-  return '#ef4444';
+  if (status === 'healthy') return 'var(--sk-dt-green)';
+  if (status === 'degraded') return 'var(--sk-dt-amber)';
+  return 'var(--sk-dt-red)';
 }
 
 function getHealthIcon(status: string): string {
@@ -85,9 +91,9 @@ function getHealthIcon(status: string): string {
 }
 
 function getSeverityColor(sev: string): string {
-  if (sev === 'critical') return '#ef4444';
-  if (sev === 'major') return '#f97316';
-  return '#eab308';
+  if (sev === 'critical') return 'var(--sk-dt-red)';
+  if (sev === 'major') return 'var(--sk-dt-orange)';
+  return 'var(--sk-dt-yellow)';
 }
 
 function timeAgo(iso: string): string {
@@ -235,7 +241,13 @@ export function DevToolbar(props: DevToolbarProps) {
 
     // Theme
     const theme = props.themeName || getThemeFromDom();
-    features.push({ icon: '🎨', name: 'Theme', status: 'active', detail: theme, color: '#8b5cf6' });
+    features.push({
+      icon: '🎨',
+      name: 'Theme',
+      status: 'active',
+      detail: theme,
+      color: 'var(--sk-dt-violet)',
+    });
 
     // Inspector
     const pins = document.querySelectorAll('.sk-inspector-pin, [data-sk-annotation]').length;
@@ -244,7 +256,7 @@ export function DevToolbar(props: DevToolbarProps) {
       name: 'Inspector',
       status: props.onInspect ? 'active' : 'inactive',
       detail: pins > 0 ? `${pins} annotations` : props.onInspect ? 'Ready' : 'Not wired',
-      color: props.onInspect ? '#3b82f6' : '#4b5563',
+      color: props.onInspect ? 'var(--sk-dt-blue)' : 'var(--sk-dt-gray)',
     });
 
     // Bug Reporter
@@ -253,7 +265,11 @@ export function DevToolbar(props: DevToolbarProps) {
       name: 'Bug Reporter',
       status: props.bugStorage ? 'active' : 'inactive',
       detail: props.bugStorage ? `${openBugs()} open` : 'No storage',
-      color: props.bugStorage ? (openBugs() > 0 ? '#ef4444' : '#10b981') : '#4b5563',
+      color: props.bugStorage
+        ? openBugs() > 0
+          ? 'var(--sk-dt-red)'
+          : 'var(--sk-dt-green)'
+        : 'var(--sk-dt-gray)',
     });
 
     // Navigation Framework
@@ -263,7 +279,7 @@ export function DevToolbar(props: DevToolbarProps) {
       name: 'Navigation',
       status: navCount > 0 ? 'active' : 'inactive',
       detail: navCount > 0 ? `${navCount} navigables` : 'No navigables',
-      color: navCount > 0 ? '#06b6d4' : '#4b5563',
+      color: navCount > 0 ? 'var(--sk-dt-cyan)' : 'var(--sk-dt-gray)',
     });
 
     // Actions
@@ -273,7 +289,7 @@ export function DevToolbar(props: DevToolbarProps) {
       name: 'Actions',
       status: actCount > 0 ? 'active' : 'inactive',
       detail: actCount > 0 ? `${actCount} dispatched` : 'None yet',
-      color: actCount > 0 ? '#f59e0b' : '#4b5563',
+      color: actCount > 0 ? 'var(--sk-dt-amber)' : 'var(--sk-dt-gray)',
     });
 
     // Health
@@ -289,7 +305,12 @@ export function DevToolbar(props: DevToolbarProps) {
             ? `${unhealthy} issues`
             : 'All healthy'
           : 'No checks',
-      color: healthItems.length > 0 ? (unhealthy > 0 ? '#f59e0b' : '#10b981') : '#4b5563',
+      color:
+        healthItems.length > 0
+          ? unhealthy > 0
+            ? 'var(--sk-dt-amber)'
+            : 'var(--sk-dt-green)'
+          : 'var(--sk-dt-gray)',
     });
 
     return features;
@@ -374,7 +395,7 @@ export function DevToolbar(props: DevToolbarProps) {
                       icon="🚀"
                       label={props.version ? `v${props.version}` : 'App'}
                       value={props.product || 'SolidKit'}
-                      color="#7c3aed"
+                      color="var(--sk-dt-accent)"
                     />
                     <MetricCard
                       icon="📐"
@@ -386,27 +407,36 @@ export function DevToolbar(props: DevToolbarProps) {
                       icon="🎨"
                       label="Theme"
                       value={props.themeName || getThemeFromDom()}
-                      color="#8b5cf6"
+                      color="var(--sk-dt-violet)"
                       onClick={props.onThemeToggle}
                     />
                     <MetricCard
                       icon="⚡"
                       label="DOM Load"
                       value={loadMs !== '—' ? `${loadMs}ms` : '—'}
-                      color={loadMs !== '—' && parseInt(loadMs) < 500 ? '#10b981' : '#f59e0b'}
+                      color={
+                        loadMs !== '—' && parseInt(loadMs) < 500
+                          ? 'var(--sk-dt-green)'
+                          : 'var(--sk-dt-amber)'
+                      }
                     />
                     <MetricCard
                       icon="🧠"
                       label="JS Heap"
                       value={memory() !== '—' ? `${memory()}MB` : '—'}
-                      color="#06b6d4"
+                      color="var(--sk-dt-cyan)"
                     />
-                    <MetricCard icon="🏗️" label="DOM Nodes" value={domNodes()} color="#6366f1" />
+                    <MetricCard
+                      icon="🏗️"
+                      label="DOM Nodes"
+                      value={domNodes()}
+                      color="var(--sk-dt-indigo)"
+                    />
                     <MetricCard
                       icon="🐛"
                       label="Open Bugs"
                       value={String(openBugs())}
-                      color={openBugs() > 0 ? '#ef4444' : '#10b981'}
+                      color={openBugs() > 0 ? 'var(--sk-dt-red)' : 'var(--sk-dt-green)'}
                       onClick={props.onBugReport}
                     />
                   </div>
@@ -483,7 +513,11 @@ export function DevToolbar(props: DevToolbarProps) {
                           >
                             <span
                               class="sk-dt-action-entry__dot"
-                              style={{ background: action.result?.error ? '#ef4444' : '#10b981' }}
+                              style={{
+                                background: action.result?.error
+                                  ? 'var(--sk-dt-red)'
+                                  : 'var(--sk-dt-green)',
+                              }}
                             />
                             <span class="sk-dt-action-entry__target">{action.target}</span>
                             <span class="sk-dt-action-entry__action">{action.action}</span>
@@ -568,7 +602,7 @@ export function DevToolbar(props: DevToolbarProps) {
                       }
                       )
                     </button>
-                    <div style={{ flex: '1' }} />
+                    <div class="sk-dt-bug-filters__spacer" />
                     <Show when={props.onBugReport}>
                       <button class="sk-dt-bug-new" onClick={() => props.onBugReport?.()}>
                         + New Bug

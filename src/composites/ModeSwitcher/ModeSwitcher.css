@@ -136,7 +136,7 @@
   padding: var(--sk-space-px) var(--sk-space-xs);
   font-family: var(--sk-font-mono);
   font-size: var(--sk-font-size-xs);
-  color: var(--sk-text-tertiary);
+  color: var(--sk-text-muted);
   background: var(--sk-bg-secondary);
   border: 1px solid var(--sk-border);
   border-radius: var(--sk-radius-sm);
