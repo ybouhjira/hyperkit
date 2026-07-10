@@ -1,8 +1,15 @@
-import { Match, Switch } from 'solid-js'
+import { For, Match, Switch } from 'solid-js'
 import { useExplorer } from '../../stores/explorerStore'
+import type { ExplorerState } from '../../api/types'
 import { ConsoleTab } from './ConsoleTab'
 import { ActionsTab } from './ActionsTab'
 import { InspectorPanel } from '../../../../devtools/src/explorer/InspectorPanel'
+
+const TABS: ReadonlyArray<{ id: ExplorerState['activeOutputTab']; label: string }> = [
+  { id: 'console', label: 'Console' },
+  { id: 'actions', label: 'Actions' },
+  { id: 'inspector', label: 'Inspector' },
+]
 
 export function OutputPanel() {
   const { state, actions } = useExplorer()
@@ -25,69 +32,32 @@ export function OutputPanel() {
           background: 'var(--sk-bg-secondary)',
         }}
       >
-        <button
-          onClick={() => actions.setActiveOutputTab('console')}
-          style={{
-            padding: '8px 16px',
-            'font-family': 'var(--sk-font-ui)',
-            'font-size': '12px',
-            background:
-              state.activeOutputTab === 'console'
-                ? 'var(--sk-bg-primary)'
-                : 'transparent',
-            color: 'var(--sk-text-primary)',
-            border: 'none',
-            'border-bottom':
-              state.activeOutputTab === 'console'
-                ? '2px solid var(--sk-accent)'
-                : '2px solid transparent',
-            cursor: 'pointer',
+        <For each={TABS}>
+          {(tab) => {
+            const isActive = () => state.activeOutputTab === tab.id
+            return (
+              <button
+                onClick={() => actions.setActiveOutputTab(tab.id)}
+                style={{
+                  padding: 'var(--sk-space-sm) var(--sk-space-md)',
+                  'font-family': 'var(--sk-font-mono)',
+                  'font-size': 'var(--sk-font-size-sm)',
+                  background: isActive() ? 'var(--sk-bg-primary)' : 'transparent',
+                  color: isActive() ? 'var(--sk-text-primary)' : 'var(--sk-text-muted)',
+                  border: 'none',
+                  'border-bottom': isActive()
+                    ? '2px solid var(--sk-accent)'
+                    : '2px solid transparent',
+                  cursor: 'pointer',
+                  transition:
+                    'color var(--sk-duration-fast) var(--sk-ease-default), background var(--sk-duration-fast) var(--sk-ease-default)',
+                }}
+              >
+                {tab.label}
+              </button>
+            )
           }}
-        >
-          Console
-        </button>
-        <button
-          onClick={() => actions.setActiveOutputTab('actions')}
-          style={{
-            padding: '8px 16px',
-            'font-family': 'var(--sk-font-ui)',
-            'font-size': '12px',
-            background:
-              state.activeOutputTab === 'actions'
-                ? 'var(--sk-bg-primary)'
-                : 'transparent',
-            color: 'var(--sk-text-primary)',
-            border: 'none',
-            'border-bottom':
-              state.activeOutputTab === 'actions'
-                ? '2px solid var(--sk-accent)'
-                : '2px solid transparent',
-            cursor: 'pointer',
-          }}
-        >
-          Actions
-        </button>
-        <button
-          onClick={() => actions.setActiveOutputTab('inspector')}
-          style={{
-            padding: '8px 16px',
-            'font-family': 'var(--sk-font-ui)',
-            'font-size': '12px',
-            background:
-              state.activeOutputTab === 'inspector'
-                ? 'var(--sk-bg-primary)'
-                : 'transparent',
-            color: 'var(--sk-text-primary)',
-            border: 'none',
-            'border-bottom':
-              state.activeOutputTab === 'inspector'
-                ? '2px solid var(--sk-accent)'
-                : '2px solid transparent',
-            cursor: 'pointer',
-          }}
-        >
-          Inspector
-        </button>
+        </For>
       </div>
 
       <div style={{ flex: '1', 'overflow-y': 'auto' }}>

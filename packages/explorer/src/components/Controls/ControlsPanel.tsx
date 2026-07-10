@@ -28,7 +28,7 @@ export function ControlsPanel(props: ControlsPanelProps) {
   return (
     <div
       style={{
-        padding: '16px',
+        padding: 'var(--sk-space-md)',
         background: 'var(--sk-bg-secondary)',
         'border-top': '1px solid var(--sk-border)',
         'overflow-y': 'auto',
@@ -40,18 +40,18 @@ export function ControlsPanel(props: ControlsPanelProps) {
         fallback={
           <div
             style={{
-              'font-family': 'var(--sk-font-ui)',
-              'font-size': '13px',
+              'font-family': 'var(--sk-font-mono)',
+              'font-size': 'var(--sk-font-size-sm)',
               color: 'var(--sk-text-secondary)',
               'text-align': 'center',
-              padding: '20px',
+              padding: 'var(--sk-space-lg)',
             }}
           >
             No controls available
           </div>
         }
       >
-        <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px' }}>
+        <div style={{ display: 'flex', 'flex-direction': 'column', gap: 'var(--sk-space-sm)' }}>
           <For each={controlEntries()}>
             {([key, control]) => {
               const value = () => state.controlValues[key] ?? control.defaultValue

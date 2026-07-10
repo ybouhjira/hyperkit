@@ -91,8 +91,10 @@ const config: Config = {
   themeConfig: {
     image: 'img/social-card.png',
     colorMode: {
+      // Dark is the site identity (fjord IDE chrome); the toggle stays
+      // available and light mode remains a first-class variant.
       defaultMode: 'dark',
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'HyperKit',

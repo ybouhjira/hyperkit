@@ -29,7 +29,7 @@ export function JsonControl(props: JsonControlProps) {
       {props.control.label && (
         <label
           style={{
-            'font-size': '12px',
+            'font-size': 'var(--sk-font-size-sm)',
             'font-family': 'var(--sk-font-ui)',
             color: 'var(--sk-text-secondary)',
           }}
@@ -44,10 +44,10 @@ export function JsonControl(props: JsonControlProps) {
         style={{
           padding: '8px',
           'font-family': 'var(--sk-font-mono)',
-          'font-size': '12px',
+          'font-size': 'var(--sk-font-size-sm)',
           background: 'var(--sk-bg-primary)',
           color: 'var(--sk-text-primary)',
-          border: `1px solid ${error() ? '#ef4444' : 'var(--sk-border)'}`,
+          border: `1px solid ${error() ? 'var(--sk-error)' : 'var(--sk-border)'}`,
           'border-radius': 'var(--sk-radius-sm)',
           outline: 'none',
           resize: 'vertical',
@@ -56,9 +56,9 @@ export function JsonControl(props: JsonControlProps) {
       {error() && (
         <span
           style={{
-            'font-size': '11px',
+            'font-size': 'var(--sk-font-size-xs)',
             'font-family': 'var(--sk-font-ui)',
-            color: '#ef4444',
+            color: 'var(--sk-error)',
           }}
         >
           {error()}

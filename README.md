@@ -9,7 +9,7 @@
 
 ![HyperKit components](.github/assets/component-collage.png)
 
-HyperKit is not another button library. It is a full application layer: accessible primitives (built on [@kobalte/core](https://kobalte.dev)), feature-rich composites (chat, kanban, file explorer, command palette), resizable IDE panels, a keyboard system, 39 theme presets driven entirely by CSS custom properties, typed [Effect](https://effect.website) services, and an MCP server so AI assistants can look up its API like a teammate would.
+HyperKit is not another button library. It is a full application layer: accessible primitives (built on [@kobalte/core](https://kobalte.dev)), feature-rich composites (chat, kanban, file explorer, command palette), resizable IDE panels, a keyboard system, 40 theme presets driven entirely by CSS custom properties, typed [Effect](https://effect.website) services, and an MCP server so AI assistants can look up its API like a teammate would.
 
 The long-term goal is **one component API, many renderers** — the SolidJS renderer ships today, a React adapter is the next milestone, and the core (diagram engine, design tokens, theme system, behavior tests) is already framework-agnostic. Alongside the UI, a full-stack platform layer (services, realtime, persistence, desktop) is taking shape. See the [Roadmap](ROADMAP.md).
 
@@ -18,7 +18,7 @@ The long-term goal is **one component API, many renderers** — the SolidJS rend
 - **One API, many renderers** — the component contract, `--sk-*` tokens, themes, and behavior tests are renderer-independent; SolidJS is the first renderer, React ([roadmap](ROADMAP.md)) is next. `diagram-core` is already fully framework-agnostic.
 - **AI-native by design** — Ships an [MCP server](#ai-integration) for component-doc lookup, `llms.txt`/`llms-full.txt` for machine consumption, and a navigation registry that can expose your UI's actions as MCP tools (`generateMCPTools`) so agents can drive the interface.
 - **IDE-grade systems, not just widgets** — Resizable panel layouts, a navigable action registry with middleware (permissions, undo/redo, rate limiting), transport adapters (WebSocket, MessagePort, Tauri), and recording/replay.
-- **Token-first theming** — Every visual value flows through `--sk-*` CSS custom properties. 39 built-in presets (editor, OS, and product-inspired). A custom ESLint plugin enforces the token discipline in this repo's own CI.
+- **Token-first theming** — Every visual value flows through `--sk-*` CSS custom properties. 40 built-in presets (editor, OS, and product-inspired). A custom ESLint plugin enforces the token discipline in this repo's own CI.
 - **Feature-scaled components** — Fewer, larger components that grow with props instead of fragmenting into micro-packages: `FileExplorer` scales from a file list to a two-pane browser with preview, sort, filter, and picker/save modes.
 - **Effect-TS services** — WebSocket, Session, FileSystem, Clipboard, and Logging services with typed errors — no `try/catch` soup.
 - **Tested** — 5,000+ unit tests across the monorepo, plus visual regression, publint/attw packaging checks, bundle-size budgets, and dead-export detection (knip) in one quality gate.
@@ -77,7 +77,7 @@ Full catalog with props and examples: [`llms.txt`](llms.txt) (index) / [`llms-fu
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Panel system**         | IDE-style resizable/dockable panel layouts with drag-and-drop rearranging                                                                                                |
 | **Navigation framework** | Navigable registry + action dispatch, 5 middleware (permissions, undo/redo, logging, analytics, rate limiting), transports, persistence, recording/replay, health checks |
-| **Theme system**         | ThemeProvider, 39 presets, theme sounds (Web-Audio), visual effect toggles                                                                                               |
+| **Theme system**         | ThemeProvider, 40 presets, theme sounds (Web-Audio), visual effect toggles                                                                                               |
 | **Keyboard system**      | Scoped shortcuts, conflict handling, searchable ShortcutsHelp dialog                                                                                                     |
 | **Animation**            | Transition presets, scroll reveal, `prefers-reduced-motion` respected                                                                                                    |
 | **Effect services**      | Logging (transports/redaction/sampling), WebSocket, Session, FileSystem, Clipboard                                                                                       |
@@ -101,7 +101,7 @@ Full catalog with props and examples: [`llms.txt`](llms.txt) (index) / [`llms-fu
 
 ## Theme System
 
-39 presets, all driven by `--sk-*` CSS custom properties:
+40 presets, all driven by `--sk-*` CSS custom properties:
 
 ```tsx
 import { ThemeProvider, themePresets } from '@ybouhjira/hyperkit';

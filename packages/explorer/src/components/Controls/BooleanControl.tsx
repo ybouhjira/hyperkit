@@ -22,7 +22,7 @@ export function BooleanControl(props: BooleanControlProps) {
       {props.control.label && (
         <label
           style={{
-            'font-size': '13px',
+            'font-size': 'var(--sk-font-size-base)',
             'font-family': 'var(--sk-font-ui)',
             color: 'var(--sk-text-primary)',
             cursor: 'pointer',

@@ -55,6 +55,7 @@ export {
   productivityBlueTheme,
   neonStudioTheme,
   hyperlabsTheme,
+  fjordTheme,
 } from './theme/presets';
 export type { ThemeConfig, ThemeColors, ThemeFonts, ThemeRadius } from './theme/types';
 // Theme-driven sound design — primitives + apps trigger via play(name).

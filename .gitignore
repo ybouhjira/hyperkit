@@ -27,3 +27,4 @@ tools/*
 !tools/sk-audit/**
 2026-*.txt
 .idea/
+designs/

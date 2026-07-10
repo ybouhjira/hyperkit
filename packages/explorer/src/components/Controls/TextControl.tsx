@@ -12,7 +12,7 @@ export function TextControl(props: TextControlProps) {
       {props.control.label && (
         <label
           style={{
-            'font-size': '12px',
+            'font-size': 'var(--sk-font-size-sm)',
             'font-family': 'var(--sk-font-ui)',
             color: 'var(--sk-text-secondary)',
           }}
@@ -27,7 +27,7 @@ export function TextControl(props: TextControlProps) {
         style={{
           padding: '6px 8px',
           'font-family': 'var(--sk-font-ui)',
-          'font-size': '13px',
+          'font-size': 'var(--sk-font-size-base)',
           background: 'var(--sk-bg-primary)',
           color: 'var(--sk-text-primary)',
           border: '1px solid var(--sk-border)',

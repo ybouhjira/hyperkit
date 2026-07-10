@@ -16,21 +16,19 @@ import { useTheme } from '@ybouhjira/hyperkit'
 import type { ComponentStoryDef } from '../api/types'
 
 const THEME_KEY = 'sk-explorer-theme'
+const DEFAULT_THEME_ID = 'fjord'
 
 export function Shell() {
   const { state, actions } = useExplorer()
   const plugins = usePlugins()
   const { setTheme, themes } = useTheme()
 
-  const savedThemeId = localStorage.getItem(THEME_KEY) ?? 'zed-dark'
+  const savedThemeId = localStorage.getItem(THEME_KEY) ?? DEFAULT_THEME_ID
   const [currentThemeId, setCurrentThemeId] = createSignal(savedThemeId)
 
-  // Apply saved theme on mount
+  // Apply saved theme (or the Explorer default) on mount
   onMount(() => {
-    const saved = localStorage.getItem(THEME_KEY)
-    if (saved) {
-      setTheme(saved)
-    }
+    setTheme(savedThemeId)
   })
 
   const handleThemeChange = (id: string) => {
@@ -101,11 +99,11 @@ export function Shell() {
           background: 'var(--sk-bg-primary)',
         }}
       >
-        {/* Top Bar */}
+        {/* Top Bar — IDE menubar chrome */}
         <div
           style={{
-            padding: '12px var(--sk-space-md)',
-            background: 'var(--sk-bg-secondary)',
+            padding: 'var(--sk-space-sm) var(--sk-space-md)',
+            background: 'var(--sk-bg-elevated)',
             'border-bottom': '1px solid var(--sk-border)',
             display: 'flex',
             'align-items': 'center',
@@ -113,17 +111,30 @@ export function Shell() {
             'flex-shrink': '0',
           }}
         >
-          <h1
-            style={{
-              margin: '0',
-              'font-family': 'var(--sk-font-ui)',
-              'font-size': 'var(--sk-font-size-xl)',
-              'font-weight': '600',
-              color: 'var(--sk-text-primary)',
-            }}
-          >
-            HyperKit Explorer
-          </h1>
+          <div style={{ display: 'flex', 'align-items': 'center', gap: 'var(--sk-space-sm)' }}>
+            <span
+              aria-hidden="true"
+              style={{
+                width: 'var(--sk-icon-lg)',
+                height: 'var(--sk-icon-lg)',
+                'flex-shrink': '0',
+                'border-radius': 'var(--sk-radius-sm)',
+                background: 'linear-gradient(135deg, var(--sk-accent-hover) 0%, var(--sk-accent) 100%)',
+              }}
+            />
+            <h1
+              style={{
+                margin: '0',
+                'font-family': 'var(--sk-font-mono)',
+                'font-size': 'var(--sk-font-size-lg)',
+                'font-weight': '600',
+                'letter-spacing': '-0.02em',
+                color: 'var(--sk-text-primary)',
+              }}
+            >
+              HyperKit Explorer
+            </h1>
+          </div>
 
           {/* Right side: toolbar plugin slots + theme picker */}
           <div style={{ display: 'flex', 'align-items': 'center', gap: 'var(--sk-space-sm)' }}>
@@ -140,7 +151,7 @@ export function Shell() {
                 'border-radius': 'var(--sk-radius-sm)',
                 padding: 'var(--sk-space-xs) var(--sk-space-sm)',
                 'font-size': 'var(--sk-font-size-sm)',
-                'font-family': 'var(--sk-font-ui)',
+                'font-family': 'var(--sk-font-mono)',
                 cursor: 'pointer',
                 outline: 'none',
               }}

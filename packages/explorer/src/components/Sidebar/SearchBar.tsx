@@ -4,7 +4,7 @@ export function SearchBar() {
   const { state, actions } = useExplorer()
 
   return (
-    <div style={{ padding: '12px' }}>
+    <div style={{ padding: 'var(--sk-space-sm)' }}>
       <input
         type="text"
         placeholder="Search stories..."
@@ -12,13 +12,13 @@ export function SearchBar() {
         onInput={(e) => actions.setSearchQuery(e.currentTarget.value)}
         style={{
           width: '100%',
-          padding: '8px 12px',
-          'font-family': 'var(--sk-font-ui)',
-          'font-size': '13px',
+          padding: 'var(--sk-space-sm)',
+          'font-family': 'var(--sk-font-mono)',
+          'font-size': 'var(--sk-font-size-sm)',
           background: 'var(--sk-bg-primary)',
           color: 'var(--sk-text-primary)',
           border: '1px solid var(--sk-border)',
-          'border-radius': 'var(--sk-radius-md)',
+          'border-radius': 'var(--sk-radius-sm)',
           outline: 'none',
         }}
       />

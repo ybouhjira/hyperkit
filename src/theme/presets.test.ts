@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { themePresets } from './presets';
 
 describe('Theme Presets', () => {
-  it('has 39 themes', () => {
-    expect(Object.keys(themePresets)).toHaveLength(39);
+  it('has 40 themes', () => {
+    expect(Object.keys(themePresets)).toHaveLength(40);
   });
 
   it('each theme has required fields', () => {

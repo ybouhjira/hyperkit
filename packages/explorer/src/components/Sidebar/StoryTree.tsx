@@ -25,17 +25,23 @@ function TreeNode(props: { node: StoryGroup | StoryEntry; level: number }) {
         style={{
           padding: '6px 12px',
           'padding-left': `${props.level * 16 + 12}px`,
-          'font-family': 'var(--sk-font-ui)',
-          'font-size': '13px',
+          'font-family': 'var(--sk-font-mono)',
+          'font-size':
+            isGroup() && props.level === 0 ? 'var(--sk-font-size-xs)' : 'var(--sk-font-size-sm)',
           color: isSelected()
             ? 'var(--sk-accent)'
-            : 'var(--sk-text-primary)',
-          background: isSelected() ? 'var(--sk-bg-tertiary)' : 'transparent',
+            : isGroup()
+              ? 'var(--sk-text-muted)'
+              : 'var(--sk-text-secondary)',
+          background: isSelected() ? 'var(--sk-accent-muted)' : 'transparent',
+          'box-shadow': isSelected() ? 'inset 2px 0 0 var(--sk-accent)' : 'none',
           cursor: isStory() ? 'pointer' : 'default',
-          transition: 'background 0.15s',
+          transition: 'background var(--sk-duration-fast) var(--sk-ease-default)',
           'border-radius': 'var(--sk-radius-sm)',
           margin: '2px 8px',
-          'font-weight': isGroup() ? '500' : '400',
+          'font-weight': isGroup() ? '600' : '400',
+          'text-transform': isGroup() && props.level === 0 ? 'uppercase' : 'none',
+          'letter-spacing': isGroup() && props.level === 0 ? '0.08em' : 'normal',
         }}
         onMouseEnter={(e) => {
           if (isStory() && !isSelected()) {
@@ -88,10 +94,10 @@ export function StoryTree() {
         fallback={
           <div
             style={{
-              padding: '20px',
+              padding: 'var(--sk-space-lg)',
               'text-align': 'center',
-              'font-family': 'var(--sk-font-ui)',
-              'font-size': '13px',
+              'font-family': 'var(--sk-font-mono)',
+              'font-size': 'var(--sk-font-size-sm)',
               color: 'var(--sk-text-secondary)',
             }}
           >

@@ -1,26 +1,52 @@
+/**
+ * LivePlayground — framed as an IDE window (fjord "IDE chrome" theme).
+ * Palette comes from the --hk-* tokens defined in src/css/custom.css,
+ * so the frame adapts to light/dark automatically.
+ */
+
 .playground {
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: var(--ifm-global-radius);
+  border: 1px solid var(--hk-border-strong);
+  border-radius: 10px;
   margin-bottom: var(--ifm-leading);
   overflow: hidden;
+  background: var(--hk-bg1);
+  box-shadow: 0 12px 34px -18px rgba(0, 0, 0, 0.45);
 }
 
+/* ---- header bar = editor tab strip, traffic lights first ---- */
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.75rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-300);
-  background: var(--ifm-background-surface-color);
-  font-size: 0.8rem;
+  gap: 0.35rem 0.5rem;
+  min-height: 38px;
+  padding: 0.3rem 0.85rem;
+  border-bottom: 1px solid var(--hk-border);
+  background: var(--hk-bg2);
+  font-family: var(--hk-mono);
+  font-size: 12px;
+}
+
+.toolbar::before {
+  content: '';
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow:
+    17px 0 0 #febc2e,
+    34px 0 0 #28c840;
+  margin-right: 38px;
 }
 
 .toolbarLabel {
-  color: var(--ifm-color-emphasis-600);
+  color: var(--hk-muted);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-size: 10.5px;
+  white-space: nowrap;
 }
 
 .toolbarSpacer {
@@ -28,34 +54,57 @@
 }
 
 .themeSelect {
-  font: inherit;
-  color: var(--ifm-font-color-base);
-  background: var(--ifm-background-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
+  font-family: var(--hk-mono);
+  font-size: 12px;
+  color: var(--hk-text-2);
+  background: var(--hk-bg3);
+  border: 1px solid var(--hk-border-strong);
   border-radius: 6px;
-  padding: 0.2rem 0.4rem;
+  padding: 0.2rem 0.45rem;
   max-width: 12rem;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.themeSelect:hover {
+  border-color: var(--hk-accent-line);
+  color: var(--hk-text);
 }
 
 .resetButton {
-  font: inherit;
-  color: var(--ifm-font-color-base);
-  background: var(--ifm-background-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
+  font-family: var(--hk-mono);
+  font-size: 12px;
+  color: var(--hk-text-2);
+  background: var(--hk-bg3);
+  border: 1px solid var(--hk-border-strong);
   border-radius: 6px;
-  padding: 0.2rem 0.6rem;
+  padding: 0.2rem 0.65rem;
   cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .resetButton:hover {
-  background: var(--ifm-color-emphasis-100);
+  border-color: var(--hk-accent-line);
+  color: var(--hk-text);
+  background: var(--hk-bg3);
 }
 
+/* ---- preview pane — blueprint grid, like the mockup canvas ---- */
 .previewWrap {
   position: relative;
-  background:
-    repeating-conic-gradient(var(--ifm-color-emphasis-100) 0% 25%, transparent 0% 50%) 0 0 / 16px
-    16px;
+  background-color: var(--hk-bg1);
+  background-image:
+    linear-gradient(var(--hk-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hk-grid-line) 1px, transparent 1px);
+  background-size: 22px 22px;
+  --hk-grid-line: rgba(23, 33, 46, 0.04);
+}
+
+:global([data-theme='dark']) .previewWrap {
+  --hk-grid-line: rgba(255, 255, 255, 0.025);
 }
 
 .previewFrame {
@@ -72,38 +121,54 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ifm-color-emphasis-600);
-  font-size: 0.85rem;
-  background: var(--ifm-background-color);
+  color: var(--hk-muted);
+  font-family: var(--hk-mono);
+  font-size: 12px;
+  background: var(--hk-bg1);
 }
 
+/* ---- editor pane — sunken, separated like a split editor ---- */
 .editorWrap {
-  border-top: 1px solid var(--ifm-color-emphasis-300);
+  border-top: 1px solid var(--hk-border);
   max-height: 24rem;
   overflow: auto;
-  font-size: 0.85rem;
+  font-size: 12.5px;
+  background: var(--hk-bg-sunken);
 }
 
 .editorWrap :global(.cm-editor) {
-  background: var(--ifm-code-background);
+  background: var(--hk-bg-sunken);
+  font-family: var(--hk-mono);
+}
+
+.editorWrap :global(.cm-gutters) {
+  background: var(--hk-bg-sunken);
+  border-right: 1px solid var(--hk-border);
+  color: var(--hk-muted);
+}
+
+.editorWrap :global(.cm-activeLineGutter) {
+  background: var(--hk-bg2);
 }
 
 .editorWrap :global(.cm-editor.cm-focused) {
   outline: none;
 }
 
+/* ---- error panel ---- */
 .errorPanel {
   border-top: 1px solid var(--ifm-color-danger-dark);
   background: var(--ifm-color-danger-contrast-background);
   color: var(--ifm-color-danger-darkest);
   padding: 0.6rem 0.9rem;
   margin: 0;
-  font-size: 0.8rem;
+  font-family: var(--hk-mono);
+  font-size: 12px;
   white-space: pre-wrap;
   overflow-x: auto;
   max-height: 12rem;
 }
 
-[data-theme='dark'] .errorPanel {
+:global([data-theme='dark']) .errorPanel {
   color: var(--ifm-color-danger-lightest);
 }

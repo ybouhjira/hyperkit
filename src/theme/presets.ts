@@ -15,6 +15,8 @@ import { cyberMaxTheme } from './cyber-max';
 export { cyberMaxTheme } from './cyber-max';
 import { proTheme } from './pro';
 export { proTheme } from './pro';
+import { fjordTheme } from './fjord';
+export { fjordTheme } from './fjord';
 
 export const zedDarkTheme: ThemeConfig = {
   id: 'zed-dark',
@@ -2821,4 +2823,5 @@ export const themePresets: Record<string, ThemeConfig> = {
   hyperlabs: hyperlabsTheme,
   'cyber-max': cyberMaxTheme,
   pro: proTheme,
+  fjord: fjordTheme,
 };

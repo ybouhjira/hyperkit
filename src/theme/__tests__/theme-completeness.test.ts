@@ -31,6 +31,6 @@ describe('Theme CSS Variable Completeness', () => {
   });
 
   it('total theme count matches expectations', () => {
-    expect(Object.keys(themePresets).length).toBe(39);
+    expect(Object.keys(themePresets).length).toBe(40);
   });
 });

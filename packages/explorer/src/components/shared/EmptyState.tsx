@@ -7,7 +7,7 @@ export function EmptyState() {
         'justify-content': 'center',
         height: '100%',
         'font-family': 'var(--sk-font-ui)',
-        'font-size': '14px',
+        'font-size': 'var(--sk-font-size-base)',
         color: 'var(--sk-text-secondary)',
         background: 'var(--sk-bg-primary)',
       }}
