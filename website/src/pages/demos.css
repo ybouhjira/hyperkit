@@ -1,0 +1,232 @@
+/* ============================================================
+   HyperKit /demos — live demo-apps gallery.
+   Uses the theme-aware --hk-* tokens from custom.css so the page
+   follows the Docusaurus light/dark toggle. Scoped under page
+   classes so nothing leaks into docs.
+   ============================================================ */
+
+.demos-wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.demos-hero {
+  border-bottom: 1px solid var(--hk-border);
+  background: linear-gradient(180deg, var(--hk-accent-dim), transparent 70%);
+  padding-block: 64px 40px;
+}
+
+.demos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-family: var(--hk-mono);
+  color: var(--hk-text-2);
+  padding: 5px 12px;
+  border: 1px solid var(--hk-border);
+  border-radius: 999px;
+  background: var(--hk-bg1);
+}
+
+.demos-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--hk-accent);
+  box-shadow: 0 0 0 4px var(--hk-accent-dim);
+}
+
+.demos-hero h1 {
+  margin: 20px 0 0;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--hk-text);
+}
+
+.demos-sub {
+  margin: 16px 0 0;
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--hk-text-2);
+}
+
+.demos-sub code,
+.demos-chip {
+  font-family: var(--hk-mono);
+  font-size: 0.88em;
+  background: var(--hk-bg2);
+  border: 1px solid var(--hk-border);
+  border-radius: 5px;
+  padding: 1px 6px;
+  color: var(--hk-text);
+}
+
+.demos-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.demos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.demos-btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.demos-btn-primary {
+  background: var(--hk-accent);
+  color: #04120d;
+}
+
+.demos-btn-primary:hover {
+  background: var(--hk-accent-hover);
+  color: #04120d;
+}
+
+.demos-btn-ghost {
+  border: 1px solid var(--hk-border-strong);
+  color: var(--hk-text);
+  background: var(--hk-bg1);
+}
+
+.demos-btn-ghost:hover {
+  border-color: var(--hk-accent-line);
+  color: var(--hk-text);
+}
+
+.demos-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 34px;
+}
+
+.demos-jump a {
+  font-size: 13px;
+  font-family: var(--hk-mono);
+  color: var(--hk-text-2);
+  padding: 5px 12px;
+  border: 1px solid var(--hk-border);
+  border-radius: 999px;
+  background: var(--hk-bg1);
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.demos-jump a:hover {
+  color: var(--hk-text);
+  border-color: var(--hk-accent-line);
+  text-decoration: none;
+}
+
+/* ── Demo sections ────────────────────────────────────────── */
+.demos-main {
+  padding-block: 56px 96px;
+}
+
+.demo {
+  scroll-margin-top: 80px;
+}
+
+.demo + .demo {
+  margin-top: 72px;
+  padding-top: 72px;
+  border-top: 1px solid var(--hk-border);
+}
+
+.demo-head {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.demo-num {
+  flex-shrink: 0;
+  font-family: var(--hk-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hk-accent);
+  padding-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+.demo-head-text h2 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: var(--hk-text);
+}
+
+.demo-head-text p {
+  margin: 8px 0 0;
+  max-width: 720px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--hk-text-2);
+}
+
+.demo-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.demo-chip {
+  font-size: 12px;
+  padding: 2px 8px;
+}
+
+.demo-stage {
+  border-radius: 12px;
+}
+
+/* Give the embedded playground a framed, elevated feel */
+.demo-stage > div {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--hk-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme='dark'] .demo-stage > div {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 640px) {
+  .demos-hero {
+    padding-block: 44px 32px;
+  }
+  .demo-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .demo-num {
+    padding-top: 0;
+  }
+}

@@ -115,6 +115,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/demos',
+          label: 'Demos',
+          position: 'left',
+        },
+        {
           href: 'https://hyperkit-explorer.vercel.app',
           label: 'Explorer',
           position: 'right',
@@ -139,6 +144,10 @@ const config: Config = {
             {
               label: 'Components',
               to: '/docs/components/',
+            },
+            {
+              label: 'Demo apps',
+              to: '/demos',
             },
             {
               label: 'Guides',
