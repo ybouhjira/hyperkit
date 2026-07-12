@@ -22,7 +22,12 @@
       "types": "./dist/theme/*.d.ts",
       "import": "./dist/theme/*.js"
     },
-    "./*": "./dist/*"
+    "./*": "./dist/*",
+    "./tokens/*.css": "./dist/tokens/*.css",
+    "./tokens/*": {
+      "types": "./dist/tokens/*.d.ts",
+      "import": "./dist/tokens/*.js"
+    }
   },
   "files": [
     "dist"

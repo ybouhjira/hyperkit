@@ -5,3 +5,5 @@ export * from './defaults';
 // here too: duplicate names across `export *` sources are silently dropped.
 export * from './presets';
 export * from './injectThemeVars';
+export * from '../tokens/token-types';
+export * from '../tokens/token-maps';
