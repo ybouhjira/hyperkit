@@ -1,0 +1,115 @@
+/* Playground frame — IDE-window chrome; every value flows from --sk-* tokens. */
+.site-playground {
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  background: var(--sk-bg-secondary);
+  overflow: hidden;
+  margin: var(--sk-space-lg) 0;
+}
+
+.site-playground__toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  flex-wrap: wrap;
+  padding: var(--sk-space-sm) var(--sk-space-md);
+  background: var(--sk-bg-elevated);
+  border-bottom: 1px solid var(--sk-border);
+}
+
+.site-playground__toolbar::before {
+  content: '';
+  width: var(--sk-space-sm);
+  height: var(--sk-space-sm);
+  border-radius: 50%;
+  background: var(--sk-error);
+  box-shadow:
+    14px 0 0 var(--sk-warning),
+    28px 0 0 var(--sk-success);
+  margin-right: var(--sk-space-lg);
+}
+
+.site-playground__label {
+  font-family: var(--sk-font-mono);
+  font-size: var(--sk-font-size-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sk-text-muted);
+}
+
+.site-playground__spacer {
+  flex: 1;
+}
+
+.site-playground__theme,
+.site-playground__reset {
+  font-family: var(--sk-font-mono);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-primary);
+  background: var(--sk-bg-secondary);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm);
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  transition: border-color var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.site-playground__theme:hover,
+.site-playground__reset:hover {
+  border-color: var(--sk-accent);
+  cursor: pointer;
+}
+
+.site-playground__theme:focus-visible,
+.site-playground__reset:focus-visible {
+  outline: var(--sk-focus-width, 2px) solid var(--sk-focus-color, var(--sk-accent));
+  outline-offset: var(--sk-focus-offset, 2px);
+}
+
+.site-playground__preview {
+  position: relative;
+  background: var(--sk-bg-primary);
+}
+
+.site-playground__frame {
+  display: block;
+  width: 100%;
+  border: 0;
+  transition: height var(--sk-duration-normal) var(--sk-ease-default);
+}
+
+.site-playground__loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sk-font-mono);
+  font-size: var(--sk-font-size-sm);
+  color: var(--sk-text-muted);
+}
+
+.site-playground__error {
+  margin: 0;
+  padding: var(--sk-space-md);
+  font-family: var(--sk-font-mono);
+  font-size: var(--sk-font-size-sm);
+  white-space: pre-wrap;
+  color: var(--sk-error);
+  background: color-mix(in srgb, var(--sk-error) 10%, transparent);
+  border-top: 1px solid var(--sk-border);
+}
+
+.site-playground__editor {
+  border-top: 1px solid var(--sk-border);
+  min-width: 0;
+}
+
+.site-playground__editor .cm-editor {
+  background: var(--sk-bg-primary);
+  font-size: var(--sk-font-size-base);
+  max-height: 480px;
+}
+
+.site-playground__editor .cm-editor.cm-focused {
+  outline: none;
+}

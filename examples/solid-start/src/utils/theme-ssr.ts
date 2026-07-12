@@ -1,5 +1,5 @@
-import { ThemeConfig } from '@ybouhjira/hyperkit';
-import { resolveThemeDefaults } from '@ybouhjira/hyperkit/src/theme/defaults';
+import { ThemeConfig, resolveThemeDefaults } from '@ybouhjira/hyperkit';
+
 
 function camelToKebab(str: string): string {
   return str.replace(/([A-Z])/g, '-$1').toLowerCase();

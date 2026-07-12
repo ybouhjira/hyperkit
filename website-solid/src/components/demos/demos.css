@@ -1,0 +1,228 @@
+/* ============================================================
+   HyperKit /demos — live demo-apps gallery.
+   Ported from the Docusaurus page; every value now flows from the
+   live --sk-* theme tokens so the page follows the site theme.
+   Scoped under page classes so nothing leaks into other routes.
+   ============================================================ */
+
+.demos-wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: var(--sk-space-lg);
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.demos-hero {
+  border-bottom: 1px solid var(--sk-border);
+  background: linear-gradient(180deg, var(--sk-accent-muted), transparent 70%);
+  padding-block: var(--sk-space-3xl) 40px;
+}
+
+.demos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  font-size: 12.5px;
+  font-family: var(--sk-font-mono);
+  color: var(--sk-text-secondary);
+  padding: 5px 12px;
+  border: 1px solid var(--sk-border);
+  border-radius: 999px;
+  background: var(--sk-bg-secondary);
+}
+
+.demos-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sk-accent);
+  box-shadow: 0 0 0 4px var(--sk-accent-muted);
+}
+
+.demos-hero h1 {
+  margin: 20px 0 0;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--sk-text-primary);
+}
+
+.demos-sub {
+  margin: var(--sk-space-md) 0 0;
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--sk-text-secondary);
+}
+
+.demos-sub code,
+.demos-chip {
+  font-family: var(--sk-font-mono);
+  font-size: 0.88em;
+  background: var(--sk-bg-tertiary);
+  border: 1px solid var(--sk-border);
+  border-radius: 5px;
+  padding: 1px 6px;
+  color: var(--sk-text-primary);
+}
+
+.demos-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.demos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  height: 44px;
+  padding: 0 22px;
+  border-radius: var(--sk-radius-md);
+  font-weight: var(--sk-font-weight-semibold, 600);
+  font-size: 15px;
+  text-decoration: none;
+  transition:
+    background var(--sk-duration-fast) var(--sk-ease-default),
+    border-color var(--sk-duration-fast) var(--sk-ease-default),
+    transform var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.demos-btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.demos-btn-primary {
+  background: var(--sk-accent);
+  color: var(--sk-text-on-accent);
+}
+
+.demos-btn-primary:hover {
+  background: var(--sk-accent-hover);
+  color: var(--sk-text-on-accent);
+}
+
+.demos-btn-ghost {
+  border: 1px solid var(--sk-custom-border-strong, var(--sk-border));
+  color: var(--sk-text-primary);
+  background: var(--sk-bg-secondary);
+}
+
+.demos-btn-ghost:hover {
+  border-color: var(--sk-custom-accent-line, var(--sk-accent));
+  color: var(--sk-text-primary);
+}
+
+.demos-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sk-space-sm);
+  margin-top: 34px;
+}
+
+.demos-jump a {
+  font-size: 13px;
+  font-family: var(--sk-font-mono);
+  color: var(--sk-text-secondary);
+  padding: 5px 12px;
+  border: 1px solid var(--sk-border);
+  border-radius: 999px;
+  background: var(--sk-bg-secondary);
+  text-decoration: none;
+  transition:
+    border-color var(--sk-duration-fast) var(--sk-ease-default),
+    color var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.demos-jump a:hover {
+  color: var(--sk-text-primary);
+  border-color: var(--sk-custom-accent-line, var(--sk-accent));
+  text-decoration: none;
+}
+
+/* ── Demo sections ────────────────────────────────────────── */
+.demos-main {
+  padding-block: 56px 96px;
+}
+
+.demo {
+  scroll-margin-top: 80px;
+}
+
+.demo + .demo {
+  margin-top: 72px;
+  padding-top: 72px;
+  border-top: 1px solid var(--sk-border);
+}
+
+.demo-head {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: var(--sk-space-lg);
+}
+
+.demo-num {
+  flex-shrink: 0;
+  font-family: var(--sk-font-mono);
+  font-size: 13px;
+  font-weight: var(--sk-font-weight-semibold, 600);
+  color: var(--sk-accent);
+  padding-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+.demo-head-text h2 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: var(--sk-text-primary);
+}
+
+.demo-head-text p {
+  margin: var(--sk-space-sm) 0 0;
+  max-width: 720px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--sk-text-secondary);
+}
+
+.demo-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.demo-chip {
+  font-size: var(--sk-font-size-sm);
+  padding: 2px 8px;
+}
+
+.demo-stage {
+  border-radius: var(--sk-radius-lg);
+}
+
+/* Give the embedded playground a framed, elevated feel */
+.demo-stage > div {
+  border-radius: var(--sk-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--sk-border);
+  box-shadow: var(--sk-shadow-lg);
+}
+
+@media (max-width: 640px) {
+  .demos-hero {
+    padding-block: 44px var(--sk-space-xl);
+  }
+  .demo-head {
+    flex-direction: column;
+    gap: var(--sk-space-xs);
+  }
+  .demo-num {
+    padding-top: 0;
+  }
+}

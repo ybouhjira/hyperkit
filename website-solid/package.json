@@ -1,0 +1,41 @@
+{
+  "name": "@ybouhjira/hyperkit-website",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "generate": "node scripts/generate-content.mjs",
+    "build": "npm run generate && npm run build:playground && vinxi build",
+    "start": "vinxi start",
+    "build:playground": "vite build --config playground-runtime/vite.config.mjs"
+  },
+  "dependencies": {
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.3",
+    "@solidjs/start": "^1.1.0",
+    "@ybouhjira/hyperkit": "workspace:*",
+    "solid-js": "^1.9.11",
+    "vinxi": "^0.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "marked": "^15.0.0",
+    "shiki": "^1.29.0",
+    "typescript": "^5.7.0",
+    "vite-plugin-solid": "^2.11.10",
+    "@babel/standalone": "^7.26.0",
+    "babel-preset-solid": "^1.9.3",
+    "@codemirror/commands": "^6.8.0",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/language": "^6.10.8",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.36.2",
+    "vite": "^6.0.0",
+    "@types/babel__standalone": "^7.1.9"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

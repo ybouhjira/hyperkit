@@ -28,3 +28,8 @@ tools/*
 2026-*.txt
 .idea/
 designs/
+website-solid/.output/
+website-solid/.vinxi/
+website-solid/public/playground/
+website-solid/src/content/
+website-solid/tmp/

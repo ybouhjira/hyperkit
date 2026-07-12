@@ -1,0 +1,8 @@
+/* Site-level layout only — all visual values come from HyperKit tokens. */
+html,
+body {
+  margin: 0;
+  background: var(--sk-bg-primary);
+  color: var(--sk-text-primary);
+  font-family: var(--sk-font-ui);
+}

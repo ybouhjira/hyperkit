@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'website/**'
+      - 'website-solid/**'
       - 'docs-manifest.json'
       - 'src/**'
       - '.github/workflows/docs.yml'
@@ -32,36 +32,26 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      # The playground runtime bundles HyperKit from the workspace source,
-      # so the root workspace must be installed and built first.
       - name: Install workspace
         run: pnpm install --frozen-lockfile
 
-      # The runtime lazy-imports hyperkit-devtools, which resolves to its
-      # built dist. hyperkit is a peer/dev dependency of timeline and devtools,
-      # so pnpm's topological ordering doesn't cover it — build explicitly.
-      - name: Build playground dependencies
+      # The site and its playground runtime bundle HyperKit from the workspace
+      # source; the lazy devtools import resolves to built dists, and pnpm does
+      # not topologically order peer/dev dependencies — build explicitly.
+      - name: Build library dependency chain
         run: |
           pnpm build
           pnpm --filter @ybouhjira/hyperkit-timeline build
           pnpm --filter @ybouhjira/hyperkit-devtools build
 
-      - name: Install website dependencies
-        working-directory: website
-        run: npm ci
-
-      - name: Regenerate component pages
-        working-directory: website
-        run: npm run generate
-
-      - name: Build site
-        working-directory: website
-        run: npm run build
+      - name: Build site (generate + playground runtime + prerender)
+        working-directory: website-solid
+        run: pnpm build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: website/build
+          path: website-solid/.output/public
 
   deploy:
     needs: build
