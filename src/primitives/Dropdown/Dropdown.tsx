@@ -1,5 +1,4 @@
-import { type JSX, type Component, lazy, Suspense, Show } from 'solid-js';
-import { isServer } from 'solid-js/web';
+import { onMount, createSignal, type JSX, type Component, lazy, Suspense, Show } from 'solid-js';
 
 export interface DropdownItem {
   /** Display label for the menu item. */
@@ -34,8 +33,14 @@ const DropdownImpl = lazy(() =>
 
 /** Dropdown menu component with customizable trigger and menu items. */
 export const Dropdown: Component<DropdownProps> = (props) => {
+  // Mount-gate the Kobalte implementation instead of branching on `isServer`:
+  // server and the client's hydration pass must render the SAME tree (the
+  // native fallback), or hydration crashes on prerendered pages. The enhanced
+  // control swaps in after mount.
+  const [mounted, setMounted] = createSignal(false);
+  onMount(() => setMounted(true));
   return (
-    <Show when={!isServer} fallback={<>{props.trigger}</>}>
+    <Show when={mounted()} fallback={<>{props.trigger}</>}>
       <Suspense fallback={<>{props.trigger}</>}>
         <DropdownImpl {...props} />
       </Suspense>

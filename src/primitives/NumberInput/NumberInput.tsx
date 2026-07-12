@@ -1,5 +1,4 @@
-import { type Component, lazy, Suspense, Show } from 'solid-js';
-import { isServer } from 'solid-js/web';
+import { onMount, createSignal, type Component, lazy, Suspense, Show } from 'solid-js';
 
 /** Props for the NumberInput component. */
 export interface NumberInputProps {
@@ -94,8 +93,14 @@ const NativeNumberInput: Component<NumberInputProps> = (props) => {
  * @see Slider - for range selection with a drag handle
  */
 export const NumberInput: Component<NumberInputProps> = (props) => {
+  // Mount-gate the Kobalte implementation instead of branching on `isServer`:
+  // server and the client's hydration pass must render the SAME tree (the
+  // native fallback), or hydration crashes on prerendered pages. The enhanced
+  // control swaps in after mount.
+  const [mounted, setMounted] = createSignal(false);
+  onMount(() => setMounted(true));
   return (
-    <Show when={!isServer} fallback={<NativeNumberInput {...props} />}>
+    <Show when={mounted()} fallback={<NativeNumberInput {...props} />}>
       <Suspense fallback={<NativeNumberInput {...props} />}>
         <NumberInputImpl {...props} />
       </Suspense>

@@ -1,4 +1,4 @@
-import { JSX, For, Show, splitProps } from 'solid-js';
+import { JSX, For, Show, children, splitProps } from 'solid-js';
 import './Table.css';
 
 /** Configuration for a single table column. */
@@ -111,13 +111,18 @@ export function Table<T>(props: TableProps<T>): JSX.Element {
     return local.selectedKey === local.getRowKey(item);
   };
 
+  // Resolve once — reading the element-typed `emptyState` prop twice (in the
+  // null-check and again as content) would double-create it and corrupt
+  // hydration on prerendered pages.
+  const emptyState = children(() => local.emptyState);
+
   return (
     <div class="sk-table" {...others}>
       <Show
         when={local.data.length > 0}
         fallback={
           <div class="sk-table__empty">
-            {local.emptyState != null ? local.emptyState : 'No data available'}
+            {emptyState() != null ? emptyState() : 'No data available'}
           </div>
         }
       >

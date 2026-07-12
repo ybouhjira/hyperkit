@@ -1,6 +1,6 @@
 /**
  * Overview pages for the component catalog: the full /docs/components index
- * (all categories) and per-category pages, both as thumbnail card grids.
+ * (all categories) and per-category pages, both as native text card grids.
  * These pages link every component page, which keeps the whole catalog
  * reachable for the prerender crawler.
  */
@@ -12,26 +12,12 @@ import type { ComponentsIndexCategory, ComponentsIndexItem } from './types';
 function ComponentCard(props: { categorySlug: string; item: ComponentsIndexItem }) {
   return (
     <A href={`/docs/components/${props.categorySlug}/${props.item.name}`} class="docs-card">
-      <Show
-        when={props.item.thumbnail}
-        fallback={
-          <span class="docs-card__thumb docs-card__thumb--placeholder" aria-hidden="true">
-            {'<'}
-            {props.item.name}
-            {' />'}
-          </span>
-        }
-      >
-        {(src) => (
-          <img
-            class="docs-card__thumb"
-            src={src()}
-            alt={`${props.item.name} preview`}
-            loading="lazy"
-          />
-        )}
-      </Show>
       <span class="docs-card__body">
+        <span class="docs-card__tag" aria-hidden="true">
+          {'<'}
+          {props.item.name}
+          {' />'}
+        </span>
         <span class="docs-card__name">
           {props.item.name}
           <Show when={props.item.live}>

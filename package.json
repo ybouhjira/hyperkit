@@ -1,6 +1,6 @@
 {
   "name": "@ybouhjira/hyperkit",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "description": "A scalable SolidJS component library with token-based theming and CSS variable customization",
   "type": "module",
   "sideEffects": [
@@ -44,7 +44,6 @@
     "lint:fix": "eslint src/ --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "thumbnails": "tsx scripts/generate-thumbnails.ts",
     "validate:stories": "storybook build --quiet && node --input-type=commonjs -e \"const fs = require('fs'); const idx = JSON.parse(fs.readFileSync('./storybook-static/index.json','utf8')); const count = Object.keys(idx.entries || idx.stories || {}).length; if(count === 0) { console.error('ERROR: No stories found in build'); process.exit(1); } console.log('\u2713 Storybook validated: ' + count + ' stories');\" ; rm -rf storybook-static",
     "prepare": "husky",
     "publint": "publint --strict",

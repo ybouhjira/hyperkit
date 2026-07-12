@@ -1,0 +1,122 @@
+/* Sprint Board demo — layout only, every value from --sk-* tokens. */
+.kanban-app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--sk-bg-primary);
+}
+
+.kanban-app__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-sm);
+  padding: var(--sk-space-md) var(--sk-space-lg);
+  border-bottom: 1px solid var(--sk-border);
+  background: var(--sk-bg-secondary);
+}
+
+.kanban-app__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sk-space-md);
+}
+
+.kanban-app__progress {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-md);
+}
+
+.kanban-app__progress > .sk-progress {
+  flex: 1;
+}
+
+.kanban-app__filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sk-space-xs);
+}
+
+.kanban-app__board {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--sk-space-md) var(--sk-space-lg);
+  /* Component-provided width hook — let four columns use the surface. */
+  --sk-kanban-column-w: clamp(230px, 23.5vw, 330px);
+}
+
+@media (max-width: 640px) {
+  .kanban-app__board {
+    /* One column per swipe on phones. */
+    --sk-kanban-column-w: 78vw;
+  }
+}
+
+/* Cards are drag sources — stop touch scrolling from hijacking the gesture. */
+.kanban-app__board .sk-kanban__card {
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.kanban-app__column--drop {
+  outline: 2px dashed var(--sk-accent);
+  outline-offset: calc(-1 * var(--sk-space-2xs));
+  border-radius: var(--sk-radius-md);
+  background: var(--sk-accent-muted);
+}
+
+.kanban-app__ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--sk-z-tooltip, 1200);
+  max-width: 240px;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-md);
+  background: var(--sk-bg-elevated);
+  box-shadow: var(--sk-shadow-lg, 0 8px 24px rgb(0 0 0 / 0.25));
+  color: var(--sk-text-primary);
+  font-size: var(--sk-font-size-sm);
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kanban-app__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+  padding-top: var(--sk-space-sm);
+  min-width: min(420px, 80vw);
+}
+
+.kanban-app__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-2xs);
+  min-width: 0;
+  flex: 1;
+}
+
+.kanban-app__form-row {
+  display: flex;
+  gap: var(--sk-space-sm);
+  flex-wrap: wrap;
+}
+
+.kanban-app__form-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+}
+
+.kanban-app__form-spacer {
+  flex: 1;
+}

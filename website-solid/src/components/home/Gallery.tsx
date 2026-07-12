@@ -1,9 +1,6 @@
-/** Section 05 — component marquee (two counter-scrolling belts of screenshots). */
+/** Section 05 — component marquee (two counter-scrolling belts of name chips). */
 import { For } from 'solid-js';
 import { EXPLORER_URL } from '../../data/site-links';
-
-/* Served from website-solid/public/img/components/ under the /hyperkit base. */
-const IMG_BASE = '/hyperkit/img/components/';
 
 const MARQUEE_TOP = [
   'ChatWindow',
@@ -30,15 +27,12 @@ function MarqueeBelt(props: { names: string[]; reverse?: boolean }) {
     <div class="mq-belt">
       <div class={props.reverse ? 'mq rev' : 'mq'}>
         <For each={doubled()}>
-          {(name, i) => (
+          {(name) => (
             <a class="mcard" href={EXPLORER_URL} target="_blank" rel="noreferrer">
-              <img
-                src={`${IMG_BASE}${name}.webp`}
-                alt={i() < props.names.length ? name : ''}
-                width={230}
-                height={144}
-              />
-              <span>{name}</span>
+              <span class="mcard-tag" aria-hidden="true">
+                &lt;/&gt;
+              </span>
+              <span class="mcard-name">{name}</span>
             </a>
           )}
         </For>

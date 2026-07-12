@@ -1,0 +1,216 @@
+/* Issue Tracker demo app — layout structure only, every value from --sk-* tokens. */
+
+.it-app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  /* Bound the app to the viewport (site nav + demo strip ≈ 96px) so the
+   * board scrolls internally like a real tracker instead of growing the page. */
+  height: calc(100dvh - 96px);
+  background: var(--sk-bg-primary);
+}
+
+.it-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.it-body .sk-sidebar {
+  height: 100%;
+}
+
+.it-section-title {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--sk-space-xs);
+}
+
+.it-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sk-space-sm);
+  width: 100%;
+  padding: var(--sk-space-xs) var(--sk-space-sm);
+  border: none;
+  border-radius: var(--sk-radius-sm);
+  background: transparent;
+  color: var(--sk-text-secondary);
+  font-size: var(--sk-font-size-base);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--sk-duration-fast) var(--sk-ease-default);
+}
+
+.it-nav:hover {
+  background: var(--sk-bg-tertiary);
+  color: var(--sk-text-primary);
+}
+
+.it-nav--active {
+  background: var(--sk-accent-muted);
+  color: var(--sk-text-primary);
+}
+
+.it-nav__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.it-nav__count {
+  font-size: var(--sk-font-size-xs);
+  color: var(--sk-text-muted);
+  background: var(--sk-bg-tertiary);
+  border-radius: var(--sk-radius-xl);
+  padding: 0 var(--sk-space-xs);
+  min-width: var(--sk-space-md);
+  text-align: center;
+}
+
+.it-label-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sk-space-xs);
+}
+
+.it-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.it-main__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sk-space-md);
+  flex-wrap: wrap;
+  padding: var(--sk-space-md) var(--sk-space-lg);
+  border-bottom: 1px solid var(--sk-border-subtle);
+}
+
+.it-main__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  flex-wrap: wrap;
+}
+
+.it-board {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--sk-space-md) var(--sk-space-lg);
+}
+
+/* Detail drawer */
+.it-drawer {
+  padding: var(--sk-space-lg);
+  overflow-y: auto;
+  height: 100%;
+}
+
+.it-drawer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sk-space-sm);
+}
+
+.it-drawer__actions {
+  display: flex;
+  gap: var(--sk-space-sm);
+}
+
+.it-drawer__body {
+  line-height: 1.6;
+}
+
+.it-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sk-space-xs) var(--sk-space-md);
+  margin: 0;
+  padding: var(--sk-space-md);
+  border: 1px solid var(--sk-border-subtle);
+  border-radius: var(--sk-radius-md);
+  background: var(--sk-bg-secondary);
+  font-size: var(--sk-font-size-sm);
+}
+
+.it-meta dt {
+  color: var(--sk-text-muted);
+}
+
+.it-meta dd {
+  margin: 0;
+  color: var(--sk-text-primary);
+}
+
+.it-comment {
+  display: flex;
+  gap: var(--sk-space-sm);
+}
+
+.it-comment__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sk-height-xs);
+  height: var(--sk-height-xs);
+  flex-shrink: 0;
+  border-radius: var(--sk-radius-xl);
+  background: var(--sk-accent-muted);
+  color: var(--sk-accent);
+  font-size: var(--sk-font-size-sm);
+  font-weight: var(--sk-font-weight-semibold, 600);
+}
+
+.it-comment__content {
+  min-width: 0;
+}
+
+.it-comment__meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sk-space-sm);
+}
+
+.it-comment-box {
+  display: flex;
+  gap: var(--sk-space-sm);
+  align-items: flex-start;
+}
+
+.it-comment-box > :first-child {
+  flex: 1;
+}
+
+.it-new-issue-row {
+  display: flex;
+  gap: var(--sk-space-sm);
+  flex-wrap: wrap;
+}
+
+.it-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sk-space-sm);
+}
+
+@media (max-width: 768px) {
+  .it-main__header {
+    padding: var(--sk-space-sm) var(--sk-space-md);
+  }
+
+  .it-board {
+    padding: var(--sk-space-sm) var(--sk-space-md);
+  }
+}

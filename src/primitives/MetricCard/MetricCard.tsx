@@ -1,4 +1,4 @@
-import { type JSX, type Component, splitProps, Show, DEV } from 'solid-js';
+import { type JSX, type Component, children, splitProps, Show, DEV } from 'solid-js';
 import { validateProps } from '../../utils/validateProps';
 import './MetricCard.css';
 
@@ -90,6 +90,10 @@ export const MetricCard: Component<MetricCardProps> = (props) => {
     }
   };
 
+  // Resolve the icon element once — a JSX-element prop read in `when` AND as a
+  // child would be created twice and corrupt hydration on prerendered pages.
+  const icon = children(() => local.icon);
+
   return (
     <div
       class={rootClass()}
@@ -101,8 +105,8 @@ export const MetricCard: Component<MetricCardProps> = (props) => {
       {...others}
     >
       <div class={local.unstyled ? '' : 'sk-metric__header'}>
-        <Show when={local.icon}>
-          <span class={local.unstyled ? '' : 'sk-metric__icon'}>{local.icon}</span>
+        <Show when={icon()}>
+          <span class={local.unstyled ? '' : 'sk-metric__icon'}>{icon()}</span>
         </Show>
         <span class={local.unstyled ? '' : 'sk-metric__label'}>{local.label}</span>
       </div>

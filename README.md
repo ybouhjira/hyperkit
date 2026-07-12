@@ -7,7 +7,7 @@
 
 **An application platform with a framework-agnostic core — 130+ components for SolidJS today, React next. IDE-grade panels, a navigation/action registry, a diagram engine, theming, Effect services, and AI-native tooling.**
 
-![HyperKit components](.github/assets/component-collage.png)
+**[▶ Live docs & demo apps](https://ybouhjira.github.io/hyperkit/)** · **[Component explorer](https://hyperkit-explorer.vercel.app)** — every component runs live, editable in the browser.
 
 HyperKit is not another button library. It is a full application layer: accessible primitives (built on [@kobalte/core](https://kobalte.dev)), feature-rich composites (chat, kanban, file explorer, command palette), resizable IDE panels, a keyboard system, 40 theme presets driven entirely by CSS custom properties, typed [Effect](https://effect.website) services, and an MCP server so AI assistants can look up its API like a teammate would.
 

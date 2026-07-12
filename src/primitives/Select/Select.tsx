@@ -1,5 +1,4 @@
-import { type Component, lazy, Suspense, Show, For } from 'solid-js';
-import { isServer } from 'solid-js/web';
+import { type Component, createSignal, lazy, onMount, Suspense, Show, For } from 'solid-js';
 
 export interface SelectOption {
   /** Unique value for this option. */
@@ -83,8 +82,14 @@ const NativeSelect: Component<SelectProps> = (props) => (
  * @see Switch - for binary on/off settings
  */
 export const Select: Component<SelectProps> = (props) => {
+  // Mount-gate the Kobalte implementation instead of branching on `isServer`:
+  // the server and the client's hydration pass must render the SAME tree
+  // (the native fallback), otherwise hydration crashes on prerendered pages.
+  // After mount the enhanced select swaps in.
+  const [mounted, setMounted] = createSignal(false);
+  onMount(() => setMounted(true));
   return (
-    <Show when={!isServer} fallback={<NativeSelect {...props} />}>
+    <Show when={mounted()} fallback={<NativeSelect {...props} />}>
       <Suspense fallback={<NativeSelect {...props} />}>
         <SelectImpl {...props} />
       </Suspense>

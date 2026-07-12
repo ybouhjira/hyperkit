@@ -1,5 +1,4 @@
-import { type JSX, type Component, lazy, Suspense, Show } from 'solid-js';
-import { isServer } from 'solid-js/web';
+import { onMount, createSignal, type JSX, type Component, lazy, Suspense, Show } from 'solid-js';
 
 /** Props for the Popover component. */
 export interface PopoverProps {
@@ -28,8 +27,14 @@ const PopoverImpl = lazy(() =>
 
 /** Positioned floating panel for contextual content. Dismisses on outside click and Escape key. */
 export const Popover: Component<PopoverProps> = (props) => {
+  // Mount-gate the Kobalte implementation instead of branching on `isServer`:
+  // server and the client's hydration pass must render the SAME tree (the
+  // native fallback), or hydration crashes on prerendered pages. The enhanced
+  // control swaps in after mount.
+  const [mounted, setMounted] = createSignal(false);
+  onMount(() => setMounted(true));
   return (
-    <Show when={!isServer} fallback={<>{props.trigger}</>}>
+    <Show when={mounted()} fallback={<>{props.trigger}</>}>
       <Suspense fallback={<>{props.trigger}</>}>
         <PopoverImpl {...props} />
       </Suspense>

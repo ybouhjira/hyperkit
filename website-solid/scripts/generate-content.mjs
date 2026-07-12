@@ -14,9 +14,8 @@
  *
  * Output:
  *   src/content/nav.json              sidebar tree + flat prev/next order
- *   src/content/components-index.json category overview data (thumbnails)
+ *   src/content/components-index.json category overview data (text cards)
  *   src/content/pages/<slug>.json     one module per docs page
- *   public/img/components/*.webp     thumbnails copied from the repo's thumbnails/
  *
  * Usage: node scripts/generate-content.mjs   (wired as `pnpm generate`)
  */
@@ -38,10 +37,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const siteDir = resolve(__dirname, '..');
 const repoDir = resolve(siteDir, '..');
 const docsDir = join(siteDir, 'content-src');
-const thumbsSrcDir = join(repoDir, 'thumbnails');
 const contentDir = join(siteDir, 'src', 'content');
 const pagesDir = join(contentDir, 'pages');
-const thumbsOutDir = join(siteDir, 'public', 'img', 'components');
 
 /** Deploy base path — matches `baseURL` in app.config.ts. */
 const BASE = '/hyperkit';
@@ -366,9 +363,6 @@ function buildComponentPage(category, name) {
   const entry = manifestByName.get(name);
   if (!entry) throw new Error(`No docs-manifest entry for component ${name}`);
 
-  const thumbnailFile = join(thumbsSrcDir, `${name}.webp`);
-  const thumbnail = existsSync(thumbnailFile) ? `${BASE}/img/components/${name}.webp` : null;
-
   const props = (entry.props ?? []).map((p) => ({
     name: p.name,
     required: Boolean(p.required),
@@ -410,7 +404,6 @@ function buildComponentPage(category, name) {
     importHtml: highlight(`import { ${name} } from '@ybouhjira/hyperkit';`, 'tsx'),
     playground: parsed.playground,
     staticNote: parsed.staticNote,
-    thumbnail,
     examples: parsed.examples.map((ex) => ({ title: ex.title, html: highlight(ex.code, 'tsx') })),
     props,
     hasRequiredProps: props.some((p) => p.required),
@@ -500,7 +493,7 @@ writeFileSync(
   JSON.stringify({ sections: sidebarSections, flat }, null, 1)
 );
 
-// Components overview data (category cards with thumbnails).
+// Components overview data (native text cards).
 writeFileSync(
   join(contentDir, 'components-index.json'),
   JSON.stringify(
@@ -514,7 +507,6 @@ writeFileSync(
         items: componentPagesByCategory.get(category.slug).map((page) => ({
           name: page.title,
           description: page.description,
-          thumbnail: page.thumbnail,
           live: Boolean(page.playground),
         })),
       })),
@@ -523,15 +515,6 @@ writeFileSync(
     1
   )
 );
-
-// Thumbnails → public/.
-mkdirSync(thumbsOutDir, { recursive: true });
-let thumbCount = 0;
-for (const file of readdirSync(thumbsSrcDir)) {
-  if (!file.endsWith('.webp')) continue;
-  copyFileSync(join(thumbsSrcDir, file), join(thumbsOutDir, file));
-  thumbCount++;
-}
 
 // Site-level image assets (favicon, logo, social card) → public/img/.
 const imgSrcDir = join(siteDir, 'assets-src');
@@ -545,5 +528,5 @@ const guideCount = guideSections.reduce((sum, s) => sum + s.pages.length, 0);
 console.log(
   `Generated ${guideCount} guide pages, ${liveCount + staticCount} component pages ` +
     `(${liveCount} live playgrounds, ${staticCount} static), ` +
-    `${componentCategories.length} categories, ${thumbCount} thumbnails, ${flat.length} nav entries.`
+    `${componentCategories.length} categories, ${flat.length} nav entries.`
 );

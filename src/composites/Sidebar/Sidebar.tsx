@@ -1,4 +1,4 @@
-import { Component, Show, JSX, splitProps } from 'solid-js';
+import { Component, Show, JSX, children, splitProps } from 'solid-js';
 import './Sidebar.css';
 
 export interface SidebarProps {
@@ -60,6 +60,12 @@ export const Sidebar: Component<SidebarProps> = (props) => {
   const isOpen = () => local.open !== false;
   const width = () => local.width ?? '16rem';
 
+  // Resolve JSX props once. Reading a JSX prop getter creates a fresh element
+  // on every access, so testing it in `<Show when>` AND rendering it would
+  // double-create nodes and corrupt hydration on prerendered pages.
+  const header = children(() => local.header);
+  const footer = children(() => local.footer);
+
   return (
     <aside
       class={`sk-sidebar ${local.class ?? ''}`}
@@ -70,16 +76,16 @@ export const Sidebar: Component<SidebarProps> = (props) => {
     >
       <Show when={isOpen()}>
         {/* Header */}
-        <Show when={local.header}>
-          <div class="sk-sidebar__header">{local.header}</div>
+        <Show when={header()}>
+          <div class="sk-sidebar__header">{header()}</div>
         </Show>
 
         {/* Content */}
         <div class="sk-sidebar__content">{local.children}</div>
 
         {/* Footer */}
-        <Show when={local.footer}>
-          <div class="sk-sidebar__footer">{local.footer}</div>
+        <Show when={footer()}>
+          <div class="sk-sidebar__footer">{footer()}</div>
         </Show>
       </Show>
 

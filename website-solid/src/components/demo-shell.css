@@ -1,0 +1,62 @@
+/* Demo application shell — all values from --sk-* tokens. */
+.demo-shell {
+  display: flex;
+  flex-direction: column;
+  /* Fill the viewport below the site nav so demos read as real apps. */
+  min-height: calc(100vh - 56px);
+}
+
+.demo-shell__strip {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-md);
+  padding: var(--sk-space-xs) var(--sk-space-lg);
+  background: var(--sk-bg-elevated);
+  border-bottom: 1px solid var(--sk-border);
+  font-family: var(--sk-font-mono);
+  font-size: var(--sk-font-size-sm);
+}
+
+.demo-shell__back {
+  color: var(--sk-text-secondary);
+  text-decoration: none;
+}
+
+.demo-shell__back:hover {
+  color: var(--sk-accent);
+}
+
+.demo-shell__name {
+  color: var(--sk-text-primary);
+  font-weight: var(--sk-font-weight-semibold, 600);
+}
+
+.demo-shell__tagline {
+  color: var(--sk-text-muted);
+}
+
+.demo-shell__spacer {
+  flex: 1;
+}
+
+.demo-shell__source {
+  color: var(--sk-text-secondary);
+  text-decoration: none;
+}
+
+.demo-shell__source:hover {
+  color: var(--sk-accent);
+}
+
+.demo-shell__app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+@media (max-width: 640px) {
+  .demo-shell__tagline {
+    display: none;
+  }
+}

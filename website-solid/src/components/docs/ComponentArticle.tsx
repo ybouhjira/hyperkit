@@ -43,9 +43,6 @@ export function ComponentArticle(props: { page: ComponentPage }) {
       </Show>
 
       <Show when={!page().playground}>
-        <Show when={page().thumbnail}>
-          {(src) => <img class="docs-article__thumb" src={src()} alt={`${page().title} preview`} />}
-        </Show>
         <Show when={page().staticNote}>
           <div class="docs-admonition docs-admonition--note">
             <p class="docs-admonition__title">Static examples</p>

@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.4.3
+
+### Fixed
+
+- **SSR hydration crashes** on prerendered pages (`TypeError: template2 is not a function`). Two root-cause classes, both fixed across the whole component set:
+  - Lazy `@kobalte/core`-backed components branched on `isServer`, so the server and the client's hydration pass rendered different trees. `Select`, `Slider`, `RangeSlider`, `NumberInput`, `Dropdown`, and `Popover` now mount-gate (render the native fallback until `onMount`, then swap in the enhanced control) — server and hydration render the same tree.
+  - Components that read an element-typed prop more than once (in a `Show when` guard and again as content) created the element twice, corrupting hydration keys. `Sidebar` (`header`/`footer`), `MetricCard` (`icon`), and `Table` (`emptyState`) now resolve those props once via Solid's `children()`.
+
+These only affected consumers rendering the components on a prerendered/SSR page; client-only usage was unaffected.
+
 ## 3.4.2
 
 ### Fixed

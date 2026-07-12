@@ -1,0 +1,69 @@
+/* File Manager demo — structural layout only, every value from --sk-* tokens. */
+.files {
+  /* Own the scroll: lock the app to the viewport below the site nav (45px)
+     and the demo strip (27px) so the file list scrolls internally.
+     flex-basis must stay auto — `flex: 1` (basis 0%) would let the flex
+     algorithm stretch past the height and hand the scroll to the page. */
+  flex: 0 0 auto;
+  display: flex;
+  min-height: 0;
+  height: calc(100dvh - 72px);
+  background: var(--sk-bg-primary);
+}
+
+@media (max-width: 640px) {
+  .files {
+    height: auto;
+    min-height: calc(100dvh - 72px);
+  }
+}
+
+.files__places {
+  flex-shrink: 0;
+  border-right: 1px solid var(--sk-border);
+}
+
+.files__place-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+  width: 100%;
+}
+
+.files__place-icon {
+  width: var(--sk-icon-md);
+  text-align: center;
+  color: var(--sk-text-secondary);
+}
+
+/* ── Main column ─────────────────────────────────────────────────────── */
+.files__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.files__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-md);
+  padding: var(--sk-space-xs) var(--sk-space-md);
+  border-bottom: 1px solid var(--sk-border);
+  background: var(--sk-bg-elevated);
+}
+
+.files__header-spacer {
+  flex: 1;
+}
+
+.files__explorer {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.files__explorer .sk-file-explorer {
+  flex: 1;
+  min-width: 0;
+}

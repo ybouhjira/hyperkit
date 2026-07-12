@@ -1,0 +1,142 @@
+/* AI Workspace demo — structural layout only, every value from --sk-* tokens. */
+.aiw {
+  /* Own the scroll: lock the app to the viewport below the site nav (45px)
+     and the demo strip (27px) so panes scroll internally like a real app.
+     flex-basis must stay auto — `flex: 1` (basis 0%) would let the flex
+     algorithm stretch past the height and hand the scroll to the page. */
+  flex: 0 0 auto;
+  display: flex;
+  min-height: 0;
+  height: calc(100dvh - 72px);
+  background: var(--sk-bg-primary);
+}
+
+/* ── Session sidebar ─────────────────────────────────────────────────── */
+.aiw__sessions {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+  padding: var(--sk-space-md);
+  border-right: 1px solid var(--sk-border);
+  background: var(--sk-bg-secondary);
+  overflow-y: auto;
+}
+
+/* ── Main column ─────────────────────────────────────────────────────── */
+.aiw__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.aiw__topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-md);
+  padding: var(--sk-space-sm) var(--sk-space-md);
+  border-bottom: 1px solid var(--sk-border);
+  background: var(--sk-bg-elevated);
+}
+
+.aiw__topbar-spacer {
+  flex: 1;
+}
+
+.aiw__chat {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Inspector panel ─────────────────────────────────────────────────── */
+.aiw__inspector {
+  width: 340px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-md);
+  padding: var(--sk-space-md);
+  border-left: 1px solid var(--sk-border);
+  background: var(--sk-bg-secondary);
+  overflow-y: auto;
+}
+
+.aiw__approvals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-sm);
+}
+
+.aiw__approval-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-sm);
+  min-width: 0;
+}
+
+.aiw__approval-card pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 1180px) {
+  .aiw__inspector {
+    width: 300px;
+  }
+
+  .aiw__sessions {
+    width: 280px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .aiw__inspector {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .aiw {
+    flex-direction: column;
+    /* Panels stack on phones — let the page scroll naturally instead. */
+    height: auto;
+  }
+
+  /* Sessions collapse into a horizontally scrollable strip of cards. */
+  .aiw__sessions {
+    width: 100%;
+    flex-direction: row;
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-right: none;
+    border-bottom: 1px solid var(--sk-border);
+    padding: var(--sk-space-sm);
+    gap: var(--sk-space-sm);
+  }
+
+  .aiw__sessions-head {
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .aiw__sessions .sk-session-manager,
+  .aiw__sessions .sk-session-manager__group,
+  .aiw__sessions .sk-session-manager__list {
+    flex-direction: row;
+    gap: var(--sk-space-sm);
+  }
+
+  .aiw__sessions .sk-session-card {
+    min-width: 250px;
+    max-width: 250px;
+  }
+
+  .aiw__main {
+    min-height: 0;
+  }
+}

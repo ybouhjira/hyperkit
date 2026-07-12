@@ -1,7 +1,7 @@
 /**
  * Catch-all docs route. Resolves, in order:
- *   components            → catalog overview (native, thumbnails)
- *   components/<category> → category overview (native, thumbnails)
+ *   components            → catalog overview (native text cards)
+ *   components/<category> → category overview (native text cards)
  *   <anything else>       → generated page JSON (guide or component)
  */
 import { Match, Show, Suspense, Switch, createMemo } from 'solid-js';

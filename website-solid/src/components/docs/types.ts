@@ -39,7 +39,6 @@ export interface ComponentPage {
   importHtml: string;
   playground: string | null;
   staticNote: boolean;
-  thumbnail: string | null;
   examples: ComponentExample[];
   props: PropRow[];
   hasRequiredProps: boolean;
@@ -78,7 +77,6 @@ export interface NavData {
 export interface ComponentsIndexItem {
   name: string;
   description: string;
-  thumbnail: string | null;
   live: boolean;
 }
 
