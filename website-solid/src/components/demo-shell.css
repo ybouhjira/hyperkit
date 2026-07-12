@@ -39,6 +39,20 @@
   flex: 1;
 }
 
+.demo-shell__theme {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-sm);
+}
+
+.demo-shell__theme-label {
+  color: var(--sk-text-muted);
+}
+
+.demo-shell__theme-select {
+  min-width: 160px;
+}
+
 .demo-shell__source {
   color: var(--sk-text-secondary);
   text-decoration: none;
@@ -56,7 +70,12 @@
 }
 
 @media (max-width: 640px) {
-  .demo-shell__tagline {
+  .demo-shell__tagline,
+  .demo-shell__theme-label {
     display: none;
+  }
+
+  .demo-shell__theme-select {
+    min-width: 120px;
   }
 }

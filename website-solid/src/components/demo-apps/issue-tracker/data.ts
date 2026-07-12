@@ -16,7 +16,7 @@ export const LABELS = {
 
 export const LABEL_LIST = Object.values(LABELS);
 
-export const ASSIGNEES = ['youssef', 'sara', 'lina'] as const;
+export const ASSIGNEES = ['youssef', 'sara', 'maya'] as const;
 
 export const SEED_ISSUES: Issue[] = [
   {
@@ -116,7 +116,7 @@ export const SEED_ISSUES: Issue[] = [
     body: 'Editing a snippet in the live playground and navigating to another docs page discards the edit. Persist the buffer per component in sessionStorage and restore it on return.',
     state: 'open',
     labels: [LABELS.feature],
-    assignee: 'lina',
+    assignee: 'maya',
     milestone: 'launch',
     repo: 'hyperkit/website',
     url: '#',
@@ -146,7 +146,7 @@ export const SEED_ISSUES: Issue[] = [
     body: 'A docs page walking through ThemeProvider, token overrides, and building a brand theme from hyperlabsTheme. Should end with a copy-pasteable custom theme.',
     state: 'open',
     labels: [LABELS.docs],
-    assignee: 'lina',
+    assignee: 'maya',
     milestone: null,
     repo: 'hyperkit/website',
     url: '#',
@@ -191,7 +191,7 @@ export const SEED_ISSUES: Issue[] = [
     body: 'The gradient sweep repaints the full hero every frame. Move it to a transform-only animation and honor prefers-reduced-motion.',
     state: 'closed',
     labels: [LABELS.perf, LABELS.design],
-    assignee: 'lina',
+    assignee: 'maya',
     milestone: null,
     repo: 'hyperkit/website',
     url: '#',
@@ -231,14 +231,14 @@ export const SEED_COMMENTS: Readonly<Record<string, readonly IssueComment[]>> = 
   ],
   'iss-3': [
     {
-      author: 'lina',
+      author: 'maya',
       at: '2026-06-30T08:55:00Z',
       body: 'Proposal: introduce --sk-table-sort-indicator with a high-contrast override in highContrastTheme, defaulting to --sk-text-muted elsewhere.',
     },
   ],
   'iss-7': [
     {
-      author: 'lina',
+      author: 'maya',
       at: '2026-07-09T11:45:00Z',
       body: 'sessionStorage keyed by component slug works; buffer restores cleanly. Remaining question is whether edits should also survive a full reload.',
     },

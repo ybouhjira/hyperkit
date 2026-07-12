@@ -43,7 +43,7 @@ export const ALL_TAGS = Object.keys(TAG_COLORS);
 export const ASSIGNEE_COLORS: Record<string, string> = {
   Youssef: 'var(--sk-accent)',
   Sara: 'var(--sk-success)',
-  Lina: 'var(--sk-warning)',
+  Maya: 'var(--sk-warning)',
 };
 
 export const ALL_ASSIGNEES = Object.keys(ASSIGNEE_COLORS);
@@ -69,7 +69,7 @@ export const SEED_CARDS: SprintCard[] = [
     id: 'c-3',
     title: 'File manager demo over a mock tree',
     tags: ['ui'],
-    assignee: 'Lina',
+    assignee: 'Maya',
     points: 5,
     column: 'progress',
   },
@@ -85,7 +85,7 @@ export const SEED_CARDS: SprintCard[] = [
     id: 'c-5',
     title: 'Document the theming token pipeline',
     tags: ['docs'],
-    assignee: 'Lina',
+    assignee: 'Maya',
     points: 3,
     column: 'backlog',
   },
@@ -117,7 +117,7 @@ export const SEED_CARDS: SprintCard[] = [
     id: 'c-9',
     title: 'Search index cache-busting on regenerate',
     tags: ['bug', 'infra'],
-    assignee: 'Lina',
+    assignee: 'Maya',
     points: 2,
     column: 'review',
   },
@@ -133,7 +133,7 @@ export const SEED_CARDS: SprintCard[] = [
     id: 'c-11',
     title: 'Hero animation: transform-only + reduced motion',
     tags: ['perf', 'ui'],
-    assignee: 'Lina',
+    assignee: 'Maya',
     points: 2,
     column: 'done',
   },
