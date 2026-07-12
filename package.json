@@ -1,6 +1,6 @@
 {
   "name": "@ybouhjira/hyperkit",
-  "version": "3.4.3",
+  "version": "3.5.0",
   "description": "A scalable SolidJS component library with token-based theming and CSS variable customization",
   "type": "module",
   "sideEffects": [

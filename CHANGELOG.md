@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.5.0
+
+### Added
+
+- **React support (Phase 1)** — new sibling packages sharing one design-system core:
+  - `@ybouhjira/hyperkit-styles` — the framework-agnostic core: all component stylesheets, `--sk-*` tokens, `ThemeConfig` types, 40 theme presets, the theme engine (`applyThemeToDOM`, `applyThemeToElement`, `serializeThemeVars`), and token mappers.
+  - `@ybouhjira/hyperkit-react` — React 18/19 components rendering the identical `sk-*` DOM contract from the same stylesheets: `ThemeProvider`/`useTheme` plus Button, Text, Card, Flex, Stack, Box, Grid, Badge, Spinner, Skeleton, ProgressBar, Separator, Input, Checkbox, Switch, Tabs, Dialog, Tooltip, Select, and Table (Radix UI backs the a11y-heavy set).
+
+### Changed
+
+- The SolidJS package now consumes its CSS and theme core from `@ybouhjira/hyperkit-styles` (new dependency). All public import paths and the shipped `dist/index.css` are unchanged — this is internal restructuring; themes, class names, and tokens are byte-compatible.
+
 ## 3.4.3
 
 ### Fixed
