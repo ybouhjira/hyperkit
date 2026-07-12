@@ -21,7 +21,6 @@ website/docs/api
 # IDE / session artifacts
 .claude/
 .headless-ide/
-thumbnails/
 tools/*
 !tools/sk-audit/
 !tools/sk-audit/**
