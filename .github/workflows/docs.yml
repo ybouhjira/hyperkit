@@ -43,6 +43,11 @@ jobs:
           pnpm build
           pnpm --filter @ybouhjira/hyperkit-timeline build
           pnpm --filter @ybouhjira/hyperkit-devtools build
+          # Architecture Studio demo consumes the diagram engine (browser-only
+          # dist, gitignored). Build core -> svg -> solid before the site.
+          pnpm --filter @ybouhjira/diagram-core build
+          pnpm --filter @ybouhjira/diagram-svg build
+          pnpm --filter @ybouhjira/diagram-solid build
 
       - name: Build site (generate + playground runtime + prerender)
         working-directory: website-solid
