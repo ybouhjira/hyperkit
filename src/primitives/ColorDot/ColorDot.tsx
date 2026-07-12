@@ -1,5 +1,5 @@
 import { type Component, splitProps } from 'solid-js';
-import './ColorDot.css';
+import '@ybouhjira/hyperkit-styles/primitives/ColorDot/ColorDot.css';
 
 /** Props for the ColorDot component. */
 export interface ColorDotProps {

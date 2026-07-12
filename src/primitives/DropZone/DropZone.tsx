@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createSignal, Show } from 'solid-js';
-import './DropZone.css';
+import '@ybouhjira/hyperkit-styles/primitives/DropZone/DropZone.css';
 
 /** Props for the DropZone component. */
 export interface DropZoneProps {

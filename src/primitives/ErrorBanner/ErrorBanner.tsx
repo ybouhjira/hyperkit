@@ -1,5 +1,5 @@
 import { Component, Show, splitProps, onMount, onCleanup, createSignal } from 'solid-js';
-import './ErrorBanner.css';
+import '@ybouhjira/hyperkit-styles/primitives/ErrorBanner/ErrorBanner.css';
 
 /** Visual style variants for the banner. */
 export type ErrorBannerVariant = 'error' | 'warning' | 'info';

@@ -10,7 +10,7 @@ import {
 } from 'solid-js';
 import type { JSX } from 'solid-js';
 import type { LogEntry } from '../../effects/LoggingService';
-import './LogViewer.css';
+import '@ybouhjira/hyperkit-styles/composites/LogViewer/LogViewer.css';
 
 // ── Types ──
 

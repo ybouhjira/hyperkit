@@ -1,7 +1,7 @@
 import { type Component, splitProps, Show, createSignal, createEffect } from 'solid-js';
 import { Icon } from '../../icons';
 import { Kbd } from '../Kbd';
-import './SearchInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/SearchInput/SearchInput.css';
 
 /** Props for the SearchInput component. */
 export interface SearchInputProps {

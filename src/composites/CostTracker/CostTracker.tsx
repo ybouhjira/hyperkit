@@ -1,6 +1,6 @@
 import { Component, splitProps, Show } from 'solid-js';
 import { Tooltip } from '@kobalte/core/tooltip';
-import './CostTracker.css';
+import '@ybouhjira/hyperkit-styles/composites/CostTracker/CostTracker.css';
 
 export interface CostTrackerProps {
   /** Dollar cost of the request */

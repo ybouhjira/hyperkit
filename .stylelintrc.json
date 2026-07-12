@@ -1,15 +1,22 @@
 {
   "extends": ["stylelint-config-standard"],
-  "ignoreFiles": ["src/tokens/modes/**/*.css", "src/tokens/mode-layers.css"],
+  "ignoreFiles": [
+    "packages/hyperkit-styles/src/tokens/modes/**/*.css",
+    "packages/hyperkit-styles/src/tokens/mode-layers.css"
+  ],
   "rules": {
     "selector-class-pattern": [
       "^[a-z][a-z0-9]*(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)*(--[a-z0-9]+(-[a-z0-9]+)*)*$",
-      { "message": "Class selectors must follow BEM convention (block__element--modifier)" }
+      {
+        "message": "Class selectors must follow BEM convention (block__element--modifier)"
+      }
     ],
     "keyframes-name-pattern": null,
     "custom-property-pattern": [
       "^(sk-|kb-)",
-      { "message": "Custom properties must start with --sk- or --kb- (Kobalte) prefix" }
+      {
+        "message": "Custom properties must start with --sk- or --kb- (Kobalte) prefix"
+      }
     ],
     "declaration-block-no-redundant-longhand-properties": true,
     "declaration-block-single-line-max-declarations": null,
@@ -20,7 +27,12 @@
     "no-duplicate-selectors": null,
     "rule-empty-line-before": null,
     "comment-empty-line-before": null,
-    "value-keyword-case": ["lower", { "ignoreKeywords": ["currentColor"] }],
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreKeywords": ["currentColor"]
+      }
+    ],
     "property-no-vendor-prefix": null,
     "color-function-notation": null,
     "alpha-value-notation": null,

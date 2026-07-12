@@ -1,7 +1,7 @@
 import { Component, JSX, Show } from 'solid-js';
 import { Sidebar } from '../../composites/Sidebar';
 import { SessionTabs, type SessionTab } from '../../composites/SessionTabs';
-import './ChatLayout.css';
+import '@ybouhjira/hyperkit-styles/layouts/ChatLayout/ChatLayout.css';
 
 export interface ChatLayoutProps {
   sidebarOpen?: boolean;

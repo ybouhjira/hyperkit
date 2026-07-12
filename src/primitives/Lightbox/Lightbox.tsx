@@ -8,7 +8,7 @@ import {
   For,
 } from 'solid-js';
 import { Portal, isServer } from 'solid-js/web';
-import './Lightbox.css';
+import '@ybouhjira/hyperkit-styles/primitives/Lightbox/Lightbox.css';
 
 export interface LightboxImage {
   /** Image URL. */

@@ -13,7 +13,7 @@ import { parse } from './core/parser';
 import { renderAST } from './renderer';
 import { MarkdownComponentsContext } from './context';
 import type { MarkdownComponents } from './context';
-import './Markdown.css';
+import '@ybouhjira/hyperkit-styles/primitives/Markdown/Markdown.css';
 
 export interface MarkdownProps {
   /** Markdown content string to render */

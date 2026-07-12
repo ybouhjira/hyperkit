@@ -1,5 +1,5 @@
 import { type Component, splitProps, createMemo, createUniqueId, Show } from 'solid-js';
-import './Sparkline.css';
+import '@ybouhjira/hyperkit-styles/primitives/Sparkline/Sparkline.css';
 
 /** Props for the Sparkline component. */
 export interface SparklineProps {

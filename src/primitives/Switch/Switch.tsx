@@ -1,6 +1,6 @@
 import { type Component, splitProps, Show, createMemo } from 'solid-js';
 import { Switch as KobalteSwitch } from '@kobalte/core/switch';
-import './Switch.css';
+import '@ybouhjira/hyperkit-styles/primitives/Switch/Switch.css';
 
 /** Props for the Switch component. */
 export interface SwitchProps {

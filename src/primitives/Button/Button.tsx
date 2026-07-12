@@ -3,7 +3,7 @@ import { Button as KobalteButton } from '@kobalte/core/button';
 import { Dynamic } from 'solid-js/web';
 import { validateProps } from '../../utils/validateProps';
 import { Tooltip } from '../Tooltip';
-import './Button.css';
+import '@ybouhjira/hyperkit-styles/primitives/Button/Button.css';
 
 export interface ButtonProps {
   /** Visual style variant. Affects background, border, and text color.

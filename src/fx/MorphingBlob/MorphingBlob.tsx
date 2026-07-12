@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createSignal, onMount, onCleanup } from 'solid-js';
-import './MorphingBlob.css';
+import '@ybouhjira/hyperkit-styles/fx/MorphingBlob/MorphingBlob.css';
 
 export interface MorphingBlobProps {
   /** Number of control points */

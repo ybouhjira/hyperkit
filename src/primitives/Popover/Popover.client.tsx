@@ -3,7 +3,7 @@
 import { type Component, splitProps } from 'solid-js';
 import { Popover as KobaltePopover } from '@kobalte/core/popover';
 import type { PopoverProps } from './Popover';
-import './Popover.css';
+import '@ybouhjira/hyperkit-styles/primitives/Popover/Popover.css';
 
 export const PopoverClient: Component<PopoverProps> = (props) => {
   const [local, others] = splitProps(props, [

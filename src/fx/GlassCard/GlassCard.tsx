@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps } from 'solid-js';
-import './GlassCard.css';
+import '@ybouhjira/hyperkit-styles/fx/GlassCard/GlassCard.css';
 
 export interface GlassCardProps {
   /**

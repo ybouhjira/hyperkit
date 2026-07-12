@@ -1,5 +1,5 @@
 import { JSX, For, Show, children, splitProps } from 'solid-js';
-import './Table.css';
+import '@ybouhjira/hyperkit-styles/primitives/Table/Table.css';
 
 /** Configuration for a single table column. */
 export interface TableColumn<T> {

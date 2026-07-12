@@ -10,7 +10,7 @@ import {
   mapFontWeight,
   mapSpace,
 } from '../layout';
-import './Text.css';
+import '@ybouhjira/hyperkit-styles/primitives/Text/Text.css';
 
 export interface TextProps {
   /** Font size token. Maps to theme typography scale. */

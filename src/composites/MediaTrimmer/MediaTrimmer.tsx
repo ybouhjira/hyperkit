@@ -8,7 +8,7 @@ import {
   type JSX,
 } from 'solid-js';
 import { formatTime } from '../../hooks/useVideoPreview/formatTime';
-import './MediaTrimmer.css';
+import '@ybouhjira/hyperkit-styles/composites/MediaTrimmer/MediaTrimmer.css';
 
 export interface MediaTrimmerProps {
   src: string;

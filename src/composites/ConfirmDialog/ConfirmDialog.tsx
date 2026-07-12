@@ -1,7 +1,7 @@
 import { type JSX, type Component, splitProps } from 'solid-js';
 import { Dialog } from '../../primitives/Dialog';
 import { Button } from '../../primitives/Button';
-import './ConfirmDialog.css';
+import '@ybouhjira/hyperkit-styles/composites/ConfirmDialog/ConfirmDialog.css';
 
 export interface ConfirmDialogProps {
   open: boolean;

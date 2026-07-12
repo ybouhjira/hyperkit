@@ -1,7 +1,7 @@
 import { type Component, splitProps, For } from 'solid-js';
 import { Accordion as KobalteAccordion } from '@kobalte/core/accordion';
 import type { JSX } from 'solid-js';
-import './Accordion.css';
+import '@ybouhjira/hyperkit-styles/primitives/Accordion/Accordion.css';
 
 /** Configuration for a single accordion item. */
 export interface AccordionItemData {

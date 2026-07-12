@@ -19,7 +19,7 @@ import { TreeView } from './TreeView';
 import { FilePreview } from './FilePreview';
 import { createFileExplorerKeyboard } from './useFileExplorerKeyboard';
 import { createSelectionHandler } from './useFileSelection';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 import { getFileType } from './fileTypes';
 import type { FileItem, ViewMode, SortField, SortDirection, ExplorerMode } from './types';
 

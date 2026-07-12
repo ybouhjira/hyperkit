@@ -11,7 +11,7 @@ import type { Component, JSX, Accessor } from 'solid-js';
 import type { TourDefinition, TourStep, TourStatus, StepStatus, StepState } from './types';
 import { TourPanel } from './TourPanel';
 import { TourHighlight } from './TourHighlight';
-import './GuidedTour.css';
+import '@ybouhjira/hyperkit-styles/composites/GuidedTour/GuidedTour.css';
 
 interface TourContextValue {
   status: Accessor<TourStatus>;

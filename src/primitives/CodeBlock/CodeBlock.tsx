@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps, createMemo, Show, For } from 'solid-js';
 import { highlightCode } from './hljs';
-import './CodeBlock.css';
+import '@ybouhjira/hyperkit-styles/primitives/CodeBlock/CodeBlock.css';
 
 /** Props for the CodeBlock component. */
 export interface CodeBlockProps {

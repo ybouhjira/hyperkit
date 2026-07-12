@@ -1,5 +1,5 @@
 import { Component, Show, JSX, children, splitProps } from 'solid-js';
-import './Sidebar.css';
+import '@ybouhjira/hyperkit-styles/composites/Sidebar/Sidebar.css';
 
 export interface SidebarProps {
   open?: boolean;

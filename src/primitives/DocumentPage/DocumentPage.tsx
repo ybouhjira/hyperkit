@@ -1,5 +1,5 @@
 import { createMemo, type JSX } from 'solid-js';
-import './DocumentPage.css';
+import '@ybouhjira/hyperkit-styles/primitives/DocumentPage/DocumentPage.css';
 
 export interface DocumentPageProps {
   readonly size?: 'a4' | 'letter';

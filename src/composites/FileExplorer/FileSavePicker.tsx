@@ -2,7 +2,7 @@ import { Component, createSignal, JSX, Show } from 'solid-js';
 import { FileExplorer } from './FileExplorer';
 import { useFileNavigation } from './useFileNavigation';
 import type { FileItem } from './types';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface FileSavePickerProps {
   /** Controls dialog visibility */

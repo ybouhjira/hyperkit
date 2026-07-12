@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps, createMemo, Show } from 'solid-js';
-import './ProgressRing.css';
+import '@ybouhjira/hyperkit-styles/primitives/ProgressRing/ProgressRing.css';
 
 /** Props for the ProgressRing component. */
 export interface ProgressRingProps {

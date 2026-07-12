@@ -1,6 +1,6 @@
 import { type Component, splitProps, Show } from 'solid-js';
 import { Checkbox as KobalteCheckbox } from '@kobalte/core/checkbox';
-import './Checkbox.css';
+import '@ybouhjira/hyperkit-styles/primitives/Checkbox/Checkbox.css';
 
 /** Props for the Checkbox component. */
 export interface CheckboxProps {

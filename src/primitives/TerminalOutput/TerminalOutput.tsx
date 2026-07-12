@@ -1,5 +1,5 @@
 import { Component, createMemo, createEffect, For, Show, splitProps, untrack } from 'solid-js';
-import './TerminalOutput.css';
+import '@ybouhjira/hyperkit-styles/primitives/TerminalOutput/TerminalOutput.css';
 
 /** Types of terminal output lines. */
 export type TerminalLineType = 'system' | 'tool_call' | 'tool_result' | 'error' | 'info';

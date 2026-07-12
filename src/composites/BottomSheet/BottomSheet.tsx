@@ -10,7 +10,7 @@ import {
   untrack,
 } from 'solid-js';
 import { Dialog as KobalteDialog } from '@kobalte/core/dialog';
-import './BottomSheet.css';
+import '@ybouhjira/hyperkit-styles/composites/BottomSheet/BottomSheet.css';
 
 /**
  * Props for {@link BottomSheet}.

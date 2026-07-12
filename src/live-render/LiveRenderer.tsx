@@ -6,7 +6,7 @@ import { Runtime } from 'effect';
 import { validateUINode } from './node-schema.js';
 import type { UINode } from './node-schema.js';
 import { NodeRenderer } from './NodeRenderer.js';
-import './live-render.css';
+import '@ybouhjira/hyperkit-styles/live-render/live-render.css';
 
 export interface LiveRendererProps {
   /**

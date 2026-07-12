@@ -1,4 +1,4 @@
-import './PromptQueue.css';
+import '@ybouhjira/hyperkit-styles/composites/PromptQueue/PromptQueue.css';
 import { Show, For, Component, splitProps } from 'solid-js';
 import { EmptyState } from '../../primitives/EmptyState';
 import { Icon } from '../../icons';

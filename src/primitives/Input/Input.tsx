@@ -1,5 +1,5 @@
 import { type Component, splitProps } from 'solid-js';
-import './Input.css';
+import '@ybouhjira/hyperkit-styles/primitives/Input/Input.css';
 
 export interface InputProps {
   /** Input type variant.

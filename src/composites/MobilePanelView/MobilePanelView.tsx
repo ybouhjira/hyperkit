@@ -1,7 +1,7 @@
 import { Component, createSignal, createEffect, splitProps, JSX } from 'solid-js';
 import { For } from 'solid-js';
 import { Icon } from '../../icons';
-import './MobilePanelView.css';
+import '@ybouhjira/hyperkit-styles/composites/MobilePanelView/MobilePanelView.css';
 
 export interface MobilePanelTab {
   id: string;

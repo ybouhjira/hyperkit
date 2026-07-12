@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps, For, Show } from 'solid-js';
-import './Kbd.css';
+import '@ybouhjira/hyperkit-styles/primitives/Kbd/Kbd.css';
 
 /** Props for the Kbd component. */
 export interface KbdProps {

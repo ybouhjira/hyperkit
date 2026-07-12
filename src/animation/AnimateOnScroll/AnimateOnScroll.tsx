@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createSignal, onMount, onCleanup } from 'solid-js';
-import './AnimateOnScroll.css';
+import '@ybouhjira/hyperkit-styles/animation/AnimateOnScroll/AnimateOnScroll.css';
 
 export interface AnimateOnScrollProps {
   /**

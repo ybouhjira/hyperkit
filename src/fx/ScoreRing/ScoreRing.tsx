@@ -7,7 +7,7 @@ import {
   onCleanup,
   onMount,
 } from 'solid-js';
-import './ScoreRing.css';
+import '@ybouhjira/hyperkit-styles/fx/ScoreRing/ScoreRing.css';
 
 export interface ScoreRingProps {
   /** Score 0-100 */

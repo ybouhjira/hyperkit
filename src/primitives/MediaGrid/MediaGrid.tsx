@@ -1,5 +1,5 @@
 import { Component, JSX, splitProps, createSignal, Show, For, createMemo } from 'solid-js';
-import './MediaGrid.css';
+import '@ybouhjira/hyperkit-styles/primitives/MediaGrid/MediaGrid.css';
 
 /** Configuration for a single media grid item. */
 export interface MediaGridItem {

@@ -7,7 +7,7 @@ import {
   onCleanup,
   untrack,
 } from 'solid-js';
-import './SpringCounter.css';
+import '@ybouhjira/hyperkit-styles/fx/SpringCounter/SpringCounter.css';
 
 export interface SpringCounterProps {
   /** Target value to display */

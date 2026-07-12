@@ -79,7 +79,7 @@ const jsonCode = `{
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./dist/index.css": "./dist/index.css"
+    "@ybouhjira/hyperkit-styles/primitives/CodeBlock/dist/index.css": "@ybouhjira/hyperkit-styles/primitives/CodeBlock/dist/index.css"
   },
   "peerDependencies": {
     "solid-js": "^1.8.0"

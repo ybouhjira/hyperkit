@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps } from 'solid-js';
-import '../Report.css';
+import '@ybouhjira/hyperkit-styles/report/Report.css';
 
 export interface ReportShellProps {
   children: JSX.Element;

@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps, For } from 'solid-js';
-import './SuggestionChips.css';
+import '@ybouhjira/hyperkit-styles/primitives/SuggestionChips/SuggestionChips.css';
 
 /** Configuration for a single suggestion chip. */
 export interface SuggestionChip {

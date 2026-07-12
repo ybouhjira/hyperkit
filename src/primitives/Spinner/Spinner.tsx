@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps } from 'solid-js';
-import './Spinner.css';
+import '@ybouhjira/hyperkit-styles/primitives/Spinner/Spinner.css';
 
 /** Size presets for spinner. */
 export type SpinnerSize = 'sm' | 'md' | 'lg';

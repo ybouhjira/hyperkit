@@ -3,7 +3,7 @@
 import { type Component, splitProps, For, Show } from 'solid-js';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
 import type { DropdownProps } from './Dropdown';
-import './Dropdown.css';
+import '@ybouhjira/hyperkit-styles/primitives/Dropdown/Dropdown.css';
 
 export const DropdownClient: Component<DropdownProps> = (props) => {
   const [local, others] = splitProps(props, ['items', 'trigger', 'class', 'unstyled']);

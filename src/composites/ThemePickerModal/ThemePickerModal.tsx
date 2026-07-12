@@ -2,7 +2,7 @@ import { Component, createSignal, For, createEffect, onCleanup, createMemo } fro
 import { Dialog } from '../../primitives/Dialog';
 import { useTheme } from '../../theme/useTheme';
 import { ThemeConfig } from '../../theme/types';
-import './ThemePickerModal.css';
+import '@ybouhjira/hyperkit-styles/composites/ThemePickerModal/ThemePickerModal.css';
 
 export interface ThemePickerModalProps {
   open: boolean;

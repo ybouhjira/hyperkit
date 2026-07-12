@@ -1,5 +1,5 @@
 import { type Component, type JSX, For, Show, splitProps } from 'solid-js';
-import './BottomNav.css';
+import '@ybouhjira/hyperkit-styles/primitives/BottomNav/BottomNav.css';
 
 export interface BottomNavItem {
   /** Stable identifier for the item. Passed to `onSelect`. */

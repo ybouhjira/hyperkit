@@ -1,6 +1,6 @@
 import { type JSX, type Component, lazy, Suspense, Show } from 'solid-js';
 import { isServer } from 'solid-js/web';
-import './Tooltip.css';
+import '@ybouhjira/hyperkit-styles/primitives/Tooltip/Tooltip.css';
 
 /** Props for the Tooltip component. */
 export interface TooltipProps {

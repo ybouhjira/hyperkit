@@ -1,5 +1,5 @@
 import { Component, For, JSX, Show, splitProps } from 'solid-js';
-import './MobileBottomBar.css';
+import '@ybouhjira/hyperkit-styles/composites/MobileBottomBar/MobileBottomBar.css';
 
 /**
  * A single item in the {@link MobileBottomBar}.

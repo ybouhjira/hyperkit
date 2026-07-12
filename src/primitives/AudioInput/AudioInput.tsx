@@ -9,7 +9,7 @@ import {
   createEffect,
   untrack,
 } from 'solid-js';
-import './AudioInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/AudioInput/AudioInput.css';
 
 /** Props for the AudioInput component. */
 export interface AudioInputProps {

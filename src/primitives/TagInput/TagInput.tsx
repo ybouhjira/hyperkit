@@ -7,7 +7,7 @@ import {
   Show,
   createMemo,
 } from 'solid-js';
-import './TagInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/TagInput/TagInput.css';
 
 export interface TagInputProps {
   /**

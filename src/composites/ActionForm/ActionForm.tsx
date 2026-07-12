@@ -13,7 +13,7 @@ import {
   dispatchAction,
   type DispatchResult,
 } from '../../navigation/NavigableRegistry';
-import './ActionForm.css';
+import '@ybouhjira/hyperkit-styles/composites/ActionForm/ActionForm.css';
 
 // ── JSON Schema field extraction helpers ──────────────────────────────────────
 

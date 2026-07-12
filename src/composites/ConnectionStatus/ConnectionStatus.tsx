@@ -1,6 +1,6 @@
 import { Component, splitProps } from 'solid-js';
 import { Badge } from '../../primitives/Badge';
-import './ConnectionStatus.css';
+import '@ybouhjira/hyperkit-styles/composites/ConnectionStatus/ConnectionStatus.css';
 
 export type ConnectionState = 'connected' | 'disconnected' | 'connecting';
 

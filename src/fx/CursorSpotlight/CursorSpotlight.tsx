@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createSignal, onCleanup } from 'solid-js';
-import './CursorSpotlight.css';
+import '@ybouhjira/hyperkit-styles/fx/CursorSpotlight/CursorSpotlight.css';
 
 export interface CursorSpotlightProps {
   /**

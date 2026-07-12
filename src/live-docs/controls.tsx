@@ -12,7 +12,7 @@ import { Select } from '../primitives/Select';
 import { NumberInput } from '../primitives/NumberInput';
 import { Input } from '../primitives/Input';
 import type { CsfStory } from './csf.js';
-import './controls.css';
+import '@ybouhjira/hyperkit-styles/live-docs/controls.css';
 
 export type ControlKind = 'boolean' | 'select' | 'number' | 'text';
 

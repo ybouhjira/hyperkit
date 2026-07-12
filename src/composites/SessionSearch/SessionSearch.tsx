@@ -10,7 +10,7 @@ import {
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { SearchInput } from '../../primitives/SearchInput';
-import './SessionSearch.css';
+import '@ybouhjira/hyperkit-styles/composites/SessionSearch/SessionSearch.css';
 
 export interface SessionSearchResult {
   sessionId: string;

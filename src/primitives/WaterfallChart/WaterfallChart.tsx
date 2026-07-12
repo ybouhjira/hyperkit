@@ -1,5 +1,5 @@
 import { type Component, splitProps, createMemo, For } from 'solid-js';
-import './WaterfallChart.css';
+import '@ybouhjira/hyperkit-styles/primitives/WaterfallChart/WaterfallChart.css';
 
 /** A single item in a WaterfallChart. */
 export interface WaterfallItem {

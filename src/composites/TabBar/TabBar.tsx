@@ -1,6 +1,6 @@
 import { Component, For, createEffect, createSignal } from 'solid-js';
 import { Icon } from '../../icons';
-import './TabBar.css';
+import '@ybouhjira/hyperkit-styles/composites/TabBar/TabBar.css';
 
 export interface TabBarTab {
   id: string;

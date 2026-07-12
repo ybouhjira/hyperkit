@@ -1,7 +1,7 @@
 import { Component, Show } from 'solid-js';
 import type { FileItem } from './FileExplorer';
 import { FileIcon } from './FileIcon';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface TreeNodeProps {
   item: FileItem;

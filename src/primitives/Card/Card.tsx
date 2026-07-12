@@ -1,5 +1,5 @@
 import { Component, JSX, splitProps, Show } from 'solid-js';
-import './Card.css';
+import '@ybouhjira/hyperkit-styles/primitives/Card/Card.css';
 import { LivePulse } from '../LivePulse';
 
 export interface CardProps {

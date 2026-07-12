@@ -6,7 +6,7 @@ import { Dynamic } from 'solid-js/web';
 import type { UINode } from './node-schema.js';
 import { getComponent } from './component-registry.js';
 import { sanitizeProps } from './prop-sanitizer.js';
-import './live-render.css';
+import '@ybouhjira/hyperkit-styles/live-render/live-render.css';
 
 export interface NodeRendererProps {
   node: UINode;

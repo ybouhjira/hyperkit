@@ -2,7 +2,7 @@ import { For, Show, type Component } from 'solid-js';
 import { Stack } from '../../primitives/Stack';
 import { Switch } from '../../primitives/Switch';
 import type { LayoutPanelProps } from './types';
-import './SettingsPanel.css';
+import '@ybouhjira/hyperkit-styles/composites/SettingsPanel/SettingsPanel.css';
 
 const densityDescriptions = {
   compact: 'Minimal spacing',

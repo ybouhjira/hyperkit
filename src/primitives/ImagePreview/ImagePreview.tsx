@@ -1,5 +1,5 @@
 import { type Component, For, splitProps } from 'solid-js';
-import './ImagePreview.css';
+import '@ybouhjira/hyperkit-styles/primitives/ImagePreview/ImagePreview.css';
 
 /** Configuration for a single image preview item. */
 export interface ImagePreviewItem {

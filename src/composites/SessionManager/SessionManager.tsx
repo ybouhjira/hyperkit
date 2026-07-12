@@ -1,6 +1,6 @@
 import { For, Show, createMemo, type JSX } from 'solid-js';
 import { SessionCard } from './SessionCard';
-import './SessionManager.css';
+import '@ybouhjira/hyperkit-styles/composites/SessionManager/SessionManager.css';
 
 export interface TaskProgress {
   readonly id: string;

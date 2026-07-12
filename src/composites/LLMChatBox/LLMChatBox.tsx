@@ -1,6 +1,6 @@
 import { Component, For, createEffect, createSignal, Show, onMount } from 'solid-js';
 import type { LLMUIControllerReturn, LLMMessage } from '../../hooks/createLLMUIController';
-import './LLMChatBox.css';
+import '@ybouhjira/hyperkit-styles/composites/LLMChatBox/LLMChatBox.css';
 
 export interface LLMChatBoxProps {
   controller: LLMUIControllerReturn;

@@ -25,7 +25,7 @@
  */
 
 import { type Component, type JSX, Show, splitProps } from 'solid-js';
-import './LivePulse.css';
+import '@ybouhjira/hyperkit-styles/primitives/LivePulse/LivePulse.css';
 
 export interface LivePulseProps {
   /** Whether the wrapped content represents an active live job. */

@@ -1,7 +1,7 @@
 import { Component } from 'solid-js';
 import { getFileType } from './fileTypes';
 import type { FileItem } from './FileExplorer';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface FileIconItem extends FileItem {
   typeColor?: string;

@@ -23,7 +23,7 @@ import { Kbd } from '../../primitives/Kbd';
 import { Stack } from '../../primitives/Stack';
 import { Text } from '../../primitives/Text';
 import { X } from '../../icons';
-import './InspectPicker.css';
+import '@ybouhjira/hyperkit-styles/composites/InspectPicker/InspectPicker.css';
 
 /** Rounded bounding box of an inspected element (viewport coordinates). */
 export interface InspectRect {

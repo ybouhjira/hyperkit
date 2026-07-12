@@ -1,7 +1,7 @@
 import { Component, Show } from 'solid-js';
 import { Collapsible } from '../../primitives/Collapsible';
 import { Badge } from '../../primitives/Badge';
-import './ToolExecution.css';
+import '@ybouhjira/hyperkit-styles/composites/ToolExecution/ToolExecution.css';
 
 export type ToolStatus = 'running' | 'success' | 'error';
 

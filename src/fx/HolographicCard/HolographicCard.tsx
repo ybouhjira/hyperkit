@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createSignal } from 'solid-js';
-import './HolographicCard.css';
+import '@ybouhjira/hyperkit-styles/fx/HolographicCard/HolographicCard.css';
 
 export interface HolographicCardProps {
   /**

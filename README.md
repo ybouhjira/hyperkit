@@ -5,17 +5,17 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@ybouhjira/hyperkit)](https://bundlephobia.com/package/@ybouhjira/hyperkit)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**An application platform with a framework-agnostic core — 130+ components for SolidJS today, React next. IDE-grade panels, a navigation/action registry, a diagram engine, theming, Effect services, and AI-native tooling.**
+**An application platform with a framework-agnostic core — 130+ components for SolidJS, with a growing React package sharing the same stylesheets and themes. IDE-grade panels, a navigation/action registry, a diagram engine, theming, Effect services, and AI-native tooling.**
 
 **[▶ Live docs & demo apps](https://ybouhjira.github.io/hyperkit/)** · **[Component explorer](https://hyperkit-explorer.vercel.app)** — every component runs live, editable in the browser.
 
 HyperKit is not another button library. It is a full application layer: accessible primitives (built on [@kobalte/core](https://kobalte.dev)), feature-rich composites (chat, kanban, file explorer, command palette), resizable IDE panels, a keyboard system, 40 theme presets driven entirely by CSS custom properties, typed [Effect](https://effect.website) services, and an MCP server so AI assistants can look up its API like a teammate would.
 
-The long-term goal is **one component API, many renderers** — the SolidJS renderer ships today, a React adapter is the next milestone, and the core (diagram engine, design tokens, theme system, behavior tests) is already framework-agnostic. Alongside the UI, a full-stack platform layer (services, realtime, persistence, desktop) is taking shape. See the [Roadmap](ROADMAP.md).
+The architecture is **one design system, many renderers**: `@ybouhjira/hyperkit-styles` owns every stylesheet, `--sk-*` token, and theme preset; the SolidJS package (full catalog) and the React package (`@ybouhjira/hyperkit-react`, 20 core components and growing) render the identical DOM contract from it — a theme switch repaints both frameworks the same way. Alongside the UI, a full-stack platform layer (services, realtime, persistence, desktop) is taking shape. See the [Roadmap](ROADMAP.md).
 
 ## Why HyperKit
 
-- **One API, many renderers** — the component contract, `--sk-*` tokens, themes, and behavior tests are renderer-independent; SolidJS is the first renderer, React ([roadmap](ROADMAP.md)) is next. `diagram-core` is already fully framework-agnostic.
+- **One design system, many renderers** — stylesheets, `--sk-*` tokens, and 40 themes live in the framework-agnostic `@ybouhjira/hyperkit-styles`; the SolidJS package ships the full catalog and `@ybouhjira/hyperkit-react` renders the same `sk-*` DOM contract in React (20 core components, expanding per the [roadmap](ROADMAP.md)). `diagram-core` is fully framework-agnostic too.
 - **AI-native by design** — Ships an [MCP server](#ai-integration) for component-doc lookup, `llms.txt`/`llms-full.txt` for machine consumption, and a navigation registry that can expose your UI's actions as MCP tools (`generateMCPTools`) so agents can drive the interface.
 - **IDE-grade systems, not just widgets** — Resizable panel layouts, a navigable action registry with middleware (permissions, undo/redo, rate limiting), transport adapters (WebSocket, MessagePort, Tauri), and recording/replay.
 - **Token-first theming** — Every visual value flows through `--sk-*` CSS custom properties. 40 built-in presets (editor, OS, and product-inspired). A custom ESLint plugin enforces the token discipline in this repo's own CI.
@@ -33,6 +33,25 @@ npm install @ybouhjira/hyperkit
 
 ```tsx
 import '@ybouhjira/hyperkit/dist/index.css';
+```
+
+### React
+
+```bash
+npm install @ybouhjira/hyperkit-react
+```
+
+```tsx
+import { ThemeProvider, Button, fjordTheme } from '@ybouhjira/hyperkit-react';
+import '@ybouhjira/hyperkit-styles/styles.css';
+
+export function App() {
+  return (
+    <ThemeProvider theme={fjordTheme}>
+      <Button variant="primary">Same tokens, same themes, React renderer</Button>
+    </ThemeProvider>
+  );
+}
 ```
 
 ## Quick Start

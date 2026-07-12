@@ -4,7 +4,7 @@ import { Select } from '../../primitives/Select';
 import type { SelectOption } from '../../primitives/Select';
 import { useBreakpoint } from '../../hooks';
 import type { Breakpoint } from '../../hooks';
-import './MobileNav.css';
+import '@ybouhjira/hyperkit-styles/composites/MobileNav/MobileNav.css';
 
 export type MobileNavSessionStatus = 'idle' | 'streaming' | 'error';
 

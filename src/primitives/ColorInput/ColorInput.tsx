@@ -8,7 +8,7 @@ import {
   createEffect,
   For,
 } from 'solid-js';
-import './ColorInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/ColorInput/ColorInput.css';
 
 /** Props for the ColorInput component. */
 export interface ColorInputProps {

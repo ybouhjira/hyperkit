@@ -3,7 +3,7 @@ import type { FileItem } from './types';
 import { getFileType } from './fileTypes';
 import { FileIcon } from './FileIcon';
 import { formatSize } from './FileExplorer';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface FilePreviewProps {
   item: FileItem;

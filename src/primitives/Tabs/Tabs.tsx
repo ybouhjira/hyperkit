@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps, For } from 'solid-js';
 import { Tabs as KobalteTabs } from '@kobalte/core/tabs';
-import './Tabs.css';
+import '@ybouhjira/hyperkit-styles/primitives/Tabs/Tabs.css';
 
 /** Configuration for a single tab. */
 export interface TabItem {

@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, Show } from 'solid-js';
-import './Separator.css';
+import '@ybouhjira/hyperkit-styles/primitives/Separator/Separator.css';
 
 /**
  * Props for the Separator component

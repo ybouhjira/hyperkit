@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps } from 'solid-js';
-import './GradientBorder.css';
+import '@ybouhjira/hyperkit-styles/fx/GradientBorder/GradientBorder.css';
 
 export interface GradientBorderProps {
   /**

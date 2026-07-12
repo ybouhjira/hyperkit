@@ -8,7 +8,7 @@ import { Flex } from '../../primitives/Flex';
 import { Stack } from '../../primitives/Stack';
 import { Grid } from '../../primitives/Grid';
 import { ProgressBar } from '../../primitives/ProgressBar';
-import './ProjectDashboard.css';
+import '@ybouhjira/hyperkit-styles/composites/ProjectDashboard/ProjectDashboard.css';
 
 export interface LabelData {
   readonly name: string;

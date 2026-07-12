@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps } from 'solid-js';
-import './ScrollArea.css';
+import '@ybouhjira/hyperkit-styles/primitives/ScrollArea/ScrollArea.css';
 
 type ScrollAreaNativeAttrs = Omit<
   JSX.HTMLAttributes<HTMLDivElement>,

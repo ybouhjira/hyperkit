@@ -1,7 +1,7 @@
 import { Component, Show, createSignal } from 'solid-js';
 import { Icon } from '../../icons';
 import { Markdown } from '../../primitives/Markdown';
-import './MessageBubble.css';
+import '@ybouhjira/hyperkit-styles/composites/MessageBubble/MessageBubble.css';
 
 export type MessageRole = 'user' | 'assistant' | 'system';
 

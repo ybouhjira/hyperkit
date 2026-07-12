@@ -1,7 +1,7 @@
 import { Component, Show } from 'solid-js';
 import { Button } from '../../primitives/Button';
 import { FileExplorer, type FileItem } from '../FileExplorer';
-import './DirectoryPicker.css';
+import '@ybouhjira/hyperkit-styles/composites/DirectoryPicker/DirectoryPicker.css';
 
 export interface DirectoryPickerProps {
   items: FileItem[];

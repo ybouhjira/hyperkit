@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, For, Show } from 'solid-js';
-import './SkeletonShimmer.css';
+import '@ybouhjira/hyperkit-styles/fx/SkeletonShimmer/SkeletonShimmer.css';
 
 export type SkeletonVariant = 'text' | 'circle' | 'rect' | 'card';
 
