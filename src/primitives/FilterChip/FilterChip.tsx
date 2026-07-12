@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps } from 'solid-js';
-import './FilterChip.css';
+import '@ybouhjira/hyperkit-styles/primitives/FilterChip/FilterChip.css';
 
 /** Props for the FilterChip component. */
 export interface FilterChipProps {

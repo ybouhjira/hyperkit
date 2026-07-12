@@ -1,7 +1,7 @@
 import { Component, createSignal, Show, For, onMount, onCleanup, splitProps } from 'solid-js';
 import { useMode, type Mode, modeDefinitions } from '../../hooks/useMode';
 import { useShortcuts } from '../../keyboard';
-import './ModeSwitcher.css';
+import '@ybouhjira/hyperkit-styles/composites/ModeSwitcher/ModeSwitcher.css';
 
 export interface ModeSwitcherProps {
   class?: string;

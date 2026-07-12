@@ -1,5 +1,5 @@
 import { type Component, splitProps, createSignal, Show, For, onCleanup } from 'solid-js';
-import './VideoInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/VideoInput/VideoInput.css';
 
 /** Props for the VideoInput component. */
 export interface VideoInputProps {

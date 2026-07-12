@@ -19,7 +19,7 @@ import {
   getDraggedPanelInfo,
   getDrawerEdge,
 } from './panelGridStyles';
-import './panels.css';
+import '@ybouhjira/hyperkit-styles/panels/panels.css';
 
 export const PanelContainer: Component<PanelContainerProps> = (props) => {
   const chrome = () => props.chrome ?? 'full';

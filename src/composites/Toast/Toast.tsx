@@ -2,7 +2,7 @@ import { createSignal, createContext, useContext, For, Show, onMount } from 'sol
 import { Portal, isServer } from 'solid-js/web';
 import type { Component, JSX } from 'solid-js';
 import { Icon } from '../../icons';
-import './Toast.css';
+import '@ybouhjira/hyperkit-styles/composites/Toast/Toast.css';
 
 export type ToastVariant = 'success' | 'error' | 'info' | 'warning';
 

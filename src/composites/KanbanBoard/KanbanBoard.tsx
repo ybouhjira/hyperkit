@@ -1,5 +1,5 @@
 import { Component, For, Show } from 'solid-js';
-import './KanbanBoard.css';
+import '@ybouhjira/hyperkit-styles/composites/KanbanBoard/KanbanBoard.css';
 
 export interface KanbanCard {
   id: string;

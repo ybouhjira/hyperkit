@@ -9,7 +9,7 @@ import {
   type JSX,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import './CommandPalette.css';
+import '@ybouhjira/hyperkit-styles/composites/CommandPalette/CommandPalette.css';
 import { useNavigableActions } from './useNavigableActions';
 
 export interface CommandAction {

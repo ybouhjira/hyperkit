@@ -1,7 +1,7 @@
 import { Component, For, splitProps } from 'solid-js';
 import { Breadcrumbs as KBreadcrumbs } from '@kobalte/core/breadcrumbs';
 import { Icon } from '../../icons';
-import './Breadcrumb.css';
+import '@ybouhjira/hyperkit-styles/composites/Breadcrumb/Breadcrumb.css';
 
 export interface BreadcrumbItem {
   label: string;

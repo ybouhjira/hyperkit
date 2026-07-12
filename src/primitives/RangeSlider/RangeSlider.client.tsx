@@ -3,7 +3,7 @@
 import { Slider as KobalteSlider } from '@kobalte/core/slider';
 import { mergeProps, Show, createSignal, createEffect, type Component } from 'solid-js';
 import type { RangeSliderProps } from './RangeSlider';
-import './RangeSlider.css';
+import '@ybouhjira/hyperkit-styles/primitives/RangeSlider/RangeSlider.css';
 
 export const RangeSliderClient: Component<RangeSliderProps> = (props) => {
   const merged = mergeProps(

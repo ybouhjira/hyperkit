@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 import { Show, splitProps } from 'solid-js';
 import { Card } from '../../primitives/Card/Card';
 import { Badge } from '../../primitives/Badge/Badge';
-import './RepoCard.css';
+import '@ybouhjira/hyperkit-styles/composites/RepoCard/RepoCard.css';
 
 export interface RepoInfo {
   readonly name: string;

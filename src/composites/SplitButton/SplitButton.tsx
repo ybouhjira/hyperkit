@@ -1,7 +1,7 @@
 import { Component, For, splitProps } from 'solid-js';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
 import { Icon } from '../../icons';
-import './SplitButton.css';
+import '@ybouhjira/hyperkit-styles/composites/SplitButton/SplitButton.css';
 
 export interface SplitButtonOption {
   label: string;

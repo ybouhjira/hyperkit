@@ -7,7 +7,13 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Drawer } from './Drawer';
 
-const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'Drawer.css'), 'utf8');
+const css = readFileSync(
+  join(
+    dirname(fileURLToPath(import.meta.url)),
+    '../../../packages/hyperkit-styles/src/primitives/Drawer/Drawer.css'
+  ),
+  'utf8'
+);
 
 describe('Drawer', () => {
   it('does not render content when closed', () => {

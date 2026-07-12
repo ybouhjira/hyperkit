@@ -1,4 +1,4 @@
-import './styles.css';
+import '@ybouhjira/hyperkit-styles/styles.css';
 
 // ── Primitives ─────────────────────────────────────────
 export * from './primitives';

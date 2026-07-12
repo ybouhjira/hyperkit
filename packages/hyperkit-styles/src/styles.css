@@ -228,6 +228,7 @@ textarea:focus-visible {
 }
 
 /* ===== Syntax Highlighting (rehype-highlight / highlight.js) ===== */
+/* stylelint-disable selector-class-pattern -- third-party highlight.js class names */
 .hljs {
   background: var(--sk-bg-tertiary);
   color: var(--sk-text-primary);
@@ -285,6 +286,8 @@ textarea:focus-visible {
 .hljs-strong {
   font-weight: 700;
 }
+
+/* stylelint-enable selector-class-pattern */
 
 /* ===== Scrollbar ===== */
 *::-webkit-scrollbar {

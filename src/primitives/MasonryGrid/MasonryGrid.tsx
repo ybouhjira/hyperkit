@@ -1,6 +1,6 @@
 import { Component, JSX, splitProps, createMemo } from 'solid-js';
 import { SpaceToken } from '../layout';
-import './MasonryGrid.css';
+import '@ybouhjira/hyperkit-styles/primitives/MasonryGrid/MasonryGrid.css';
 
 /** Props for the MasonryGrid component. */
 export interface MasonryGridProps {

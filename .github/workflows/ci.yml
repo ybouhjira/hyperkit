@@ -17,6 +17,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: npx playwright install chromium --with-deps
+      # Design-system core first: the main package's theme shims and CSS
+      # imports resolve against its built dist.
+      - run: pnpm --filter @ybouhjira/hyperkit-styles build
       - run: pnpm lint
       - run: npx tsc --noEmit
       - run: pnpm build

@@ -1,5 +1,5 @@
 import { createSignal, createEffect, Show, For, onMount, onCleanup } from 'solid-js';
-import './BugReporter.css';
+import '@ybouhjira/hyperkit-styles/composites/BugReporter/BugReporter.css';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

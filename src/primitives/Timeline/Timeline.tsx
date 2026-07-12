@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps, For, Show } from 'solid-js';
-import './Timeline.css';
+import '@ybouhjira/hyperkit-styles/primitives/Timeline/Timeline.css';
 
 /** Configuration for a single timeline step. */
 export interface TimelineStep {

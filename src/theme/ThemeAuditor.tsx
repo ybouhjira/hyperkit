@@ -7,7 +7,7 @@ import {
   type ThemeAuditResult,
   type AuditGroupResult,
 } from './auditThemeVars';
-import './ThemeAuditor.css';
+import '@ybouhjira/hyperkit-styles/theme/ThemeAuditor.css';
 
 interface ThemeAuditorProps {
   /** Show floating overlay panel. Default: false (console only) */

@@ -3,7 +3,7 @@ import { MessageList, type Message } from '../MessageList';
 import { MessageInput } from '../MessageInput';
 import { ConnectionStatus, type ConnectionState } from '../ConnectionStatus';
 import { ModelSelector, type ModelOption } from '../ModelSelector';
-import './ChatWindow.css';
+import '@ybouhjira/hyperkit-styles/composites/ChatWindow/ChatWindow.css';
 
 export interface ChatWindowProps {
   messages: Message[];

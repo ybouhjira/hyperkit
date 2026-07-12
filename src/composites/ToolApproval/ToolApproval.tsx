@@ -1,4 +1,4 @@
-import './ToolApproval.css';
+import '@ybouhjira/hyperkit-styles/composites/ToolApproval/ToolApproval.css';
 import { createSignal, Component } from 'solid-js';
 import { useShortcuts, KeyboardScope } from '../../keyboard';
 

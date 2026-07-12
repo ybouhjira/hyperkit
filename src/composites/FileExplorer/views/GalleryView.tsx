@@ -2,7 +2,7 @@ import { Component, For } from 'solid-js';
 import type { FileItem } from '../FileExplorer';
 import { FileIcon } from '../FileIcon';
 import { getFileType } from '../fileTypes';
-import '../FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface GalleryViewProps {
   items: FileItem[];

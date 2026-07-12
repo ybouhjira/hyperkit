@@ -1,6 +1,6 @@
 import { Component, createMemo, createEffect, splitProps, Accessor } from 'solid-js';
 import { Markdown } from '../Markdown';
-import './StreamingText.css';
+import '@ybouhjira/hyperkit-styles/primitives/StreamingText/StreamingText.css';
 
 /** Props for the StreamingText component. */
 export interface StreamingTextProps {

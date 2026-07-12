@@ -7,7 +7,7 @@ import {
   Show,
   createMemo,
 } from 'solid-js';
-import './FileInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/FileInput/FileInput.css';
 
 /** Props for the FileInput component. */
 export interface FileInputProps {

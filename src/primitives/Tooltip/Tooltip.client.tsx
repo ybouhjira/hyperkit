@@ -3,7 +3,7 @@
 import { type Component, splitProps } from 'solid-js';
 import { Tooltip as KobalteTooltip } from '@kobalte/core/tooltip';
 import type { TooltipProps } from './Tooltip';
-import './Tooltip.css';
+import '@ybouhjira/hyperkit-styles/primitives/Tooltip/Tooltip.css';
 
 export const TooltipImpl: Component<TooltipProps> = (props) => {
   const [local, others] = splitProps(props, [

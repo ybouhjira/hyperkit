@@ -3,7 +3,7 @@ import { Box } from '../../primitives/Box';
 import { EmptyState } from '../../primitives/EmptyState';
 import { Tabs, type TabItem } from '../../primitives/Tabs';
 import type { VideoSourcePickerProps, VideoSourceProvider } from './types';
-import './VideoSourcePicker.css';
+import '@ybouhjira/hyperkit-styles/composites/VideoSourcePicker/VideoSourcePicker.css';
 
 export { formatSize, relativeTime } from './format';
 

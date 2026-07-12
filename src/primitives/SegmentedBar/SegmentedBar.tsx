@@ -1,5 +1,5 @@
 import { type Component, splitProps, createMemo, For } from 'solid-js';
-import './SegmentedBar.css';
+import '@ybouhjira/hyperkit-styles/primitives/SegmentedBar/SegmentedBar.css';
 
 /** A single segment within a SegmentedBar. */
 export interface SegmentedBarSegment {

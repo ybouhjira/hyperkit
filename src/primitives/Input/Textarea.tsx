@@ -1,5 +1,5 @@
 import { type Component, splitProps, createEffect, onMount } from 'solid-js';
-import './Input.css';
+import '@ybouhjira/hyperkit-styles/primitives/Input/Input.css';
 
 export interface TextareaProps {
   /** Placeholder text displayed when the textarea is empty. */

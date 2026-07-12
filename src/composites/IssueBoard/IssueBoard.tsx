@@ -1,7 +1,7 @@
 import { createMemo, createSignal, For, Show } from 'solid-js';
 import type { JSX } from 'solid-js';
 import { IssueBoardListView, IssueBoardBoardView, IssueBoardTableView } from './IssueBoardViews';
-import './IssueBoard.css';
+import '@ybouhjira/hyperkit-styles/composites/IssueBoard/IssueBoard.css';
 
 export interface IssueLabel {
   readonly name: string;

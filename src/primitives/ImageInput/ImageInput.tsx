@@ -10,7 +10,7 @@ import {
   onCleanup,
   untrack,
 } from 'solid-js';
-import './ImageInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/ImageInput/ImageInput.css';
 
 /** Props for the ImageInput component. */
 export interface ImageInputProps {

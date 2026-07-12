@@ -7,7 +7,10 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const css = readFileSync(
-  join(dirname(fileURLToPath(import.meta.url)), 'TopProgressBar.css'),
+  join(
+    dirname(fileURLToPath(import.meta.url)),
+    '../../../packages/hyperkit-styles/src/primitives/TopProgressBar/TopProgressBar.css'
+  ),
   'utf8'
 );
 

@@ -4,7 +4,7 @@ import { Dialog } from '../primitives/Dialog';
 import { useKeyboard } from './useKeyboard';
 import { formatShortcut } from './formatShortcut';
 import type { ShortcutsHelpProps, ShortcutRegistration } from './types';
-import './ShortcutsHelp.css';
+import '@ybouhjira/hyperkit-styles/keyboard/ShortcutsHelp.css';
 
 export const ShortcutsHelp: Component<ShortcutsHelpProps> = (props) => {
   const { shortcuts } = useKeyboard();

@@ -1,5 +1,5 @@
 import { type Component, For, createMemo, splitProps } from 'solid-js';
-import './Pagination.css';
+import '@ybouhjira/hyperkit-styles/primitives/Pagination/Pagination.css';
 
 export interface PaginationProps {
   /** Current active page (1-based). */

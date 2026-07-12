@@ -3,7 +3,7 @@
 import { type Component, splitProps, Show } from 'solid-js';
 import { Slider as KobalteSlider } from '@kobalte/core/slider';
 import type { SliderProps } from './Slider';
-import './Slider.css';
+import '@ybouhjira/hyperkit-styles/primitives/Slider/Slider.css';
 
 export const SliderClient: Component<SliderProps> = (props) => {
   const [local, others] = splitProps(props, [

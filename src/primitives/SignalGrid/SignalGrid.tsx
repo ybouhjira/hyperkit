@@ -1,5 +1,5 @@
 import { type Component, splitProps, createMemo, For } from 'solid-js';
-import './SignalGrid.css';
+import '@ybouhjira/hyperkit-styles/primitives/SignalGrid/SignalGrid.css';
 
 /** A single cell in a SignalGrid. */
 export interface SignalGridCell {

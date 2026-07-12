@@ -1,7 +1,7 @@
 import { Component, For, Show, splitProps } from 'solid-js';
 import type { JSX } from 'solid-js';
 import { Menubar as KMenubar } from '@kobalte/core/menubar';
-import './MenuBar.css';
+import '@ybouhjira/hyperkit-styles/composites/MenuBar/MenuBar.css';
 
 export interface MenuItem {
   id: string;

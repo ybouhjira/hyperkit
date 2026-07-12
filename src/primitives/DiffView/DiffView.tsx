@@ -25,7 +25,7 @@ import {
 import { SegmentedControl } from '../SegmentedControl/SegmentedControl';
 import { highlightCode } from '../CodeBlock/hljs';
 import { parseDiff, toSplitRows, type DiffFile, type DiffLine, type SplitRow } from './diff';
-import './DiffView.css';
+import '@ybouhjira/hyperkit-styles/primitives/DiffView/DiffView.css';
 
 /** Layout mode for the diff. */
 export type DiffViewMode = 'split' | 'unified';

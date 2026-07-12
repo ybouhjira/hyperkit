@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps, createMemo, createSignal, For, DEV } from 'solid-js';
 import { validateProps } from '../../utils/validateProps';
-import './SegmentedControl.css';
+import '@ybouhjira/hyperkit-styles/primitives/SegmentedControl/SegmentedControl.css';
 
 /** A single option within a SegmentedControl. */
 export interface SegmentedControlOption {

@@ -1,5 +1,5 @@
 import { type Component, splitProps, Show, For, createMemo } from 'solid-js';
-import './Skeleton.css';
+import '@ybouhjira/hyperkit-styles/primitives/Skeleton/Skeleton.css';
 
 /** Props for the Skeleton component. */
 export interface SkeletonProps {

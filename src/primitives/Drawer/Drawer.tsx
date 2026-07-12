@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps, Show } from 'solid-js';
 import { Dialog as KobalteDialog } from '@kobalte/core/dialog';
-import './Drawer.css';
+import '@ybouhjira/hyperkit-styles/primitives/Drawer/Drawer.css';
 
 /** Which edge of the viewport the drawer slides in from. */
 export type DrawerSide = 'left' | 'right' | 'top' | 'bottom';

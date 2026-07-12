@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createEffect, onCleanup, onMount } from 'solid-js';
-import './ShaderBackground.css';
+import '@ybouhjira/hyperkit-styles/fx/ShaderBackground/ShaderBackground.css';
 
 export type ShaderPreset = 'noise' | 'gradient' | 'waves' | 'aurora';
 

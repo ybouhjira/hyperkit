@@ -2,7 +2,7 @@ import { For, Show, splitProps } from 'solid-js';
 import type { Component, JSX } from 'solid-js';
 import * as ContextMenu from '@kobalte/core/context-menu';
 import { Icon } from '../../icons';
-import './ContextMenu.css';
+import '@ybouhjira/hyperkit-styles/composites/ContextMenu/ContextMenu.css';
 
 export type ContextMenuItem =
   | {

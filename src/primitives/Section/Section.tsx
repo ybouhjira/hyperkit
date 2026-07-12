@@ -1,6 +1,6 @@
 import { type Component, type JSX, splitProps, createMemo, Show } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import './Section.css';
+import '@ybouhjira/hyperkit-styles/primitives/Section/Section.css';
 
 export interface SectionProps {
   /**

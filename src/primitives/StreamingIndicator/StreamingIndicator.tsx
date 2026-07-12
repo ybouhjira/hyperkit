@@ -1,5 +1,5 @@
 import { Component, Show, splitProps } from 'solid-js';
-import './StreamingIndicator.css';
+import '@ybouhjira/hyperkit-styles/primitives/StreamingIndicator/StreamingIndicator.css';
 
 /** Props for the StreamingIndicator component. */
 export interface StreamingIndicatorProps {

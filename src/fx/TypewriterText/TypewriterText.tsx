@@ -6,7 +6,7 @@ import {
   createEffect,
   onCleanup,
 } from 'solid-js';
-import './TypewriterText.css';
+import '@ybouhjira/hyperkit-styles/fx/TypewriterText/TypewriterText.css';
 
 export interface TypewriterTextProps {
   /** Text to type */

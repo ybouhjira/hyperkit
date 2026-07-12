@@ -1,7 +1,7 @@
 import { Component, For, Show, splitProps, createMemo } from 'solid-js';
 import type { JSX } from 'solid-js';
 import { Tooltip } from '@kobalte/core/tooltip';
-import './StatusBar.css';
+import '@ybouhjira/hyperkit-styles/composites/StatusBar/StatusBar.css';
 
 export interface StatusBarItem {
   id: string;

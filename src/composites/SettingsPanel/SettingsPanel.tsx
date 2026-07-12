@@ -3,7 +3,7 @@ import { AppearancePanel } from './AppearancePanel';
 import { AnimationPanel } from './AnimationPanel';
 import { LayoutPanel } from './LayoutPanel';
 import type { SettingsPanelProps, SettingsConfig } from './types';
-import './SettingsPanel.css';
+import '@ybouhjira/hyperkit-styles/composites/SettingsPanel/SettingsPanel.css';
 
 type Tab = 'appearance' | 'animation' | 'layout';
 

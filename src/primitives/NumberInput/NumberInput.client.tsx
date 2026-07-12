@@ -3,7 +3,7 @@
 import { type Component, splitProps, Show, createMemo } from 'solid-js';
 import { NumberField } from '@kobalte/core/number-field';
 import type { NumberInputProps } from './NumberInput';
-import './NumberInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/NumberInput/NumberInput.css';
 
 export const NumberInputClient: Component<NumberInputProps> = (props) => {
   const [local, others] = splitProps(props, [

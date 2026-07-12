@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createSignal, onCleanup } from 'solid-js';
-import './TiltCard.css';
+import '@ybouhjira/hyperkit-styles/fx/TiltCard/TiltCard.css';
 
 export interface TiltCardProps {
   /**

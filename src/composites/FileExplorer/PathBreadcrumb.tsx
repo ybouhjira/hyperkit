@@ -1,5 +1,5 @@
 import { Component, For, JSX, Show, createMemo, createSignal } from 'solid-js';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface PathBreadcrumbProps {
   path: string;

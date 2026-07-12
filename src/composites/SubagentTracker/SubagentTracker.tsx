@@ -1,4 +1,4 @@
-import './SubagentTracker.css';
+import '@ybouhjira/hyperkit-styles/composites/SubagentTracker/SubagentTracker.css';
 import { Component, For, Show, createSignal } from 'solid-js';
 import { Badge } from '../../primitives/Badge';
 

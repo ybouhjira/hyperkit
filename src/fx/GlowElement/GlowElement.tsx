@@ -1,6 +1,6 @@
 import { type Component, type JSX, splitProps } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import './GlowElement.css';
+import '@ybouhjira/hyperkit-styles/fx/GlowElement/GlowElement.css';
 
 export interface GlowElementProps {
   /**

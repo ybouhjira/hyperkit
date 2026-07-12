@@ -2,7 +2,7 @@ import { For, type Component } from 'solid-js';
 import { Stack } from '../../primitives/Stack';
 import { Flex } from '../../primitives/Flex';
 import type { AppearancePanelProps } from './types';
-import './SettingsPanel.css';
+import '@ybouhjira/hyperkit-styles/composites/SettingsPanel/SettingsPanel.css';
 
 export const AppearancePanel: Component<AppearancePanelProps> = (props) => {
   return (

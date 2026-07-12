@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps, Show } from 'solid-js';
 import { Dialog as KobalteDialog } from '@kobalte/core/dialog';
-import './Dialog.css';
+import '@ybouhjira/hyperkit-styles/primitives/Dialog/Dialog.css';
 
 export interface DialogProps {
   /** Whether the dialog is open. */

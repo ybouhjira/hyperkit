@@ -1,6 +1,6 @@
 import { Component, splitProps, Show } from 'solid-js';
 import { Icon } from '../../icons';
-import './ProjectCard.css';
+import '@ybouhjira/hyperkit-styles/primitives/ProjectCard/ProjectCard.css';
 
 /** Props for the ProjectCard component. */
 export interface ProjectCardProps {

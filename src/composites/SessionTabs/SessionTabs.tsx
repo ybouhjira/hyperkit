@@ -1,7 +1,7 @@
 import { Component, For, Show } from 'solid-js';
 import { Badge } from '../../primitives/Badge';
 import { Button } from '../../primitives/Button';
-import './SessionTabs.css';
+import '@ybouhjira/hyperkit-styles/composites/SessionTabs/SessionTabs.css';
 
 export type TabSessionStatus = 'idle' | 'streaming' | 'error';
 

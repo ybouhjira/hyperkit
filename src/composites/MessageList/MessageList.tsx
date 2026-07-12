@@ -1,6 +1,6 @@
 import { Component, For, Show, createEffect, onMount } from 'solid-js';
 import { MessageBubble, type MessageRole } from '../MessageBubble';
-import './MessageList.css';
+import '@ybouhjira/hyperkit-styles/composites/MessageList/MessageList.css';
 
 export interface Message {
   id: string;

@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps, Show } from 'solid-js';
 import { Icon } from '../../icons';
-import './EmptyState.css';
+import '@ybouhjira/hyperkit-styles/primitives/EmptyState/EmptyState.css';
 
 /** Props for the EmptyState component. */
 export interface EmptyStateProps {

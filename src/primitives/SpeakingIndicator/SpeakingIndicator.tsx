@@ -1,5 +1,5 @@
 import { Component, Show, splitProps } from 'solid-js';
-import './SpeakingIndicator.css';
+import '@ybouhjira/hyperkit-styles/primitives/SpeakingIndicator/SpeakingIndicator.css';
 
 export type SpeakingVariant = 'bars' | 'dot' | 'wave';
 

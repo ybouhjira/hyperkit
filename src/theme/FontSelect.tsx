@@ -1,6 +1,6 @@
 import { Component, createSignal, For } from 'solid-js';
 import { useTheme } from './useTheme';
-import './FontSelect.css';
+import '@ybouhjira/hyperkit-styles/theme/FontSelect.css';
 
 interface FontOption {
   name: string;

@@ -1,5 +1,5 @@
 import { type Component, type JSX, splitProps, createSignal, Show, mergeProps } from 'solid-js';
-import './DateInput.css';
+import '@ybouhjira/hyperkit-styles/primitives/DateInput/DateInput.css';
 
 /** Props for the DateInput component. */
 export interface DateInputProps {

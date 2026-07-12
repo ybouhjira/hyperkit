@@ -10,7 +10,7 @@ import { Button } from '../../primitives/Button';
 import { Input } from '../../primitives/Input';
 import { ThemeBuilderPreview } from './ThemeBuilderPreview';
 import { normalizeColor, generateThemeCode, colorGroups } from './themeBuilderUtils';
-import './ThemeBuilder.css';
+import '@ybouhjira/hyperkit-styles/composites/ThemeBuilder/ThemeBuilder.css';
 
 export interface ThemeBuilderProps {
   initialTheme?: Partial<ThemeConfig>;

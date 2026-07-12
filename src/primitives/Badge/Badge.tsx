@@ -1,5 +1,5 @@
 import { type JSX, type Component, splitProps, Show } from 'solid-js';
-import './Badge.css';
+import '@ybouhjira/hyperkit-styles/primitives/Badge/Badge.css';
 
 export interface BadgeProps {
   /** Color variant for the badge.

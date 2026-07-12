@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps, Show, DEV } from 'solid-js';
 import { validateProps } from '../../utils/validateProps';
-import './StatusDot.css';
+import '@ybouhjira/hyperkit-styles/primitives/StatusDot/StatusDot.css';
 
 export interface StatusDotProps {
   /** Status variant controlling color.

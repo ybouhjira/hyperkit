@@ -1,5 +1,5 @@
 import { Component, JSX, splitProps } from 'solid-js';
-import './DashboardGrid.css';
+import '@ybouhjira/hyperkit-styles/composites/DashboardGrid/DashboardGrid.css';
 
 export interface DashboardGridProps {
   /** Minimum width of each grid item before wrapping.

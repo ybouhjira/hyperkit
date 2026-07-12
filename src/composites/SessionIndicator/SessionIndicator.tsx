@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 import { Badge } from '../../primitives/Badge';
-import './SessionIndicator.css';
+import '@ybouhjira/hyperkit-styles/composites/SessionIndicator/SessionIndicator.css';
 
 export type SessionStatus = 'idle' | 'streaming' | 'error' | 'waiting';
 

@@ -6,7 +6,7 @@ import { checkNavigableHealth } from '../../navigation/health';
 import type { NavigableInfo } from '../../navigation/NavigableRegistry';
 import type { ActionEvent } from '../../navigation/ActionEventStream';
 import type { NavigableHealth } from '../../navigation/health/checkNavigableHealth';
-import './DevToolbar.css';
+import '@ybouhjira/hyperkit-styles/composites/DevToolbar/DevToolbar.css';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

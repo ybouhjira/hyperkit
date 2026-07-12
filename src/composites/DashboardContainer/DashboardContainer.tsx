@@ -3,7 +3,7 @@ import { useDashboardLayout } from './useDashboardLayout';
 import { useDashboardDrag } from './useDashboardDrag';
 import { DashboardCard } from './DashboardCard';
 import type { DashboardContainerProps, DashboardCardConfig, CardLayout } from './types';
-import './DashboardContainer.css';
+import '@ybouhjira/hyperkit-styles/composites/DashboardContainer/DashboardContainer.css';
 
 const gapMap = {
   sm: 'var(--sk-space-sm)',

@@ -9,7 +9,7 @@ import {
   splitProps,
   batch,
 } from 'solid-js';
-import './AnnotationLayer.css';
+import '@ybouhjira/hyperkit-styles/primitives/AnnotationLayer/AnnotationLayer.css';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 

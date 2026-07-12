@@ -2,7 +2,7 @@ import { Component, For, Show, createSignal, JSX } from 'solid-js';
 import type { ViewMode, SortField, SortDirection, ExplorerMode } from './types';
 import { ViewModeSwitcher } from './ViewModeSwitcher';
 import { PathBreadcrumb } from './PathBreadcrumb';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface FileExplorerToolbarProps {
   currentPath: string;

@@ -11,7 +11,7 @@ import type {
 } from './types';
 import { InspectorContext } from './context';
 import { useInspectorStorage } from './context';
-import './Inspector.css';
+import '@ybouhjira/hyperkit-styles/composites/Inspector/Inspector.css';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 

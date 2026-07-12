@@ -1,6 +1,6 @@
 import { type Component, splitProps } from 'solid-js';
 import { icons } from './icons';
-import './Icon.css';
+import '@ybouhjira/hyperkit-styles/icons/Icon.css';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

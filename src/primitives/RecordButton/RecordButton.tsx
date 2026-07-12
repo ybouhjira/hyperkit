@@ -1,5 +1,5 @@
 import { type Component, splitProps } from 'solid-js';
-import './RecordButton.css';
+import '@ybouhjira/hyperkit-styles/primitives/RecordButton/RecordButton.css';
 
 /** Props for the RecordButton component. */
 export interface RecordButtonProps {

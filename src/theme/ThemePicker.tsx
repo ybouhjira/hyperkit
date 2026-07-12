@@ -1,7 +1,7 @@
 import { Component, For } from 'solid-js';
 import { useTheme } from './useTheme';
 import { ThemeConfig } from './types';
-import './ThemePicker.css';
+import '@ybouhjira/hyperkit-styles/theme/ThemePicker.css';
 
 interface ThemePickerProps {
   onThemeChange?: (theme: ThemeConfig) => void;

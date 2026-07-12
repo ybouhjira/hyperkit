@@ -1,6 +1,6 @@
 import { Component, For } from 'solid-js';
 import type { ViewMode } from './FileExplorer';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface ViewModeSwitcherProps {
   currentMode: ViewMode;

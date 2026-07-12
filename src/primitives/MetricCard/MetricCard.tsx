@@ -1,6 +1,6 @@
 import { type JSX, type Component, children, splitProps, Show, DEV } from 'solid-js';
 import { validateProps } from '../../utils/validateProps';
-import './MetricCard.css';
+import '@ybouhjira/hyperkit-styles/primitives/MetricCard/MetricCard.css';
 
 export interface MetricCardProps {
   /** Metric label (e.g., "Total Projects"). */

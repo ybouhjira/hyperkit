@@ -1,5 +1,5 @@
 import { Component, For, JSX, Show, splitProps } from 'solid-js';
-import './StatBar.css';
+import '@ybouhjira/hyperkit-styles/composites/StatBar/StatBar.css';
 
 export interface StatBarItem {
   /** Label text. */

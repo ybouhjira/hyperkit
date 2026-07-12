@@ -9,7 +9,7 @@ import {
   splitProps,
 } from 'solid-js';
 import { Icon } from '../../icons';
-import './AiCompanion.css';
+import '@ybouhjira/hyperkit-styles/composites/AiCompanion/AiCompanion.css';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 

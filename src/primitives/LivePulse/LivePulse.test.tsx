@@ -127,7 +127,13 @@ describe('LivePulse', () => {
     // measuring. Instead we assert the CSS file itself carries the
     // rule — the only thing this test wants to prevent is a future
     // refactor accidentally dropping it.
-    const css = readFileSync(resolve(__dirname, 'LivePulse.css'), 'utf8');
+    const css = readFileSync(
+      resolve(
+        __dirname,
+        '../../../packages/hyperkit-styles/src/primitives/LivePulse/LivePulse.css'
+      ),
+      'utf8'
+    );
     const activeBlock = css.match(/\.sk-livepulse--active\s*\{[^}]*\}/);
     expect(activeBlock).not.toBeNull();
     expect(activeBlock![0]).toMatch(/width:\s*100%/);
@@ -136,7 +142,13 @@ describe('LivePulse', () => {
   });
 
   it('active inner first-child rule fills the wrapper (consumer height: 100% chain)', () => {
-    const css = readFileSync(resolve(__dirname, 'LivePulse.css'), 'utf8');
+    const css = readFileSync(
+      resolve(
+        __dirname,
+        '../../../packages/hyperkit-styles/src/primitives/LivePulse/LivePulse.css'
+      ),
+      'utf8'
+    );
     const innerBlock = css.match(/\.sk-livepulse--active\s*>\s*:first-child\s*\{[^}]*\}/);
     expect(innerBlock).not.toBeNull();
     expect(innerBlock![0]).toMatch(/width:\s*100%/);

@@ -3,7 +3,7 @@ import { Stack } from '../../primitives/Stack';
 import { Switch } from '../../primitives/Switch';
 import { Button } from '../../primitives/Button';
 import type { AnimationPanelProps } from './types';
-import './SettingsPanel.css';
+import '@ybouhjira/hyperkit-styles/composites/SettingsPanel/SettingsPanel.css';
 
 export const AnimationPanel: Component<AnimationPanelProps> = (props) => {
   const [isAnimating, setIsAnimating] = createSignal(false);

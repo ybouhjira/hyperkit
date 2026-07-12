@@ -1,0 +1,41 @@
+{
+  "name": "@ybouhjira/hyperkit-styles",
+  "version": "0.1.0",
+  "description": "Framework-agnostic design system core for HyperKit — --sk-* design tokens, component stylesheets, theme presets, and the theme engine shared by the SolidJS and React packages.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybouhjira/hyperkit.git",
+    "directory": "packages/hyperkit-styles"
+  },
+  "main": "./dist/theme/index.js",
+  "types": "./dist/theme/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./theme/*.css": "./dist/theme/*.css",
+    "./theme/*": {
+      "types": "./dist/theme/*.d.ts",
+      "import": "./dist/theme/*.js"
+    },
+    "./*": "./dist/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-css.mjs",
+    "test": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^4.0.0"
+  }
+}

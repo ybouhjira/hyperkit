@@ -3,7 +3,7 @@
 import { type Component, splitProps, createMemo } from 'solid-js';
 import { Select as KobalteSelect } from '@kobalte/core/select';
 import type { SelectProps, SelectOption } from './Select';
-import './Select.css';
+import '@ybouhjira/hyperkit-styles/primitives/Select/Select.css';
 
 export const SelectClient: Component<SelectProps> = (props) => {
   const [local, others] = splitProps(props, [

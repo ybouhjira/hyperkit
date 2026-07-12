@@ -9,7 +9,7 @@ import { VoiceInput, createVoiceRecognition } from './VoiceInput';
 import { PaperclipIcon, SendIcon, StopIcon } from './icons';
 import { createFileHandlers } from './useMessageFiles';
 import { createMarkdownFormatters } from './useMarkdownFormat';
-import './MessageInput.css';
+import '@ybouhjira/hyperkit-styles/composites/MessageInput/MessageInput.css';
 
 export const MessageInput: Component<MessageInputProps> = (props) => {
   let textareaRef: HTMLTextAreaElement | undefined;

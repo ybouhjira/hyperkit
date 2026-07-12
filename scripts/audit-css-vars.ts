@@ -337,12 +337,15 @@ function auditCssFile(filePath: string, rootDir: string, defined: Set<string>): 
  */
 function main() {
   const rootDir = join(import.meta.dirname || __dirname, '..');
+  // Stylesheets live in the framework-agnostic hyperkit-styles package;
+  // TSX var definitions (dynamic ThemeProvider families) live in src/.
   const srcDir = join(rootDir, 'src');
+  const stylesDir = join(rootDir, 'packages', 'hyperkit-styles', 'src');
 
   console.log('Scanning CSS files for invalid --sk-* variable references...\n');
 
-  const cssFiles = findCssFiles(srcDir);
-  const definedVars = collectDefinedVars(srcDir);
+  const cssFiles = findCssFiles(stylesDir);
+  const definedVars = new Set([...collectDefinedVars(srcDir), ...collectDefinedVars(stylesDir)]);
 
   const allViolations: Violation[] = [];
 

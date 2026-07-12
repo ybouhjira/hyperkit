@@ -1,5 +1,5 @@
 import { type Component, splitProps, Show } from 'solid-js';
-import './ProgressBar.css';
+import '@ybouhjira/hyperkit-styles/primitives/ProgressBar/ProgressBar.css';
 
 /** Props for the ProgressBar component. */
 export interface ProgressBarProps {

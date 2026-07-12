@@ -3,7 +3,7 @@ import type { FileItem, SortField, SortDirection } from '../FileExplorer';
 import { formatSize } from '../FileExplorer';
 import { FileIcon } from '../FileIcon';
 import { getFileType } from '../fileTypes';
-import '../FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface ListViewProps {
   items: FileItem[];

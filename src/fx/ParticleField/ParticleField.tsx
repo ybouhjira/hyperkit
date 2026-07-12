@@ -7,7 +7,7 @@ import {
   createSignal,
   untrack,
 } from 'solid-js';
-import './ParticleField.css';
+import '@ybouhjira/hyperkit-styles/fx/ParticleField/ParticleField.css';
 
 export interface ParticleFieldProps {
   /**

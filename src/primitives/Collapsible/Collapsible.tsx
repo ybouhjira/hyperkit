@@ -1,6 +1,6 @@
 import { type JSX, type Component, splitProps } from 'solid-js';
 import { Collapsible as KobalteCollapsible } from '@kobalte/core/collapsible';
-import './Collapsible.css';
+import '@ybouhjira/hyperkit-styles/primitives/Collapsible/Collapsible.css';
 
 /** Props for the Collapsible component. */
 export interface CollapsibleProps {

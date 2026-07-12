@@ -44,14 +44,14 @@
     "lint:fix": "eslint src/ --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "validate:stories": "storybook build --quiet && node --input-type=commonjs -e \"const fs = require('fs'); const idx = JSON.parse(fs.readFileSync('./storybook-static/index.json','utf8')); const count = Object.keys(idx.entries || idx.stories || {}).length; if(count === 0) { console.error('ERROR: No stories found in build'); process.exit(1); } console.log('\u2713 Storybook validated: ' + count + ' stories');\" ; rm -rf storybook-static",
+    "validate:stories": "storybook build --quiet && node --input-type=commonjs -e \"const fs = require('fs'); const idx = JSON.parse(fs.readFileSync('./storybook-static/index.json','utf8')); const count = Object.keys(idx.entries || idx.stories || {}).length; if(count === 0) { console.error('ERROR: No stories found in build'); process.exit(1); } console.log('✓ Storybook validated: ' + count + ' stories');\" ; rm -rf storybook-static",
     "prepare": "husky",
     "publint": "publint --strict",
     "attw": "attw --pack . --entrypoints . --ignore-rules cjs-resolves-to-esm internal-resolution-error no-resolution",
     "size": "size-limit",
     "size:check": "size-limit",
     "knip": "knip",
-    "lint:css": "stylelint 'src/**/*.css'",
+    "lint:css": "stylelint 'packages/hyperkit-styles/src/**/*.css'",
     "audit:css-vars": "tsx scripts/audit-css-vars.ts",
     "tree-shake:test": "tsx scripts/tree-shake-test.ts",
     "changeset": "changeset",
@@ -69,7 +69,7 @@
     "docs:dev": "cd website && npm run start",
     "docs:build": "cd website && npm run build",
     "docs:generate-api": "typedoc",
-    "validate:docs": "npm run docs:build && echo '\u2713 Docusaurus docs validated'"
+    "validate:docs": "npm run docs:build && echo '✓ Docusaurus docs validated'"
   },
   "repository": {
     "type": "git",
@@ -197,6 +197,7 @@
   "dependencies": {
     "@kobalte/core": "^0.13.11",
     "@motionone/dom": "^10.18.0",
+    "@ybouhjira/hyperkit-styles": "workspace:*",
     "commander": "^14.0.3",
     "highlight.js": "^11.11.1",
     "hypher": "^0.2.5",

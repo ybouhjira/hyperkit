@@ -1,7 +1,7 @@
 import { Component, For, JSX, Show, createSignal } from 'solid-js';
 import type { FileItem } from './types';
 import { TreeNode } from './TreeNode';
-import './FileExplorer.css';
+import '@ybouhjira/hyperkit-styles/composites/FileExplorer/FileExplorer.css';
 
 export interface TreeViewProps {
   items: FileItem[];

@@ -8,7 +8,7 @@ import {
   onCleanup,
 } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import './TopProgressBar.css';
+import '@ybouhjira/hyperkit-styles/primitives/TopProgressBar/TopProgressBar.css';
 
 /** Props for the TopProgressBar component. */
 export interface TopProgressBarProps {

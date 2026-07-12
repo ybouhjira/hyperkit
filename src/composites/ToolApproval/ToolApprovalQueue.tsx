@@ -1,4 +1,4 @@
-import './ToolApproval.css';
+import '@ybouhjira/hyperkit-styles/composites/ToolApproval/ToolApproval.css';
 import { Show, Component } from 'solid-js';
 import { ToolApproval, ToolApprovalItem } from './ToolApproval';
 
