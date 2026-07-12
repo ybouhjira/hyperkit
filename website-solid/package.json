@@ -14,6 +14,8 @@
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.15.3",
     "@solidjs/start": "^1.1.0",
+    "@ybouhjira/diagram-core": "workspace:*",
+    "@ybouhjira/diagram-solid": "workspace:*",
     "@ybouhjira/hyperkit": "workspace:*",
     "solid-js": "^1.9.11",
     "vinxi": "^0.5.3"

@@ -10,23 +10,41 @@ import { createSvgElement } from './renderer-filters';
 
 // ─── Contrast helper ─────────────────────────────────────────────────────────
 
-/** Given a hex color (e.g. "#1e293b"), return white or near-black for maximum contrast. */
+/**
+ * Given a hex color (e.g. "#1e293b" or "#22c55e22"), return white or near-black
+ * for maximum contrast against that fill — or `null` to let the label keep the
+ * themed default color.
+ *
+ * Alpha-aware: a translucent fill composites over the (theme-controlled) canvas
+ * background rather than showing its nominal hue, so choosing text contrast from
+ * the opaque hue would be wrong (e.g. a 13%-opacity bright-green node reads dark
+ * on a dark canvas, yet the hue's luminance would wrongly pick dark text). For
+ * fills below the opacity threshold we return `null` and defer to
+ * `--sk-diagram-node-label-color`, which already tracks the active theme.
+ */
 export const getContrastColor = (color: string): string | null => {
   const hex = color.replace('#', '');
   if (!/^[0-9a-fA-F]{3,8}$/.test(hex)) return null;
 
   let r: number, g: number, b: number;
-  if (hex.length === 3) {
+  let alpha = 1;
+  if (hex.length === 3 || hex.length === 4) {
     r = parseInt(hex[0]! + hex[0]!, 16);
     g = parseInt(hex[1]! + hex[1]!, 16);
     b = parseInt(hex[2]! + hex[2]!, 16);
-  } else if (hex.length >= 6) {
+    if (hex.length === 4) alpha = parseInt(hex[3]! + hex[3]!, 16) / 255;
+  } else if (hex.length === 6 || hex.length === 8) {
     r = parseInt(hex.slice(0, 2), 16);
     g = parseInt(hex.slice(2, 4), 16);
     b = parseInt(hex.slice(4, 6), 16);
+    if (hex.length === 8) alpha = parseInt(hex.slice(6, 8), 16) / 255;
   } else {
     return null;
   }
+
+  // Translucent fill → the node reads as the canvas background; let the themed
+  // label color win instead of contrasting against the invisible hue.
+  if (alpha < 0.6) return null;
 
   // sRGB relative luminance (WCAG 2.0)
   const toLinear = (c: number) => {

@@ -619,6 +619,12 @@ importers:
       '@solidjs/start':
         specifier: ^1.1.0
         version: 1.3.2(@testing-library/jest-dom@6.9.1)(solid-js@1.9.14)(vinxi@0.5.11(@types/node@22.20.1)(db0@0.3.4)(ioredis@5.11.1)(jiti@2.7.0)(oxc-parser@0.127.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))(vite@6.4.3(@types/node@22.20.1)(jiti@2.7.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))
+      '@ybouhjira/diagram-core':
+        specifier: workspace:*
+        version: link:../packages/diagram-core
+      '@ybouhjira/diagram-solid':
+        specifier: workspace:*
+        version: link:../packages/diagram-solid
       '@ybouhjira/hyperkit':
         specifier: workspace:*
         version: link:..

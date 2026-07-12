@@ -60,4 +60,12 @@ export const DEMO_APPS: DemoAppMeta[] = [
       'A kanban board with card editing in a dialog, tag inputs, filter chips, and a sprint progress header — project planning as a working app.',
     built: ['KanbanBoard', 'Dialog', 'TagInput', 'FilterChip', 'ProgressBar'],
   },
+  {
+    slug: 'diagrams',
+    name: 'Architecture Studio',
+    tagline: '11 live diagrams, 3 layouts',
+    description:
+      'A categorized diagram workspace — flows, service maps, networks, pipelines, org charts and state machines — each re-laid-out live with Dagre hierarchical, left-to-right, or force-directed layouts, plus pan/zoom controls and a minimap.',
+    built: ['DiagramProvider', 'Diagram', 'Controls', 'MiniMap', 'dagreLayout', 'd3ForceLayout'],
+  },
 ];
