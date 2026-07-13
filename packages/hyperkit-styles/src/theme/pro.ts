@@ -16,7 +16,7 @@
  *   monochrome blue for monochrome black/white with even fewer bold colors"
  */
 
-import type { ThemeConfig } from './types';
+import type { ThemeConfig } from './types.js';
 
 export const proTheme: ThemeConfig = {
   id: 'pro',

@@ -1,6 +1,6 @@
 {
   "name": "@ybouhjira/hyperkit-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React components for the HyperKit design system — same --sk-* tokens, themes, and CSS contract as the SolidJS package, rendered with React + Radix UI.",
   "type": "module",
   "license": "MIT",
@@ -33,7 +33,7 @@
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.0",
-    "@ybouhjira/hyperkit-styles": "workspace:*"
+    "@ybouhjira/hyperkit-styles": "workspace:^"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
@@ -52,5 +52,9 @@
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.0",
     "vitest": "^4.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

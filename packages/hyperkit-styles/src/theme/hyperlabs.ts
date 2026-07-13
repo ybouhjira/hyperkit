@@ -16,7 +16,7 @@
  * Web Audio (no asset shipping needed).
  */
 
-import type { ThemeConfig } from './types';
+import type { ThemeConfig } from './types.js';
 
 export const hyperlabsTheme: ThemeConfig = {
   id: 'hyperlabs',

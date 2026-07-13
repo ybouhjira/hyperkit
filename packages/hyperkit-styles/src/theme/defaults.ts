@@ -10,7 +10,7 @@ import type {
   ThemeComponents,
   ThemeSpacing,
   ThemeZIndex,
-} from './types';
+} from './types.js';
 
 export function resolveThemeDefaults(
   theme: ThemeConfig

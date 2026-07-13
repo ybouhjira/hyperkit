@@ -1,4 +1,4 @@
-import type { ThemeConfig } from './types';
+import type { ThemeConfig } from './types.js';
 
 export const productivityBlueTheme: ThemeConfig = {
   id: 'productivity-blue',

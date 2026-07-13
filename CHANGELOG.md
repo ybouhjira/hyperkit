@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.5.1
+
+### Fixed
+
+- `@ybouhjira/hyperkit-styles` 0.1.0 emitted extensionless relative imports in its ESM dist, which bare Node (no bundler) could not resolve. Source imports now carry explicit `.js` extensions; all three packages republished (`hyperkit-styles` 0.1.1, `hyperkit-react` 0.1.1, `hyperkit` 3.5.1) with the styles dependency widened to a caret range.
+
 ## 3.5.0
 
 ### Added

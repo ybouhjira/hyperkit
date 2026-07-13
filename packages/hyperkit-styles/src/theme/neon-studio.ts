@@ -1,4 +1,4 @@
-import type { ThemeConfig } from './types';
+import type { ThemeConfig } from './types.js';
 
 export const neonStudioTheme: ThemeConfig = {
   id: 'neon-studio',

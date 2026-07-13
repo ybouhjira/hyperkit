@@ -7,7 +7,7 @@ import {
   ZToken,
   FontSizeToken,
   FontWeightToken,
-} from './token-types';
+} from './token-types.js';
 
 export function mapSpace(token: SpaceToken): string {
   if (token === '0') return '0';

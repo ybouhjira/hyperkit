@@ -1,5 +1,5 @@
-import type { ThemeConfig, ThemeSurface, ThemeStateStyle } from './types';
-import { resolveThemeDefaults } from './defaults';
+import type { ThemeConfig, ThemeSurface, ThemeStateStyle } from './types.js';
+import { resolveThemeDefaults } from './defaults.js';
 
 function camelToKebab(str: string): string {
   return str.replace(/([A-Z])/g, '-$1').toLowerCase();

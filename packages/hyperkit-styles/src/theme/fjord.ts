@@ -17,7 +17,7 @@
  *   • fonts       JetBrains Mono-led for UI, code, and mono
  */
 
-import type { ThemeConfig } from './types';
+import type { ThemeConfig } from './types.js';
 
 const FJORD_MONO =
   "'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace";

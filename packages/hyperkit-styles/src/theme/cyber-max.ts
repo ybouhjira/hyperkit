@@ -14,7 +14,7 @@
  * mandate. Synthesized tones (no asset shipping) keep the bundle clean.
  */
 
-import type { ThemeConfig } from './types';
+import type { ThemeConfig } from './types.js';
 
 export const cyberMaxTheme: ThemeConfig = {
   id: 'cyber-max',

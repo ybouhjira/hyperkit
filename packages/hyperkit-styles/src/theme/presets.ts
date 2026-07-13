@@ -4,19 +4,19 @@ import {
   MacOSThemeConfig,
   WindowsThemeConfig,
   UbuntuThemeConfig,
-} from './types';
-import { productivityBlueTheme } from './productivity-blue';
-export { productivityBlueTheme } from './productivity-blue';
-import { neonStudioTheme } from './neon-studio';
-export { neonStudioTheme } from './neon-studio';
-import { hyperlabsTheme } from './hyperlabs';
-export { hyperlabsTheme } from './hyperlabs';
-import { cyberMaxTheme } from './cyber-max';
-export { cyberMaxTheme } from './cyber-max';
-import { proTheme } from './pro';
-export { proTheme } from './pro';
-import { fjordTheme } from './fjord';
-export { fjordTheme } from './fjord';
+} from './types.js';
+import { productivityBlueTheme } from './productivity-blue.js';
+export { productivityBlueTheme } from './productivity-blue.js';
+import { neonStudioTheme } from './neon-studio.js';
+export { neonStudioTheme } from './neon-studio.js';
+import { hyperlabsTheme } from './hyperlabs.js';
+export { hyperlabsTheme } from './hyperlabs.js';
+import { cyberMaxTheme } from './cyber-max.js';
+export { cyberMaxTheme } from './cyber-max.js';
+import { proTheme } from './pro.js';
+export { proTheme } from './pro.js';
+import { fjordTheme } from './fjord.js';
+export { fjordTheme } from './fjord.js';
 
 export const zedDarkTheme: ThemeConfig = {
   id: 'zed-dark',

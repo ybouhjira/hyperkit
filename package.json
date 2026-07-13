@@ -1,6 +1,6 @@
 {
   "name": "@ybouhjira/hyperkit",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "A scalable SolidJS component library with token-based theming and CSS variable customization",
   "type": "module",
   "sideEffects": [
@@ -197,7 +197,7 @@
   "dependencies": {
     "@kobalte/core": "^0.13.11",
     "@motionone/dom": "^10.18.0",
-    "@ybouhjira/hyperkit-styles": "workspace:*",
+    "@ybouhjira/hyperkit-styles": "workspace:^",
     "commander": "^14.0.3",
     "highlight.js": "^11.11.1",
     "hypher": "^0.2.5",

@@ -1,6 +1,6 @@
 {
   "name": "@ybouhjira/hyperkit-styles",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Framework-agnostic design system core for HyperKit — --sk-* design tokens, component stylesheets, theme presets, and the theme engine shared by the SolidJS and React packages.",
   "type": "module",
   "license": "MIT",
@@ -42,5 +42,9 @@
   "devDependencies": {
     "typescript": "^5.7.2",
     "vitest": "^4.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }
